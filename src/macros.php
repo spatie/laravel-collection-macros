@@ -72,3 +72,17 @@ if (!Collection::hasMacro('none')) {
         return !$this->contains($key);
     });
 }
+
+if (!Collection::hasMacro('split')) {
+    /**
+     * Split a collection into a certain number of groups.
+     *
+     * @param int $numberOfGroups
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('split', function (int $numberOfGroups): Collection {
+        $groupSize = ceil($this->count() / $numberOfGroups);
+        return $this->chunk($groupSize);
+    });
+}
