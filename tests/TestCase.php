@@ -3,12 +3,14 @@
 namespace Spatie\CollectionMacros\Test;
 
 use Mockery;
-use PHPUnit_Framework_TestCase;
+use Orchestra\Testbench\TestCase as BaseTestCase;
 
-abstract class TestCase extends PHPUnit_Framework_TestCase
+abstract class TestCase extends BaseTestCase
 {
     public function setUp()
     {
+        parent::setUp();
+
         require_once __DIR__ . '/../src/macros.php';
     }
 
