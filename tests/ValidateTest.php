@@ -46,4 +46,3 @@ class ValidateTest extends TestCase
         $this->assertFalse(Collection::make([['name' => 'foo'], ['name' => '']])->validate(['name' => 'required']));
     }
 }
-

@@ -45,6 +45,7 @@ class GroupByModelTest extends TestCase
 
         $this->assertEquals($expected, $grouped->map(function ($group) {
             $group['items'] = $group['items']->toArray();
+
             return $group;
         })->toArray());
     }

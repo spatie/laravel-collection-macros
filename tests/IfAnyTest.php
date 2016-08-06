@@ -8,7 +8,7 @@ use Mockery;
 class IfAnyTest extends TestCase
 {
     /** @test */
-    function it_executes_the_callable_if_the_collection_isnt_empty()
+    public function it_executes_the_callable_if_the_collection_isnt_empty()
     {
         $mock = Mockery::mock();
         $mock->shouldReceive('someCall')->once();
@@ -19,7 +19,7 @@ class IfAnyTest extends TestCase
     }
 
     /** @test */
-    function it_doesnt_execute_the_callable_if_the_collection_is_empty()
+    public function it_doesnt_execute_the_callable_if_the_collection_is_empty()
     {
         $mock = Mockery::mock();
         $mock->shouldNotReceive('someCall');
@@ -30,7 +30,7 @@ class IfAnyTest extends TestCase
     }
 
     /** @test */
-    function it_provides_a_fluent_interface()
+    public function it_provides_a_fluent_interface()
     {
         $collection = Collection::make();
 

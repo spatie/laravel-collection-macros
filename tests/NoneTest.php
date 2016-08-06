@@ -16,8 +16,8 @@ class NoneTest extends TestCase
     /** @test */
     public function it_can_check_if_a_key_value_pair_isnt_present_in_a_collection()
     {
-        $this->assertTrue(Collection::make([ ['name' => 'foo'] ])->none('name', 'bar'));
-        $this->assertFalse(Collection::make([ ['name' => 'foo'] ])->none('name', 'foo'));
+        $this->assertTrue(Collection::make([['name' => 'foo']])->none('name', 'bar'));
+        $this->assertFalse(Collection::make([['name' => 'foo']])->none('name', 'foo'));
     }
 
     /** @test */
