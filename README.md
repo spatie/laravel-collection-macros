@@ -90,7 +90,7 @@ collect(['name' => 'foo'])->none(function ($key, $value) {
 }); // returns true
 ```
 
-## Range
+### Range
 
 Creates a new collection instance with a range of numbers. This functions accepts the same parameters as PHP's standard `range` function.
 
@@ -98,7 +98,7 @@ Creates a new collection instance with a range of numbers. This functions accept
 collect()->range(1, 3)->toArray(); //returns [1,2,3]
 ```
 
-## Split
+### Split
 
 Splits a collection into a the given number of groups.
 
@@ -111,7 +111,7 @@ $collection->first(); // returns a collection with 'a' and 'b';
 $collection->last(); // returns a collection with 'e' and 'f';
 ```
 
-## Validate
+### Validate
 
 Returns `true` if the given `$callback` returns true for every item. If `$callback` is a string or an array, regard it as a validation rule.
 
