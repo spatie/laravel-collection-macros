@@ -56,7 +56,7 @@ if (!Collection::hasMacro('range')) {
 
 if (!Collection::hasMacro('none')) {
     /*
-     * Check whether a collection doesn't contain any occurences of a given
+     * Check whether a collection doesn't contain any occurrences of a given
      * item, key-value pair, or passing truth test. `none` accepts the same
      * parameters as the `contains` collection method.
      *
