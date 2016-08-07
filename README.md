@@ -42,6 +42,14 @@ This service provider must be installed.
 
 These macro's will be added to the `Illuminate\Support\Collection` class.
 
+### Dd
+
+Dumps the contents of the collection and terminates the script. This macro makes debugging a collection [much easier](https://murze.be/2016/06/debugging-collections/).
+
+```php
+collect([1,2,3])->dd(); 
+```
+
 ### GroupByModel
 
 wip...

@@ -2,6 +2,15 @@
 
 use Illuminate\Support\Collection;
 
+if (!Collection::hasMacro('dd')) {
+    /*
+     * Dump the contents of the collection and terminate the script.
+     */
+    Collection::macro('dd', function () {
+        dd($this);
+    });
+}
+
 if (!Collection::hasMacro('ifEmpty')) {
     /*
      * Execute a callable if the collection is empty, then return the collection.
