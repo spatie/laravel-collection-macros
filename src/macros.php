@@ -139,7 +139,13 @@ if (!Collection::hasMacro('validate')) {
 }
 
 if (!Collection::hasMacro('groupByModel')) {
-    Collection::macro('groupByModel', function ($callback, $keyName = 'key') {
+    Collection::macro('groupByModel', function ($callbackOrKey, $keyName = null) {
+
+        $callback = is_callable($callbackOrKey) ? $callbackOrKey : function ($item) use ($callbackOrKey) {
+            return $item[$callbackOrKey];
+        };
+
+        $keyName = $keyName ?: (is_callable($callbackOrKey) ? 'model' : $callbackOrKey);
 
         return Collection::make($this->items)->map(function ($item) use ($callback) {
             return ['key' => $callback($item), 'item' => $item];
