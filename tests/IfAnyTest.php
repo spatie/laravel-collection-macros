@@ -17,6 +17,15 @@ class IfAnyTest extends TestCase
     }
 
     /** @test */
+    public function it_pass_the_collection_in_the_callback()
+    {
+        $originCollection = Collection::make(['foo']);
+        $originCollection->ifAny(function (Collection $collection) use ($originCollection) {
+            $this->assertEquals($originCollection, $collection);
+        });
+    }
+
+    /** @test */
     public function it_doesnt_execute_the_callable_if_the_collection_is_empty()
     {
         Collection::make()->ifAny(function () {

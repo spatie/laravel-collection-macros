@@ -38,7 +38,7 @@ if (!Collection::hasMacro('ifAny')) {
      */
     Collection::macro('ifAny', function (callable $callback): Collection {
         if (!$this->isEmpty()) {
-            $callback();
+            $callback($this);
         }
 
         return $this;
