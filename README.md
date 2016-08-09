@@ -42,7 +42,7 @@ This service provider must be installed.
 
 These macro's will be added to the `Illuminate\Support\Collection` class.
 
-### Dd
+### `dd`
 
 Dumps the contents of the collection and terminates the script. This macro makes debugging a collection [much easier](https://murze.be/2016/06/debugging-collections/).
 
@@ -50,7 +50,7 @@ Dumps the contents of the collection and terminates the script. This macro makes
 collect([1,2,3])->dd();
 ```
 
-### GroupByModel
+### `groupByModel`
 
 Similar to `groupBy`, but groups the collection by an Eloquent model. Since the key is an object instead of an integer or string, the results are divided into separate arrays.
 
@@ -110,7 +110,7 @@ $collection->groupByModel('model', 'myModel');
 // ];
 ```
 
-### IfAny
+### `ifAny`
 
 Executes the passed callable if the collection isn't empty. The entire collection will be returned.
 
@@ -124,7 +124,7 @@ collect([1, 2, 3])->ifAny(function() { // non-empty collection so this will get 
 });
 ```
 
-### IfEmpty
+### `ifEmpty`
 
 Executes the passed callable if the collection is empty. The entire collection will be returned.
 
@@ -138,7 +138,7 @@ collect([1, 2, 3])->ifEmpty(function() { // non-empty collection so this won't g
 });
 ```
 
-### None
+### `none`
 
 Checks whether a collection doesn't contain any occurrences of a given item, key-value pair, or passing truth test. The function accepts the same parameters as the `contains` collection method.
 
@@ -154,7 +154,7 @@ collect(['name' => 'foo'])->none(function ($key, $value) {
 }); // returns true
 ```
 
-### Range
+### `range`
 
 Creates a new collection instance with a range of numbers. This functions accepts the same parameters as PHP's standard `range` function.
 
@@ -162,7 +162,7 @@ Creates a new collection instance with a range of numbers. This functions accept
 collect()->range(1, 3)->toArray(); //returns [1,2,3]
 ```
 
-### Split
+### `split`
 
 Splits a collection into a the given number of groups.
 
@@ -175,7 +175,7 @@ $collection->first(); // returns a collection with 'a' and 'b';
 $collection->last(); // returns a collection with 'e' and 'f';
 ```
 
-### Validate
+### `validate`
 
 Returns `true` if the given `$callback` returns true for every item. If `$callback` is a string or an array, regard it as a validation rule.
 
