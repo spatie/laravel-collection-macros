@@ -77,7 +77,7 @@ if (!Collection::hasMacro('none')) {
      * @return bool
      */
     Collection::macro('none', function ($key, $value = null): bool {
-        if (func_num_args() == 2) {
+        if (func_num_args() === 2) {
             return !$this->contains($key, $value);
         }
 
