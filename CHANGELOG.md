@@ -2,19 +2,6 @@
 
 All Notable changes to `laravel-collection-macros` will be documented in this file
 
-## NEXT - YYYY-MM-DD
+## 1.0.0 - 2016-08-09
 
-### Added
-- Nothing
-
-### Deprecated
-- Nothing
-
-### Fixed
-- Nothing
-
-### Removed
-- Nothing
-
-### Security
-- Nothing
+- initial release
