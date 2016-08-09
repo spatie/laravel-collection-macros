@@ -140,7 +140,7 @@ if (!Collection::hasMacro('validate')) {
 
 if (!Collection::hasMacro('groupByModel')) {
     /*
-     * Groupe a collection by an Eloquent model.
+     * Group a collection by an Eloquent model.
      *
      * @param string|callable $callback
      * @param string $keyName
