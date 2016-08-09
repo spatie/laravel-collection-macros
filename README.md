@@ -47,12 +47,68 @@ These macro's will be added to the `Illuminate\Support\Collection` class.
 Dumps the contents of the collection and terminates the script. This macro makes debugging a collection [much easier](https://murze.be/2016/06/debugging-collections/).
 
 ```php
-collect([1,2,3])->dd(); 
+collect([1,2,3])->dd();
 ```
 
 ### GroupByModel
 
-wip...
+Similar to `groupBy`, but groups the collection by an Eloquent model. Since the key is an object instead of an integer or string, the results are divided into separate arrays.
+
+```php
+$collection = Collection::make([
+    ['model' => $model1, 'foo' => 'bar'],
+    ['model' => $model1, 'foo' => 'baz'],
+    ['model' => $model2, 'foo' => 'qux'],
+]);
+
+$collection->groupByModel('model');
+
+// [
+//     [
+//         'model' => $model1,
+//         'items' => [
+//             ['model' => $model1, 'foo' => 'bar'],
+//             ['model' => $model1, 'foo' => 'baz'],
+//         ],
+//     ],
+//     [
+//         'model' => $model2,
+//         'items' => [
+//             ['model' => $model2, 'foo' => 'qux'],
+//         ],
+//     ],
+// ];
+```
+
+You can also use a callable for more flexibility:
+
+```php
+$collection->groupByModel(function ($item) {
+    return $item['model']
+});
+```
+
+If you want to specify the model key's name, you can pass it as the second parameter:
+
+```php
+$collection->groupByModel('model', 'myModel');
+
+// [
+//     [
+//         'myModel' => $model1,
+//         'items' => [
+//             ['model' => $model1, 'foo' => 'bar'],
+//             ['model' => $model1, 'foo' => 'baz'],
+//         ],
+//     ],
+//     [
+//         'myModel' => $model2,
+//         'items' => [
+//             ['model' => $model2, 'foo' => 'qux'],
+//         ],
+//     ],
+// ];
+```
 
 ### IfAny
 
@@ -60,11 +116,11 @@ Executes the passed callable if the collection isn't empty. The entire collectio
 
 ```php
 collect()->ifAny(function() { // empty collection so this won't get called
-   echo 'Hello' 
+   echo 'Hello';
 });
 
 collect([1, 2, 3])->ifAny(function() { // non-empty collection so this will get called
-   echo 'Hello' 
+   echo 'Hello';
 });
 ```
 
@@ -74,11 +130,11 @@ Executes the passed callable if the collection is empty. The entire collection w
 
 ```php
 collect()->ifEmpty(function() { // empty collection so this will called
-   echo 'Hello' 
+   echo 'Hello';
 });
 
 collect([1, 2, 3])->ifEmpty(function() { // non-empty collection so this won't get called
-   echo 'Hello' 
+   echo 'Hello';
 });
 ```
 
@@ -111,7 +167,7 @@ collect()->range(1, 3)->toArray(); //returns [1,2,3]
 Splits a collection into a the given number of groups.
 
 ```php
-$collection = collect(['a', 'b', 'c', 'd', 'e', 'f'])->split(3); 
+$collection = collect(['a', 'b', 'c', 'd', 'e', 'f'])->split(3);
 
 $collection->count(); // returns 3
 
