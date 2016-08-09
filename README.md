@@ -55,7 +55,7 @@ collect([1,2,3])->dd();
 Similar to `groupBy`, but groups the collection by an Eloquent model. Since the key is an object instead of an integer or string, the results are divided into separate arrays.
 
 ```php
-$collection = Collection::make([
+$collection = collect([
     ['model' => $model1, 'foo' => 'bar'],
     ['model' => $model1, 'foo' => 'baz'],
     ['model' => $model2, 'foo' => 'qux'],
