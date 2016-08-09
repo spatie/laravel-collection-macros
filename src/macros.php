@@ -139,13 +139,19 @@ if (!Collection::hasMacro('validate')) {
 }
 
 if (!Collection::hasMacro('groupByModel')) {
-    Collection::macro('groupByModel', function ($callbackOrKey, $keyName = null) {
+    /*
+     * Groupe a collection by an Eloquent model.
+     *
+     * @param string|callable $callback
+     * @param string $keyName
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('groupByModel', function ($callback, $keyName = 'model') {
 
-        $callback = is_callable($callbackOrKey) ? $callbackOrKey : function ($item) use ($callbackOrKey) {
-            return $item[$callbackOrKey];
+        $callback = is_callable($callback) ? $callback : function ($item) use ($callback) {
+            return $item[$callback];
         };
-
-        $keyName = $keyName ?: (is_callable($callbackOrKey) ? 'model' : $callbackOrKey);
 
         return Collection::make($this->items)->map(function ($item) use ($callback) {
             return ['key' => $callback($item), 'item' => $item];

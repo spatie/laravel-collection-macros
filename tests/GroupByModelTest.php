@@ -144,9 +144,4 @@ class GroupByModelTest extends TestCase
 
         return [$model1, $model2, $collection];
     }
-
-    protected function getExpectedResult(): array
-    {
-
-    }
 }
