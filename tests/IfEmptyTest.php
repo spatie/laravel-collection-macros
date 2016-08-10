@@ -20,6 +20,7 @@ class IfEmptyTest extends TestCase
     public function it_pass_the_collection_in_the_callback()
     {
         $originCollection = Collection::make();
+
         $originCollection->ifEmpty(function (Collection $collection) use ($originCollection) {
             $this->assertEquals($originCollection, $collection);
         });
