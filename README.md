@@ -115,11 +115,11 @@ $collection->groupByModel('model', 'myModel');
 Executes the passed callable if the collection isn't empty. The entire collection will be returned.
 
 ```php
-collect()->ifAny(function() { // empty collection so this won't get called
+collect()->ifAny(function(Collection $collection) { // empty collection so this won't get called
    echo 'Hello';
 });
 
-collect([1, 2, 3])->ifAny(function() { // non-empty collection so this will get called
+collect([1, 2, 3])->ifAny(function(Collection $collection) { // non-empty collection so this will get called
    echo 'Hello';
 });
 ```
@@ -129,11 +129,11 @@ collect([1, 2, 3])->ifAny(function() { // non-empty collection so this will get 
 Executes the passed callable if the collection is empty. The entire collection will be returned.
 
 ```php
-collect()->ifEmpty(function() { // empty collection so this will called
+collect()->ifEmpty(function(Collection $collection) { // empty collection so this will called
    echo 'Hello';
 });
 
-collect([1, 2, 3])->ifEmpty(function() { // non-empty collection so this won't get called
+collect([1, 2, 3])->ifEmpty(function(Collection $collection) { // non-empty collection so this won't get called
    echo 'Hello';
 });
 ```
