@@ -17,6 +17,15 @@ class IfEmptyTest extends TestCase
     }
 
     /** @test */
+    public function it_pass_the_collection_in_the_callback()
+    {
+        $originCollection = Collection::make();
+        $originCollection->ifEmpty(function (Collection $collection) use ($originCollection) {
+            $this->assertEquals($originCollection, $collection);
+        });
+    }
+
+    /** @test */
     public function it_doesnt_execute_the_callable_if_the_collection_isnt_empty()
     {
         Collection::make(['foo'])->ifEmpty(function () {
