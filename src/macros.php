@@ -175,3 +175,36 @@ if (!Collection::hasMacro('groupByModel')) {
         })->values();
     });
 }
+
+if (!Collection::hasMacro('toAssoc')) {
+    /*
+     * Transform a collection into an associative array form collection item.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('toAssoc', function () {
+
+        return $this->reduce(function ($assoc, array $keyValuePair): Collection {
+            list($key, $value) = $keyValuePair;
+            $assoc[$key] = $value;
+
+            return $assoc;
+        }, new static );
+    });
+}
+
+if (!Collection::hasMacro('mapToAssoc')) {
+
+    /*
+     * Transform a collection into an associative array form collection item,
+     * allowing you to pass a callback to customize its key and value
+     * through a map operation.
+     *
+     * @param callable callback
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('mapToAssoc', function (callable $callback): Collection {
+        return $this->map($callback)->toAssoc();
+    });
+}
