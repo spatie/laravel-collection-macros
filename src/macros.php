@@ -202,7 +202,7 @@ if (! Collection::hasMacro('mapToAssoc')) {
 }
 
 if (!Collection::hasMacro('transpose')) {
-    /**
+    /*
      * Transpose an array.
      *
      * @return \Illuminate\Support\Collection
