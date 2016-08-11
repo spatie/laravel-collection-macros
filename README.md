@@ -189,6 +189,7 @@ collect(['sebastian@spatie.be', 'bla'])->validate('email'); // returns false
 collect(['sebastian@spatie.be', 'freek@spatie.be'])->validate('email'); // returns true
 ```
 
+
 ### `toAssoc`
 
 Transform a collection into an associative array form collection item.
@@ -222,6 +223,24 @@ $employees->mapToAssoc(function ($employee) {
 });
 
 $employees->toArray(); // returns ['john@example.com' => 'John', 'jane@example.com' => 'Jane']
+```
+
+### `transpose`
+
+The goal of transpose is to rotate a multidimensional array, turning the rows into columns and the columns into rows.
+
+```php
+collect([
+    ['Jane', 'Bob', 'Mary'],
+    ['jane@example.com', 'bob@example.com', 'mary@example.com'],
+    ['Doctor', 'Plumber', 'Dentist'],
+])->transpose()->toArray();
+
+// [
+//     ['Jane', 'jane@example.com', 'Doctor'],
+//     ['Bob', 'bob@example.com', 'Plumber'],
+//     ['Mary', 'mary@example.com', 'Dentist'],
+// ]
 ```
 
 ## Changelog
