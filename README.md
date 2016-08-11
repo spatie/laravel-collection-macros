@@ -189,6 +189,41 @@ collect(['sebastian@spatie.be', 'bla'])->validate('email'); // returns false
 collect(['sebastian@spatie.be', 'freek@spatie.be'])->validate('email'); // returns true
 ```
 
+### `toAssoc`
+
+Transform a collection into an associative array form collection item.
+
+```php
+$collection = collect(['a', 'b'], ['c', 'd'], ['e', 'f'])->toAssoc();
+
+$collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
+```
+
+### `mapToAssoc`
+
+Transform a collection into an associative array form collection item, allowing you to pass a callback to customize its key and value through a map operation.
+
+```php
+$employees = collect([
+    [
+        'name' => 'John',
+        'department' => 'Sales',
+        'email' => 'john@example.com',
+    ],
+    [
+        'name' => 'Jane',
+        'department' => 'Marketing',
+        'email' => 'jane@example.com',
+    ],
+]);
+
+$employees->mapToAssoc(function ($employee) {
+    return [$employee['email'], $employee['name']];
+});
+
+$employees->toArray(); // returns ['john@example.com' => 'John', 'jane@example.com' => 'Jane']
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
