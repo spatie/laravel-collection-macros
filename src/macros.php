@@ -169,24 +169,23 @@ if (! Collection::hasMacro('groupByModel')) {
     });
 }
 
-if (!Collection::hasMacro('toAssoc')) {
+if (! Collection::hasMacro('toAssoc')) {
     /*
      * Transform a collection into an associative array form collection item.
      *
      * @return \Illuminate\Support\Collection
      */
     Collection::macro('toAssoc', function () {
-
         return $this->reduce(function ($assoc, array $keyValuePair): Collection {
             list($key, $value) = $keyValuePair;
             $assoc[$key] = $value;
 
             return $assoc;
-        }, new static );
+        }, new static);
     });
 }
 
-if (!Collection::hasMacro('mapToAssoc')) {
+if (! Collection::hasMacro('mapToAssoc')) {
 
     /*
      * Transform a collection into an associative array form collection item,
