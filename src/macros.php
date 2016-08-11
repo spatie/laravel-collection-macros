@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Collection;
 
-if (!Collection::hasMacro('dd')) {
+if (! Collection::hasMacro('dd')) {
     /*
      * Dump the contents of the collection and terminate the script.
      */
@@ -11,7 +11,7 @@ if (!Collection::hasMacro('dd')) {
     });
 }
 
-if (!Collection::hasMacro('ifEmpty')) {
+if (! Collection::hasMacro('ifEmpty')) {
     /*
      * Execute a callable if the collection is empty, then return the collection.
      *
@@ -28,7 +28,7 @@ if (!Collection::hasMacro('ifEmpty')) {
     });
 }
 
-if (!Collection::hasMacro('ifAny')) {
+if (! Collection::hasMacro('ifAny')) {
     /*
      * Execute a callable if the collection isn't empty, then return the collection.
      *
@@ -37,7 +37,7 @@ if (!Collection::hasMacro('ifAny')) {
      * @return \Illuminate\Support\Collection
      */
     Collection::macro('ifAny', function (callable $callback): Collection {
-        if (!$this->isEmpty()) {
+        if (! $this->isEmpty()) {
             $callback($this);
         }
 
@@ -45,7 +45,7 @@ if (!Collection::hasMacro('ifAny')) {
     });
 }
 
-if (!Collection::hasMacro('range')) {
+if (! Collection::hasMacro('range')) {
     /*
      * Create a new collection instance with a range of numbers. `range`
      * accepts the same parameters as PHP's standard `range` function.
@@ -63,7 +63,7 @@ if (!Collection::hasMacro('range')) {
     });
 }
 
-if (!Collection::hasMacro('none')) {
+if (! Collection::hasMacro('none')) {
     /*
      * Check whether a collection doesn't contain any occurrences of a given
      * item, key-value pair, or passing truth test. `none` accepts the same
@@ -78,14 +78,14 @@ if (!Collection::hasMacro('none')) {
      */
     Collection::macro('none', function ($key, $value = null): bool {
         if (func_num_args() === 2) {
-            return !$this->contains($key, $value);
+            return ! $this->contains($key, $value);
         }
 
-        return !$this->contains($key);
+        return ! $this->contains($key);
     });
 }
 
-if (!Collection::hasMacro('split')) {
+if (! Collection::hasMacro('split')) {
     /*
      * Split a collection into a certain number of groups.
      *
@@ -100,7 +100,7 @@ if (!Collection::hasMacro('split')) {
     });
 }
 
-if (!Collection::hasMacro('validate')) {
+if (! Collection::hasMacro('validate')) {
     /*
      * Returns true if $callback returns true for every item. If $callback
      * is a string or an array, regard it as a validation rule.
@@ -110,17 +110,15 @@ if (!Collection::hasMacro('validate')) {
      * @return bool
      */
     Collection::macro('validate', function ($callback): bool {
-
         if (is_string($callback) || is_array($callback)) {
             $validationRule = $callback;
 
             $callback = function ($item) use ($validationRule) {
-
-                if (!is_array($item)) {
+                if (! is_array($item)) {
                     $item = ['default' => $item];
                 }
 
-                if (!is_array($validationRule)) {
+                if (! is_array($validationRule)) {
                     $validationRule = ['default' => $validationRule];
                 }
 
@@ -129,7 +127,7 @@ if (!Collection::hasMacro('validate')) {
         }
 
         foreach ($this->items as $item) {
-            if (!$callback($item)) {
+            if (! $callback($item)) {
                 return false;
             }
         }
@@ -138,7 +136,7 @@ if (!Collection::hasMacro('validate')) {
     });
 }
 
-if (!Collection::hasMacro('groupByModel')) {
+if (! Collection::hasMacro('groupByModel')) {
     /*
      * Group a collection by an Eloquent model.
      *
@@ -148,7 +146,6 @@ if (!Collection::hasMacro('groupByModel')) {
      * @return \Illuminate\Support\Collection
      */
     Collection::macro('groupByModel', function ($callback, $keyName = 'model') {
-
         $callback = is_callable($callback) ? $callback : function ($item) use ($callback) {
             return $item[$callback];
         };
@@ -158,20 +155,16 @@ if (!Collection::hasMacro('groupByModel')) {
         })->groupBy(function (array $keyedItem) {
             return $keyedItem['key']->getKey();
         })->map(function (Collection $group) use ($keyName) {
-
             return $group->reduce(function (array $result, array $group) use ($keyName) {
                 $result[$keyName] = $group['key'];
                 $result['items'][] = $group['item'];
 
                 return $result;
             }, []);
-
         })->map(function (array $group) {
-
             $group['items'] = Collection::make($group['items']);
 
             return $group;
-
         })->values();
     });
 }

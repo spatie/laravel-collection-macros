@@ -41,6 +41,7 @@ class IfAnyTest extends TestCase
     {
         $collection = Collection::make();
 
-        $this->assertEquals($collection, $collection->ifAny(function () {}));
+        $this->assertEquals($collection, $collection->ifAny(function () {
+        }));
     }
 }

@@ -41,6 +41,7 @@ class IfEmptyTest extends TestCase
     {
         $collection = Collection::make();
 
-        $this->assertEquals($collection, $collection->ifEmpty(function () {}));
+        $this->assertEquals($collection, $collection->ifEmpty(function () {
+        }));
     }
 }
