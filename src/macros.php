@@ -200,3 +200,18 @@ if (! Collection::hasMacro('mapToAssoc')) {
         return $this->map($callback)->toAssoc();
     });
 }
+
+if (!Collection::hasMacro('transpose')) {
+    /**
+     * Transpose an array.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('transpose', function (): Collection {
+        $items = array_map(function (...$items) {
+            return $items;
+        }, ...$this->values());
+
+        return new static($items);
+    });
+}
