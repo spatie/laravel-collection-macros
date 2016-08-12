@@ -2,6 +2,10 @@
 
 All Notable changes to `laravel-collection-macros` will be documented in this file
 
+## 1.3.0 - 2016-08-12
+
+- added `transpose` macro
+
 ## 1.2.0 - 2016-08-11
 
 - added `assoc` and `mapToAssoc` macros
