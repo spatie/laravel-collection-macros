@@ -186,7 +186,6 @@ if (! Collection::hasMacro('toAssoc')) {
 }
 
 if (! Collection::hasMacro('mapToAssoc')) {
-
     /*
      * Transform a collection into an associative array form collection item,
      * allowing you to pass a callback to customize its key and value
@@ -198,5 +197,20 @@ if (! Collection::hasMacro('mapToAssoc')) {
      */
     Collection::macro('mapToAssoc', function (callable $callback): Collection {
         return $this->map($callback)->toAssoc();
+    });
+}
+
+if (! Collection::hasMacro('transpose')) {
+    /*
+     * Transpose an array.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('transpose', function (): Collection {
+        $items = array_map(function (...$items) {
+            return $items;
+        }, ...$this->values());
+
+        return new static($items);
     });
 }
