@@ -24,7 +24,7 @@
     "require": {
         "php": "^7.0",
         "illuminate/support": "^5.2",
-        "illuminate/validation": "^5.2",
+        "illuminate/validation": "^5.2"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
