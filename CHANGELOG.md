@@ -2,6 +2,10 @@
 
 All Notable changes to `laravel-collection-macros` will be documented in this file
 
+## 1.4.0 - 2016-08-20
+
+- add `dump` macro
+
 ## 1.3.1 - 2016-08-16
 
 - refactored `transpose` macro. It will throw an exception when invalid input is given and it'll return a collection of collections.

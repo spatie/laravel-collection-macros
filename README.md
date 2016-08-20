@@ -51,6 +51,20 @@ Dumps the contents of the collection and terminates the script. This macro makes
 collect([1,2,3])->dd();
 ```
 
+### `dump`
+
+Dumps the given arguments together with the current collection. This macro makes debugging a chain of collection functions much easier.
+
+```php
+collect([1,2,3])
+    ->dump('original')
+    ->map(function(int $number) {
+        return $number * 2;
+    })
+    ->dump('modified')
+    ->dd();
+```
+
 ### `groupByModel`
 
 Similar to `groupBy`, but groups the collection by an Eloquent model. Since the key is an object instead of an integer or string, the results are divided into separate arrays.

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Debug\Dumper;
 
 if (! Collection::hasMacro('dd')) {
     /*
@@ -8,6 +9,22 @@ if (! Collection::hasMacro('dd')) {
      */
     Collection::macro('dd', function () {
         dd($this);
+    });
+}
+
+if (! Collection::hasMacro('dump')) {
+    /*
+     * Dump the arguments given followed by the collection.
+     */
+    Collection::macro('dump', function () {
+
+        Collection::make(func_get_args())
+            ->push($this)
+            ->each(function($item)  {
+                (new Dumper)->dump($item);
+            });
+
+        return $this;
     });
 }
 
