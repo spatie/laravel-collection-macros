@@ -2,6 +2,10 @@
 
 All Notable changes to `laravel-collection-macros` will be documented in this file
 
+## 1.4.1 - 2016-08-20
+
+- maintenance release to kickstart Packagist after `composer.json` error
+
 ## 1.4.0 - 2016-08-20
 
 - add `dump` macro
