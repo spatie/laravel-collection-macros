@@ -17,10 +17,9 @@ if (! Collection::hasMacro('dump')) {
      * Dump the arguments given followed by the collection.
      */
     Collection::macro('dump', function () {
-
         Collection::make(func_get_args())
             ->push($this)
-            ->each(function($item)  {
+            ->each(function ($item) {
                 (new Dumper)->dump($item);
             });
 
