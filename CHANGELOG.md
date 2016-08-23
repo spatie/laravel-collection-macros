@@ -2,6 +2,9 @@
 
 All Notable changes to `laravel-collection-macros` will be documented in this file
 
+## 1.4.2 - 2016-08-23
+- updated for Laravel 5.3
+
 ## 1.4.1 - 2016-08-20
 
 - maintenance release to kickstart Packagist after `composer.json` error
