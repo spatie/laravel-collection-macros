@@ -169,6 +169,8 @@ collect(['name' => 'foo'])->none(function ($key, $value) {
 }); // returns true
 ```
 
+> Note: When using a callable as argument, ``Collection::none` be`haves differently in Laravel 5.3 and higher. In 5.2, the parameter order is `$key, $value`, and in 5.3+ the parameter order is `$value, $key`. 
+
 ### `range`
 
 Creates a new collection instance with a range of numbers. This functions accepts the same parameters as PHP's standard `range` function.
