@@ -47,6 +47,5 @@ class NoneTest extends TestCase
         $this->assertFalse(Collection::make(['name' => 'foo'])->none(function ($value, $key) {
             return $key === 'name' && $value === 'foo';
         }));
-
     }
 }
