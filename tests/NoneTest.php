@@ -26,7 +26,7 @@ class NoneTest extends TestCase
     {
         // Below Laravel 5.3, the callable's parameter order is `$key, $value`.
 
-        if (version_compare('5.3.0', Application::VERSION, 'lt')) {
+        if (version_compare(Application::VERSION, '5.3.0', 'lt')) {
             $this->assertTrue(Collection::make(['name' => 'foo'])->none(function ($key, $value) {
                 return $key === 'name' && $value === 'bar';
             }));
