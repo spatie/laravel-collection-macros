@@ -2,6 +2,9 @@
 
 All Notable changes to `laravel-collection-macros` will be documented in this file
 
+## 1.4.3 - 2016-08-30
+- `version_compare` fix in 5.3 changes
+
 ## 1.4.2 - 2016-08-23
 - updated for Laravel 5.3
 
