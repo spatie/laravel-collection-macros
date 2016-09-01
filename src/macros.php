@@ -110,6 +110,9 @@ if (! Collection::hasMacro('split')) {
      * @return \Illuminate\Support\Collection
      */
     Collection::macro('split', function (int $numberOfGroups): Collection {
+        if($this->isEmpty()) {
+            return $this;
+        }
         $groupSize = ceil($this->count() / $numberOfGroups);
 
         return $this->chunk($groupSize);

@@ -38,4 +38,15 @@ class SplitTest extends TestCase
             })->toArray()
         );
     }
+
+    /** @test */
+    public function it_can_split_an_empty_collection_without_getting_an_error()
+    {
+        $this->assertEquals(
+            [],
+            Collection::make([])->split(2)->map(function (Collection $chunk) {
+                return $chunk->values()->toArray();
+            })->toArray()
+        );
+    }
 }
