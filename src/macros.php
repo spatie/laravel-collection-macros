@@ -113,6 +113,7 @@ if (! Collection::hasMacro('split')) {
         if ($this->isEmpty()) {
             return $this;
         }
+        
         $groupSize = ceil($this->count() / $numberOfGroups);
 
         return $this->chunk($groupSize);
