@@ -181,7 +181,7 @@ collect()->range(1, 3)->toArray(); //returns [1,2,3]
 
 ### `split`
 
-Splits a collection into a the given number of groups.
+Splits a collection into the given number of groups.
 
 ```php
 $collection = collect(['a', 'b', 'c', 'd', 'e', 'f'])->split(3);
