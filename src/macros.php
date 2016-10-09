@@ -191,17 +191,12 @@ if (! Collection::hasMacro('groupByModel')) {
 
 if (! Collection::hasMacro('toAssoc')) {
     /*
-     * Transform a collection into an associative array form collection item.
+     * Transform a collection into an associative array
      *
      * @return \Illuminate\Support\Collection
      */
     Collection::macro('toAssoc', function () {
-        return $this->reduce(function ($assoc, array $keyValuePair): Collection {
-            list($key, $value) = $keyValuePair;
-            $assoc[$key] = $value;
-
-            return $assoc;
-        }, new static);
+        return $this->collapse()->toArray();
     });
 }
 
@@ -213,9 +208,9 @@ if (! Collection::hasMacro('mapToAssoc')) {
      *
      * @param callable callback
      *
-     * @return \Illuminate\Support\Collection
+     * @return array
      */
-    Collection::macro('mapToAssoc', function (callable $callback): Collection {
+    Collection::macro('mapToAssoc', function (callable $callback) {
         return $this->map($callback)->toAssoc();
     });
 }
