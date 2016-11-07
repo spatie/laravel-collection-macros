@@ -120,6 +120,24 @@ if (! Collection::hasMacro('split')) {
     });
 }
 
+if (! Collection::hasMacro('pad')) {
+    /*
+     * Pad a collection to a specific minimum length with a value
+     *
+     * @param int $minimumLength
+     * @param mixed $padWithValue
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('pad', function (int $minimumLength, $padWithValue): Collection {
+        if ($this->isEmpty() || $this->count() < $minimumLength) {
+            return new static(array_pad($this->toArray(), $minimumLength, $padWithValue));
+        }
+
+        return $this;
+    });
+}
+
 if (! Collection::hasMacro('validate')) {
     /*
      * Returns true if $callback returns true for every item. If $callback

@@ -2,6 +2,9 @@
 
 All Notable changes to `laravel-collection-macros` will be documented in this file
 
+## Unreleased
+- add `pad` macro
+
 ## 1.4.4 - 2016-09-01
 - `split` doesn't throw an error anymore when trying to split an empty collection
 
