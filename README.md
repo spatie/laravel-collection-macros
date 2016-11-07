@@ -192,6 +192,28 @@ $collection->first(); // returns a collection with 'a' and 'b';
 $collection->last(); // returns a collection with 'e' and 'f';
 ```
 
+### `pad`
+
+Pads a collection with the given minimum number of items with the specified value.
+
+```php
+$collection = collect(['a', 'b', 'c', 'd', 'e', 'f'])->pad(7, 'g');
+
+$collection->count(); // returns 7
+
+$collection->dump(); // dumps ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+```
+
+If the collection has more values than the minimum number to pad, then it will not add extra values.
+
+```php
+$collection = collect(['a', 'b', 'c', 'd', 'e', 'f'])->pad(3, 'x');
+
+$collection->count(); // returns 6
+
+$collection->dump(); // dumps ['a', 'b', 'c', 'd', 'e', 'f']
+```
+
 ### `validate`
 
 Returns `true` if the given `$callback` returns true for every item. If `$callback` is a string or an array, regard it as a validation rule.
