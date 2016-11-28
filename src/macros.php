@@ -245,3 +245,20 @@ if (! Collection::hasMacro('transpose')) {
         return new static($items);
     });
 }
+
+if (! Collection::hasMacro('collectBy')) {
+    /*
+     * Split Array based on Condition.
+     * 
+     * @param  callback  $callback
+     * @return \Illuminate\Support\Collection
+     */
+	Collection::macro("collectBy",function($callback): Collection {
+        $newCollection = $this->reduce(function ($newCollection, $row) use ($callback) {
+            $index = $callback($row) ? 0 : 1;
+            $newCollection[$index][] = $row;
+            return $newCollection;
+        }, []);
+		return new static($newCollection);
+	});
+}
