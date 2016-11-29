@@ -242,12 +242,27 @@ $employees->mapToAssoc(function ($employee) {
 $employees->toArray(); // returns ['john@example.com' => 'John', 'jane@example.com' => 'Jane']
 ```
 
+## `partition`
+    
+Outputs a collection with two elements. Items in the first element did pass the given `$callback`, items in the second element did not.
+    
+```php
+collect(range(1,10))->partition(function($i) {
+   return $i <= 5;
+})->toArray();
+
+// [
+//    collect([1, 2, 3, 4, 5]),
+//    collect([6, 7, 8, 9, 10]),
+// ]
+```  
+
 ### `transpose`
 
 The goal of transpose is to rotate a multidimensional array, turning the rows into columns and the columns into rows.
 
 ```php
-collect([
+collect(
     ['Jane', 'Bob', 'Mary'],
     ['jane@example.com', 'bob@example.com', 'mary@example.com'],
     ['Doctor', 'Plumber', 'Dentist'],

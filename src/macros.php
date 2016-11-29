@@ -3,7 +3,7 @@
 use Illuminate\Support\Collection;
 use Illuminate\Support\Debug\Dumper;
 
-if (! Collection::hasMacro('dd')) {
+if (!Collection::hasMacro('dd')) {
     /*
      * Dump the contents of the collection and terminate the script.
      */
@@ -12,7 +12,7 @@ if (! Collection::hasMacro('dd')) {
     });
 }
 
-if (! Collection::hasMacro('dump')) {
+if (!Collection::hasMacro('dump')) {
     /*
      * Dump the arguments given followed by the collection.
      */
@@ -27,7 +27,7 @@ if (! Collection::hasMacro('dump')) {
     });
 }
 
-if (! Collection::hasMacro('ifEmpty')) {
+if (!Collection::hasMacro('ifEmpty')) {
     /*
      * Execute a callable if the collection is empty, then return the collection.
      *
@@ -44,7 +44,7 @@ if (! Collection::hasMacro('ifEmpty')) {
     });
 }
 
-if (! Collection::hasMacro('ifAny')) {
+if (!Collection::hasMacro('ifAny')) {
     /*
      * Execute a callable if the collection isn't empty, then return the collection.
      *
@@ -53,7 +53,7 @@ if (! Collection::hasMacro('ifAny')) {
      * @return \Illuminate\Support\Collection
      */
     Collection::macro('ifAny', function (callable $callback): Collection {
-        if (! $this->isEmpty()) {
+        if (!$this->isEmpty()) {
             $callback($this);
         }
 
@@ -61,7 +61,7 @@ if (! Collection::hasMacro('ifAny')) {
     });
 }
 
-if (! Collection::hasMacro('range')) {
+if (!Collection::hasMacro('range')) {
     /*
      * Create a new collection instance with a range of numbers. `range`
      * accepts the same parameters as PHP's standard `range` function.
@@ -79,7 +79,7 @@ if (! Collection::hasMacro('range')) {
     });
 }
 
-if (! Collection::hasMacro('none')) {
+if (!Collection::hasMacro('none')) {
     /*
      * Check whether a collection doesn't contain any occurrences of a given
      * item, key-value pair, or passing truth test. `none` accepts the same
@@ -94,14 +94,14 @@ if (! Collection::hasMacro('none')) {
      */
     Collection::macro('none', function ($key, $value = null): bool {
         if (func_num_args() === 2) {
-            return ! $this->contains($key, $value);
+            return !$this->contains($key, $value);
         }
 
-        return ! $this->contains($key);
+        return !$this->contains($key);
     });
 }
 
-if (! Collection::hasMacro('split')) {
+if (!Collection::hasMacro('split')) {
     /*
      * Split a collection into a certain number of groups.
      *
@@ -120,7 +120,7 @@ if (! Collection::hasMacro('split')) {
     });
 }
 
-if (! Collection::hasMacro('validate')) {
+if (!Collection::hasMacro('validate')) {
     /*
      * Returns true if $callback returns true for every item. If $callback
      * is a string or an array, regard it as a validation rule.
@@ -134,11 +134,11 @@ if (! Collection::hasMacro('validate')) {
             $validationRule = $callback;
 
             $callback = function ($item) use ($validationRule) {
-                if (! is_array($item)) {
+                if (!is_array($item)) {
                     $item = ['default' => $item];
                 }
 
-                if (! is_array($validationRule)) {
+                if (!is_array($validationRule)) {
                     $validationRule = ['default' => $validationRule];
                 }
 
@@ -147,7 +147,7 @@ if (! Collection::hasMacro('validate')) {
         }
 
         foreach ($this->items as $item) {
-            if (! $callback($item)) {
+            if (!$callback($item)) {
                 return false;
             }
         }
@@ -156,7 +156,7 @@ if (! Collection::hasMacro('validate')) {
     });
 }
 
-if (! Collection::hasMacro('groupByModel')) {
+if (!Collection::hasMacro('groupByModel')) {
     /*
      * Group a collection by an Eloquent model.
      *
@@ -189,7 +189,7 @@ if (! Collection::hasMacro('groupByModel')) {
     });
 }
 
-if (! Collection::hasMacro('toAssoc')) {
+if (!Collection::hasMacro('toAssoc')) {
     /*
      * Transform a collection into an associative array form collection item.
      *
@@ -205,7 +205,7 @@ if (! Collection::hasMacro('toAssoc')) {
     });
 }
 
-if (! Collection::hasMacro('mapToAssoc')) {
+if (!Collection::hasMacro('mapToAssoc')) {
     /*
      * Transform a collection into an associative array form collection item,
      * allowing you to pass a callback to customize its key and value
@@ -220,7 +220,7 @@ if (! Collection::hasMacro('mapToAssoc')) {
     });
 }
 
-if (! Collection::hasMacro('transpose')) {
+if (!Collection::hasMacro('transpose')) {
     /*
      * Transpose an array.
      *
@@ -243,5 +243,25 @@ if (! Collection::hasMacro('transpose')) {
         }, ...$values);
 
         return new static($items);
+    });
+}
+
+if (! Collection::hasMacro('partition')) {
+    /*
+     * Output a collection with two elements. Items in the first element did pass
+     * the given $callback, items in the second element did not.
+     *
+     * @param callable callback
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('partition', function (callable $callback): Collection {
+        $partitions = [new static(), new static()];
+
+        foreach ($this->items as $item) {
+            $partitions[! (int) $callback($item)][] = $item;
+        };
+
+        return new static($partitions);
     });
 }
