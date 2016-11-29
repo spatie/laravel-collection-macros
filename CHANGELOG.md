@@ -3,7 +3,7 @@
 All Notable changes to `laravel-collection-macros` will be documented in this file
 
 ## 1.5.0 - 2016-11-29
-- add `partition` method
+- added `partition` method
 
 ## 1.4.4 - 2016-09-01
 - `split` doesn't throw an error anymore when trying to split an empty collection
