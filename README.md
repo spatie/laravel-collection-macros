@@ -262,7 +262,7 @@ collect(range(1,10))->partition(function($i) {
 The goal of transpose is to rotate a multidimensional array, turning the rows into columns and the columns into rows.
 
 ```php
-collect(
+collect([
     ['Jane', 'Bob', 'Mary'],
     ['jane@example.com', 'bob@example.com', 'mary@example.com'],
     ['Doctor', 'Plumber', 'Dentist'],
