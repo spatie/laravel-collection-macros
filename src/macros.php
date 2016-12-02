@@ -4,7 +4,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Debug\Dumper;
 
 if (! Collection::hasMacro('dd')) {
-    /*
+    /**
      * Dump the contents of the collection and terminate the script.
      */
     Collection::macro('dd', function () {
@@ -13,7 +13,7 @@ if (! Collection::hasMacro('dd')) {
 }
 
 if (! Collection::hasMacro('dump')) {
-    /*
+    /**
      * Dump the arguments given followed by the collection.
      */
     Collection::macro('dump', function () {
@@ -28,7 +28,7 @@ if (! Collection::hasMacro('dump')) {
 }
 
 if (! Collection::hasMacro('ifEmpty')) {
-    /*
+    /**
      * Execute a callable if the collection is empty, then return the collection.
      *
      * @param callable $callback
@@ -45,7 +45,7 @@ if (! Collection::hasMacro('ifEmpty')) {
 }
 
 if (! Collection::hasMacro('ifAny')) {
-    /*
+    /**
      * Execute a callable if the collection isn't empty, then return the collection.
      *
      * @param callable callback
@@ -62,7 +62,7 @@ if (! Collection::hasMacro('ifAny')) {
 }
 
 if (! Collection::hasMacro('range')) {
-    /*
+    /**
      * Create a new collection instance with a range of numbers. `range`
      * accepts the same parameters as PHP's standard `range` function.
      *
@@ -80,7 +80,7 @@ if (! Collection::hasMacro('range')) {
 }
 
 if (! Collection::hasMacro('none')) {
-    /*
+    /**
      * Check whether a collection doesn't contain any occurrences of a given
      * item, key-value pair, or passing truth test. `none` accepts the same
      * parameters as the `contains` collection method.
@@ -102,7 +102,7 @@ if (! Collection::hasMacro('none')) {
 }
 
 if (! Collection::hasMacro('split')) {
-    /*
+    /**
      * Split a collection into a certain number of groups.
      *
      * @param int $numberOfGroups
@@ -121,7 +121,7 @@ if (! Collection::hasMacro('split')) {
 }
 
 if (! Collection::hasMacro('validate')) {
-    /*
+    /**
      * Returns true if $callback returns true for every item. If $callback
      * is a string or an array, regard it as a validation rule.
      *
@@ -157,7 +157,7 @@ if (! Collection::hasMacro('validate')) {
 }
 
 if (! Collection::hasMacro('groupByModel')) {
-    /*
+    /**
      * Group a collection by an Eloquent model.
      *
      * @param string|callable $callback
@@ -190,7 +190,7 @@ if (! Collection::hasMacro('groupByModel')) {
 }
 
 if (! Collection::hasMacro('toAssoc')) {
-    /*
+    /**
      * Transform a collection into an associative array form collection item.
      *
      * @return \Illuminate\Support\Collection
@@ -206,7 +206,7 @@ if (! Collection::hasMacro('toAssoc')) {
 }
 
 if (! Collection::hasMacro('mapToAssoc')) {
-    /*
+    /**
      * Transform a collection into an associative array form collection item,
      * allowing you to pass a callback to customize its key and value
      * through a map operation.
@@ -221,7 +221,7 @@ if (! Collection::hasMacro('mapToAssoc')) {
 }
 
 if (! Collection::hasMacro('transpose')) {
-    /*
+    /**
      * Transpose an array.
      *
      * @return \Illuminate\Support\Collection
@@ -247,11 +247,11 @@ if (! Collection::hasMacro('transpose')) {
 }
 
 if (! Collection::hasMacro('partition')) {
-    /*
+    /**
      * Output a collection with two elements. Items in the first element did pass
      * the given $callback, items in the second element did not.
      *
-     * @param callable callback
+     * @param callable $callback
      *
      * @return \Illuminate\Support\Collection
      */
