@@ -25,9 +25,5 @@ class PartitionTest extends TestCase
 
         $this->assertEquals([1, 2, 3, 4, 5], $collection[0]->toArray());
         $this->assertEquals([6, 7, 8, 9, 10], $collection[1]->toArray());
-
-        collect(range(1, 10))->partition(function ($i) {
-            return $i <= 5;
-        });
     }
 }
