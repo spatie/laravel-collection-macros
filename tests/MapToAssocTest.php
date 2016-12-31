@@ -15,6 +15,12 @@ class MapToAssocTest extends TestCase
     /** @test */
     public function it_can_map_a_collection_and_transform_it_into_an_associative_array()
     {
+        $expected = [
+            'john@example.com' => 'John',
+            'jane@example.com' => 'Jane',
+            'dave@example.com' => 'Dave',
+        ];
+
         $employees = collect([
             [
                 'name' => 'John',
@@ -33,12 +39,11 @@ class MapToAssocTest extends TestCase
             ],
         ]);
 
-        $this->assertEquals([
-            'john@example.com' => 'John',
-            'jane@example.com' => 'Jane',
-            'dave@example.com' => 'Dave',
-        ], $employees->mapToAssoc(function ($employee) {
-            return [$employee['email'], $employee['name']];
-        })->toArray());
+        $this->assertEquals(
+            $expected,
+            $employees->mapToAssoc(function ($employee) {
+                return [$employee['email'] => $employee['name']];
+            })
+        );
     }
 }
