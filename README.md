@@ -234,6 +234,15 @@ collect([
 // ]
 ```
 
+### `withSize`
+
+```php
+Collection::withSize(1)->toArray(); // return [1];
+Collection::withSize(5)->toArray(); // return [1,2,3,4,5];
+```
+
+Create a new collection with the specified amount of items.
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.

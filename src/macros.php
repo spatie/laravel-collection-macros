@@ -79,6 +79,23 @@ if (! Collection::hasMacro('range')) {
     });
 }
 
+if (! Collection::hasMacro('withSize')) {
+    /*
+     * Create a new collection with the specified amount of items
+     *
+     * @param int $size
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('withSize', function (int $size): Collection {
+        if ($size < 1) {
+            return new Collection();
+        }
+
+        return new Collection(range(1, $size));
+    });
+}
+
 if (! Collection::hasMacro('none')) {
     /*
      * Check whether a collection doesn't contain any occurrences of a given
