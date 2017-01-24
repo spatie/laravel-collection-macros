@@ -2,8 +2,8 @@
 
 namespace Spatie\CollectionMacros\Test;
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Collection;
+use Illuminate\Foundation\Application;
 
 class NoneTest extends TestCase
 {

@@ -3,7 +3,6 @@
 namespace Spatie\CollectionMacros\Test;
 
 use Orchestra\Testbench\TestCase;
-
 use Illuminate\Support\Collection;
 
 class ValidateTest extends TestCase
