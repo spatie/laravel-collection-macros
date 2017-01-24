@@ -219,31 +219,6 @@ $collection = collect(['a', 'b'], ['c', 'd'], ['e', 'f'])->toAssoc();
 $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
 ```
 
-### `mapToAssoc`
-
-Transform a collection into an associative array form collection item, allowing you to pass a callback to customize its key and value through a map operation.
-
-```php
-$employees = collect([
-    [
-        'name' => 'John',
-        'department' => 'Sales',
-        'email' => 'john@example.com',
-    ],
-    [
-        'name' => 'Jane',
-        'department' => 'Marketing',
-        'email' => 'jane@example.com',
-    ],
-]);
-
-$employees->mapToAssoc(function ($employee) {
-    return [$employee['email'], $employee['name']];
-});
-
-$employees->toArray(); // returns ['john@example.com' => 'John', 'jane@example.com' => 'Jane']
-```
-
 ## `partition`
     
 Outputs a collection with two elements. Items in the first element did pass the given `$callback`, items in the second element did not.
