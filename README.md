@@ -10,6 +10,8 @@
 
 This repository contains some useful collection macros.
 
+This version is targeted at Laravel 5.4. For 
+
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
 ## Postcardware
