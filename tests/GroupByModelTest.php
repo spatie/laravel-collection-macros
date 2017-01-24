@@ -2,9 +2,9 @@
 
 namespace Spatie\CollectionMacros\Test;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
 use Mockery;
+use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 class GroupByModelTest extends TestCase
 {
