@@ -23,14 +23,13 @@
     ],
     "require": {
         "php": "^7.0",
-        "illuminate/support": "~5.4.0@dev",
-        "illuminate/validation": "~5.4.0@dev"
+        "illuminate/support": "~5.4.0",
+        "illuminate/validation": "~5.4.0"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
         "orchestra/database": "~3.4.0|~3.4.0@dev",
         "orchestra/testbench": "~3.4.0|~3.4.0@dev",
-        "laravel/framework": "~5.4.0@dev",
         "phpunit/phpunit": "^5.7"
     },
     "autoload": {
