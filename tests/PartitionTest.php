@@ -6,6 +6,15 @@ use Illuminate\Support\Collection;
 
 class PartitionTest extends TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        if (method_exists(new Collection(), 'partition')) {
+            $this->markTestSkipped('This Laravel version is using a built in version of partition.');
+        }
+    }
+
     /** @test */
     public function it_can_handle_an_empty_collection()
     {

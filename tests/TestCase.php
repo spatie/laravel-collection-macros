@@ -3,13 +3,14 @@
 namespace Spatie\CollectionMacros\Test;
 
 use Mockery;
-use Orchestra\Testbench\TestCase as BaseTestCase;
+use PHPUnit_Framework_TestCase;
 
-/**
- * @property \Mockery\MockInterface spy
- */
-abstract class TestCase extends BaseTestCase
+abstract class TestCase extends PHPUnit_Framework_TestCase
 {
+
+    /** @var \Mockery\MockInterface spy */
+    public $spy;
+
     public function setUp()
     {
         parent::setUp();

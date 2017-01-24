@@ -2,10 +2,19 @@
 
 namespace Spatie\CollectionMacros\Test;
 
+use Orchestra\Testbench\TestCase;
+
 use Illuminate\Support\Collection;
 
 class ValidateTest extends TestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+
+        require_once __DIR__.'/../src/macros.php';
+    }
+
     /** @test */
     public function it_returns_true_if_a_collection_passes_validation_with_a_callback()
     {

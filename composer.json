@@ -28,9 +28,9 @@
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
-        "orchestra/database": "3.3.x-dev",
-        "orchestra/testbench": "3.3.x-dev",
-        "phpunit/phpunit": "5.*"
+        "orchestra/database": "~3.2.0|~3.3.0",
+        "orchestra/testbench": "~3.2.0|~3.3.0",
+        "phpunit/phpunit": "^5.7"
     },
     "autoload": {
         "psr-4": {
