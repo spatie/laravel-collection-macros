@@ -211,7 +211,7 @@ $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
 Transform a collection in to a array with pairs.
 
 ```php
-$collection = collect(['a' => 'b', 'c' => 'd', 'e' => 'f'])->toParis();
+$collection = collect(['a' => 'b', 'c' => 'd', 'e' => 'f'])->toPairs();
 
 $collection->toArray(); // returns ['a', 'b'], ['c', 'd'], ['e', 'f']
 ```
