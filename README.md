@@ -181,19 +181,6 @@ Creates a new collection instance with a range of numbers. This functions accept
 collect()->range(1, 3)->toArray(); //returns [1,2,3]
 ```
 
-### `split`
-
-Splits a collection into the given number of groups.
-
-```php
-$collection = collect(['a', 'b', 'c', 'd', 'e', 'f'])->split(3);
-
-$collection->count(); // returns 3
-
-$collection->first(); // returns a collection with 'a' and 'b';
-$collection->last(); // returns a collection with 'e' and 'f';
-```
-
 ### `validate`
 
 Returns `true` if the given `$callback` returns true for every item. If `$callback` is a string or an array, regard it as a validation rule.
@@ -218,21 +205,6 @@ $collection = collect(['a', 'b'], ['c', 'd'], ['e', 'f'])->toAssoc();
 
 $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
 ```
-
-## `partition`
-    
-Outputs a collection with two elements. Items in the first element did pass the given `$callback`, items in the second element did not.
-    
-```php
-collect(range(1,10))->partition(function($i) {
-   return $i <= 5;
-})->toArray();
-
-// [
-//    collect([1, 2, 3, 4, 5]),
-//    collect([6, 7, 8, 9, 10]),
-// ]
-```  
 
 ### `transpose`
 

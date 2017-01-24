@@ -101,25 +101,6 @@ if (! Collection::hasMacro('none')) {
     });
 }
 
-if (! Collection::hasMacro('split')) {
-    /*
-     * Split a collection into a certain number of groups.
-     *
-     * @param int $numberOfGroups
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    Collection::macro('split', function (int $numberOfGroups): Collection {
-        if ($this->isEmpty()) {
-            return new static;
-        }
-
-        $groupSize = ceil($this->count() / $numberOfGroups);
-
-        return $this->chunk($groupSize);
-    });
-}
-
 if (! Collection::hasMacro('validate')) {
     /*
      * Returns true if $callback returns true for every item. If $callback
@@ -228,25 +209,5 @@ if (! Collection::hasMacro('transpose')) {
         }, ...$values);
 
         return new static($items);
-    });
-}
-
-if (! Collection::hasMacro('partition')) {
-    /*
-     * Output a collection with two elements. Items in the first element did pass
-     * the given $callback, items in the second element did not.
-     *
-     * @param callable $callback
-     *
-     * @return \Illuminate\Support\Collection
-     */
-    Collection::macro('partition', function (callable $callback): Collection {
-        $partitions = [new static(), new static()];
-
-        foreach ($this->items as $item) {
-            $partitions[! (int) $callback($item)][] = $item;
-        }
-
-        return new static($partitions);
     });
 }
