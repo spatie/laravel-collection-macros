@@ -193,8 +193,8 @@ if (! Collection::hasMacro('toPairs')) {
      * @return \Illuminate\Support\Collection
      */
     Collection::macro('toPairs', function () {
-        return $this->keys()->map(function($key) {
-           return [$key, $this->items[$key]];
+        return $this->keys()->map(function ($key) {
+            return [$key, $this->items[$key]];
         });
     });
 }
