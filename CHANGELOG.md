@@ -2,6 +2,9 @@
 
 All Notable changes to `laravel-collection-macros` will be documented in this file
 
+## 1.5.1 - 2016-01-24
+- fixed tests
+
 ## 1.5.0 - 2016-11-29
 - added `partition` method
 
