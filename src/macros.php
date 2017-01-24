@@ -170,13 +170,13 @@ if (! Collection::hasMacro('groupByModel')) {
     });
 }
 
-if (! Collection::hasMacro('toAssoc')) {
+if (! Collection::hasMacro('fromPairs')) {
     /*
      * Transform a collection into an associative array form collection item.
      *
      * @return \Illuminate\Support\Collection
      */
-    Collection::macro('toAssoc', function () {
+    Collection::macro('fromPairs', function () {
         return $this->reduce(function ($assoc, array $keyValuePair): Collection {
             list($key, $value) = $keyValuePair;
             $assoc[$key] = $value;

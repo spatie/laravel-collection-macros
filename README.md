@@ -196,12 +196,12 @@ collect(['sebastian@spatie.be', 'freek@spatie.be'])->validate('email'); // retur
 ```
 
 
-### `toAssoc`
+### `fromPairs`
 
 Transform a collection into an associative array form collection item.
 
 ```php
-$collection = collect(['a', 'b'], ['c', 'd'], ['e', 'f'])->toAssoc();
+$collection = collect(['a', 'b'], ['c', 'd'], ['e', 'f'])->fromPairs();
 
 $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
 ```

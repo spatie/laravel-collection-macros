@@ -4,12 +4,12 @@ namespace Spatie\CollectionMacros\Test;
 
 use Illuminate\Support\Collection;
 
-class ToAssocTest extends TestCase
+class FromPairsTest extends TestCase
 {
     /** @test */
-    public function it_provides_a_toAssoc_macro()
+    public function it_provides_a_fromPairs_macro()
     {
-        $this->assertTrue(Collection::hasMacro('toAssoc'));
+        $this->assertTrue(Collection::hasMacro('fromPairs'));
     }
 
     /** @test */
@@ -23,6 +23,6 @@ class ToAssocTest extends TestCase
             ['john@example.com', 'John'],
             ['jane@example.com', 'Jane'],
             ['dave@example.com', 'Dave'],
-        ])->toAssoc()->toArray());
+        ])->fromPairs()->toArray());
     }
 }
