@@ -206,6 +206,16 @@ $collection = collect(['a', 'b'], ['c', 'd'], ['e', 'f'])->fromPairs();
 $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
 ```
 
+### `toPairs`
+
+Transform a collection in to a array with pairs.
+
+```php
+$collection = collect(['a' => 'b', 'c' => 'd', 'e' => 'f'])->toParis();
+
+$collection->toArray(); // returns ['a', 'b'], ['c', 'd'], ['e', 'f']
+```
+
 ### `transpose`
 
 The goal of transpose is to rotate a multidimensional array, turning the rows into columns and the columns into rows.

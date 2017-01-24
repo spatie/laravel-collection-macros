@@ -186,6 +186,19 @@ if (! Collection::hasMacro('fromPairs')) {
     });
 }
 
+if (! Collection::hasMacro('toPairs')) {
+    /*
+     * Transform a collection into an an array with pairs.
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('toPairs', function () {
+        return $this->keys()->map(function($key) {
+           return [$key, $this->items[$key]];
+        });
+    });
+}
+
 if (! Collection::hasMacro('transpose')) {
     /*
      * Transpose an array.
