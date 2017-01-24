@@ -10,7 +10,7 @@
 
 This repository contains some useful collection macros.
 
-This version is targeted at Laravel 5.4. Using Laravel 5.2 or 5.3, checkout [the v1 branch](https://github.com/spatie/laravel-collection-macros/tree/v1).
+This version is targeted at Laravel 5.4. For Laravel 5.2 or 5.3, take a look at [the v1 branch](https://github.com/spatie/laravel-collection-macros/tree/v1).
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
