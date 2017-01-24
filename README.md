@@ -10,7 +10,7 @@
 
 This repository contains some useful collection macros.
 
-This version is targeted at Laravel 5.4. Using Laravel 5.2 or 5.3, checkout [the v1 branch](https://github.com/spatie/laravel-collection-macros/tree/v1).
+This version is targeted at Laravel 5.4. For Laravel 5.2 or 5.3, take a look at [the v1 branch](https://github.com/spatie/laravel-collection-macros/tree/v1).
 
 Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
 
@@ -211,7 +211,7 @@ $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
 Transform a collection in to a array with pairs.
 
 ```php
-$collection = collect(['a' => 'b', 'c' => 'd', 'e' => 'f'])->toParis();
+$collection = collect(['a' => 'b', 'c' => 'd', 'e' => 'f'])->toPairs();
 
 $collection->toArray(); // returns ['a', 'b'], ['c', 'd'], ['e', 'f']
 ```
@@ -236,12 +236,12 @@ collect([
 
 ### `withSize`
 
+Create a new collection with the specified amount of items.
+
 ```php
 Collection::withSize(1)->toArray(); // return [1];
 Collection::withSize(5)->toArray(); // return [1,2,3,4,5];
 ```
-
-Create a new collection with the specified amount of items.
 
 ## Changelog
 
