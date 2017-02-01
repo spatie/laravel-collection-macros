@@ -67,66 +67,6 @@ collect([1,2,3])
     ->dd();
 ```
 
-### `groupByModel`
-
-Similar to `groupBy`, but groups the collection by an Eloquent model. Since the key is an object instead of an integer or string, the results are divided into separate arrays.
-
-```php
-$collection = collect([
-    ['model' => $model1, 'foo' => 'bar'],
-    ['model' => $model1, 'foo' => 'baz'],
-    ['model' => $model2, 'foo' => 'qux'],
-]);
-
-$collection->groupByModel('model');
-
-// [
-//     [
-//         'model' => $model1,
-//         'items' => [
-//             ['model' => $model1, 'foo' => 'bar'],
-//             ['model' => $model1, 'foo' => 'baz'],
-//         ],
-//     ],
-//     [
-//         'model' => $model2,
-//         'items' => [
-//             ['model' => $model2, 'foo' => 'qux'],
-//         ],
-//     ],
-// ];
-```
-
-You can also use a callable for more flexibility:
-
-```php
-$collection->groupByModel(function ($item) {
-    return $item['model']
-});
-```
-
-If you want to specify the model key's name, you can pass it as the second parameter:
-
-```php
-$collection->groupByModel('model', 'myModel');
-
-// [
-//     [
-//         'myModel' => $model1,
-//         'items' => [
-//             ['model' => $model1, 'foo' => 'bar'],
-//             ['model' => $model1, 'foo' => 'baz'],
-//         ],
-//     ],
-//     [
-//         'myModel' => $model2,
-//         'items' => [
-//             ['model' => $model2, 'foo' => 'qux'],
-//         ],
-//     ],
-// ];
-```
-
 ### `ifAny`
 
 Executes the passed callable if the collection isn't empty. The entire collection will be returned.
@@ -241,6 +181,67 @@ Create a new collection with the specified amount of items.
 ```php
 Collection::withSize(1)->toArray(); // return [1];
 Collection::withSize(5)->toArray(); // return [1,2,3,4,5];
+```
+
+
+### `groupByModel`
+
+Similar to `groupBy`, but groups the collection by an Eloquent model. Since the key is an object instead of an integer or string, the results are divided into separate arrays.
+
+```php
+$collection = collect([
+    ['model' => $model1, 'foo' => 'bar'],
+    ['model' => $model1, 'foo' => 'baz'],
+    ['model' => $model2, 'foo' => 'qux'],
+]);
+
+$collection->groupByModel('model');
+
+// [
+//     [
+//         'model' => $model1,
+//         'items' => [
+//             ['model' => $model1, 'foo' => 'bar'],
+//             ['model' => $model1, 'foo' => 'baz'],
+//         ],
+//     ],
+//     [
+//         'model' => $model2,
+//         'items' => [
+//             ['model' => $model2, 'foo' => 'qux'],
+//         ],
+//     ],
+// ];
+```
+
+You can also use a callable for more flexibility:
+
+```php
+$collection->groupByModel(function ($item) {
+    return $item['model']
+});
+```
+
+If you want to specify the model key's name, you can pass it as the second parameter:
+
+```php
+$collection->groupByModel('model', 'myModel');
+
+// [
+//     [
+//         'myModel' => $model1,
+//         'items' => [
+//             ['model' => $model1, 'foo' => 'bar'],
+//             ['model' => $model1, 'foo' => 'baz'],
+//         ],
+//     ],
+//     [
+//         'myModel' => $model2,
+//         'items' => [
+//             ['model' => $model2, 'foo' => 'qux'],
+//         ],
+//     ],
+// ];
 ```
 
 ## Changelog
