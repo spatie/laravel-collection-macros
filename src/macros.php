@@ -243,7 +243,7 @@ if (! Collection::hasMacro('transpose')) {
 }
 
 if (! Collection::hasMacro('collect')) {
-    /**
+    /*
      * Get a new collection from the collection by key.
      *
      * @param  mixed  $key

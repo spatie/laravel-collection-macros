@@ -2,8 +2,8 @@
 
 namespace Spatie\CollectionMacros\Test;
 
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Illuminate\Support\Collection;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class ValidateTest extends OrchestraTestCase
 {
