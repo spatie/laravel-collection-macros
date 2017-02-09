@@ -241,3 +241,17 @@ if (! Collection::hasMacro('transpose')) {
         return new static($items);
     });
 }
+
+if (! Collection::hasMacro('collect')) {
+    /**
+     * Get a new collection from the collection by key.
+     *
+     * @param  mixed  $key
+     * @param  mixed  $default
+     *
+     * @return static
+     */
+    Collection::macro('collect', function ($key, $default = null) {
+        return new Collection($this->get($key, $default));
+    });
+}
