@@ -244,6 +244,60 @@ $collection->groupByModel('model', 'myModel');
 // ];
 ```
 
+### `after`
+
+Get the next item from the collection. 
+
+```php
+$collection = collect([1,2,3]);
+
+$currentItem = 2;
+
+$currentItem = Collection::after($currentItem); // return 3;
+Collection::after($currentItem); // return null;
+
+$currentItem = Collection::after(function($item) {
+    return $item > 1;
+}); // return 3;
+```
+
+You can also pass a second parameter to be used as a fallback.
+
+```php
+$collection = collect([1,2,3]);
+
+$currentItem = 3;
+
+Collection::after($currentItem, $collection->first()); // return 1;
+```
+
+### `before`
+
+Get the previous item from the collection. 
+
+```php
+$collection = collect([1,2,3]);
+
+$currentItem = 2;
+
+$currentItem = Collection::before($currentItem); // return 1;
+Collection::before($currentItem); // return null;
+
+$currentItem = Collection::before(function($item) {
+    return $item > 2;
+}); // return 2;
+```
+
+You can also pass a second parameter to be used as a fallback.
+
+```php
+$collection = collect([1,2,3]);
+
+$currentItem = 1;
+
+Collection::before($currentItem, $collection->last()); // return 3;
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
