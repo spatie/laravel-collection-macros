@@ -21,7 +21,7 @@ class BeforeTest extends TestCase
             4 => 3,
             2 => 1,
             1 => 2,
-            3 => 4
+            3 => 4,
         ]);
 
         $this->assertEquals(2, $data->before(4));
@@ -32,7 +32,7 @@ class BeforeTest extends TestCase
     {
         $data = new Collection([
             'foo' => 'bar',
-            'bar' => 'foo'
+            'bar' => 'foo',
         ]);
 
         $this->assertEquals('bar', $data->before('foo'));
