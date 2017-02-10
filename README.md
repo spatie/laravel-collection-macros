@@ -252,10 +252,10 @@ $collection = collect([1,2,3]);
 
 $currentItem = 2;
 
-$currentItem = Collection::after($currentItem); // return 3;
-Collection::after($currentItem); // return null;
+$currentItem = $collection->after($currentItem); // return 3;
+$collection->after($currentItem); // return null;
 
-$currentItem = Collection::after(function($item) {
+$currentItem = $collection->after(function($item) {
     return $item > 1;
 }); // return 3;
 ```
@@ -267,7 +267,7 @@ $collection = collect([1,2,3]);
 
 $currentItem = 3;
 
-Collection::after($currentItem, $collection->first()); // return 1;
+$collection->after($currentItem, $collection->first()); // return 1;
 ```
 
 ### `before`
@@ -279,10 +279,10 @@ $collection = collect([1,2,3]);
 
 $currentItem = 2;
 
-$currentItem = Collection::before($currentItem); // return 1;
-Collection::before($currentItem); // return null;
+$currentItem = $collection->before($currentItem); // return 1;
+$collection->before($currentItem); // return null;
 
-$currentItem = Collection::before(function($item) {
+$currentItem = $collection->before(function($item) {
     return $item > 2;
 }); // return 2;
 ```
@@ -294,7 +294,32 @@ $collection = collect([1,2,3]);
 
 $currentItem = 1;
 
-Collection::before($currentItem, $collection->last()); // return 3;
+$collection->before($currentItem, $collection->last()); // return 3;
+```
+
+### `collect`
+
+Get an item at a given key, and collect it.
+
+```php
+$collection = collect([
+    'foo' => [1, 2, 3], 
+    'bar' => [4, 5, 6],
+]);
+
+$collection->collect('foo'); // Collection([1, 2, 3])
+```
+
+You can also pass a second parameter to be used as a fallback.
+
+```php
+```php
+$collection = collect([
+    'foo' => [1, 2, 3], 
+    'bar' => [4, 5, 6],
+]);
+
+$collection->collect('baz', ['Nope']); // Collection(['Nope'])
 ```
 
 ## Changelog
