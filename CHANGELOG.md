@@ -2,13 +2,17 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
-## 2.0.1 - 2016-01-24
+## 2.1.0 - 2017-02-10
+- Added: `before` and `after`
+- Added: `collect`
 
-- removed `split`, `partition` and `mapToAssoc`
-- renamed `toAssoc` to `fromPairs`
-- added `toPairs` and `withSize`
+## 2.0.1 - 2017-01-24
 
-## 2.0.0 - 2016-01-24
+- Added: `toPairs` and `withSize`
+- Removed: `split`, `partition` and `mapToAssoc`
+- Renamed: `toAssoc` to `fromPairs`
+
+## 2.0.0 - 2017-01-24
 
 **DO NOT USE, THIS RELEASE WAS WRONGLY TAGGED**
 
