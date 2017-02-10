@@ -242,6 +242,7 @@ if (! Collection::hasMacro('transpose')) {
     });
 }
 
+
 if (! Collection::hasMacro('collect')) {
     /*
      * Get a new collection from the collection by key.
@@ -253,5 +254,44 @@ if (! Collection::hasMacro('collect')) {
      */
     Collection::macro('collect', function ($key, $default = null) {
         return new Collection($this->get($key, $default));
+
+if (! Collection::hasMacro('after')) {
+    /*
+     * Get the next item from the collection.
+     *
+     * @param mixed $currentItem
+     * @param mixed $fallback
+     *
+     * @return mixed
+     */
+    Collection::macro('after', function ($currentItem, $fallback = null) {
+        $currentKey = $this->search($currentItem, true);
+        if ($currentKey !== false) {
+            $currentOffset = $this->keys()->search($currentKey, true);
+
+            $next = $this->slice($currentOffset, 2);
+
+            if ($next->count() === 2) {
+                return $next->last();
+            }
+        }
+
+        return $fallback;
+    });
+}
+
+if (! Collection::hasMacro('before')) {
+    /*
+     * Get the previous item from the collection.
+     *
+     * @param mixed $currentItem
+     * @param mixed $fallback
+     *
+     * @return mixed
+     */
+    Collection::macro('before', function ($currentItem, $fallback = null) {
+        $reversedCollection = $this->reverse();
+
+        return $reversedCollection->after($currentItem, $fallback);
     });
 }

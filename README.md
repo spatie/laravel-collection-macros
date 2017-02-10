@@ -1,7 +1,6 @@
 # A set of useful Laravel collection macros
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-collection-macros.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-collection-macros)
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![StyleCI](https://styleci.io/repos/64222176/shield)](https://styleci.io/repos/64222176)
 [![Build Status](https://img.shields.io/travis/spatie/laravel-collection-macros/master.svg?style=flat-square)](https://travis-ci.org/spatie/laravel-collection-macros)
 [![SensioLabsInsight](https://img.shields.io/sensiolabs/i/659f58d2-5324-4bb9-b2ff-8873c7a82d10.svg?style=flat-square)](https://insight.sensiolabs.com/projects/659f58d2-5324-4bb9-b2ff-8873c7a82d10)
@@ -242,6 +241,60 @@ $collection->groupByModel('model', 'myModel');
 //         ],
 //     ],
 // ];
+```
+
+### `after`
+
+Get the next item from the collection. 
+
+```php
+$collection = collect([1,2,3]);
+
+$currentItem = 2;
+
+$currentItem = Collection::after($currentItem); // return 3;
+Collection::after($currentItem); // return null;
+
+$currentItem = Collection::after(function($item) {
+    return $item > 1;
+}); // return 3;
+```
+
+You can also pass a second parameter to be used as a fallback.
+
+```php
+$collection = collect([1,2,3]);
+
+$currentItem = 3;
+
+Collection::after($currentItem, $collection->first()); // return 1;
+```
+
+### `before`
+
+Get the previous item from the collection. 
+
+```php
+$collection = collect([1,2,3]);
+
+$currentItem = 2;
+
+$currentItem = Collection::before($currentItem); // return 1;
+Collection::before($currentItem); // return null;
+
+$currentItem = Collection::before(function($item) {
+    return $item > 2;
+}); // return 2;
+```
+
+You can also pass a second parameter to be used as a fallback.
+
+```php
+$collection = collect([1,2,3]);
+
+$currentItem = 1;
+
+Collection::before($currentItem, $collection->last()); // return 3;
 ```
 
 ## Changelog
