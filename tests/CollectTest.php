@@ -23,7 +23,7 @@ class CollectTest extends TestCase
         $ingredients = $collection->collect('ingredients');
 
         $this->assertTrue(is_a($ingredients, Collection::class));
-        
+
         $this->assertEquals([
             'cheese',
             'lettuce',
