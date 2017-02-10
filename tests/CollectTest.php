@@ -7,13 +7,7 @@ use Illuminate\Support\Collection;
 class CollectTest extends TestCase
 {
     /** @test */
-    public function it_provides_a_collect_macro()
-    {
-        $this->assertTrue(Collection::hasMacro('collect'));
-    }
-
-    /** @test */
-    public function it_returns_a_collection()
+    public function it_returns_a_collection_containing_the_collected_items()
     {
         $collection = new Collection([
             'name' => 'taco',
@@ -29,6 +23,13 @@ class CollectTest extends TestCase
         $ingredients = $collection->collect('ingredients');
 
         $this->assertTrue(is_a($ingredients, Collection::class));
+        
+        $this->assertEquals([
+            'cheese',
+            'lettuce',
+            'beef',
+            'tortilla',
+        ], $ingredients->toArray());
     }
 
     /** @test */

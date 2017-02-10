@@ -242,7 +242,6 @@ if (! Collection::hasMacro('transpose')) {
     });
 }
 
-
 if (! Collection::hasMacro('collect')) {
     /*
      * Get a new collection from the collection by key.
@@ -253,7 +252,9 @@ if (! Collection::hasMacro('collect')) {
      * @return static
      */
     Collection::macro('collect', function ($key, $default = null) {
-        return new Collection($this->get($key, $default));
+        return new static($this->get($key, $default));
+    });
+}
 
 if (! Collection::hasMacro('after')) {
     /*
