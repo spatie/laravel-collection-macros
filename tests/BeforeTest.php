@@ -7,53 +7,62 @@ use Illuminate\Support\Collection;
 class BeforeTest extends TestCase
 {
     /** @test */
-    public function testBefore()
+    public function it_can_retrieve_an_item_that_comes_before_an_item()
     {
         $data = new Collection([1, 2, 3]);
 
-        $result = $data->before(7);
-        $this->assertEquals(null, $result);
-
-        $result = $data->before(1, $data->last());
-        $this->assertEquals(3, $result);
-
-        $result = $data->before(2);
-        $this->assertEquals(1, $result);
+        $this->assertEquals(1, $data->before(2));
     }
 
-    public function testBeforeOrder()
+    /** @test */
+    public function it_retrieves_items_by_value_and_doesnt_reorder_them()
     {
-        $data = new Collection([3 => 3, 2 => 1, 1 => 2]);
+        $data = new Collection([
+            4 => 3,
+            2 => 1,
+            1 => 2,
+            3 => 4
+        ]);
 
-        $result = $data->before(1);
-        $this->assertEquals(3, $result);
+        $this->assertEquals(2, $data->before(4));
     }
 
-    public function testBeforeStringKey()
+    /** @test */
+    public function it_can_find_the_previous_item_in_a_collection_of_strings()
     {
-        $data = new Collection(['foo' => 'bar', 'bar' => 'foo']);
+        $data = new Collection([
+            'foo' => 'bar',
+            'bar' => 'foo'
+        ]);
 
-        $result = $data->before('foo');
-        $this->assertEquals('bar', $result);
+        $this->assertEquals('bar', $data->before('foo'));
     }
 
-    public function testBeforeCallback()
+    /** @test */
+    public function it_can_find_the_previous_item_based_on_a_callback()
     {
         $data = new Collection([3, 1, 2]);
 
         $result = $data->before(function ($item) {
             return $item < 2;
         });
+
         $this->assertEquals(3, $result);
+    }
 
-        $result = $data->before(function ($item) {
-            return $item > 2;
-        });
-        $this->assertEquals(null, $result);
+    /** @test */
+    public function it_returns_null_if_there_isnt_a_previous_item()
+    {
+        $data = new Collection([1, 2, 3]);
 
-        $result = $data->before(function ($item) {
-            return $item > 3;
-        }, 6);
-        $this->assertEquals(6, $result);
+        $this->assertNull($data->before(1));
+    }
+
+    /** @test */
+    public function it_can_return_a_fallback_value_if_there_isnt_a_previous_item()
+    {
+        $data = new Collection([1, 2, 3]);
+
+        $this->assertEquals('The void', $data->before(1, 'The void'));
     }
 }

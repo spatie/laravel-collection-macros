@@ -253,17 +253,20 @@ if (! Collection::hasMacro('after')) {
      */
     Collection::macro('after', function ($currentItem, $fallback = null) {
         $currentKey = $this->search($currentItem, true);
-        if ($currentKey !== false) {
-            $currentOffset = $this->keys()->search($currentKey, true);
 
-            $next = $this->slice($currentOffset, 2);
-
-            if ($next->count() === 2) {
-                return $next->last();
-            }
+        if ($currentKey === false) {
+            return $fallback;
         }
 
-        return $fallback;
+        $currentOffset = $this->keys()->search($currentKey, true);
+
+        $next = $this->slice($currentOffset, 2);
+
+        if ($next->count() < 2) {
+            return $fallback;
+        }
+
+        return $next->last();
     });
 }
 
@@ -277,8 +280,6 @@ if (! Collection::hasMacro('before')) {
      * @return mixed
      */
     Collection::macro('before', function ($currentItem, $fallback = null) {
-        $reversedCollection = $this->reverse();
-
-        return $reversedCollection->after($currentItem, $fallback);
+        return $this->reverse()->after($currentItem, $fallback);
     });
 }
