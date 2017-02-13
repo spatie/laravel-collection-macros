@@ -313,7 +313,6 @@ $collection->collect('foo'); // Collection([1, 2, 3])
 You can also pass a second parameter to be used as a fallback.
 
 ```php
-```php
 $collection = collect([
     'foo' => [1, 2, 3], 
     'bar' => [4, 5, 6],
