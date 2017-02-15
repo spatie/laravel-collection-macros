@@ -110,7 +110,7 @@ collect(['name' => 'foo'])->none(function ($key, $value) {
 }); // returns true
 ```
 
-> Note: When using a callable as argument, ``Collection::none`` behaves differently in Laravel 5.3 and higher. In 5.2, the parameter order is `$key, $value`, and in 5.3+ the parameter order is `$value, $key`. 
+> Note: When using a callable as argument, `Collection::none` behaves differently in Laravel 5.3 and higher. In 5.2, the parameter order is `$key, $value`, and in 5.3+ the parameter order is `$value, $key`. 
 
 ### `range`
 
