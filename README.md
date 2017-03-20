@@ -321,6 +321,68 @@ $collection = collect([
 $collection->collect('baz', ['Nope']); // Collection(['Nope'])
 ```
 
+### `groupByMultiple`
+
+Similar call signature and functionality to groupBy(), but allows grouping on multiple fields.
+Compared to groupBy(), this variant does not support passing a callable as an array for obvious reasons.
+Passing an array of array-callables works just fine.
+
+```php
+$collection = collect([
+          ['A' => 'foo', 'B' => 'bar',    'C' => 'baz',    'D' => 'thud'],
+          ['A' => 'foo', 'B' => 'garply', 'C' => 'corge',  'D' => 'plugh'],
+          ['A' => 'foo', 'B' => 'bar',    'C' => 'corge',  'D' => 'thud'],
+          ['A' => 'foo', 'B' => 'bar',    'C' => 'corge',  'D' => 'waldo'],
+          ['A' => 'qux', 'B' => 'garply', 'C' => 'xyzzy',  'D' => 'fred'],
+          ['A' => 'qux', 'B' => 'grault', 'C' => 'garply', 'D' => 'quuz'],
+        ]);
+$collection->groupByMultiple(['A', 'B', 'C', 'D']);
+/*
+Collection([
+  'foo' => [
+    'bar' => [
+      'baz' => [
+        'thud' => [
+          ['A' => 'foo', 'B' => 'bar',    'C' => 'baz',    'D' => 'thud'],
+        ],
+      ],
+      'corge' => [
+        'thud' => [
+          ['A' => 'foo', 'B' => 'bar',    'C' => 'corge',  'D' => 'thud'],
+        ],
+        'waldo' => [
+          ['A' => 'foo', 'B' => 'bar',    'C' => 'corge',  'D' => 'waldo'],
+        ],
+      ],
+    ],
+    'garply' => [
+      'corge' => [
+        'plugh' => [
+          ['A' => 'foo', 'B' => 'garply', 'C' => 'corge',  'D' => 'plugh'],
+        ],
+      ],
+    ],
+  ],
+  'qux' => [
+    'garply' => [
+      'xyzzy' => [
+        'fred' => [
+          ['A' => 'qux', 'B' => 'garply', 'C' => 'xyzzy',  'D' => 'fred'],
+        ],
+      ],
+    ],
+    'grault' => [
+      'garply' => [
+        'quuz' => [
+          ['A' => 'qux', 'B' => 'grault', 'C' => 'garply', 'D' => 'quuz'],
+        ],
+      ],
+    ],
+  ],
+]);
+*/
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
