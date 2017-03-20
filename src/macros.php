@@ -354,7 +354,7 @@ if (! Collection::hasMacro('groupByMultiple')) {
                     $subArray = $toNestedCollection($subArray);
                 }
 
-                return new Collection($array);
+                return new static($array);
             } else {
                 return $array;
             }
