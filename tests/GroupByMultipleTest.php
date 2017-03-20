@@ -106,7 +106,6 @@ class GroupByMultipleTest extends TestCase
           20 => ['user' => 2, 'roles' => ['Role_1', 'Role_2']],
           30 => ['user' => 3, 'roles' => ['Role_1']],
         ]);
-        $dataM = clone $data;
 
         $callback = function ($item) {
             return $item['roles'];
