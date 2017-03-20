@@ -299,7 +299,7 @@ if (! Collection::hasMacro('before')) {
 }
 
 if (! Collection::hasMacro('groupByMultiple')) {
-    /**
+    /*
      * Group an associative array by multiple fields or callbacks.
      *
      * @param  string|array  $groupBy
@@ -348,7 +348,7 @@ if (! Collection::hasMacro('groupByMultiple')) {
             }
         }
 
-        $toNestedCollection = function(&$array) use (&$toNestedCollection) {
+        $toNestedCollection = function (&$array) use (&$toNestedCollection) {
             if (is_array($array)) {
                 foreach ($array as &$subArray) {
                     $subArray = $toNestedCollection($subArray);
