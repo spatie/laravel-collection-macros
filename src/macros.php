@@ -297,3 +297,26 @@ if (! Collection::hasMacro('before')) {
         return $this->reverse()->after($currentItem, $fallback);
     });
 }
+
+if (!Collection::hasMacro('hasWithValue')) {
+    /*
+     * Check if a given key exists in the collection and has a value
+     *
+     * @param string $key
+     *
+     * @return bool
+     */
+    Collection::macro('hasWithValue', function ($key) {
+        $hasKey = array_has($this, $key);
+        $value = array_get($this, $key);
+        $hasValue = !empty($value);
+
+        // empty() treats a bunch of valid values as empty, which could actually be valid values
+        // Overwrite the behaviour of empty()
+        if ($value === false || is_numeric($value)) {
+            $hasValue = true;
+        }
+
+        return $hasKey && $hasValue;
+    });
+}
