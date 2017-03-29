@@ -321,6 +321,38 @@ $collection = collect([
 $collection->collect('baz', ['Nope']); // Collection(['Nope'])
 ```
 
+### `hasWithValue`
+
+Determines if a given key exists in the collection and has a value. The following things are considered to be empty:
+
+- `""` (an empty string)
+- `null`
+- `[]` (an empty array)
+
+```php
+$collection = collect([
+    'foo' => 'bar',
+    'baz' => null,
+]);
+
+$collection->hasWithValue('foo'); // returns true
+$collection->hasWithValue('baz'); // returns false
+```
+
+It also supports "dot" notation to search deeply nested arrays:
+
+```php
+$collection = collect([
+    'nested' => [
+        'foo' => 'bar',
+        'baz' => null,
+    ],
+]);
+
+$collection->hasWithValue('nested.foo'); // returns true
+$collection->hasWithValue('nested.baz'); // returns false
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
