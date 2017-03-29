@@ -57,5 +57,6 @@ class HasWithValueTest extends TestCase
         $this->assertFalse($data->hasWithValue('string'));
         $this->assertFalse($data->hasWithValue('array'));
         $this->assertFalse($data->hasWithValue('nested.null'));
+        $this->assertFalse($data->hasWithValue('nope'));
     }
 }
