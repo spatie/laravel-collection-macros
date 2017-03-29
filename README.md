@@ -323,7 +323,7 @@ $collection->collect('baz', ['Nope']); // Collection(['Nope'])
 
 ### `hasWithValue`
 
-Determines if a given key exists in the collection and has a value.  The following things are considered to be empty:
+Determines if a given key exists in the collection and has a value. The following things are considered to be empty:
 
 - `""` (an empty string)
 - `null`

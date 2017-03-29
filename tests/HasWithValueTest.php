@@ -42,7 +42,7 @@ class HasWithValueTest extends TestCase
     }
 
     /** @test */
-    function can_tell_if_key_does_not_exists_in_collection_or_has_no_value()
+    function can_tell_if_key_does_not_exist_in_collection_or_has_no_value()
     {
         $data = new Collection([
             'null' => null,
