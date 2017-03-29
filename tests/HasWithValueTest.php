@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 class HasWithValueTest extends TestCase
 {
     /** @test */
-    function can_tell_if_key_exists_in_collection_and_has_a_value()
+    public function can_tell_if_key_exists_in_collection_and_has_a_value()
     {
         $data = new Collection([
             'string' => 'foo',
@@ -42,7 +42,7 @@ class HasWithValueTest extends TestCase
     }
 
     /** @test */
-    function can_tell_if_key_does_not_exist_in_collection_or_has_no_value()
+    public function can_tell_if_key_does_not_exist_in_collection_or_has_no_value()
     {
         $data = new Collection([
             'null' => null,

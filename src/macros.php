@@ -298,7 +298,7 @@ if (! Collection::hasMacro('before')) {
     });
 }
 
-if (!Collection::hasMacro('hasWithValue')) {
+if (! Collection::hasMacro('hasWithValue')) {
     /*
      * Check if a given key exists in the collection and has a value
      *
@@ -309,7 +309,7 @@ if (!Collection::hasMacro('hasWithValue')) {
     Collection::macro('hasWithValue', function ($key) {
         $hasKey = array_has($this, $key);
         $value = array_get($this, $key);
-        $hasValue = !empty($value);
+        $hasValue = ! empty($value);
 
         // empty() treats a bunch of valid values as empty, which could actually be valid values
         // Overwrite the behaviour of empty()
