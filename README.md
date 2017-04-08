@@ -155,6 +155,29 @@ $collection = collect(['a' => 'b', 'c' => 'd', 'e' => 'f'])->toPairs();
 $collection->toArray(); // returns ['a', 'b'], ['c', 'd'], ['e', 'f']
 ```
 
+### `exists`
+
+Check if value exists in collection.
+
+```php
+$collection = collect(['a' => 'b', 'lang' => ['css' => ['table', 'flexbox']], 'e' => 'f']);
+$collection->exists('table'); // returns 'lang.css'
+$collection->exists('div'); // returns false
+```
+
+### `forgetAll`
+
+The forgetAll method removes an item from the collection by its key(s).
+
+```php
+$collection = collect(['a' => 'b', 'lang' => ['css' => ['table', 'flexbox']], 'e' => 'f']);
+$collection->forgetAll(['lang.css']);
+$collection->all(); // returns ['a' => 'b', 'lang' => [], 'e' => 'f']
+
+$collection->forgetAll(['e', 'a']);
+$collection->all(); // returns ['lang' => []]
+```
+
 ### `transpose`
 
 The goal of transpose is to rotate a multidimensional array, turning the rows into columns and the columns into rows.
