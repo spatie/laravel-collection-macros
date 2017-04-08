@@ -297,3 +297,66 @@ if (! Collection::hasMacro('before')) {
         return $this->reverse()->after($currentItem, $fallback);
     });
 }
+
+if (! Collection::hasMacro('exists')) {
+    /*
+     * Check if value exists in collection.
+     *
+     * @param string $item
+     * @param bool $strict
+     *
+     * @return string|bool
+     */
+    Collection::macro('exists', function ($item, $strict = false) {
+        $inArrayRecursive = function ($needle, $haystack, $strict = false, $path = []) use (&$inArrayRecursive) {
+            foreach ($haystack as $key => $value) {
+                if ($strict ? $value === $needle : $value == $needle) {
+                    return implode('.', $path);
+                } else {
+                    if (is_array($value)) {
+                        $path[] = $key;
+
+                        return $inArrayRecursive($needle, $value, $strict, $path);
+                    }
+                }
+            }
+
+            return false;
+        };
+
+        return $inArrayRecursive($item, $this->items, $strict, []);
+    });
+}
+
+if (! Collection::hasMacro('forgetAll')) {
+
+    /*
+     * The forgetAll method removes an item from the collection by its key(s).
+     *
+     * @param mixed $keys
+     *
+     * @return void
+     */
+    Collection::macro('forgetAll', function ($keys) {
+        Arr::forget($this->items, $keys);
+    });
+}
+
+if (! Collection::hasMacro('mapEvery')) {
+    /*
+     * Map every collection item and apply callback for item.
+     *
+     * @param callable $callback
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('mapEvery', function (callable $callback) {
+        $items = $this->items;
+        $callback = function (&$item) use ($callback) {
+            $item = $callback($item);
+        };
+        array_walk_recursive($items, $callback);
+
+        return new Collection($items);
+    });
+}

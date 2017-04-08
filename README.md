@@ -155,6 +155,48 @@ $collection = collect(['a' => 'b', 'c' => 'd', 'e' => 'f'])->toPairs();
 $collection->toArray(); // returns ['a', 'b'], ['c', 'd'], ['e', 'f']
 ```
 
+### `exists`
+
+Check if value exists in collection.
+
+```php
+$collection = collect(['a' => 'b', 'lang' => ['css' => ['table', 'flexbox']], 'e' => 'f']);
+$collection->exists('table'); // returns 'lang.css'
+$collection->exists('div'); // returns false
+```
+
+### `mapEvery`
+
+Map every collection item and apply callback for item.
+
+```php
+$collection = collect([
+    'prod-100' => ['product_id' => 'prod-100-item', 'name' => 'Desk'],
+    'prod-200' => ['product_id' => 'prod-200-item', 'name' => 'Chair'],
+    'prod-300' => ['product_id' => 'prod-300-item', 'name' => ['Table' => ['Books', 'papers']]],
+]);
+$collection->mapEvery(function($item) {
+    return $item . '-updated';
+}); 
+// returns  
+'prod-100' => ['product_id' => 'prod-100-item-updated', 'name' => 'Desk-updated'],
+'prod-200' => ['product_id' => 'prod-200-item-updated', 'name' => 'Chair-updated'],
+'prod-300' => ['product_id' => 'prod-300-item-updated', 'name' => ['Table' => ['Books-updated', 'papers-updated']]],
+```
+
+### `forgetAll`
+
+The forgetAll method removes an item from the collection by its key(s).
+
+```php
+$collection = collect(['a' => 'b', 'lang' => ['css' => ['table', 'flexbox']], 'e' => 'f']);
+$collection->forgetAll(['lang.css']);
+$collection->all(); // returns ['a' => 'b', 'lang' => [], 'e' => 'f']
+
+$collection->forgetAll(['e', 'a']);
+$collection->all(); // returns ['lang' => []]
+```
+
 ### `transpose`
 
 The goal of transpose is to rotate a multidimensional array, turning the rows into columns and the columns into rows.
