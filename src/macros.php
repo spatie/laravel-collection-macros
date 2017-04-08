@@ -300,7 +300,7 @@ if (! Collection::hasMacro('before')) {
 
 if (!Collection::hasMacro('exists')) {
     /**
-     * Check if value exists in array
+     * Check if value exists in collection.
      *
      * @param string $item
      * @param bool $strict
@@ -331,7 +331,7 @@ if (!Collection::hasMacro('exists')) {
 if (! Collection::hasMacro('forgetAll')) {
 
     /**
-     * The forgetAll method removes an item from the collection by its key(s)
+     * The forgetAll method removes an item from the collection by its key(s).
      *
      * @param mixed $keys
      *
