@@ -308,25 +308,23 @@ if (! Collection::hasMacro('exists')) {
      * @return string|bool
      */
     Collection::macro('exists', function ($item, $strict = false) {
-        function inArrayRecursive($needle, $haystack, $strict = false, $path = [])
-        {
-            foreach ($haystack as $key => $value) {
-                if ($strict ? $value === $needle : $value == $needle) {
-                    return implode('.', $path);
-                } else {
-                    if (is_array($value)) {
-                        $path[] = $key;
-                        
-                        return inArrayRecursive($needle, $value, $strict, $path);
+            $inArrayRecursive = function ($needle, $haystack, $strict = false, $path = []) use (&$inArrayRecursive) {
+                foreach ($haystack as $key => $value) {
+                    if ($strict ? $value === $needle : $value == $needle) {
+                        return implode('.', $path);
+                    } else {
+                        if (is_array($value)) {
+                            $path[] = $key;
+                            return $inArrayRecursive($needle, $value, $strict, $path);
+                        }
                     }
                 }
-            }
 
-            return false;
-        }
+                return false;
+            };
 
-        return inArrayRecursive($item, $this->items, $strict, []);
-    });
+            return $inArrayRecursive($item, $this->items, $strict, []);
+        });
 }
 
 if (! Collection::hasMacro('forgetAll')) {
