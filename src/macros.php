@@ -341,3 +341,22 @@ if (! Collection::hasMacro('forgetAll')) {
         Arr::forget($this->items, $keys);
     });
 }
+
+if (!Collection::hasMacro('mapEvery')) {
+    /*
+     * Map every collection item and apply callback for item.
+     *
+     * @param callable $callback
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('mapEvery', function (callable $callback) {
+        $items = $this->items;
+        $callback = function (&$item) use ($callback) {
+            $item = $callback($item);
+        };
+        array_walk_recursive($items, $callback);
+
+        return new Collection($items);
+    });
+}
