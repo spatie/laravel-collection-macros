@@ -299,7 +299,7 @@ if (! Collection::hasMacro('before')) {
 }
 
 if (!Collection::hasMacro('exists')) {
-    /**
+    /*
      * Check if value exists in collection.
      *
      * @param string $item
@@ -330,7 +330,7 @@ if (!Collection::hasMacro('exists')) {
 
 if (! Collection::hasMacro('forgetAll')) {
 
-    /**
+    /*
      * The forgetAll method removes an item from the collection by its key(s).
      *
      * @param mixed $keys
