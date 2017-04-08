@@ -342,7 +342,7 @@ if (! Collection::hasMacro('forgetAll')) {
     });
 }
 
-if (!Collection::hasMacro('mapEvery')) {
+if (! Collection::hasMacro('mapEvery')) {
     /*
      * Map every collection item and apply callback for item.
      *
