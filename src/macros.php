@@ -315,6 +315,7 @@ if (! Collection::hasMacro('exists')) {
                 } else {
                     if (is_array($value)) {
                         $path[] = $key;
+
                         return $inArrayRecursive($needle, $value, $strict, $path);
                     }
                 }
