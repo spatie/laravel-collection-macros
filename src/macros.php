@@ -298,7 +298,7 @@ if (! Collection::hasMacro('before')) {
     });
 }
 
-if (!Collection::hasMacro('exists')) {
+if (! Collection::hasMacro('exists')) {
     /*
      * Check if value exists in collection.
      *
