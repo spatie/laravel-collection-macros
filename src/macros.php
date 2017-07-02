@@ -312,7 +312,6 @@ if (! Collection::hasMacro('paginate')) {
      * @return \Illuminate\Pagination\LengthAwarePaginator
      */
     Collection::macro('paginate', function (int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = []): LengthAwarePaginator {
-        /** @var $this Collection */
         $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
         $results = $this->forPage($page, $perPage);
         $total = $total ?: $this->count();
@@ -336,7 +335,6 @@ if (! Collection::hasMacro('simplePaginate')) {
      * @return \Illuminate\Contracts\Pagination\Paginator
      */
     Collection::macro('simplePaginate', function (int $perPage = 15, string $pageName = 'page', int $page = null, array $options = []): Paginator {
-        /** @var $this Collection */
         $page = $page ?: Paginator::resolveCurrentPage($pageName);
         $results = $this->slice(($page - 1) * $perPage)->take($perPage + 1);
         $options += [
