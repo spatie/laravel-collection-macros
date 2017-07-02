@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Debug\Dumper;
 
@@ -295,5 +297,53 @@ if (! Collection::hasMacro('before')) {
      */
     Collection::macro('before', function ($currentItem, $fallback = null) {
         return $this->reverse()->after($currentItem, $fallback);
+    });
+}
+
+if (! Collection::hasMacro('paginate')) {
+    /*
+     * Paginate the given collection
+     *
+     * @param int $perPage
+     * @param int $total
+     * @param int $page
+     * @param string $pageName
+     *
+     * @return \Illuminate\Pagination\LengthAwarePaginator
+     */
+    Collection::macro('paginate', function (int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = []): LengthAwarePaginator {
+        /** @var $this Collection */
+        $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
+        $results = $this->forPage($page, $perPage);
+        $total = $total ?: $this->count();
+        $options += [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+            'pageName' => $pageName,
+        ];
+
+        return new LengthAwarePaginator($results, $total, $perPage, $page, $options);
+    });
+}
+
+if (! Collection::hasMacro('simplePaginate')) {
+    /*
+     * Paginate the collection into a simple paginator
+     *
+     * @param int $perPage
+     * @param int $page
+     * @param string $pageName
+     *
+     * @return \Illuminate\Contracts\Pagination\Paginator
+     */
+    Collection::macro('simplePaginate', function (int $perPage = 15, string $pageName = 'page', int $page = null, array $options = []): Paginator {
+        /** @var $this Collection */
+        $page = $page ?: Paginator::resolveCurrentPage($pageName);
+        $results = $this->slice(($page - 1) * $perPage)->take($perPage + 1);
+        $options += [
+            'path' => Paginator::resolveCurrentPath(),
+            'pageName' => $pageName,
+        ];
+
+        return new Paginator($results, $perPage, $page, $options);
     });
 }
