@@ -321,6 +321,36 @@ $collection = collect([
 $collection->collect('baz', ['Nope']); // Collection(['Nope'])
 ```
 
+### `paginate`
+
+Create a `LengthAwarePaginator` instance for the items in the collection.
+
+```php
+collect($posts)->paginate(5);
+```
+
+This paginates the contents of `$posts` with 5 items per page. `paginate` accepts quite some options, header over to [the Laravel docs](https://laravel.com/docs/5.4/pagination) for an in-depth guide.
+
+```
+paginate(int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = [])
+```
+
+### `simplePaginate`
+
+Create a `Paginator` instance for the items in the collection.
+
+```php
+collect($posts)->simplePaginate(5);
+```
+
+This paginates the contents of `$posts` with 5 items per page. `simplePaginate` accepts quite some options, header over to [the Laravel docs](https://laravel.com/docs/5.4/pagination) for an in-depth guide.
+
+```
+simplePaginate(int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = [])
+```
+
+For a in-depth guide on pagination, check out [the Laravel docs](https://laravel.com/docs/5.4/pagination).
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
