@@ -343,7 +343,7 @@ Create a `Paginator` instance for the items in the collection.
 collect($posts)->simplePaginate(5);
 ```
 
-This paginates the contents of `$posts` with 5 items per page. `simplePaginate` accepts quite some options, header over to [the Laravel docs](https://laravel.com/docs/5.4/pagination) for an in-depth guide.
+This paginates the contents of `$posts` with 5 items per page. `simplePaginate` accepts quite some options, head over to [the Laravel docs](https://laravel.com/docs/5.4/pagination) for an in-depth guide.
 
 ```
 simplePaginate(int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = [])
