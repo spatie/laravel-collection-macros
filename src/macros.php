@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Debug\Dumper;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 if (! Collection::hasMacro('dd')) {
     /*
