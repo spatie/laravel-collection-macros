@@ -357,7 +357,7 @@ if (! Collection::hasMacro('extract')) {
     Collection::macro('extract', function ($keys) {
         $keys = is_array($keys) ? $keys : func_get_args();
 
-        return array_reduce($keys, function($extracted, $key) {
+        return array_reduce($keys, function ($extracted, $key) {
             return $extracted->push(
                 data_get($this->items, $key)
             );
