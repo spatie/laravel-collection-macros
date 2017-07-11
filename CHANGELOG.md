@@ -2,7 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
-## 2.2.0 - 2017-06-04
+## 2.3.0 - 2017-07-11
+- Added: `extract`
+
+## 2.2.0 - 2017-07-04
 - Added: `paginate` and `simplePaginate`
 
 ## 2.1.0 - 2017-02-10
