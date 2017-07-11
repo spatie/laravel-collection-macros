@@ -351,6 +351,19 @@ simplePaginate(int $perPage = 15, string $pageName = 'page', int $page = null, i
 
 For a in-depth guide on pagination, check out [the Laravel docs](https://laravel.com/docs/5.4/pagination).
 
+### `extract`
+
+Extract keys from a collection. This is very similar to `only`, with two key differences:
+
+- `extract` returns an array of values, not an associative array
+- If a value doesn't exist, it will fill the value with `null` instead of omitting it
+
+`extract` is useful when using PHP 7.1 short `list()` syntax.
+
+```php
+[$name, $role] = collect($user)->extract('name', 'role.name');
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
