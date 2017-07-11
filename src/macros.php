@@ -361,6 +361,6 @@ if (! Collection::hasMacro('extract')) {
             return $extracted->push(
                 data_get($this->items, $key)
             );
-        }, new self());
+        }, new static());
     });
 }
