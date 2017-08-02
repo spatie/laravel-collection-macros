@@ -189,6 +189,47 @@ if (! Collection::hasMacro('groupByModel')) {
     });
 }
 
+if (! Collection::hasMacro('sectionBy')) {
+    /*
+     * Splits a collection into sections grouped by a given key.
+     *
+     * @param string $sectionBy
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('sectionBy', function ($sectionByKey) {
+
+        $sectionBy = $this->valueRetriever($sectionByKey);
+
+        $results = [];
+
+        $previousSectionKey = null;
+
+        foreach ($this->items as $key => $value) {
+            $sectionKey = $sectionBy($value, $key);
+
+            end($results);
+            $currentKey = key($results) ?? 0;
+
+            if ($previousSectionKey && $previousSectionKey != $sectionKey) {
+                $currentKey++;
+            }
+
+            $results[$currentKey][$sectionByKey] = $sectionKey;
+
+            if (! array_key_exists('items', $results[$currentKey])) {
+                $results[$currentKey]['items'] = new static;
+            }
+
+            $results[$currentKey]['items']->offsetSet(null, $value);
+
+            $previousSectionKey = $sectionKey;
+        }
+
+        return new Collection($results);
+    });
+}
+
 if (! Collection::hasMacro('fromPairs')) {
     /*
      * Transform a collection into an associative array form collection item.
