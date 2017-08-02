@@ -205,7 +205,7 @@ if (! Collection::hasMacro('sectionBy')) {
         foreach ($this->items as $key => $value) {
             $sectionKey = $sectionKeyRetriever($value);
 
-            if (! $results->last() || $results->last()->get($sectionByKey) != $sectionKey) {
+            if (! $results->last() || $results->last()->get($sectionByKey) !== $sectionKey) {
                 $results->push(new Collection([
                     $sectionByKey => $sectionKey,
                     'items' => new Collection(),
