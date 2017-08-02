@@ -193,26 +193,30 @@ if (! Collection::hasMacro('sectionBy')) {
     /*
      * Splits a collection into sections grouped by a given key.
      *
-     * @param string $sectionBy
+     * @param mixed $key
+     * @param mixed $sectionKey
+     * @param mixed $itemsKey
+     * @param bool $preserveKeys
      *
      * @return \Illuminate\Support\Collection
      */
-    Collection::macro('sectionBy', function ($sectionByKey) {
-        $sectionKeyRetriever = $this->valueRetriever($sectionByKey);
+    Collection::macro('sectionBy', function ($key, $sectionKey = null, $itemsKey = 'items', $preserveKeys = false): Collection {
+        $sectionKey = $sectionKey ?? $key;
+        $sectionNameRetriever = $this->valueRetriever($key);
 
         $results = new Collection();
 
         foreach ($this->items as $key => $value) {
-            $sectionKey = $sectionKeyRetriever($value);
+            $sectionName = $sectionNameRetriever($value);
 
-            if (! $results->last() || $results->last()->get($sectionByKey) !== $sectionKey) {
+            if (! $results->last() || $results->last()->get($sectionKey) !== $sectionName) {
                 $results->push(new Collection([
-                    $sectionByKey => $sectionKey,
-                    'items' => new Collection(),
+                    $sectionKey => $sectionName,
+                    $itemsKey => new Collection(),
                 ]));
             }
 
-            $results->last()->get('items')->push($value);
+            $results->last()->get($itemsKey)->offsetSet($preserveKeys ? $key : null, $value);
         }
 
         return $results;
