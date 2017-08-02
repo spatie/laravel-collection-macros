@@ -245,8 +245,7 @@ $collection->groupByModel('model', 'myModel');
 
 ### `sectionBy`
 
-Splits a collection into sections grouped by a given key. Similar to `groupBy`
-but respects the order of the items in the collection.
+Splits a collection into sections grouped by a given key. Similar to `groupBy` but respects the order of the items in the collection and reuses existing keys.
 
 ```php
 $collection = collect([
