@@ -200,30 +200,22 @@ if (! Collection::hasMacro('sectionBy')) {
     Collection::macro('sectionBy', function ($sectionByKey) {
         $sectionKeyRetriever = $this->valueRetriever($sectionByKey);
 
-        $results = [];
-
-        $previousSectionKey = null;
+        $results = new Collection();
 
         foreach ($this->items as $key => $value) {
             $sectionKey = $sectionKeyRetriever($value);
 
-            end($results);
-            $currentKey = key($results) ?? 0;
-
-            if ($previousSectionKey && $previousSectionKey != $sectionKey) {
-                $currentKey++;
+            if (! $results->last() || $results->last()->get($sectionByKey) != $sectionKey) {
+                $results->push(new Collection([
+                    $sectionByKey => $sectionKey,
+                    'items' => new Collection()
+                ]));
             }
 
-            $results[$currentKey][$sectionByKey] = $sectionKey;
-
-            data_fill($results[$currentKey], 'items', new Collection());
-
-            $results[$currentKey]['items']->push($value);
-
-            $previousSectionKey = $sectionKey;
+            $results->last()->get('items')->push($value);
         }
 
-        return new Collection($results);
+        return $results;
     });
 }
 
