@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 2.4.0 - 2017-08-02
+- Added: `sectionBy`
+
 ## 2.3.1 - 2017-07-11
 - Fixed: `extract` now returns an instance of the current collection type
 
