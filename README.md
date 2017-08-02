@@ -243,6 +243,45 @@ $collection->groupByModel('model', 'myModel');
 // ];
 ```
 
+### `sectionBy`
+
+Splits a collection into sections grouped by a given key. Similar to `groupBy` but respects the order of the items in the collection and reuses existing keys.
+
+```php
+$collection = collect([
+    ['name' => 'Lesson 1', 'module' => 'Basics'],
+    ['name' => 'Lesson 2', 'module' => 'Basics'],
+    ['name' => 'Lesson 3', 'module' => 'Advanced'],
+    ['name' => 'Lesson 4', 'module' => 'Advanced'],
+    ['name' => 'Lesson 5', 'module' => 'Basics'],
+]);
+
+$collection->sectionBy('module');
+
+// [
+//     [
+//         'module' => 'Basics',
+//         'items' => [
+//              ['name' => 'Lesson 1', 'module' => 'Basics'],
+//              ['name' => 'Lesson 2', 'module' => 'Basics'],
+//         ],
+//     ],
+//     [
+//         'module' => 'Advanced',
+//         'items' => [
+//              ['name' => 'Lesson 3', 'module' => 'Advanced'],
+//              ['name' => 'Lesson 4', 'module' => 'Advanced'],
+//         ],
+//     ],
+//     [
+//         'module' => 'Basics',
+//         'items' => [
+//              ['name' => 'Lesson 5', 'module' => 'Basics'],
+//         ],
+//     ],
+// ];
+```
+
 ### `after`
 
 Get the next item from the collection. 

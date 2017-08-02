@@ -189,6 +189,36 @@ if (! Collection::hasMacro('groupByModel')) {
     });
 }
 
+if (! Collection::hasMacro('sectionBy')) {
+    /*
+     * Splits a collection into sections grouped by a given key.
+     *
+     * @param string $sectionBy
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('sectionBy', function ($sectionByKey) {
+        $sectionKeyRetriever = $this->valueRetriever($sectionByKey);
+
+        $results = new Collection();
+
+        foreach ($this->items as $key => $value) {
+            $sectionKey = $sectionKeyRetriever($value);
+
+            if (! $results->last() || $results->last()->get($sectionByKey) !== $sectionKey) {
+                $results->push(new Collection([
+                    $sectionByKey => $sectionKey,
+                    'items' => new Collection(),
+                ]));
+            }
+
+            $results->last()->get('items')->push($value);
+        }
+
+        return $results;
+    });
+}
+
 if (! Collection::hasMacro('fromPairs')) {
     /*
      * Transform a collection into an associative array form collection item.
