@@ -208,7 +208,7 @@ if (! Collection::hasMacro('sectionBy')) {
             if (! $results->last() || $results->last()->get($sectionByKey) != $sectionKey) {
                 $results->push(new Collection([
                     $sectionByKey => $sectionKey,
-                    'items' => new Collection()
+                    'items' => new Collection(),
                 ]));
             }
 
