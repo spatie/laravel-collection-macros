@@ -198,14 +198,14 @@ if (! Collection::hasMacro('sectionBy')) {
      * @return \Illuminate\Support\Collection
      */
     Collection::macro('sectionBy', function ($sectionByKey) {
-        $sectionBy = $this->valueRetriever($sectionByKey);
+        $sectionKeyRetriever = $this->valueRetriever($sectionByKey);
 
         $results = [];
 
         $previousSectionKey = null;
 
         foreach ($this->items as $key => $value) {
-            $sectionKey = $sectionBy($value, $key);
+            $sectionKey = $sectionKeyRetriever($value);
 
             end($results);
             $currentKey = key($results) ?? 0;
@@ -216,11 +216,9 @@ if (! Collection::hasMacro('sectionBy')) {
 
             $results[$currentKey][$sectionByKey] = $sectionKey;
 
-            if (! array_key_exists('items', $results[$currentKey])) {
-                $results[$currentKey]['items'] = new static;
-            }
+            data_fill($results[$currentKey], 'items', new Collection());
 
-            $results[$currentKey]['items']->offsetSet(null, $value);
+            $results[$currentKey]['items']->push($value);
 
             $previousSectionKey = $sectionKey;
         }
