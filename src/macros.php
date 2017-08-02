@@ -198,7 +198,6 @@ if (! Collection::hasMacro('sectionBy')) {
      * @return \Illuminate\Support\Collection
      */
     Collection::macro('sectionBy', function ($sectionByKey) {
-
         $sectionBy = $this->valueRetriever($sectionByKey);
 
         $results = [];

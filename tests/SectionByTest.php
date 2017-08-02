@@ -2,9 +2,7 @@
 
 namespace Spatie\CollectionMacros\Test;
 
-use Mockery;
 use Illuminate\Support\Collection;
-use Illuminate\Database\Eloquent\Model;
 
 class SectionByTest extends TestCase
 {
