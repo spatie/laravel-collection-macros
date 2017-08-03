@@ -23,15 +23,15 @@
     ],
     "require": {
         "php": "^7.0",
-        "illuminate/support": "~5.4.0|~5.5.x-dev",
-        "illuminate/validation": "~5.4.0|~5.5.x-dev",
-        "illuminate/pagination": "~5.4.0|~5.5.x-dev",
-        "illuminate/view": "~5.4.0|~5.5.x-dev"
+        "illuminate/support": "~5.4.0|~5.5.x-dev|~5.5.x-dev",
+        "illuminate/validation": "~5.4.0|~5.5.x-dev|~5.5.x-dev",
+        "illuminate/pagination": "~5.4.0|~5.5.x-dev|~5.5.x-dev",
+        "illuminate/view": "~5.4.0|~5.5.x-dev|~5.5.x-dev"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
-        "orchestra/database": "~3.4.0@dev|~3.5.x-dev",
-        "orchestra/testbench": "~3.4.0@dev|~3.5.x-dev",
+        "orchestra/database": "~3.4.0@dev|~3.5.x-dev|~3.5.x-dev",
+        "orchestra/testbench": "~3.4.0@dev|~3.5.x-dev|~3.5.x-dev",
         "phpunit/phpunit": "^6.2"
     },
     "autoload": {
@@ -58,3 +58,4 @@
         }
     }
 }
+
