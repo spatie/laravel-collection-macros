@@ -23,16 +23,16 @@
     ],
     "require": {
         "php": "^7.0",
-        "illuminate/support": "~5.4.0",
-        "illuminate/validation": "~5.4.0",
-        "illuminate/pagination": "~5.4.0",
-        "illuminate/view": "~5.4.0"
+        "illuminate/support": "~5.4.0|~5.5.x-dev",
+        "illuminate/validation": "~5.4.0|~5.5.x-dev",
+        "illuminate/pagination": "~5.4.0|~5.5.x-dev",
+        "illuminate/view": "~5.4.0|~5.5.x-dev"
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
-        "orchestra/database": "~3.4.0@dev",
-        "orchestra/testbench": "~3.4.0@dev",
-        "phpunit/phpunit": "^5.7"
+        "orchestra/database": "~3.4.0@dev|~3.5.x-dev",
+        "orchestra/testbench": "~3.4.0@dev|~3.5.x-dev",
+        "phpunit/phpunit": "^6.2"
     },
     "autoload": {
         "psr-4": {
