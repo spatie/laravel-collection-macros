@@ -44,7 +44,7 @@ class SectionByTest extends TestCase
     }
 
     /** @test */
-    public function it_assign_section_name_to_choosen_key()
+    public function it_can_use_a_custom_key_for_section_value()
     {
         $collection = $this->getDummyCollection();
 
@@ -81,7 +81,7 @@ class SectionByTest extends TestCase
     }
 
     /** @test */
-    public function it_assign_items_to_choosen_key()
+    public function it_can_use_a_custom_key_for_section_items()
     {
         $collection = $this->getDummyCollection();
 
@@ -118,7 +118,7 @@ class SectionByTest extends TestCase
     }
 
     /** @test */
-    public function it_preserve_keys()
+    public function it_can_preserve_keys()
     {
         $collection = $this->getDummyCollection();
 
