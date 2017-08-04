@@ -5,30 +5,6 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Debug\Dumper;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-if (! Collection::hasMacro('dd')) {
-    /*
-     * Dump the contents of the collection and terminate the script.
-     */
-    Collection::macro('dd', function () {
-        dd($this);
-    });
-}
-
-if (! Collection::hasMacro('dump')) {
-    /*
-     * Dump the arguments given followed by the collection.
-     */
-    Collection::macro('dump', function () {
-        Collection::make(func_get_args())
-            ->push($this)
-            ->each(function ($item) {
-                (new Dumper)->dump($item);
-            });
-
-        return $this;
-    });
-}
-
 if (! Collection::hasMacro('ifEmpty')) {
     /*
      * Execute a callable if the collection is empty, then return the collection.
