@@ -14,6 +14,8 @@ class IfEmptyTest extends TestCase
         });
 
         $this->spy->shouldHaveReceived('someCall')->once();
+
+        $this->avoidTestMarkedAsRisky();
     }
 
     /** @test */
@@ -34,6 +36,8 @@ class IfEmptyTest extends TestCase
         });
 
         $this->spy->shouldNotHaveReceived('someCall');
+
+        $this->avoidTestMarkedAsRisky();
     }
 
     /** @test */
