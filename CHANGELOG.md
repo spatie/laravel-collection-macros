@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.0.0 - 2017-08-04
+
+- added support for Laravel 5.5, remove support for older versions
+- removed `dd` and `dump` macros
+
 ## 2.4.0 - 2017-08-02
 - Added: `sectionBy`
 
