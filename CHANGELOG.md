@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 2.5.0 - 2017-08-03
+- Added customization options for `sectionBy`
+
 ## 2.4.0 - 2017-08-02
 - Added: `sectionBy`
 

@@ -282,6 +282,43 @@ $collection->sectionBy('module');
 // ];
 ```
 
+You can also pass the `$sectionKey`, `$itemsKey` and `$preserveKeys` parameters to customize the sectioned output:
+
+```php
+$collection = collect([
+    'lesson1' => ['name' => 'Lesson 1', 'module' => 'Basics'],
+    'lesson2' => ['name' => 'Lesson 2', 'module' => 'Basics'],
+    'lesson3' => ['name' => 'Lesson 3', 'module' => 'Advanced'],
+    'lesson4' => ['name' => 'Lesson 4', 'module' => 'Advanced'],
+    'lesson5' => ['name' => 'Lesson 5', 'module' => 'Basics'],
+]);
+    
+$collection->sectionBy('module', 'moduleName', 'lessons', true);
+
+// [
+//     [
+//         'moduleName' => 'Basics',
+//         'lessons' => [
+//              'lesson1' => ['name' => 'Lesson 1', 'module' => 'Basics'],
+//              'lesson2' => ['name' => 'Lesson 2', 'module' => 'Basics'],
+//         ],
+//     ],
+//     [
+//         'moduleName' => 'Advanced',
+//         'lessons' => [
+//              'lesson3' => ['name' => 'Lesson 3', 'module' => 'Advanced'],
+//              'lesson4' => ['name' => 'Lesson 4', 'module' => 'Advanced'],
+//         ],
+//     ],
+//     [
+//         'moduleName' => 'Basics',
+//         'lessons' => [
+//              'lesson5' => ['name' => 'Lesson 5', 'module' => 'Basics'],
+//         ],
+//     ],
+// ];
+```
+
 ### `after`
 
 Get the next item from the collection. 
