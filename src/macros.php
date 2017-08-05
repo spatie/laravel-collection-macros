@@ -171,7 +171,7 @@ if (! Collection::hasMacro('groupByModel')) {
         $callback = $this->valueRetriever($callback);
 
         return $this->groupBy(function ($item) use ($callback) {
-                return $callback($item)->getKey();
+            return $callback($item)->getKey();
         }, $preserveKeys)->map(function (Collection $items) use ($callback, $modelKey, $itemsKey) {
             return [
                 $modelKey => $callback($items->first()),
