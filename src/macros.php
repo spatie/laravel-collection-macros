@@ -170,21 +170,9 @@ if (! Collection::hasMacro('groupByModel')) {
     Collection::macro('groupByModel', function ($callback, $modelKey = 'model', $itemsKey = 'items', bool $preserveKeys = false): Collection {
         $callback = $this->valueRetriever($callback);
 
-        if ($preserveKeys) {
-            $grouped = $this->mapToGroups(function ($item, $key) use ($callback) {
-                return [$callback($item)->getKey() => [$key => $item]];
-            })->map(function (Collection $group) use ($callback, $modelKey, $itemsKey) {
-                return $group->mapWithKeys(function ($item) {
-                    return $item;
-                });
-            });
-        } else {
-            $grouped = $this->mapToGroups(function ($item) use ($callback) {
-                return [$callback($item)->getKey() => $item];
-            });
-        }
-
-        return $grouped->map(function (Collection $items) use ($callback, $modelKey, $itemsKey) {
+        return $this->groupBy(function ($item) use ($callback) {
+                return $callback($item)->getKey();
+        }, $preserveKeys)->map(function (Collection $items) use ($callback, $modelKey, $itemsKey) {
             return [
                 $modelKey => $callback($items->first()),
                 $itemsKey => $items,
