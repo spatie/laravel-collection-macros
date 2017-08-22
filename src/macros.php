@@ -168,26 +168,30 @@ if (! Collection::hasMacro('sectionBy')) {
     /*
      * Splits a collection into sections grouped by a given key.
      *
-     * @param string $sectionBy
+     * @param mixed $key
+     * @param mixed $sectionKey
+     * @param mixed $itemsKey
+     * @param bool $preserveKeys
      *
      * @return \Illuminate\Support\Collection
      */
-    Collection::macro('sectionBy', function ($sectionByKey) {
-        $sectionKeyRetriever = $this->valueRetriever($sectionByKey);
+    Collection::macro('sectionBy', function ($key, $sectionKey = null, $itemsKey = 'items', $preserveKeys = false): Collection {
+        $sectionKey = $sectionKey ?? $key;
+        $sectionNameRetriever = $this->valueRetriever($key);
 
         $results = new Collection();
 
         foreach ($this->items as $key => $value) {
-            $sectionKey = $sectionKeyRetriever($value);
+            $sectionName = $sectionNameRetriever($value);
 
-            if (! $results->last() || $results->last()->get($sectionByKey) !== $sectionKey) {
+            if (! $results->last() || $results->last()->get($sectionKey) !== $sectionName) {
                 $results->push(new Collection([
-                    $sectionByKey => $sectionKey,
-                    'items' => new Collection(),
+                    $sectionKey => $sectionName,
+                    $itemsKey => new Collection(),
                 ]));
             }
 
-            $results->last()->get('items')->push($value);
+            $results->last()->get($itemsKey)->offsetSet($preserveKeys ? $key : null, $value);
         }
 
         return $results;
@@ -367,5 +371,72 @@ if (! Collection::hasMacro('extract')) {
                 data_get($this->items, $key)
             );
         }, new static());
+    });
+}
+
+if (! Collection::hasMacro('tail')) {
+    /*
+     * Get the tail of a collection, so everything except the first item
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('tail', function () {
+        return $this->slice(1)->values();
+    });
+}
+
+if (! Collection::hasMacro('eachCons')) {
+    /*
+     * Get the consecutive values in the collection defined by the given chunk size
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('eachCons', function ($chunkSize) {
+        if ($this->count() < $chunkSize) {
+            return new static();
+        }
+
+        return (new static([$this->take($chunkSize)->values()]))
+            ->merge($this->tail()->eachCons($chunkSize));
+    });
+}
+
+if (! Collection::hasMacro('sliceBefore')) {
+    /*
+     * Slice a collection before a given callback is met into separate chunks
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('sliceBefore', function ($callback) {
+        if ($this->isEmpty()) {
+            return new static();
+        }
+
+        $sliced = new static([
+            new static([$this->first()]),
+        ]);
+
+        return $this->eachCons(2)->reduce(function ($sliced, $previousAndCurrent) use ($callback) {
+            list($previousItem, $item) = $previousAndCurrent;
+
+            $callback($item, $previousItem)
+                ? $sliced->push(new static([$item]))
+                : $sliced->last()->push($item);
+
+            return $sliced;
+        }, $sliced);
+    });
+}
+
+if (! Collection::hasMacro('chunkBy')) {
+    /*
+     * Separate a collection into chunks as long the given callback is met
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('chunkBy', function ($callback) {
+        return $this->sliceBefore(function ($item, $prevItem) use ($callback) {
+            return $callback($item) !== $callback($prevItem);
+        });
     });
 }

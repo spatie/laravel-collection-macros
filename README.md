@@ -282,6 +282,43 @@ $collection->sectionBy('module');
 // ];
 ```
 
+You can also pass the `$sectionKey`, `$itemsKey` and `$preserveKeys` parameters to customize the sectioned output:
+
+```php
+$collection = collect([
+    'lesson1' => ['name' => 'Lesson 1', 'module' => 'Basics'],
+    'lesson2' => ['name' => 'Lesson 2', 'module' => 'Basics'],
+    'lesson3' => ['name' => 'Lesson 3', 'module' => 'Advanced'],
+    'lesson4' => ['name' => 'Lesson 4', 'module' => 'Advanced'],
+    'lesson5' => ['name' => 'Lesson 5', 'module' => 'Basics'],
+]);
+    
+$collection->sectionBy('module', 'moduleName', 'lessons', true);
+
+// [
+//     [
+//         'moduleName' => 'Basics',
+//         'lessons' => [
+//              'lesson1' => ['name' => 'Lesson 1', 'module' => 'Basics'],
+//              'lesson2' => ['name' => 'Lesson 2', 'module' => 'Basics'],
+//         ],
+//     ],
+//     [
+//         'moduleName' => 'Advanced',
+//         'lessons' => [
+//              'lesson3' => ['name' => 'Lesson 3', 'module' => 'Advanced'],
+//              'lesson4' => ['name' => 'Lesson 4', 'module' => 'Advanced'],
+//         ],
+//     ],
+//     [
+//         'moduleName' => 'Basics',
+//         'lessons' => [
+//              'lesson5' => ['name' => 'Lesson 5', 'module' => 'Basics'],
+//         ],
+//     ],
+// ];
+```
+
 ### `after`
 
 Get the next item from the collection. 
@@ -401,6 +438,43 @@ Extract keys from a collection. This is very similar to `only`, with two key dif
 
 ```php
 [$name, $role] = collect($user)->extract('name', 'role.name');
+```
+
+### `tail`
+
+Extract the tail from a collection. So everything except the first element.
+It's a shorthand for `slice(1)->values()`, but nevertheless very handy.
+
+```php
+collect([1, 2, 3))->tail(); // return collect([2, 3])
+```
+
+### `eachCons`
+
+Get the following consecutive neighbours in a collection from a given chunk size.
+
+```php
+collect([1, 2, 3, 4])->eachCons(2); // return collect([[1, 2], [2, 3], [3, 4]])
+```
+
+### `sliceBefore`
+
+Slice the values out from a collection before the given callback is true.
+
+```php
+collect([20, 51, 10, 50, 66])->sliceBefore(function($item) {
+    return $item > 50;
+}); // return collect([[20],[51, 10]])
+```
+
+### `chunkBy`
+
+Chunks the values from a collection into groups as long the given callback is true.
+
+```php
+collect(['A', 'A', 'B', 'A'])->chunkBy(function($item) {
+    return $item == 'A';
+}); // return Collection([['A', 'A'],['B'], ['A']])
 ```
 
 ## Changelog
