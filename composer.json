@@ -30,8 +30,8 @@
     },
     "require-dev": {
         "mockery/mockery": "^0.9.5",
-        "orchestra/database": "~3.4.0@dev",
-        "orchestra/testbench": "~3.4.0@dev",
+        "orchestra/database": "~3.4.0",
+        "orchestra/testbench": "~3.4.0",
         "phpunit/phpunit": "^5.7"
     },
     "autoload": {
