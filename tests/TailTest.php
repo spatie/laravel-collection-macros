@@ -30,7 +30,7 @@ class TailTest extends TestCase
           20,
           59,
           66,
-          77
+          77,
         ];
 
         $this->assertEquals($expected, $tail->toArray());
@@ -47,7 +47,7 @@ class TailTest extends TestCase
             '2',
             '3',
             'Hello',
-            'Spatie'
+            'Spatie',
         ];
 
         $this->assertEquals($expected, $tail->toArray());
