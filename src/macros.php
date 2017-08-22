@@ -398,3 +398,71 @@ if (! Collection::hasMacro('extract')) {
         }, new static());
     });
 }
+
+if (! Collection::hasMacro('tail')) {
+    /*
+     * Get the tail of a collection, so everything except the first item
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('tail', function () {
+        return $this->slice(1)->values();
+    });
+}
+
+if (! Collection::hasMacro('eachCons')) {
+    /*
+     * Get the consecutive values in the collection defined by the given chunk size
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('eachCons', function ($chunkSize) {
+        if ($this->count() < $chunkSize) {
+            return new self;
+        }
+
+        return (new self([$this->take($chunkSize)->values()]))
+            ->merge($this->tail()->eachCons($chunkSize));
+    });
+}
+
+if (! Collection::hasMacro('sliceBefore')) {
+    /*
+     * Slice a collection before a given callback is met into separate chunks
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('sliceBefore', function ($callback) {
+        if ($this->isEmpty()) {
+            return new self;
+        }
+
+        $sliced = new self([
+            new self([$this->first()]),
+        ]);
+
+        return $this->eachCons(2)->reduce(function ($sliced, $prevAndCurr) use ($callback) {
+            list($previousItem, $item) = $prevAndCurr;
+            if ($callback($item, $previousItem)) {
+                $sliced->push(new self([$item]));
+            } else {
+                $sliced->last()->push($item);
+            }
+
+            return $sliced;
+        }, $sliced);
+    });
+}
+
+if (! Collection::hasMacro('chunkBy')) {
+    /*
+     * Separate a collection into chunks as long the given callback is met
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    Collection::macro('chunkBy', function ($callback) {
+        return $this->sliceBefore(function ($item, $prevItem) use ($callback) {
+            return $callback($item) !== $callback($prevItem);
+        });
+    });
+}
