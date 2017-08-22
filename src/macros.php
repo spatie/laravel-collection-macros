@@ -418,10 +418,10 @@ if (! Collection::hasMacro('eachCons')) {
      */
     Collection::macro('eachCons', function ($chunkSize) {
         if ($this->count() < $chunkSize) {
-            return new self;
+            return new static();
         }
 
-        return (new self([$this->take($chunkSize)->values()]))
+        return (new static([$this->take($chunkSize)->values()]))
             ->merge($this->tail()->eachCons($chunkSize));
     });
 }
@@ -434,20 +434,19 @@ if (! Collection::hasMacro('sliceBefore')) {
      */
     Collection::macro('sliceBefore', function ($callback) {
         if ($this->isEmpty()) {
-            return new self;
+            return new static();
         }
 
-        $sliced = new self([
-            new self([$this->first()]),
+        $sliced = new static([
+            new static([$this->first()]),
         ]);
 
-        return $this->eachCons(2)->reduce(function ($sliced, $prevAndCurr) use ($callback) {
-            list($previousItem, $item) = $prevAndCurr;
-            if ($callback($item, $previousItem)) {
-                $sliced->push(new self([$item]));
-            } else {
-                $sliced->last()->push($item);
-            }
+        return $this->eachCons(2)->reduce(function ($sliced, $previousAndCurrent) use ($callback) {
+            list($previousItem, $item) = $previousAndCurrent;
+
+            $callback($item, $previousItem)
+                ? $sliced->push(new static([$item]))
+                : $sliced->last()->push($item);
 
             return $sliced;
         }, $sliced);
