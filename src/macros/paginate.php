@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 /*
  * Paginate the given collection
