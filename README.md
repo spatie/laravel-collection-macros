@@ -29,15 +29,7 @@ You can pull in the package via composer:
 composer require spatie/laravel-collection-macros
 ```
 
-This service provider must be installed.
-
-```php
-// config/app.php
-'providers' => [
-    ...
-    Spatie\CollectionMacros\CollectionMacroServiceProvider::class,
-];
-```
+The package will automatically register itself.
 
 
 ## Usage
