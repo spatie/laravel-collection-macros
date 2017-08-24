@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
+use Illuminate\Pagination\Paginator;
 
 /*
  * Paginate the collection into a simple paginator
