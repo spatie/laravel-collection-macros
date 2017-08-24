@@ -3,7 +3,6 @@
 namespace Spatie\CollectionMacros;
 
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class CollectionMacroServiceProvider extends ServiceProvider
