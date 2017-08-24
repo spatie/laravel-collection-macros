@@ -2,6 +2,7 @@
 
 namespace Spatie\CollectionMacros\Test;
 
+use LengthException;
 use Illuminate\Support\Collection;
 
 class TransposeTest extends TestCase
@@ -26,7 +27,7 @@ class TransposeTest extends TestCase
     /** @test */
     public function it_will_enforce_length_equality()
     {
-        $this->expectException(\LengthException::class);
+        $this->expectException(LengthException::class);
         $this->expectExceptionMessage("Element's length must be equal.");
 
         $collection = new Collection([

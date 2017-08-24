@@ -25,11 +25,12 @@ class SimplePaginateTest extends TestCase
             'per_page' => 2,
             'current_page' => 2,
             'next_page_url' => null,
-            'prev_page_url' => '/?page=1',
+            'prev_page_url' => 'http://localhost?page=1',
+            'first_page_url' => 'http://localhost?page=1',
             'from' => 3,
             'to' => 3,
             'data' => [2 => 'item3'],
-            'path' => '/',
+            'path' => 'http://localhost',
         ];
         $this->assertEquals($pageInfo, $p->toArray());
     }

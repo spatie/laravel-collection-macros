@@ -13,41 +13,36 @@ class GroupByModelTest extends TestCase
     {
         list($model1, $model2, $collection) = $this->getDummies();
 
+        $expected = [
+            [$model1, [
+                ['model' => $model1, 'foo' => 'bar'],
+                ['model' => $model1, 'foo' => 'baz'],
+            ]],
+            [$model2, [
+                ['model' => $model2, 'foo' => 'qux'],
+            ]],
+        ];
+
         $grouped = $collection->groupByModel(function ($item) {
             return $item['model'];
         });
 
-        $expected = [
-            [
-                'model' => $model1,
-                'items' => [
-                    ['model' => $model1, 'foo' => 'bar'],
-                    ['model' => $model1, 'foo' => 'baz'],
-                ],
-            ],
-            [
-                'model' => $model2,
-                'items' => [
-                    ['model' => $model2, 'foo' => 'qux'],
-                ],
-            ],
-        ];
+        $this->assertCount(2, $grouped);
 
-        $this->assertEquals($expected, $grouped->map(function ($group) {
-            $group['items'] = $group['items']->toArray();
-
-            return $group;
-        })->toArray());
+        foreach ($expected as $i => $group) {
+            $this->assertEquals($group[0], $grouped[$i][0]);
+            $this->assertEquals($group[1], $grouped[$i][1]->toArray());
+        }
     }
 
     /** @test */
-    public function it_can_group_a_collection_by_a_model_with_a_callable_and_a_custom_key_name()
+    public function it_can_group_a_collection_by_a_model_with_a_callable_and_custom_key_names()
     {
         list($model1, $model2, $collection) = $this->getDummies();
 
         $grouped = $collection->groupByModel(function ($item) {
             return $item['model'];
-        }, 'myKey');
+        }, 'myKey', 'items');
 
         $expected = [
             [
@@ -80,34 +75,29 @@ class GroupByModelTest extends TestCase
         $grouped = $collection->groupByModel('model');
 
         $expected = [
-            [
-                'model' => $model1,
-                'items' => [
-                    ['model' => $model1, 'foo' => 'bar'],
-                    ['model' => $model1, 'foo' => 'baz'],
-                ],
-            ],
-            [
-                'model' => $model2,
-                'items' => [
-                    ['model' => $model2, 'foo' => 'qux'],
-                ],
-            ],
+            [$model1, [
+                ['model' => $model1, 'foo' => 'bar'],
+                ['model' => $model1, 'foo' => 'baz'],
+            ]],
+            [$model2, [
+                ['model' => $model2, 'foo' => 'qux'],
+            ]],
         ];
 
-        $this->assertEquals($expected, $grouped->map(function ($group) {
-            $group['items'] = $group['items']->toArray();
+        $this->assertCount(2, $grouped);
 
-            return $group;
-        })->toArray());
+        foreach ($expected as $i => $group) {
+            $this->assertEquals($group[0], $grouped[$i][0]);
+            $this->assertEquals($group[1], $grouped[$i][1]->toArray());
+        }
     }
 
     /** @test */
-    public function it_can_group_a_collection_by_a_model_with_a_key_and_a_custom_key_name()
+    public function it_can_group_a_collection_by_a_model_with_a_key_and_custom_key_names()
     {
         list($model1, $model2, $collection) = $this->getDummies();
 
-        $grouped = $collection->groupByModel('model', 'myKey');
+        $grouped = $collection->groupByModel('model', 'myKey', 'items');
 
         $expected = [
             [
