@@ -32,296 +32,29 @@ composer require spatie/laravel-collection-macros
 The package will automatically register itself.
 
 
-## Usage
-
-These macro's will be added to the `Illuminate\Support\Collection` class.
-
-### `dd`
-
-Dumps the contents of the collection and terminates the script. This macro makes debugging a collection [much easier](https://murze.be/2016/06/debugging-collections/).
-
-```php
-collect([1,2,3])->dd();
-```
-
-### `dump`
-
-Dumps the given arguments together with the current collection. This macro makes debugging a chain of collection functions much easier.
-
-```php
-collect([1,2,3])
-    ->dump('original')
-    ->map(function(int $number) {
-        return $number * 2;
-    })
-    ->dump('modified')
-    ->dd();
-```
-
-### `ifAny`
-
-Executes the passed callable if the collection isn't empty. The entire collection will be returned.
-
-```php
-collect()->ifAny(function(Collection $collection) { // empty collection so this won't get called
-   echo 'Hello';
-});
-
-collect([1, 2, 3])->ifAny(function(Collection $collection) { // non-empty collection so this will get called
-   echo 'Hello';
-});
-```
-
-### `ifEmpty`
-
-Executes the passed callable if the collection is empty. The entire collection will be returned.
-
-```php
-collect()->ifEmpty(function(Collection $collection) { // empty collection so this will called
-   echo 'Hello';
-});
-
-collect([1, 2, 3])->ifEmpty(function(Collection $collection) { // non-empty collection so this won't get called
-   echo 'Hello';
-});
-```
-
-### `none`
-
-Checks whether a collection doesn't contain any occurrences of a given item, key-value pair, or passing truth test. The function accepts the same parameters as the `contains` collection method.
-
-```php
-collect(['foo'])->none('bar'); // returns true
-collect(['foo'])->none('foo'); // returns false
-
-collect([['name' => 'foo']])->none('name', 'bar'); // returns true
-collect([['name' => 'foo']])->none('name', 'foo'); // returns false
-
-collect(['name' => 'foo'])->none(function ($key, $value) {
-   return $key === 'name' && $value === 'bar';
-}); // returns true
-```
-
-> Note: When using a callable as argument, `Collection::none` behaves differently in Laravel 5.3 and higher. In 5.2, the parameter order is `$key, $value`, and in 5.3+ the parameter order is `$value, $key`. 
-
-### `range`
-
-Creates a new collection instance with a range of numbers. This functions accepts the same parameters as PHP's standard `range` function.
-
-```php
-collect()->range(1, 3)->toArray(); //returns [1,2,3]
-```
-
-### `validate`
-
-Returns `true` if the given `$callback` returns true for every item. If `$callback` is a string or an array, regard it as a validation rule.
-
-```php
-collect(['foo', 'foo'])->validate(function ($item) {
-   return $item === 'foo';
-}); // returns true
-
-
-collect(['sebastian@spatie.be', 'bla'])->validate('email'); // returns false
-collect(['sebastian@spatie.be', 'freek@spatie.be'])->validate('email'); // returns true
-```
-
-
-### `fromPairs`
-
-Transform a collection into an associative array form collection item.
-
-```php
-$collection = collect(['a', 'b'], ['c', 'd'], ['e', 'f'])->fromPairs();
-
-$collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
-```
-
-### `toPairs`
-
-Transform a collection in to a array with pairs.
-
-```php
-$collection = collect(['a' => 'b', 'c' => 'd', 'e' => 'f'])->toPairs();
-
-$collection->toArray(); // returns ['a', 'b'], ['c', 'd'], ['e', 'f']
-```
-
-### `transpose`
-
-The goal of transpose is to rotate a multidimensional array, turning the rows into columns and the columns into rows.
-
-```php
-collect([
-    ['Jane', 'Bob', 'Mary'],
-    ['jane@example.com', 'bob@example.com', 'mary@example.com'],
-    ['Doctor', 'Plumber', 'Dentist'],
-])->transpose()->toArray();
-
-// [
-//     ['Jane', 'jane@example.com', 'Doctor'],
-//     ['Bob', 'bob@example.com', 'Plumber'],
-//     ['Mary', 'mary@example.com', 'Dentist'],
-// ]
-```
-
-### `withSize`
-
-Create a new collection with the specified amount of items.
-
-```php
-Collection::withSize(1)->toArray(); // return [1];
-Collection::withSize(5)->toArray(); // return [1,2,3,4,5];
-```
-
-
-### `groupByModel`
-
-Similar to `groupBy`, but groups the collection by an Eloquent model. Since the key is an object instead of an integer or string, the results are divided into separate arrays.
-
-```php
-$collection = collect([
-    ['model' => $model1, 'foo' => 'bar'],
-    ['model' => $model1, 'foo' => 'baz'],
-    ['model' => $model2, 'foo' => 'qux'],
-]);
-
-$collection->groupByModel('model');
-
-// [
-//     [
-//         'model' => $model1,
-//         'items' => [
-//             ['model' => $model1, 'foo' => 'bar'],
-//             ['model' => $model1, 'foo' => 'baz'],
-//         ],
-//     ],
-//     [
-//         'model' => $model2,
-//         'items' => [
-//             ['model' => $model2, 'foo' => 'qux'],
-//         ],
-//     ],
-// ];
-```
-
-You can also use a callable for more flexibility:
-
-```php
-$collection->groupByModel(function ($item) {
-    return $item['model']
-});
-```
-
-If you want to specify the model key's name, you can pass it as the second parameter:
-
-```php
-$collection->groupByModel('model', 'myModel');
-
-// [
-//     [
-//         'myModel' => $model1,
-//         'items' => [
-//             ['model' => $model1, 'foo' => 'bar'],
-//             ['model' => $model1, 'foo' => 'baz'],
-//         ],
-//     ],
-//     [
-//         'myModel' => $model2,
-//         'items' => [
-//             ['model' => $model2, 'foo' => 'qux'],
-//         ],
-//     ],
-// ];
-```
-
-If you want to specify the model items' name, you can pass it as the third parameter:
-
-```php
-$collection->groupByModel('model', 'myModel', 'myItems');
-```
-
-It's also possible to preserve the items' keys.
-
-```php
-$collection->groupByModel('model', null, null, true);
-```
-
-### `sectionBy`
-
-Splits a collection into sections grouped by a given key. Similar to `groupBy` but respects the order of the items in the collection and reuses existing keys.
-
-```php
-$collection = collect([
-    ['name' => 'Lesson 1', 'module' => 'Basics'],
-    ['name' => 'Lesson 2', 'module' => 'Basics'],
-    ['name' => 'Lesson 3', 'module' => 'Advanced'],
-    ['name' => 'Lesson 4', 'module' => 'Advanced'],
-    ['name' => 'Lesson 5', 'module' => 'Basics'],
-]);
-
-$collection->sectionBy('module');
-
-// [
-//     [
-//         'module' => 'Basics',
-//         'items' => [
-//              ['name' => 'Lesson 1', 'module' => 'Basics'],
-//              ['name' => 'Lesson 2', 'module' => 'Basics'],
-//         ],
-//     ],
-//     [
-//         'module' => 'Advanced',
-//         'items' => [
-//              ['name' => 'Lesson 3', 'module' => 'Advanced'],
-//              ['name' => 'Lesson 4', 'module' => 'Advanced'],
-//         ],
-//     ],
-//     [
-//         'module' => 'Basics',
-//         'items' => [
-//              ['name' => 'Lesson 5', 'module' => 'Basics'],
-//         ],
-//     ],
-// ];
-```
-
-You can also pass the `$sectionKey`, `$itemsKey` and `$preserveKeys` parameters to customize the sectioned output:
-
-```php
-$collection = collect([
-    'lesson1' => ['name' => 'Lesson 1', 'module' => 'Basics'],
-    'lesson2' => ['name' => 'Lesson 2', 'module' => 'Basics'],
-    'lesson3' => ['name' => 'Lesson 3', 'module' => 'Advanced'],
-    'lesson4' => ['name' => 'Lesson 4', 'module' => 'Advanced'],
-    'lesson5' => ['name' => 'Lesson 5', 'module' => 'Basics'],
-]);
-    
-$collection->sectionBy('module', 'moduleName', 'lessons', true);
-
-// [
-//     [
-//         'moduleName' => 'Basics',
-//         'lessons' => [
-//              'lesson1' => ['name' => 'Lesson 1', 'module' => 'Basics'],
-//              'lesson2' => ['name' => 'Lesson 2', 'module' => 'Basics'],
-//         ],
-//     ],
-//     [
-//         'moduleName' => 'Advanced',
-//         'lessons' => [
-//              'lesson3' => ['name' => 'Lesson 3', 'module' => 'Advanced'],
-//              'lesson4' => ['name' => 'Lesson 4', 'module' => 'Advanced'],
-//         ],
-//     ],
-//     [
-//         'moduleName' => 'Basics',
-//         'lessons' => [
-//              'lesson5' => ['name' => 'Lesson 5', 'module' => 'Basics'],
-//         ],
-//     ],
-// ];
-```
+## Macros
+
+- [`after`](#after)
+- [`before`](#before)
+- [`chunkBy`](#chunkBy)
+- [`collect`](#collect)
+- [`eachCons`](#eachCons)
+- [`extract`](#extract)
+- [`fromPairs`](#fromPairs)
+- [`groupByModel`](#groupByModel)
+- [`ifAny`](#ifAny)
+- [`ifEmpty`](#ifEmpty)
+- [`none`](#none)
+- [`paginate`](#paginate)
+- [`range`](#range)
+- [`sectionBy`](#sectionBy)
+- [`simplePaginate`](#simplePaginate)
+- [`sliceBefore`](#sliceBefore)
+- [`tail`](#tail)
+- [`toPairs`](#toPairs)
+- [`transpose`](#transpose)
+- [`validate`](#validate)
+- [`withSize`](#withSize)
 
 ### `after`
 
@@ -377,6 +110,16 @@ $currentItem = 1;
 $collection->before($currentItem, $collection->last()); // return 3;
 ```
 
+### `chunkBy`
+
+Chunks the values from a collection into groups as long the given callback is true.
+
+```php
+collect(['A', 'A', 'B', 'A'])->chunkBy(function($item) {
+    return $item == 'A';
+}); // return Collection([['A', 'A'],['B'], ['A']])
+```
+
 ### `collect`
 
 Get an item at a given key, and collect it.
@@ -401,6 +144,96 @@ $collection = collect([
 $collection->collect('baz', ['Nope']); // Collection(['Nope'])
 ```
 
+### `eachCons`
+
+Get the following consecutive neighbours in a collection from a given chunk size.
+
+```php
+collect([1, 2, 3, 4])->eachCons(2); // return collect([[1, 2], [2, 3], [3, 4]])
+```
+
+### `extract`
+
+Extract keys from a collection. This is very similar to `only`, with two key differences:
+
+- `extract` returns an array of values, not an associative array
+- If a value doesn't exist, it will fill the value with `null` instead of omitting it
+
+`extract` is useful when using PHP 7.1 short `list()` syntax.
+
+```php
+[$name, $role] = collect($user)->extract('name', 'role.name');
+```
+
+### `fromPairs`
+
+Transform a collection into an associative array form collection item.
+
+```php
+$collection = collect(['a', 'b'], ['c', 'd'], ['e', 'f'])->fromPairs();
+
+$collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
+```
+
+### `groupByModel`
+
+Similar to `groupBy`, but groups the collection by an Eloquent model. Since the key is an object instead of an integer or string, the results are divided into separate arrays.
+
+```php
+$posts->groupByModel('category');
+
+// [
+//     [$categoryA, [/*...$posts*/]],
+//     [$categoryB, [/*...$posts*/]],
+// ];
+```
+
+Full signature: `groupByModel($callback, $preserveKeys, $modelKey, $itemsKey)`
+
+### `ifAny`
+
+Executes the passed callable if the collection isn't empty. The entire collection will be returned.
+
+```php
+collect()->ifAny(function(Collection $collection) { // empty collection so this won't get called
+   echo 'Hello';
+});
+
+collect([1, 2, 3])->ifAny(function(Collection $collection) { // non-empty collection so this will get called
+   echo 'Hello';
+});
+```
+
+### `ifEmpty`
+
+Executes the passed callable if the collection is empty. The entire collection will be returned.
+
+```php
+collect()->ifEmpty(function(Collection $collection) { // empty collection so this will called
+   echo 'Hello';
+});
+
+collect([1, 2, 3])->ifEmpty(function(Collection $collection) { // non-empty collection so this won't get called
+   echo 'Hello';
+});
+```
+
+### `none`
+
+Checks whether a collection doesn't contain any occurrences of a given item, key-value pair, or passing truth test. The function accepts the same parameters as the `contains` collection method.
+
+```php
+collect(['foo'])->none('bar'); // returns true
+collect(['foo'])->none('foo'); // returns false
+
+collect([['name' => 'foo']])->none('name', 'bar'); // returns true
+collect([['name' => 'foo']])->none('name', 'foo'); // returns false
+
+collect(['name' => 'foo'])->none(function ($key, $value) {
+   return $key === 'name' && $value === 'bar';
+}); // returns true
+```
+
 ### `paginate`
 
 Create a `LengthAwarePaginator` instance for the items in the collection.
@@ -414,6 +247,46 @@ This paginates the contents of `$posts` with 5 items per page. `paginate` accept
 ```
 paginate(int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = [])
 ```
+
+### `range`
+
+Creates a new collection instance with a range of numbers. This functions accepts the same parameters as PHP's standard `range` function.
+
+```php
+collect()->range(1, 3)->toArray(); //returns [1,2,3]
+```
+
+### `sectionBy`
+
+Splits a collection into sections grouped by a given key. Similar to `groupBy` but respects the order of the items in the collection and reuses existing keys.
+
+```php
+$collection = collect([
+    ['name' => 'Lesson 1', 'module' => 'Basics'],
+    ['name' => 'Lesson 2', 'module' => 'Basics'],
+    ['name' => 'Lesson 3', 'module' => 'Advanced'],
+    ['name' => 'Lesson 4', 'module' => 'Advanced'],
+    ['name' => 'Lesson 5', 'module' => 'Basics'],
+]);
+
+$collection->sectionBy('module');
+
+// [
+//     ['Basics', [
+//         ['name' => 'Lesson 1', 'module' => 'Basics'],
+//         ['name' => 'Lesson 2', 'module' => 'Basics'],
+//     ]],
+//     ['Advanced', [
+//         ['name' => 'Lesson 3', 'module' => 'Advanced'],
+//         ['name' => 'Lesson 4', 'module' => 'Advanced'],
+//     ]],
+//     ['Basics', [
+//         ['name' => 'Lesson 5', 'module' => 'Basics'],
+//     ]],
+// ];
+```
+
+Full signature: `sectionBy($callback, $preserveKeys, $sectionKey, $itemsKey)`
 
 ### `simplePaginate`
 
@@ -431,36 +304,6 @@ simplePaginate(int $perPage = 15, string $pageName = 'page', int $page = null, i
 
 For a in-depth guide on pagination, check out [the Laravel docs](https://laravel.com/docs/5.4/pagination).
 
-### `extract`
-
-Extract keys from a collection. This is very similar to `only`, with two key differences:
-
-- `extract` returns an array of values, not an associative array
-- If a value doesn't exist, it will fill the value with `null` instead of omitting it
-
-`extract` is useful when using PHP 7.1 short `list()` syntax.
-
-```php
-[$name, $role] = collect($user)->extract('name', 'role.name');
-```
-
-### `tail`
-
-Extract the tail from a collection. So everything except the first element.
-It's a shorthand for `slice(1)->values()`, but nevertheless very handy.
-
-```php
-collect([1, 2, 3))->tail(); // return collect([2, 3])
-```
-
-### `eachCons`
-
-Get the following consecutive neighbours in a collection from a given chunk size.
-
-```php
-collect([1, 2, 3, 4])->eachCons(2); // return collect([[1, 2], [2, 3], [3, 4]])
-```
-
 ### `sliceBefore`
 
 Slice the values out from a collection before the given callback is true.
@@ -471,14 +314,63 @@ collect([20, 51, 10, 50, 66])->sliceBefore(function($item) {
 }); // return collect([[20],[51, 10]])
 ```
 
-### `chunkBy`
+### `tail`
 
-Chunks the values from a collection into groups as long the given callback is true.
+Extract the tail from a collection. So everything except the first element. It's a shorthand for `slice(1)->values()`, but nevertheless very handy.
 
 ```php
-collect(['A', 'A', 'B', 'A'])->chunkBy(function($item) {
-    return $item == 'A';
-}); // return Collection([['A', 'A'],['B'], ['A']])
+collect([1, 2, 3))->tail(); // return collect([2, 3])
+```
+
+### `toPairs`
+
+Transform a collection in to a array with pairs.
+
+```php
+$collection = collect(['a' => 'b', 'c' => 'd', 'e' => 'f'])->toPairs();
+
+$collection->toArray(); // returns ['a', 'b'], ['c', 'd'], ['e', 'f']
+```
+
+### `transpose`
+
+The goal of transpose is to rotate a multidimensional array, turning the rows into columns and the columns into rows.
+
+```php
+collect([
+    ['Jane', 'Bob', 'Mary'],
+    ['jane@example.com', 'bob@example.com', 'mary@example.com'],
+    ['Doctor', 'Plumber', 'Dentist'],
+])->transpose()->toArray();
+
+// [
+//     ['Jane', 'jane@example.com', 'Doctor'],
+//     ['Bob', 'bob@example.com', 'Plumber'],
+//     ['Mary', 'mary@example.com', 'Dentist'],
+// ]
+```
+
+### `validate`
+
+Returns `true` if the given `$callback` returns true for every item. If `$callback` is a string or an array, regard it as a validation rule.
+
+```php
+collect(['foo', 'foo'])->validate(function ($item) {
+   return $item === 'foo';
+}); // returns true
+
+
+collect(['sebastian@spatie.be', 'bla'])->validate('email'); // returns false
+collect(['sebastian@spatie.be', 'freek@spatie.be'])->validate('email'); // returns true
+```
+
+### `withSize`
+
+Create a new collection with the specified amount of items.
+
+```php
+Collection::withSize(1)->toArray(); // return [1];
+Collection::withSize(5)->toArray(); // return [1,2,3,4,5];
 ```
 
 ## Changelog
