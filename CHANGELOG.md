@@ -2,10 +2,14 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
-## 3.0.0 - 2017-08-04
+## 3.0.0 - 2017-08-??
+- Added support for Laravel 5.5, removed support for older versions
+- Added `glob` macro
+- Removed `dd` and `dump` macros
+- Changed parameter order for `groupByModel` and `sectionBy`
 
-- added support for Laravel 5.5, remove support for older versions
-- removed `dd` and `dump` macros
+## 2.7.0 - 2017-08-25
+- Add `$itemsKey` and `$preserveKeys` parameters to `groupByModel`
 
 ## 2.6.0 - 2017-08-22
 

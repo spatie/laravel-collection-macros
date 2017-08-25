@@ -38,7 +38,7 @@ class SectionByTest extends TestCase
     {
         $collection = $this->getDummyCollection();
 
-        $sectioned = $collection->sectionBy('module', 'section', 'items');
+        $sectioned = $collection->sectionBy('module', false, 'section', 'items');
 
         $expected = [
              [
@@ -75,7 +75,7 @@ class SectionByTest extends TestCase
     {
         $collection = $this->getDummyCollection();
 
-        $sectioned = $collection->sectionBy('module', 'module', 'items', true);
+        $sectioned = $collection->sectionBy('module', true, 'module', 'items');
 
         $expected = [
              [

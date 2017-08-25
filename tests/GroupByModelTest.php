@@ -42,7 +42,7 @@ class GroupByModelTest extends TestCase
 
         $grouped = $collection->groupByModel(function ($item) {
             return $item['model'];
-        }, 'myKey', 'items');
+        }, false, 'myKey', 'items');
 
         $expected = [
             [
@@ -97,7 +97,7 @@ class GroupByModelTest extends TestCase
     {
         list($model1, $model2, $collection) = $this->getDummies();
 
-        $grouped = $collection->groupByModel('model', 'myKey', 'items');
+        $grouped = $collection->groupByModel('model', false, 'myKey', 'items');
 
         $expected = [
             [
@@ -127,7 +127,7 @@ class GroupByModelTest extends TestCase
     {
         list($model1, $model2, $collection) = $this->getDummies();
 
-        $grouped = $collection->groupByModel('model', 'model', 'myItems');
+        $grouped = $collection->groupByModel('model', false, 'model', 'myItems');
 
         $expected = [
             [
@@ -157,7 +157,7 @@ class GroupByModelTest extends TestCase
     {
         list($model1, $model2, $collection) = $this->getDummies();
 
-        $grouped = $collection->groupByModel('model', 'model', 'items', true);
+        $grouped = $collection->groupByModel('model', true, 'model', 'items');
 
         $expected = [
             [

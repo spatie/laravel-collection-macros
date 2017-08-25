@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('groupByModel', function ($callback, $modelKey = 0, $itemsKey = 1, bool $preserveKeys = false): Collection {
+Collection::macro('groupByModel', function ($callback, bool $preserveKeys = false, $modelKey = 0, $itemsKey = 1): Collection {
     $callback = $this->valueRetriever($callback);
 
     return $this->groupBy(function ($item) use ($callback) {
