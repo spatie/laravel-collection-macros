@@ -132,6 +132,66 @@ class GroupByModelTest extends TestCase
         })->toArray());
     }
 
+    /** @test */
+    public function it_can_group_a_collection_by_a_model_with_a_key_and_a_custom_items_key()
+    {
+        list($model1, $model2, $collection) = $this->getDummies();
+
+        $grouped = $collection->groupByModel('model', 'model', 'myItems');
+
+        $expected = [
+            [
+                'model' => $model1,
+                'myItems' => [
+                    ['model' => $model1, 'foo' => 'bar'],
+                    ['model' => $model1, 'foo' => 'baz'],
+                ],
+            ],
+            [
+                'model' => $model2,
+                'myItems' => [
+                    ['model' => $model2, 'foo' => 'qux'],
+                ],
+            ],
+        ];
+
+        $this->assertEquals($expected, $grouped->map(function ($group) {
+            $group['myItems'] = $group['myItems']->toArray();
+
+            return $group;
+        })->toArray());
+    }
+
+    /** @test */
+    public function it_can_group_a_collection_by_a_model_and_preserve_keys()
+    {
+        list($model1, $model2, $collection) = $this->getDummies();
+
+        $grouped = $collection->groupByModel('model', 'model', 'items', true);
+
+        $expected = [
+            [
+                'model' => $model1,
+                'items' => [
+                    'dummy1' => ['model' => $model1, 'foo' => 'bar'],
+                    'dummy2' => ['model' => $model1, 'foo' => 'baz'],
+                ],
+            ],
+            [
+                'model' => $model2,
+                'items' => [
+                    'dummy3' => ['model' => $model2, 'foo' => 'qux'],
+                ],
+            ],
+        ];
+
+        $this->assertEquals($expected, $grouped->map(function ($group) {
+            $group['items'] = $group['items']->toArray();
+
+            return $group;
+        })->toArray());
+    }
+
     protected function getDummies(): array
     {
         $model1 = Mockery::mock(Model::class);
@@ -141,9 +201,9 @@ class GroupByModelTest extends TestCase
         $model2->shouldReceive('getKey')->andReturn(2);
 
         $collection = Collection::make([
-            ['model' => $model1, 'foo' => 'bar'],
-            ['model' => $model1, 'foo' => 'baz'],
-            ['model' => $model2, 'foo' => 'qux'],
+            'dummy1' => ['model' => $model1, 'foo' => 'bar'],
+            'dummy2' => ['model' => $model1, 'foo' => 'baz'],
+            'dummy3' => ['model' => $model2, 'foo' => 'qux'],
         ]);
 
         return [$model1, $model2, $collection];

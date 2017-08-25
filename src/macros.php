@@ -161,30 +161,22 @@ if (! Collection::hasMacro('groupByModel')) {
      * Group a collection by an Eloquent model.
      *
      * @param string|callable $callback
-     * @param string $keyName
+     * @param mixed $modelKey
+     * @param mixed $itemsKey
+     * @param bool $preserveKeys
      *
      * @return \Illuminate\Support\Collection
      */
-    Collection::macro('groupByModel', function ($callback, $keyName = 'model') {
-        $callback = is_callable($callback) ? $callback : function ($item) use ($callback) {
-            return $item[$callback];
-        };
+    Collection::macro('groupByModel', function ($callback, $modelKey = 'model', $itemsKey = 'items', bool $preserveKeys = false): Collection {
+        $callback = $this->valueRetriever($callback);
 
-        return Collection::make($this->items)->map(function ($item) use ($callback) {
-            return ['key' => $callback($item), 'item' => $item];
-        })->groupBy(function (array $keyedItem) {
-            return $keyedItem['key']->getKey();
-        })->map(function (Collection $group) use ($keyName) {
-            return $group->reduce(function (array $result, array $group) use ($keyName) {
-                $result[$keyName] = $group['key'];
-                $result['items'][] = $group['item'];
-
-                return $result;
-            }, []);
-        })->map(function (array $group) {
-            $group['items'] = Collection::make($group['items']);
-
-            return $group;
+        return $this->groupBy(function ($item) use ($callback) {
+            return $callback($item)->getKey();
+        }, $preserveKeys)->map(function (Collection $items) use ($callback, $modelKey, $itemsKey) {
+            return [
+                $modelKey => $callback($items->first()),
+                $itemsKey => $items,
+            ];
         })->values();
     });
 }
