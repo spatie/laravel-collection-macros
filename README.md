@@ -41,6 +41,7 @@ The package will automatically register itself.
 - [`eachCons`](#eachCons)
 - [`extract`](#extract)
 - [`fromPairs`](#fromPairs)
+- [`glob`](#glob)
 - [`groupByModel`](#groupByModel)
 - [`ifAny`](#ifAny)
 - [`ifEmpty`](#ifEmpty)
@@ -173,6 +174,14 @@ Transform a collection into an associative array form collection item.
 $collection = collect(['a', 'b'], ['c', 'd'], ['e', 'f'])->fromPairs();
 
 $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
+```
+
+### `glob`
+
+Returns a collection of a `glob()` result.
+
+```php
+Collection::glob('config/*.php');
 ```
 
 ### `groupByModel`
