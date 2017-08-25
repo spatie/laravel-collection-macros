@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 2.7.0 - 2017-08-25
+- Add `$itemsKey` and `$preserveKeys` parameters to `groupByModel`
+
 ## 2.6.0 - 2017-08-22
 
 - Added `tail`, `eachCons`, `sliceBefore` and `chunkBy`
