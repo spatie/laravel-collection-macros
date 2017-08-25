@@ -243,6 +243,18 @@ $collection->groupByModel('model', 'myModel');
 // ];
 ```
 
+If you want to specify the model items' name, you can pass it as the third parameter:
+
+```php
+$collection->groupByModel('model', 'myModel', 'myItems');
+```
+
+It's also possible to preserve the items' keys.
+
+```php
+$collection->groupByModel('model', null, null, true);
+```
+
 ### `sectionBy`
 
 Splits a collection into sections grouped by a given key. Similar to `groupBy` but respects the order of the items in the collection and reuses existing keys.
