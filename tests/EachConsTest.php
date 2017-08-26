@@ -49,4 +49,24 @@ class EachConsTest extends TestCase
 
         $this->assertEquals($expected, $sliced->toArray());
     }
+
+    /** @test */
+    public function it_can_chunk_the_collection_into_consecutive_pairs_of_values_by_a_given_chunk_size_of_two_with_preserving_the_original_keys()
+    {
+        $collection = new Collection([1, 2, 3, 4, 5, 6, 7, 8]);
+
+        $sliced = $collection->eachCons(2, true);
+
+        $expected = [
+            [0 => 1, 1 => 2],
+            [1 => 2, 2 => 3],
+            [2 => 3, 3 => 4],
+            [3 => 4, 4 => 5],
+            [4 => 5, 5 => 6],
+            [5 => 6, 6 => 7],
+            [6 => 7, 7 => 8],
+        ];
+
+        $this->assertEquals($expected, $sliced->toArray());
+    }
 }

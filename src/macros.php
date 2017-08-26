@@ -397,8 +397,8 @@ if (! Collection::hasMacro('tail')) {
      *
      * @return \Illuminate\Support\Collection
      */
-    Collection::macro('tail', function () {
-        return $this->slice(1)->values();
+    Collection::macro('tail', function ($preserveKeys = false) {
+        return ! $preserveKeys ? $this->slice(1)->values() : $this->slice(1);
     });
 }
 
@@ -408,13 +408,13 @@ if (! Collection::hasMacro('eachCons')) {
      *
      * @return \Illuminate\Support\Collection
      */
-    Collection::macro('eachCons', function ($chunkSize) {
+    Collection::macro('eachCons', function ($chunkSize, $preserveKeys = false) {
         if ($this->count() < $chunkSize) {
             return new static();
         }
 
-        return (new static([$this->take($chunkSize)->values()]))
-            ->merge($this->tail()->eachCons($chunkSize));
+        return (new static([$preserveKeys ? $this->take($chunkSize) : $this->take($chunkSize)->values()]))
+            ->merge($this->tail($preserveKeys)->eachCons($chunkSize, $preserveKeys));
     });
 }
 
@@ -424,21 +424,40 @@ if (! Collection::hasMacro('sliceBefore')) {
      *
      * @return \Illuminate\Support\Collection
      */
-    Collection::macro('sliceBefore', function ($callback) {
+    Collection::macro('sliceBefore', function ($callback, $preserveKeys = false) {
         if ($this->isEmpty()) {
             return new static();
         }
 
-        $sliced = new static([
-            new static([$this->first()]),
-        ]);
+        if(! $preserveKeys) {
+            $sliced = new static([
+                new static([$this->first()]),
+            ]);
 
-        return $this->eachCons(2)->reduce(function ($sliced, $previousAndCurrent) use ($callback) {
-            list($previousItem, $item) = $previousAndCurrent;
+            return $this->eachCons(2)->reduce(function ($sliced, $previousAndCurrent) use ($callback) {
+                list($previousItem, $item) = $previousAndCurrent;
 
-            $callback($item, $previousItem)
-                ? $sliced->push(new static([$item]))
-                : $sliced->last()->push($item);
+                $callback($item, $previousItem)
+                    ? $sliced->push(new static([$item]))
+                    : $sliced->last()->push($item);
+
+                return $sliced;
+            }, $sliced);
+        }
+
+        $sliced = new static([$this->take(1)]);
+
+        return $this->eachCons(2, $preserveKeys)->reduce(function($sliced, $previousAndCurrent) use ($callback) {
+            $previousItem = $previousAndCurrent->take(1);
+            $item = $previousAndCurrent->take(-1);
+
+            $itemKey = $item->keys()->first();
+            $valuesItem = $item->first();
+            $valuesPreviousItem = $previousItem->first();
+
+            $callback($valuesItem, $valuesPreviousItem)
+                ? $sliced->push($item)
+                : $sliced->last()->put($itemKey, $valuesItem);
 
             return $sliced;
         }, $sliced);
@@ -451,9 +470,9 @@ if (! Collection::hasMacro('chunkBy')) {
      *
      * @return \Illuminate\Support\Collection
      */
-    Collection::macro('chunkBy', function ($callback) {
+    Collection::macro('chunkBy', function ($callback, $preserveKeys = false) {
         return $this->sliceBefore(function ($item, $prevItem) use ($callback) {
             return $callback($item) !== $callback($prevItem);
-        });
+        }, $preserveKeys);
     });
 }
