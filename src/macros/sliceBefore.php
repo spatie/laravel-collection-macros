@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('sliceBefore', function ($callback, $preserveKeys = false) {
+Collection::macro('sliceBefore', function ($callback, bool $preserveKeys = false): Collection {
     if ($this->isEmpty()) {
         return new static();
     }

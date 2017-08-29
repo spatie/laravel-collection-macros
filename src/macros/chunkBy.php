@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('chunkBy', function ($callback, $preserveKeys = false) {
+Collection::macro('chunkBy', function ($callback, bool $preserveKeys = false): Collection {
     return $this->sliceBefore(function ($item, $prevItem) use ($callback) {
         return $callback($item) !== $callback($prevItem);
     }, $preserveKeys);

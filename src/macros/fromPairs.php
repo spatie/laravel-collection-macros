@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('fromPairs', function () {
+Collection::macro('fromPairs', function (): Collection {
     return $this->reduce(function ($assoc, array $keyValuePair): Collection {
         list($key, $value) = $keyValuePair;
         $assoc[$key] = $value;

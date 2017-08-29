@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('eachCons', function ($chunkSize, $preserveKeys = false) {
+Collection::macro('eachCons', function ($chunkSize, bool $preserveKeys = false): Collection {
     if ($this->count() < $chunkSize) {
         return new static();
     }

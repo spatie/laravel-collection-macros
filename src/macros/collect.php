@@ -10,6 +10,6 @@ use Illuminate\Support\Collection;
  *
  * @return static
  */
-Collection::macro('collect', function ($key, $default = null) {
+Collection::macro('collect', function ($key, $default = null): Collection {
     return new static($this->get($key, $default));
 });
