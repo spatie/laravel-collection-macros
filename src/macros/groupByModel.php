@@ -6,9 +6,9 @@ use Illuminate\Support\Collection;
  * Group a collection by an Eloquent model.
  *
  * @param string|callable $callback
+ * @param bool $preserveKeys
  * @param mixed $modelKey
  * @param mixed $itemsKey
- * @param bool $preserveKeys
  *
  * @return \Illuminate\Support\Collection
  */
