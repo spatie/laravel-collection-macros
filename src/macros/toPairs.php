@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('toPairs', function () {
+Collection::macro('toPairs', function (): Collection {
     return $this->keys()->map(function ($key) {
         return [$key, $this->items[$key]];
     });

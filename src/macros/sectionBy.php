@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('sectionBy', function ($key, $preserveKeys = false, $sectionKey = 0, $itemsKey = 1): Collection {
+Collection::macro('sectionBy', function ($key, bool $preserveKeys = false, $sectionKey = 0, $itemsKey = 1): Collection {
     $sectionNameRetriever = $this->valueRetriever($key);
 
     $results = new Collection();
