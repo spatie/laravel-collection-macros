@@ -455,7 +455,8 @@ Extract keys from a collection. This is very similar to `only`, with two key dif
 ### `tail`
 
 Extract the tail from a collection. So everything except the first element.
-It's a shorthand for `slice(1)->values()`, but nevertheless very handy.
+It's a shorthand for `slice(1)->values()`. If the optional parameter `$preserveKeys` as `true` is passed, it will
+preserve the keys and fallback to `slice(1)`.
 
 ```php
 collect([1, 2, 3))->tail(); // return collect([2, 3])
@@ -463,7 +464,8 @@ collect([1, 2, 3))->tail(); // return collect([2, 3])
 
 ### `eachCons`
 
-Get the following consecutive neighbours in a collection from a given chunk size.
+Get the following consecutive neighbours in a collection from a given chunk size. 
+If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the original keys.
 
 ```php
 collect([1, 2, 3, 4])->eachCons(2); // return collect([[1, 2], [2, 3], [3, 4]])
@@ -472,16 +474,18 @@ collect([1, 2, 3, 4])->eachCons(2); // return collect([[1, 2], [2, 3], [3, 4]])
 ### `sliceBefore`
 
 Slice the values out from a collection before the given callback is true.
+If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the original keys.
 
 ```php
 collect([20, 51, 10, 50, 66])->sliceBefore(function($item) {
     return $item > 50;
-}); // return collect([[20],[51, 10]])
+}); // return collect([[20],[51, 10, 50], [66])
 ```
 
 ### `chunkBy`
 
 Chunks the values from a collection into groups as long the given callback is true.
+If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the original keys.
 
 ```php
 collect(['A', 'A', 'B', 'A'])->chunkBy(function($item) {
