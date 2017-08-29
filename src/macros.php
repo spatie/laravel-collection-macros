@@ -429,7 +429,7 @@ if (! Collection::hasMacro('sliceBefore')) {
             return new static();
         }
 
-        if(! $preserveKeys) {
+        if (! $preserveKeys) {
             $sliced = new static([
                 new static([$this->first()]),
             ]);
@@ -447,7 +447,7 @@ if (! Collection::hasMacro('sliceBefore')) {
 
         $sliced = new static([$this->take(1)]);
 
-        return $this->eachCons(2, $preserveKeys)->reduce(function($sliced, $previousAndCurrent) use ($callback) {
+        return $this->eachCons(2, $preserveKeys)->reduce(function ($sliced, $previousAndCurrent) use ($callback) {
             $previousItem = $previousAndCurrent->take(1);
             $item = $previousAndCurrent->take(-1);
 
