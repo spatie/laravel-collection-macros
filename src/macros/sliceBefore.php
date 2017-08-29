@@ -15,7 +15,7 @@ Collection::macro('sliceBefore', function ($callback, $preserveKeys = false) {
         return new static();
     }
 
-    if(! $preserveKeys) {
+    if (! $preserveKeys) {
         $sliced = new static([
             new static([$this->first()]),
         ]);
@@ -33,7 +33,7 @@ Collection::macro('sliceBefore', function ($callback, $preserveKeys = false) {
 
     $sliced = new static([$this->take(1)]);
 
-    return $this->eachCons(2, $preserveKeys)->reduce(function($sliced, $previousAndCurrent) use ($callback) {
+    return $this->eachCons(2, $preserveKeys)->reduce(function ($sliced, $previousAndCurrent) use ($callback) {
         $previousItem = $previousAndCurrent->take(1);
         $item = $previousAndCurrent->take(-1);
 
