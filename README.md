@@ -113,7 +113,7 @@ $collection->before($currentItem, $collection->last()); // return 3;
 
 ### `chunkBy`
 
-Chunks the values from a collection into groups as long the given callback is true.
+Chunks the values from a collection into groups as long the given callback is true. If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the original keys.
 
 ```php
 collect(['A', 'A', 'B', 'A'])->chunkBy(function($item) {
@@ -147,7 +147,7 @@ $collection->collect('baz', ['Nope']); // Collection(['Nope'])
 
 ### `eachCons`
 
-Get the following consecutive neighbours in a collection from a given chunk size.
+Get the following consecutive neighbours in a collection from a given chunk size. If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the original keys.
 
 ```php
 collect([1, 2, 3, 4])->eachCons(2); // return collect([[1, 2], [2, 3], [3, 4]])
@@ -315,17 +315,17 @@ For a in-depth guide on pagination, check out [the Laravel docs](https://laravel
 
 ### `sliceBefore`
 
-Slice the values out from a collection before the given callback is true.
+Slice the values out from a collection before the given callback is true. If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the original keys.
 
 ```php
 collect([20, 51, 10, 50, 66])->sliceBefore(function($item) {
     return $item > 50;
-}); // return collect([[20],[51, 10]])
+}); // return collect([[20],[51, 10, 50], [66])
 ```
 
 ### `tail`
 
-Extract the tail from a collection. So everything except the first element. It's a shorthand for `slice(1)->values()`, but nevertheless very handy.
+Extract the tail from a collection. So everything except the first element. It's a shorthand for `slice(1)->values()`, but nevertheless very handy. It's a shorthand for `slice(1)->values()`. If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the keys and fallback to `slice(1)`.
 
 ```php
 collect([1, 2, 3))->tail(); // return collect([2, 3])

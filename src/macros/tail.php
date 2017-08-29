@@ -3,10 +3,12 @@
 use Illuminate\Support\Collection;
 
 /*
- * Get the tail of a collection, so everything except the first item
+ * Get the tail of a collection, everything except the first item.
+ *
+ * @param bool $preserveKeys
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('tail', function () {
-    return $this->slice(1)->values();
+Collection::macro('tail', function ($preserveKeys = false) {
+    return ! $preserveKeys ? $this->slice(1)->values() : $this->slice(1);
 });
