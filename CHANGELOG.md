@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
-## 3.0.0 - 2017-08-??
+## 3.0.0 - 2017-08-30
 - Added support for Laravel 5.5, removed support for older versions
 - Added `glob` macro
 - Removed `dd` and `dump` macros
