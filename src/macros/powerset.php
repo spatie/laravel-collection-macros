@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Collection;
 
-Collection::macro('powerset', function () {
+Collection::macro('powerset', function (): Collection {
     $keys = array_keys($this->items);
     $size = pow(2, $this->count());
 
