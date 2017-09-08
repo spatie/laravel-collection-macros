@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Collection;
 
-class HelpersTest extends TestCase
+class PowersetTest extends TestCase
 {
     /** @test */
     public function it_enumerates_the_powerset()
