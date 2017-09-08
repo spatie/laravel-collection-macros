@@ -5,10 +5,10 @@ use Illuminate\Support\Collection;
 class HelpersTest extends TestCase
 {
     /** @test */
-    public function it_enumerates_subsets()
+    public function it_enumerates_the_powerset()
     {
         /** @var Collection $subsets */
-        $subsets = collect(['a' => 1, 'b' => 2, 'c' => 3])->subsets();
+        $subsets = collect(['a' => 1, 'b' => 2, 'c' => 3])->powerset();
 
         static::assertEquals(8, $subsets->count());
 
