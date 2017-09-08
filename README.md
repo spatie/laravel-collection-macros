@@ -47,6 +47,7 @@ The package will automatically register itself.
 - [`ifEmpty`](#ifEmpty)
 - [`none`](#none)
 - [`paginate`](#paginate)
+- [`powerset`](#powerset)
 - [`range`](#range)
 - [`sectionBy`](#sectionBy)
 - [`simplePaginate`](#simplePaginate)
@@ -256,6 +257,27 @@ This paginates the contents of `$posts` with 5 items per page. `paginate` accept
 ```
 paginate(int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = [])
 ```
+
+### `powerset`
+
+Enumerates the powerset of the collection, in Gray code order.
+
+```php
+collect(['a' => 1, 'b' => 2, 'c' => 3])->powerset();
+
+// [
+//     [],
+//     ['a' => 1],
+//     ['a' => 1, 'b' => 2],
+//     ['b' => 2],
+//     ['b' => 2, 'c' => 3],
+//     ['a' => 1, 'b' => 2, 'c' => 3],
+//     ['a' => 1, 'c' => 3],
+//     ['c' => 3],
+// ];
+```
+
+Warning: There are 2^N elements in a powerset. It can quickly become intractably large, so be sure to call it only on small collections.
 
 ### `range`
 
