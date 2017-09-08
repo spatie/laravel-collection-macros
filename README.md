@@ -260,7 +260,7 @@ paginate(int $perPage = 15, string $pageName = 'page', int $page = null, int $to
 
 ### `powerset`
 
-Enumerates the power set of the collection, in Gray code order.
+Enumerates the powerset of the collection, in Gray code order.
 
 ```php
 collect(['a' => 1, 'b' => 2, 'c' => 3])->powerset();
@@ -277,7 +277,7 @@ collect(['a' => 1, 'b' => 2, 'c' => 3])->powerset();
 // ];
 ```
 
-Warning: There are 2^N elements in a power set. It can quickly become intractably large, so be sure to call it only on small collections.
+Warning: There are 2^N elements in a powerset. It can quickly become intractably large, so be sure to call it only on small collections.
 
 ### `range`
 
