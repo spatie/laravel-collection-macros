@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Test;
+
 use Illuminate\Support\Collection;
 
 class PowersetTest extends TestCase
