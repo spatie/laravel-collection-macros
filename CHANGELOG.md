@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.1.0 - 2017-09-28
+- Added `filterMap`
+
 ## 3.0.0 - 2017-08-30
 - Added support for Laravel 5.5, removed support for older versions
 - Added `glob` macro
