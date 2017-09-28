@@ -36,10 +36,11 @@ The package will automatically register itself.
 
 - [`after`](#after)
 - [`before`](#before)
-- [`chunkBy`](#chunkBy)
+- [`chunkBy`](#chunkby)
 - [`collect`](#collect)
 - [`eachCons`](#eachcons)
 - [`extract`](#extract)
+- [`filterMap`](#filtermap)
 - [`fromPairs`](#frompairs)
 - [`glob`](#glob)
 - [`groupByModel`](#groupbymodel)
@@ -164,6 +165,20 @@ Extract keys from a collection. This is very similar to `only`, with two key dif
 
 ```php
 [$name, $role] = collect($user)->extract('name', 'role.name');
+```
+
+### `filterMap`
+
+Map a collection and remove falsy values in one go.
+
+```php
+$collection = collect([1, 2, 3, 4, 5, 6])->filterMap(function ($number) {
+    $quotient = $number / 3;
+
+    return is_integer($quotient) ? $quotient : null;
+});
+
+$collection->toArray(); // returns [1, 2]
 ```
 
 ### `fromPairs`
