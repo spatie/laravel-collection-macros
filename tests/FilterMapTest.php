@@ -19,16 +19,4 @@ class FilterMapTest extends TestCase
 
         $this->assertEquals([1, 2, 3], $result->values()->toArray());
     }
-
-    /** @test */
-    public function it_returns_a_mapped_collection_with_a_custom_filter()
-    {
-        $result = Collection::make([1, 2, 3, 4, 5, 6])->filterMap(function ($number) {
-            return $number / 2;
-        }, function ($number) {
-            return ! is_float($number);
-        });
-
-        $this->assertEquals([1, 2, 3], $result->values()->toArray());
-    }
 }
