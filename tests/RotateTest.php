@@ -17,14 +17,14 @@ class RotateTest extends TestCase
     {
         $collection = new Collection([]);
         $this->assertCount(0, $collection->rotate(2)->toArray());
-    }  
+    }
 
     /** @test */
     public function it_can_return_same_collection_if_given_zero_offset()
     {
         $collection = new Collection([1, 2, 3, 4, 5, 6]);
         $this->assertEquals([1, 2, 3, 4, 5, 6], $collection->rotate(0)->toArray());
-    }  
+    }
 
     /** @test */
     public function it_can_rotate_the_collection_with_offset()
@@ -53,5 +53,4 @@ class RotateTest extends TestCase
         $collection = new Collection(['first' => 1, 'second' => 2, 'third' => 3, 'fourth' => 4, 'fifth' => 5]);
         $this->assertEquals(['third' => 3, 'fourth' => 4, 'fifth' => 5, 'first' => 1, 'second' => 2], $collection->rotate(-3)->toArray());
     }
-
 }
