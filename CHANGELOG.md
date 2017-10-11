@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.2.0 - 2017-10-11
+- Added `rotate`
+
 ## 3.1.0 - 2017-09-28
 - Added `filterMap`
 
