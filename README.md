@@ -397,6 +397,21 @@ Collection::withSize(1)->toArray(); // return [1];
 Collection::withSize(5)->toArray(); // return [1,2,3,4,5];
 ```
 
+### `rotate`
+
+Rotate the items in the collection with given offset
+
+```php
+$collection = collect([1, 2, 3, 4, 5, 6]);
+
+$rotate = $collection->rotate(1);
+
+$rotate->toArray();
+
+// [2, 3, 4, 5, 6, 1]
+```
+
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
