@@ -49,6 +49,7 @@ The package will automatically register itself.
 - [`none`](#none)
 - [`paginate`](#paginate)
 - [`range`](#range)
+- [`rotate`](#rotate)
 - [`sectionBy`](#sectionby)
 - [`simplePaginate`](#simplepaginate)
 - [`sliceBefore`](#slicebefore)
@@ -280,6 +281,20 @@ Creates a new collection instance with a range of numbers. This functions accept
 collect()->range(1, 3)->toArray(); //returns [1,2,3]
 ```
 
+### `rotate`
+
+Rotate the items in the collection with given offset
+
+```php
+$collection = collect([1, 2, 3, 4, 5, 6]);
+
+$rotate = $collection->rotate(1);
+
+$rotate->toArray();
+
+// [2, 3, 4, 5, 6, 1]
+```
+
 ### `sectionBy`
 
 Splits a collection into sections grouped by a given key. Similar to `groupBy` but respects the order of the items in the collection and reuses existing keys.
@@ -343,7 +358,7 @@ collect([20, 51, 10, 50, 66])->sliceBefore(function($item) {
 Extract the tail from a collection. So everything except the first element. It's a shorthand for `slice(1)->values()`, but nevertheless very handy. It's a shorthand for `slice(1)->values()`. If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the keys and fallback to `slice(1)`.
 
 ```php
-collect([1, 2, 3))->tail(); // return collect([2, 3])
+collect([1, 2, 3])->tail(); // return collect([2, 3])
 ```
 
 ### `toPairs`
@@ -395,20 +410,6 @@ Create a new collection with the specified amount of items.
 ```php
 Collection::withSize(1)->toArray(); // return [1];
 Collection::withSize(5)->toArray(); // return [1,2,3,4,5];
-```
-
-### `rotate`
-
-Rotate the items in the collection with given offset
-
-```php
-$collection = collect([1, 2, 3, 4, 5, 6]);
-
-$rotate = $collection->rotate(1);
-
-$rotate->toArray();
-
-// [2, 3, 4, 5, 6, 1]
 ```
 
 
