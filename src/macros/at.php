@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Collection;
 
-/**
+/*
  * Get a single item from the collection by index.
  *
  * @param mixed $index
