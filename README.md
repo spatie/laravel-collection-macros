@@ -35,6 +35,7 @@ The package will automatically register itself.
 ## Macros
 
 - [`after`](#after)
+- [`at`](#at)
 - [`before`](#before)
 - [`chunkBy`](#chunkby)
 - [`collect`](#collect)
@@ -84,6 +85,18 @@ $collection = collect([1,2,3]);
 $currentItem = 3;
 
 $collection->after($currentItem, $collection->first()); // return 1;
+```
+
+### `at`
+
+Retrieve an item at an index.
+
+```php
+$data = new Collection([1, 2, 3]);
+
+$data->at(0); // 1
+$data->at(1); // 2
+$data->at(-1); // 3
 ```
 
 ### `before`
