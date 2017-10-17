@@ -9,6 +9,6 @@ use Illuminate\Support\Collection;
  *
  * @return mixed
  */
-Collection::macro('byIndex', function ($index) {
+Collection::macro('at', function ($index) {
     return $this->slice($index, 1)->first();
 });

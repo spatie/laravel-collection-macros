@@ -4,14 +4,14 @@ namespace Spatie\CollectionMacros\Test;
 
 use Illuminate\Support\Collection;
 
-class ByIndexTest extends TestCase
+class AtTest extends TestCase
 {
     /** @test */
     public function it_retrieves_an_item_by_positive_index()
     {
         $data = new Collection([1, 2, 3]);
 
-        $this->assertEquals(2, $data->byIndex(1));
+        $this->assertEquals(2, $data->at(1));
     }
 
     /** @test */
@@ -19,7 +19,7 @@ class ByIndexTest extends TestCase
     {
         $data = new Collection([1, 2, 3]);
 
-        $this->assertEquals(3, $data->byIndex(-1));
+        $this->assertEquals(3, $data->at(-1));
     }
 
     /** @test */
@@ -27,6 +27,6 @@ class ByIndexTest extends TestCase
     {
         $data = new Collection([1, 2, 3]);
 
-        $this->assertEquals(1, $data->byIndex(0));
+        $this->assertEquals(1, $data->at(0));
     }
 }
