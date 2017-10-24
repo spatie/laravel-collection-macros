@@ -10,18 +10,17 @@ use Illuminate\Support\Collection;
  * @throws \LengthException
  */
 Collection::macro('transpose', function (): Collection {
-    $values = $this->values();
-
     $expectedLength = count($this->first());
-    $diffLength = count(array_intersect_key(...$values));
 
-    if ($expectedLength !== $diffLength) {
-        throw new LengthException("Element's length must be equal.");
-    }
+    array_walk($this->items, function ($row) use ($expectedLength) {
+        if (count($row) !== $expectedLength) {
+            throw new \LengthException("Element's length must be equal.");
+        }
+    });
 
     $items = array_map(function (...$items) {
         return new static($items);
-    }, ...$values);
+    }, ...$this->values());
 
     return new static($items);
 });

@@ -56,4 +56,20 @@ class TransposeTest extends TestCase
 
         $this->assertEquals($expected, $collection->transpose());
     }
+
+    /** @test */
+    public function it_can_transpose_a_single_row_array()
+    {
+        $collection = new Collection([
+            ['11', '12', '13'],
+        ]);
+
+        $expected = new Collection([
+            new Collection(['11']),
+            new Collection(['12']),
+            new Collection(['13']),
+        ]);
+
+        $this->assertEquals($expected, $collection->transpose());
+    }
 }
