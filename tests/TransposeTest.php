@@ -2,6 +2,7 @@
 
 namespace Spatie\CollectionMacros\Test;
 
+use ArrayObject;
 use LengthException;
 use Illuminate\Support\Collection;
 
@@ -69,6 +70,18 @@ class TransposeTest extends TestCase
                     ['11', '12', '13'],
                     ['21', '22', '23'],
                     ['31', '32', '33'],
+                ]),
+                new Collection([
+                    new Collection(['11', '21', '31']),
+                    new Collection(['12', '22', '32']),
+                    new Collection(['13', '23', '33']),
+                ]),
+            ],
+            'arrayable' => [
+                new Collection([
+                    ['11', '12', '13'],
+                    new ArrayObject(['21', '22', '23']),
+                    new Collection(['31', '32', '33']),
                 ]),
                 new Collection([
                     new Collection(['11', '21', '31']),
