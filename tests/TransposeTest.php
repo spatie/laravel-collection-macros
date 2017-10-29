@@ -7,20 +7,84 @@ use Illuminate\Support\Collection;
 
 class TransposeTest extends TestCase
 {
-    /** @test */
-    public function it_can_transpose_an_array()
+    public function transposableCollections(): array
     {
-        $collection = new Collection([
-            ['11', '12', '13'],
-            ['21', '22', '23'],
-            ['31', '32', '33'],
-        ]);
-        $expected = new Collection([
-            new Collection(['11', '21', '31']),
-            new Collection(['12', '22', '32']),
-            new Collection(['13', '23', '33']),
-        ]);
+        return [
+            'empty' => [
+                new Collection(),
+                new Collection(),
+            ],
+            'single-element' => [
+                new Collection([
+                    ['11'],
+                ]),
+                new Collection([
+                    new Collection(['11']),
+                ]),
+            ],
+            'single-row' => [
+                new Collection([
+                    ['11', '12', '13'],
+                ]),
+                new Collection([
+                    new Collection(['11']),
+                    new Collection(['12']),
+                    new Collection(['13']),
+                ]),
+            ],
+            'single-column' => [
+                new Collection([
+                    ['11'],
+                    ['12'],
+                    ['13'],
+                ]),
+                new Collection([
+                    new Collection(['11', '12', '13']),
+                ]),
+            ],
+            'tall-rect' => [
+                new Collection([
+                    ['11', '12'],
+                    ['21', '22'],
+                    ['31', '32'],
+                ]),
+                new Collection([
+                    new Collection(['11', '21', '31']),
+                    new Collection(['12', '22', '32']),
+                ]),
+            ],
+            'wide-rect' => [
+                new Collection([
+                    ['11', '12', '13'],
+                    ['21', '22', '23'],
+                ]),
+                new Collection([
+                    new Collection(['11', '21']),
+                    new Collection(['12', '22']),
+                    new Collection(['13', '23']),
+                ]),
+            ],
+            'square' => [
+                new Collection([
+                    ['11', '12', '13'],
+                    ['21', '22', '23'],
+                    ['31', '32', '33'],
+                ]),
+                new Collection([
+                    new Collection(['11', '21', '31']),
+                    new Collection(['12', '22', '32']),
+                    new Collection(['13', '23', '33']),
+                ]),
+            ],
+        ];
+    }
 
+    /**
+     * @test
+     * @dataProvider transposableCollections
+     */
+    public function it_can_transpose_an_array(Collection $collection, Collection $expected)
+    {
         $this->assertEquals($expected, $collection->transpose());
     }
 

@@ -10,6 +10,10 @@ use Illuminate\Support\Collection;
  * @throws \LengthException
  */
 Collection::macro('transpose', function (): Collection {
+    if ($this->isEmpty()) {
+        return new static();
+    }
+
     $expectedLength = count($this->first());
 
     array_walk($this->items, function ($row) use ($expectedLength) {
