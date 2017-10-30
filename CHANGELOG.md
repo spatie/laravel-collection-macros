@@ -2,8 +2,12 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.3.2 - 2017-10-30
+- Fixed `transpose` when using an empty array
+- Fixed `transpose` when using an `Arrayable`
+
 ## 3.3.1 - 2017-10-24
-- Fixed `transpose` when passing a single-row matrix
+- Fixed `transpose` when using a single-row matrix
 
 ## 3.3.0 - 2017-10-17
 - Added `at`
