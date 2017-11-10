@@ -42,6 +42,7 @@ The package will automatically register itself.
 - [`eachCons`](#eachcons)
 - [`extract`](#extract)
 - [`filterMap`](#filtermap)
+- [`firstOrFail`](#firstorfail)
 - [`fromPairs`](#frompairs)
 - [`glob`](#glob)
 - [`groupByModel`](#groupbymodel)
@@ -62,7 +63,7 @@ The package will automatically register itself.
 
 ### `after`
 
-Get the next item from the collection. 
+Get the next item from the collection.
 
 ```php
 $collection = collect([1,2,3]);
@@ -101,7 +102,7 @@ $data->at(-1); // 3
 
 ### `before`
 
-Get the previous item from the collection. 
+Get the previous item from the collection.
 
 ```php
 $collection = collect([1,2,3]);
@@ -142,7 +143,7 @@ Get an item at a given key, and collect it.
 
 ```php
 $collection = collect([
-    'foo' => [1, 2, 3], 
+    'foo' => [1, 2, 3],
     'bar' => [4, 5, 6],
 ]);
 
@@ -153,7 +154,7 @@ You can also pass a second parameter to be used as a fallback.
 
 ```php
 $collection = collect([
-    'foo' => [1, 2, 3], 
+    'foo' => [1, 2, 3],
     'bar' => [4, 5, 6],
 ]);
 
@@ -193,6 +194,18 @@ $collection = collect([1, 2, 3, 4, 5, 6])->filterMap(function ($number) {
 });
 
 $collection->toArray(); // returns [1, 2]
+```
+
+### `firstOrfail`
+
+Get the first item. Throws Exception when collection is empty.
+
+```php
+$collection = collect([1, 2, 3, 4, 5, 6])->firstOrFail();
+
+$collection->toArray(); // returns [1]
+
+collect([])->firstOrFail(); // throws Exception
 ```
 
 ### `fromPairs`
