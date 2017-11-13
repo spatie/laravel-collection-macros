@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Collection;
+use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
 
 /*
  * Get the first item. Throws Exception when collection is empty.
@@ -12,5 +13,5 @@ Collection::macro('firstOrFail', function () {
         return $item;
     }
 
-    throw new \Exception('No items found in collection.');
+    throw new CollectionItemNotFound('No items found in collection.');
 });
