@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.4.0 - 2017-11-13
+- Add `findOrFail`
+
 ## 3.3.2 - 2017-10-30
 - Fixed `transpose` when using an empty array
 - Fixed `transpose` when using an `Arrayable`

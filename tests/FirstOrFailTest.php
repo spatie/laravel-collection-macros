@@ -3,8 +3,9 @@
 namespace Spatie\CollectionMacros\Test;
 
 use Illuminate\Support\Collection;
+use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
 
-class FirstOrFail extends TestCase
+class FirstOrFailTest extends TestCase
 {
     /** @test */
     public function it_returns_first_item_when_there_is_one()
@@ -17,6 +18,8 @@ class FirstOrFail extends TestCase
     /** @test */
     public function it_throws_exception_when_there_are_no_items()
     {
-        $this->expectException(Collection::make()->firstOrFail());
+        $this->expectException(CollectionItemNotFound::class);
+
+        Collection::make()->firstOrFail();
     }
 }

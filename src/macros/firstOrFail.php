@@ -4,7 +4,7 @@ use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
 
 /*
- * Get the first item. Throws Exception when collection is empty.
+ * Get the first item. Throws CollectionItemNotFound if the item was not found.
  *
  * @return mixed
  */

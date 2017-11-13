@@ -198,14 +198,14 @@ $collection->toArray(); // returns [1, 2]
 
 ### `firstOrfail`
 
-Get the first item. Throws Exception when collection is empty.
+Get the first item. Throws `Spatie\CollectionMacros\Exceptions\CollectionItemNotFound` if the item was not found.
 
 ```php
 $collection = collect([1, 2, 3, 4, 5, 6])->firstOrFail();
 
 $collection->toArray(); // returns [1]
 
-collect([])->firstOrFail(); // throws Exception
+collect([])->firstOrFail(); // throws Spatie\CollectionMacros\Exceptions\CollectionItemNotFound
 ```
 
 ### `fromPairs`
