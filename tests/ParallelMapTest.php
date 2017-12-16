@@ -22,15 +22,15 @@ class ParallelMapTest extends TestCase
     {
         $this->startStopWatch();
 
-        $collection = Collection::make([1, 2, 3])->parallelMap(function (int $number) {
-            sleep($number);
+        $collection = Collection::make([1, 2, 3, 4, 5])->parallelMap(function (int $number) {
+            sleep(1);
 
             return $number * 10;
         });
 
-        $this->assertTookLessThenSeconds(4);
+        $this->assertTookLessThenSeconds(2);
 
-        $this->assertEquals([10, 20, 30], $collection->toArray());
+        $this->assertEquals([10, 20, 30, 40, 50], $collection->toArray());
     }
 
     protected function startStopWatch()
