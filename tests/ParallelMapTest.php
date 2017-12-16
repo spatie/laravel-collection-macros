@@ -28,7 +28,7 @@ class ParallelMapTest extends TestCase
             return $number * 10;
         });
 
-        $this->assertTookLessThenSeconds(2);
+        $this->assertTookLessThanSeconds(2);
 
         $this->assertEquals([10, 20, 30, 40, 50], $collection->toArray());
     }
@@ -38,7 +38,7 @@ class ParallelMapTest extends TestCase
         $this->stopWatch->start('test');
     }
 
-    protected function assertTookLessThenSeconds(int $seconds)
+    protected function assertTookLessThanSeconds(int $seconds)
     {
         $durationInMilliseconds = $this->stopWatch->stop('test')->getDuration();
 
