@@ -1,8 +1,8 @@
 <?php
 
+use function Amp\Promise\wait;
 use Illuminate\Support\Collection;
 use function Amp\ParallelFunctions\parallelMap;
-use function Amp\Promise\wait;
 
 /*
  * Idential to map but each item will be processed in parallel.
