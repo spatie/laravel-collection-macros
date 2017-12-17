@@ -34,7 +34,7 @@
         "orchestra/database": "~3.5.0",
         "orchestra/testbench": "~3.5.0",
         "phpunit/phpunit": "^6.2",
-        "symfony/stopwatch": "^4.0"
+        "symfony/stopwatch": "^3.4|^4.0"
     },
     "suggest": {
         "amphp/parallel-functions": "Required when using the parallel*-macros."
