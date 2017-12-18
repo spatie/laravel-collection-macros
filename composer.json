@@ -1,7 +1,10 @@
 {
     "name": "spatie/laravel-collection-macros",
     "description": "A set of useful Laravel collection macros",
-    "keywords": ["spatie", "laravel-collection-macros"],
+    "keywords": [
+        "spatie",
+        "laravel-collection-macros"
+    ],
     "homepage": "https://github.com/spatie/laravel-collection-macros",
     "license": "MIT",
     "authors": [
