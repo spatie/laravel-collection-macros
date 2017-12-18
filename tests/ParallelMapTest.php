@@ -3,6 +3,7 @@
 namespace Spatie\CollectionMacros\Test;
 
 use Illuminate\Support\Collection;
+use Amp\Parallel\Worker\DefaultPool;
 use Symfony\Component\Stopwatch\Stopwatch;
 
 class ParallelMapTest extends TestCase
@@ -31,6 +32,32 @@ class ParallelMapTest extends TestCase
         $this->assertTookLessThanSeconds(2);
 
         $this->assertEquals([10, 20, 30, 40, 50], $collection->toArray());
+    }
+
+    /** @test */
+    public function it_can_limit_worker_pool_size_with_pool()
+    {
+        $this->startStopWatch();
+
+        $pool = new DefaultPool(1);
+
+        $collection = Collection::make([1, 2, 3])->parallelMap(function (int $number) {
+            sleep(1);
+        }, $pool);
+
+        $this->assertTookMoreThanSeconds(2);
+    }
+
+    /** @test */
+    public function it_can_limit_worker_pool_size_with_int()
+    {
+        $this->startStopWatch();
+
+        $collection = Collection::make([1, 2, 3])->parallelMap(function (int $number) {
+            sleep(1);
+        }, 1);
+
+        $this->assertTookMoreThanSeconds(2);
     }
 
     /** @test */
@@ -77,5 +104,12 @@ class ParallelMapTest extends TestCase
         $durationInMilliseconds = $this->stopWatch->stop('test')->getDuration();
 
         $this->assertLessThan($seconds * 1000, $durationInMilliseconds);
+    }
+
+    protected function assertTookMoreThanSeconds(int $seconds)
+    {
+        $durationInMilliseconds = $this->stopWatch->stop('test')->getDuration();
+
+        $this->assertGreaterThan($seconds * 1000, $durationInMilliseconds);
     }
 }
