@@ -14,7 +14,9 @@ use function Amp\ParallelFunctions\parallelMap;
  * @return \Illuminate\Support\Collection
  */
 Collection::macro('parallelMap', function (callable $callback): Collection {
-    $this->items = wait(parallelMap($this->items, $callback));
+    $promises = parallelMap($this->items, $callback);
+
+    $this->items = wait($promises);
 
     return $this;
 });
