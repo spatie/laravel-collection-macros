@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.6.0 - 2017-12-18
+- allow worker pool of `parallelMap` to be configured
+
 ## 3.5.0 - 2017-12-18
 - Add `parallelMap`
 
