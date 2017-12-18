@@ -50,6 +50,7 @@ The package will automatically register itself.
 - [`ifEmpty`](#ifempty)
 - [`none`](#none)
 - [`paginate`](#paginate)
+- [`parallelMap`](#parallelmap)
 - [`range`](#range)
 - [`rotate`](#rotate)
 - [`sectionBy`](#sectionby)
@@ -298,6 +299,24 @@ This paginates the contents of `$posts` with 5 items per page. `paginate` accept
 ```
 paginate(int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = [])
 ```
+
+### `parallelMap`
+
+Identical to `map` but each item in the collection will be processed in parallel. Before using this macro you should pull in the `amphp/parallel-functions` package.
+
+```bash
+composer require amphp/parallel-functions
+```
+
+Be aware that under the hood some overhead is introduced to make the parallel procession possible. When your `$callable` is only a simple operation it's probably better to use `map` instead. Also keep in mind that `parallelMap` is memory intensive.
+
+```php
+$pageSources = collect($urls)->parallelMap(function($url) {
+    return file_get_contents($url);
+});
+```
+
+The page contents of the given `$urls` will be fetched at the same time. The underlying `amp` sets a maximum of `32` concurrent processes by default.
 
 ### `range`
 

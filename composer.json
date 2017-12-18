@@ -23,16 +23,22 @@
     ],
     "require": {
         "php": "^7.0",
+        "illuminate/pagination": "~5.5.0",
         "illuminate/support": "~5.5.0",
         "illuminate/validation": "~5.5.0",
-        "illuminate/pagination": "~5.5.0",
         "illuminate/view": "~5.5.0"
     },
     "require-dev": {
+        "amphp/amp": "^2.0.3",
+        "amphp/parallel-functions": "^0.1.2",
         "mockery/mockery": "^1.0",
         "orchestra/database": "~3.5.0",
         "orchestra/testbench": "~3.5.0",
-        "phpunit/phpunit": "^6.2"
+        "phpunit/phpunit": "^6.2",
+        "symfony/stopwatch": "^3.4|^4.0"
+    },
+    "suggest": {
+        "amphp/parallel-functions": "Required when using the parallel*-macros."
     },
     "autoload": {
         "psr-4": {
