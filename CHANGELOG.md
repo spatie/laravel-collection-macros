@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.5.0 - 2017-12-18
+- Add `parallelMap`
+
 ## 3.4.0 - 2017-11-13
 - Add `findOrFail`
 
