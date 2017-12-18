@@ -1,10 +1,7 @@
 {
     "name": "spatie/laravel-collection-macros",
     "description": "A set of useful Laravel collection macros",
-    "keywords": [
-        "spatie",
-        "laravel-collection-macros"
-    ],
+    "keywords": ["spatie", "laravel-collection-macros"],
     "homepage": "https://github.com/spatie/laravel-collection-macros",
     "license": "MIT",
     "authors": [
@@ -29,6 +26,7 @@
         "illuminate/view": "~5.5.0"
     },
     "require-dev": {
+        "amphp/parallel": "^0.2.0",
         "amphp/parallel-functions": "^0.1.2",
         "mockery/mockery": "^1.0",
         "orchestra/database": "~3.5.0",
