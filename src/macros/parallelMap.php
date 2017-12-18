@@ -1,10 +1,10 @@
 <?php
 
+use Amp\Parallel\Worker\Pool;
 use function Amp\Promise\wait;
 use Illuminate\Support\Collection;
-use function Amp\ParallelFunctions\parallelMap;
 use Amp\Parallel\Worker\DefaultPool;
-use Amp\Parallel\Worker\Pool;
+use function Amp\ParallelFunctions\parallelMap;
 
 /*
  * Idential to map but each item will be processed in parallel.
@@ -17,15 +17,15 @@ use Amp\Parallel\Worker\Pool;
  */
 Collection::macro('parallelMap', function (callable $callback, $workers = null): Collection {
     $pool = null;
-    
+
     if ($workers instanceof Pool) {
         $pool = $workers;
     }
-    
+
     if (is_int($workers)) {
         $pool = new DefaultPool($workers);
     }
-    
+
     $promises = parallelMap($this->items, $callback, $pool);
 
     $this->items = wait($promises);
