@@ -13,7 +13,7 @@ class SortByDateTest extends TestCase
         $data = new Collection([
             '2018-01-04',
             '1995-07-15',
-            '2000-01-01'
+            '2000-01-01',
         ]);
 
         $this->assertEquals('1995-07-15', $data->sortByDate()->first());
@@ -26,7 +26,7 @@ class SortByDateTest extends TestCase
         $data = new Collection([
             '2018-01-04',
             '1995-07-15',
-            '2000-01-01'
+            '2000-01-01',
         ]);
 
         $this->assertEquals('2018-01-04', $data->sortByDateDesc()->first());
@@ -40,7 +40,7 @@ class SortByDateTest extends TestCase
             '2018-01-04',
             '1995-07-15',
             'Taylor Otwell',
-            '2000-01-01'
+            '2000-01-01',
         ]);
 
         $this->assertEquals('Taylor Otwell', $data->sortByDate()->first());
@@ -53,7 +53,7 @@ class SortByDateTest extends TestCase
         $data = new Collection([
             ['date' => '2018-01-04', 'name' => 'Banana'],
             ['date' => '1995-07-15', 'name' => 'Apple'],
-            ['date' => '2000-01-01', 'name' => 'Orange']
+            ['date' => '2000-01-01', 'name' => 'Orange'],
         ]);
 
         $this->assertEquals('Apple', $data->sortByDate('date')->first()['name']);
@@ -66,7 +66,7 @@ class SortByDateTest extends TestCase
         $data = new Collection([
             Carbon::parse('2018-01-04'),
             Carbon::parse('1995-07-15'),
-            Carbon::parse('2000-01-01')
+            Carbon::parse('2000-01-01'),
         ]);
 
         $this->assertEquals('1995-07-15', $data->sortByDate()->first()->format('Y-m-d'));
@@ -81,26 +81,26 @@ class SortByDateTest extends TestCase
                 'name' => 'Banana',
                 'dates' => [
                     'from' => '2018-01-04',
-                    'to' => '2019-01-01'
-                ]
+                    'to' => '2019-01-01',
+                ],
             ],
             [
                 'name' => 'Apple',
                 'dates' => [
                     'from' => '1995-07-15',
-                    'to' => '2019-06-12'
-                ]
+                    'to' => '2019-06-12',
+                ],
             ],
             [
                 'name' => 'Orange',
                 'dates' => [
                     'from' => '2000-01-01',
-                    'to' => '2020-04-31'
-                ]
-            ]
+                    'to' => '2020-04-31',
+                ],
+            ],
         ]);
 
-        $this->assertEquals('Apple', $data->sortByDate(function($item) {
+        $this->assertEquals('Apple', $data->sortByDate(function ($item) {
             return $item['dates']['from'];
         })->first()['name']);
     }

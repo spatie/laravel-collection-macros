@@ -11,14 +11,12 @@ use Illuminate\Support\Collection;
  * @return Collection
  */
 Collection::macro('sortByDate', function ($key = null) {
-
-    return $this->sortBy(function($item) use ($key) {
-
-        if (is_callable($key) && !is_string($key)) {
+    return $this->sortBy(function ($item) use ($key) {
+        if (is_callable($key) && ! is_string($key)) {
             return $key($item);
         }
 
-        $date = $key === null ? $item : $item[$key];
+        $date = null === $key ? $item : $item[$key];
 
         if ($date instanceof Carbon) {
             return $date->getTimestamp();
@@ -26,10 +24,10 @@ Collection::macro('sortByDate', function ($key = null) {
 
         try {
             return Carbon::parse($date)->getTimestamp();
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+        }
 
         return 0;
-
     })->values();
 });
 
