@@ -149,4 +149,16 @@ class TransposeTest extends TestCase
 
         $this->assertEquals($expected, $collection->transpose());
     }
+
+    /** @test */
+    public function it_can_handle_null_values()
+    {
+        $collection = new Collection([
+            null,
+        ]);
+
+        $expected = new Collection();
+
+        $this->assertEquals($expected, $collection->transpose());
+    }
 }

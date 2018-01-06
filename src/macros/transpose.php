@@ -14,7 +14,13 @@ Collection::macro('transpose', function (): Collection {
         return new static();
     }
 
-    $expectedLength = count($this->first());
+    $firstItem = $this->first();
+
+    if (! $firstItem instanceof Countable) {
+        return new static();
+    }
+
+    $expectedLength = count($firstItem);
 
     array_walk($this->items, function ($row) use ($expectedLength) {
         if (count($row) !== $expectedLength) {
