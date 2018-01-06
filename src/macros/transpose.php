@@ -16,14 +16,10 @@ Collection::macro('transpose', function (): Collection {
 
     $firstItem = $this->first();
 
-    if (! $firstItem instanceof Countable) {
-        return new static();
-    }
-
-    $expectedLength = count($firstItem);
+    $expectedLength = is_array($firstItem) || $firstItem instanceof Countable ? count($firstItem) : 0;
 
     array_walk($this->items, function ($row) use ($expectedLength) {
-        if (count($row) !== $expectedLength) {
+        if ((is_array($row) || $row instanceof Countable) && count($row) !== $expectedLength) {
             throw new \LengthException("Element's length must be equal.");
         }
     });

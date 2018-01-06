@@ -161,4 +161,20 @@ class TransposeTest extends TestCase
 
         $this->assertEquals($expected, $collection->transpose());
     }
+
+    /** @test */
+    public function it_can_handle_collections_values()
+    {
+        $collection = new Collection([
+            new Collection([1, 2, 3]),
+        ]);
+
+        $expected = new Collection([
+            new Collection([1]),
+            new Collection([2]),
+            new Collection([3]),
+        ]);
+
+        $this->assertEquals($expected, $collection->transpose());
+    }
 }
