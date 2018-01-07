@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.6.1 - 2018-01-07
+- fix count warning/exception php7.2 in `Transpose`
+
 ## 3.6.0 - 2017-12-18
 - allow worker pool of `parallelMap` to be configured
 
