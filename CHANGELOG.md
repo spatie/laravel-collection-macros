@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.6.2 - 2018-01-14
+- make `parallelMap` return a new collection
+
 ## 3.6.1 - 2018-01-07
 - fix count warning/exception php7.2 in `Transpose`
 

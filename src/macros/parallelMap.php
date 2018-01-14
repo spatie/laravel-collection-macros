@@ -28,7 +28,5 @@ Collection::macro('parallelMap', function (callable $callback, $workers = null):
 
     $promises = parallelMap($this->items, $callback, $pool);
 
-    $this->items = wait($promises);
-
-    return $this;
+    return new static(wait($promises));
 });
