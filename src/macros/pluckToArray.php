@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
  *
  * @param  string|array  $value
  * @param  string|null  $key
+ *
  * @return array
  */
 Collection::macro('pluckToArray', function ($value, $key = null): array {

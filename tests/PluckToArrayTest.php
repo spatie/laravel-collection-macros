@@ -18,6 +18,8 @@ class PluckToArrayTest extends TestCase
         $expected = [1, 2, 3];
 
         $this->assertEquals($expected, $result);
+
+        $this->assertTrue(is_array($result));
     }
 
     /** @test */

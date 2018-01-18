@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.7.0 - 2018-01-18
+- add `pluckToArray`
+
 ## 3.6.2 - 2018-01-14
 - make `parallelMap` return a new collection
 
