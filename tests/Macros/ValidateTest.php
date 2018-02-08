@@ -1,10 +1,11 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test;
+namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
+use Spatie\CollectionMacros\Test\IntegrationTestCase;
 
-class ValidateTest extends TestCase
+class ValidateTest extends IntegrationTestCase
 {
     /** @test */
     public function it_returns_true_if_a_collection_passes_validation_with_a_callback()

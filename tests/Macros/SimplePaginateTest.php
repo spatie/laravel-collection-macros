@@ -1,10 +1,11 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test;
+namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
+use Spatie\CollectionMacros\Test\IntegrationTestCase;
 
-class SimplePaginateTest extends TestCase
+class SimplePaginateTest extends IntegrationTestCase
 {
     /** @test */
     public function it_provides_paginate_macro()
