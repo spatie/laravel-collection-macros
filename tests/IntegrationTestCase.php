@@ -2,7 +2,6 @@
 
 namespace Spatie\CollectionMacros\Test;
 
-use Mockery;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\CollectionMacros\CollectionMacroServiceProvider;
 

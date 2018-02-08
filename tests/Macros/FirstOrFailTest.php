@@ -3,7 +3,6 @@
 namespace Spatie\CollectionMacros\Test;
 
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
 
 class FirstOrFailTest extends TestCase
