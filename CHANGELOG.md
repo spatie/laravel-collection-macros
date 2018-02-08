@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.8.0 - 2018-02-08
+- Add Laravel 5.6 compatibility
+
 ## 3.7.0 - 2018-01-18
 - add `pluckToArray`
 
