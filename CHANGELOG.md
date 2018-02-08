@@ -2,6 +2,24 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.7.0 - 2018-01-18
+- add `pluckToArray`
+
+## 3.6.2 - 2018-01-14
+- make `parallelMap` return a new collection
+
+## 3.6.1 - 2018-01-07
+- fix count warning/exception php7.2 in `Transpose`
+
+## 3.6.0 - 2017-12-18
+- allow worker pool of `parallelMap` to be configured
+
+## 3.5.0 - 2017-12-18
+- Add `parallelMap`
+
+## 3.4.0 - 2017-11-13
+- Add `findOrFail`
+
 ## 3.3.2 - 2017-10-30
 - Fixed `transpose` when using an empty array
 - Fixed `transpose` when using an `Arrayable`

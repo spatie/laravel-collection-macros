@@ -1,13 +1,16 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test;
+namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
+use Spatie\CollectionMacros\Test\IntegrationTestCase;
 
-class PaginateTest extends TestCase
+class PaginateTest extends IntegrationTestCase
 {
     public function setUp()
     {
+        parent::setUp();
+
         $this->collectionPaginator = (new Collection(['item1', 'item2', 'item3', 'item4']))->paginate(2, 'page', 2, null);
     }
 

@@ -1,10 +1,11 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test;
+namespace Spatie\CollectionMacros\Test\Macros;
 
 use ArrayObject;
 use LengthException;
 use Illuminate\Support\Collection;
+use Spatie\CollectionMacros\Test\TestCase;
 
 class TransposeTest extends TestCase
 {
@@ -145,6 +146,34 @@ class TransposeTest extends TestCase
             new Collection(['11']),
             new Collection(['12']),
             new Collection(['13']),
+        ]);
+
+        $this->assertEquals($expected, $collection->transpose());
+    }
+
+    /** @test */
+    public function it_can_handle_null_values()
+    {
+        $collection = new Collection([
+            null,
+        ]);
+
+        $expected = new Collection();
+
+        $this->assertEquals($expected, $collection->transpose());
+    }
+
+    /** @test */
+    public function it_can_handle_collections_values()
+    {
+        $collection = new Collection([
+            new Collection([1, 2, 3]),
+        ]);
+
+        $expected = new Collection([
+            new Collection([1]),
+            new Collection([2]),
+            new Collection([3]),
         ]);
 
         $this->assertEquals($expected, $collection->transpose());

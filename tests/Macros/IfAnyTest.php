@@ -1,11 +1,32 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test;
+namespace Spatie\CollectionMacros\Test\Macros;
 
+use Mockery;
 use Illuminate\Support\Collection;
+use Spatie\CollectionMacros\Test\TestCase;
 
 class IfAnyTest extends TestCase
 {
+    /** @var \Mockery\MockInterface spy */
+    private $spy;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->spy = Mockery::spy();
+    }
+
+    public function tearDown()
+    {
+        if ($container = Mockery::getContainer()) {
+            $this->addToAssertionCount($container->mockery_getExpectationCount());
+        }
+
+        Mockery::close();
+    }
+
     /** @test */
     public function it_executes_the_callable_if_the_collection_isnt_empty()
     {
@@ -14,8 +35,6 @@ class IfAnyTest extends TestCase
         });
 
         $this->spy->shouldHaveReceived('someCall')->once();
-
-        $this->avoidTestMarkedAsRisky();
     }
 
     /** @test */
@@ -36,8 +55,6 @@ class IfAnyTest extends TestCase
         });
 
         $this->spy->shouldNotHaveReceived('someCall');
-
-        $this->avoidTestMarkedAsRisky();
     }
 
     /** @test */
