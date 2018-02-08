@@ -3,6 +3,7 @@
 namespace Spatie\CollectionMacros\Test;
 
 use Illuminate\Support\Collection;
+use Spatie\CollectionMacros\Test\TestCase;
 
 class PluckToArrayTest extends TestCase
 {

@@ -5,6 +5,7 @@ namespace Spatie\CollectionMacros\Test;
 use Illuminate\Support\Collection;
 use Amp\Parallel\Worker\DefaultPool;
 use Symfony\Component\Stopwatch\Stopwatch;
+use Spatie\CollectionMacros\Test\TestCase;
 
 class ParallelMapTest extends TestCase
 {

@@ -1,10 +1,11 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test;
+namespace Spatie\CollectionMacros\Test\Macros;
 
 use Mockery;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\CollectionMacros\Test\TestCase;
 
 class GroupByModelTest extends TestCase
 {

@@ -1,10 +1,11 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test;
+namespace Spatie\CollectionMacros\Test\Macros;
 
 use ArrayObject;
 use LengthException;
 use Illuminate\Support\Collection;
+use Spatie\CollectionMacros\Test\TestCase;
 
 class TransposeTest extends TestCase
 {
