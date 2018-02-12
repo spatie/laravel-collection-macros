@@ -11,10 +11,10 @@ use Illuminate\Support\Collection;
  * @return \Illuminate\Support\Collection
  */
 Collection::macro('eachCons', function (int $chunkSize, bool $preserveKeys = false): Collection {
-    if ($this->count() < $chunkSize) {
-        return new static();
-    }
-
-    return (new static([$preserveKeys ? $this->take($chunkSize) : $this->take($chunkSize)->values()]))
-        ->merge($this->tail($preserveKeys)->eachCons($chunkSize, $preserveKeys));
+    $size = $this->count() - $chunkSize + 1;
+    $result = collect(range(0, $size))->reduce(function ($result, $index) use ($chunkSize, $preserveKeys) {
+        $next = $this->slice($index, $chunkSize);
+        return $next->count() === $chunkSize ? $result->push($preserveKeys ? $next : $next->values()) : $result;
+    }, new static([]));
+    return $preserveKeys ? $result : $result->values();
 });
