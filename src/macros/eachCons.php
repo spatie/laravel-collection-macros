@@ -14,9 +14,7 @@ Collection::macro('eachCons', function (int $chunkSize, bool $preserveKeys = fal
     $size = $this->count() - $chunkSize + 1;
     $result = collect(range(0, $size))->reduce(function ($result, $index) use ($chunkSize, $preserveKeys) {
         $next = $this->slice($index, $chunkSize);
-        
         return $next->count() === $chunkSize ? $result->push($preserveKeys ? $next : $next->values()) : $result;
     }, new static([]));
-    
     return $preserveKeys ? $result : $result->values();
 });
