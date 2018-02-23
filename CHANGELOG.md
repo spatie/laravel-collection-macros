@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 3.8.1 - 2018-02-23
+- Fix maximum function nesting reached error in `eachCons`
+
 ## 3.8.0 - 2018-02-08
 - Added: Laravel 5.6 compatibility
 
