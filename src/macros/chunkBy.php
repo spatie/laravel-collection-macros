@@ -3,7 +3,7 @@
 use Illuminate\Support\Collection;
 
 /*
- * Separate a collection into chunks as long the given callback is met.
+ * Separate a collection into chunks as long as the given callback returns true.
  *
  * @param callable $callback
  * @param bool $preserveKeys
