@@ -435,7 +435,7 @@ collect([20, 51, 10, 50, 66])->sliceBefore(function($item) {
 
 ### `tail`
 
-Extract the tail from a collection. So everything except the first element. It's a shorthand for `slice(1)->values()`, but nevertheless very handy. It's a shorthand for `slice(1)->values()`. If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the keys and fallback to `slice(1)`.
+Extract the tail from a collection. So everything except the first element. It's a shorthand for `slice(1)->values()`, but nevertheless very handy. If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the keys and fallback to `slice(1)`.
 
 ```php
 collect([1, 2, 3])->tail(); // return collect([2, 3])
@@ -443,7 +443,7 @@ collect([1, 2, 3])->tail(); // return collect([2, 3])
 
 ### `toPairs`
 
-Transform a collection in to a array with pairs.
+Transform a collection into an array with pairs.
 
 ```php
 $collection = collect(['a' => 'b', 'c' => 'd', 'e' => 'f'])->toPairs();
