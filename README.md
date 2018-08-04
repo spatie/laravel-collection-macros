@@ -307,7 +307,7 @@ Identical to `map` but each item in the collection will be processed in parallel
 composer require amphp/parallel-functions
 ```
 
-Be aware that under the hood some overhead is introduced to make the parallel procession possible. When your `$callable` is only a simple operation it's probably better to use `map` instead. Also keep in mind that `parallelMap` can be memory intensive. 
+Be aware that under the hood some overhead is introduced to make the parallel processing possible. When your `$callable` is only a simple operation it's probably better to use `map` instead. Also keep in mind that `parallelMap` can be memory intensive. 
 
 ```php
 $pageSources = collect($urls)->parallelMap(function($url) {
