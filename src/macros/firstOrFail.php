@@ -10,7 +10,7 @@ use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
  */
 Collection::macro('firstOrFail', function () {
     if (! is_null($item = $this->first())) {
-        return collect($item);
+        return $item;
     }
 
     throw new CollectionItemNotFound('No items found in collection.');
