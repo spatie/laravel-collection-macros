@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 4.0.0 - 2018-08-28
+
+- `firstOrFail` will return the item instead of a collection
+- support for Laravel 5.7
+
 ## 3.8.1 - 2018-02-23
 - Fixed: maximum function nesting reached error in `eachCons`
 
