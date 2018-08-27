@@ -12,7 +12,7 @@ class FirstOrFailTest extends TestCase
     {
         $result = Collection::make([1, 2, 3, 4])->firstOrFail();
 
-        $this->assertEquals([1], $result->values()->toArray());
+        $this->assertEquals(1, $result);
     }
 
     /** @test */
