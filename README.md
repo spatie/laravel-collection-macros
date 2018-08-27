@@ -50,7 +50,6 @@ The package will automatically register itself.
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
 - [`pluckToArray`](#plucktoarray)
-- [`range`](#range)
 - [`rotate`](#rotate)
 - [`sectionBy`](#sectionby)
 - [`simplePaginate`](#simplepaginate)
@@ -351,14 +350,6 @@ $collection = collect([
 ]);
     
 $collection->pluckToArray('a'); // returns [1, 2, 3]
-```
-
-### `range`
-
-Creates a new collection instance with a range of numbers. This functions accepts the same parameters as PHP's standard `range` function.
-
-```php
-collect()->range(1, 3)->toArray(); //returns [1,2,3]
 ```
 
 ### `rotate`

@@ -6,6 +6,7 @@ All notable changes to `laravel-collection-macros` will be documented in this fi
 
 - `firstOrFail` will return the item instead of a collection
 - support for Laravel 5.7
+- removed `range` macro
 
 ## 3.8.1 - 2018-02-23
 - Fixed: maximum function nesting reached error in `eachCons`
