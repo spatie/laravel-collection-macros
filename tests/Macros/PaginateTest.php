@@ -3,9 +3,9 @@
 namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\IntegrationTestCase;
+use Spatie\CollectionMacros\Test\TestCase;
 
-class PaginateTest extends IntegrationTestCase
+class PaginateTest extends TestCase
 {
     public function setUp()
     {
