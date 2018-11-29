@@ -33,6 +33,15 @@ The package will automatically register itself.
 
 - [`after`](#after)
 - [`at`](#at)
+    - [`second`](#second)
+    - [`third`](#third)
+    - [`fourth`](#fourth)
+    - [`fifth`](#fifth)
+    - [`sixth`](#sixth)
+    - [`seventh`](#seventh)
+    - [`eighth`](#eighth)
+    - [`ninth`](#ninth)
+    - [`tenth`](#tenth)
 - [`before`](#before)
 - [`chunkBy`](#chunkby)
 - [`collect`](#collect)
@@ -96,6 +105,87 @@ $data = new Collection([1, 2, 3]);
 $data->at(0); // 1
 $data->at(1); // 2
 $data->at(-1); // 3
+```
+
+### `second`
+Retrieve item at the second index.
+
+```php
+$data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+$data->second(); // 2
+```
+
+### `third`
+Retrieve item at the second index.
+
+```php
+$data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+$data->third(); // 3
+```
+
+### `fourth`
+Retrieve item at the second index.
+
+```php
+$data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+$data->fourth(); // 4
+```
+
+### `fifth`
+Retrieve item at the second index.
+
+```php
+$data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+$data->fifth(); // 5
+```
+
+### `sixth`
+Retrieve item at the second index.
+
+```php
+$data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+$data->sixth(); // 6
+```
+
+### `seventh`
+Retrieve item at the second index.
+
+```php
+$data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+$data->seventh(); // 7
+```
+
+### `eighth`
+Retrieve item at the second index.
+
+```php
+$data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+$data->eighth(); // 8
+```
+
+### `ninth`
+Retrieve item at the second index.
+
+```php
+$data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+$data->ninth(); // 9
+```
+
+### `tenth`
+Retrieve item at the second index.
+
+```php
+$data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+
+$data->tenth(); // 10
 ```
 
 ### `before`
