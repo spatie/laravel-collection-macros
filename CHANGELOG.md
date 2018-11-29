@@ -2,6 +2,9 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 4.1.0 - 2018-11-29
+- add methods to get items by human named indexes
+
 ## 4.0.1 - 2018-10-19
 - `parallels` macro tests fix
 
