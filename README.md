@@ -455,7 +455,7 @@ $collection = collect([
     
 $collection
    ->prioritize(function(array $item) {
-      return $item['id'] === 2
+      return $item['id'] === 2;
    })
    ->pluck('id')
    ->toArray(); // returns [2, 1, 3]
