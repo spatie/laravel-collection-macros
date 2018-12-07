@@ -118,7 +118,7 @@ $data->second(); // 2
 ```
 
 ### `third`
-Retrieve item at the second index.
+Retrieve item at the third index.
 
 ```php
 $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -127,7 +127,7 @@ $data->third(); // 3
 ```
 
 ### `fourth`
-Retrieve item at the second index.
+Retrieve item at the fourth index.
 
 ```php
 $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -136,7 +136,7 @@ $data->fourth(); // 4
 ```
 
 ### `fifth`
-Retrieve item at the second index.
+Retrieve item at the fifth index.
 
 ```php
 $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -145,7 +145,7 @@ $data->fifth(); // 5
 ```
 
 ### `sixth`
-Retrieve item at the second index.
+Retrieve item at the sixth index.
 
 ```php
 $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -154,7 +154,7 @@ $data->sixth(); // 6
 ```
 
 ### `seventh`
-Retrieve item at the second index.
+Retrieve item at the seventh index.
 
 ```php
 $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -163,7 +163,7 @@ $data->seventh(); // 7
 ```
 
 ### `eighth`
-Retrieve item at the second index.
+Retrieve item at the eighth index.
 
 ```php
 $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -172,7 +172,7 @@ $data->eighth(); // 8
 ```
 
 ### `ninth`
-Retrieve item at the second index.
+Retrieve item at the ninth index.
 
 ```php
 $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
@@ -181,7 +181,7 @@ $data->ninth(); // 9
 ```
 
 ### `tenth`
-Retrieve item at the second index.
+Retrieve item at the tenth index.
 
 ```php
 $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
