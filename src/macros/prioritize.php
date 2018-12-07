@@ -10,7 +10,6 @@ use Illuminate\Support\Collection;
  * @return \Illuminate\Support\Collection
  */
 Collection::macro('prioritize', function (callable $callable): Collection {
-
     $nonPrioritized = $this->reject($callable);
 
     return $this
