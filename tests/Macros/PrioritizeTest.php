@@ -16,10 +16,10 @@ class PrioritizeTest extends TestCase
             ['id' => 3],
         ]);
 
-        $prioritized = $collection->prioritize(function(array $item) {
+        $prioritized = $collection->prioritize(function (array $item) {
             return $item['id'] === 2;
         });
 
-        $this->assertEquals([2,1,3], $prioritized->pluck('id')->toArray());
+        $this->assertEquals([2, 1, 3], $prioritized->pluck('id')->toArray());
     }
 }
