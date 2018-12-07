@@ -58,6 +58,7 @@ The package will automatically register itself.
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
 - [`pluckToArray`](#plucktoarray)
+- [`prioritize`](#prioritize)
 - [`rotate`](#rotate)
 - [`sectionBy`](#sectionby)
 - [`simplePaginate`](#simplepaginate)
@@ -439,6 +440,25 @@ $collection = collect([
 ]);
     
 $collection->pluckToArray('a'); // returns [1, 2, 3]
+```
+
+### `prioritize`
+
+Move elements to the start of the collection.
+
+```php
+$collection = collect([ 
+    ['id' => 1],
+    ['id' => 2],
+    ['id' => 3],
+]);
+    
+$collection
+   ->prioritize(function(array $item) {
+      return $item['id'] === 2
+   })
+   ->pluck('id')
+   ->toArray(); // returns [2, 1, 3]
 ```
 
 ### `rotate`
