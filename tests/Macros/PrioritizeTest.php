@@ -16,11 +16,11 @@ class PrioritizeTest extends TestCase
             ['id' => 3],
         ]);
 
-        $prioritized = $collection->prioritize(function(array $item) {
+        $prioritized = $collection->prioritize(function (array $item) {
             return $item['id'] === 2;
         });
 
-        $this->assertEquals([2,1,3], $prioritized->pluck('id')->toArray());
+        $this->assertEquals([2, 1, 3], $prioritized->pluck('id')->toArray());
     }
 
     /** @test */
@@ -33,10 +33,10 @@ class PrioritizeTest extends TestCase
             ['id' => 4],
         ]);
 
-        $prioritized = $collection->prioritize(function(array $item) {
-            return in_array($item['id'], [2,4]);
+        $prioritized = $collection->prioritize(function (array $item) {
+            return in_array($item['id'], [2, 4]);
         });
 
-        $this->assertEquals([2,4,1,3], $prioritized->pluck('id')->toArray());
+        $this->assertEquals([2, 4, 1, 3], $prioritized->pluck('id')->toArray());
     }
 }
