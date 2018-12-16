@@ -92,15 +92,15 @@ class GetHumanCountTest extends TestCase
     {
         $data = new Collection();
 
-        $this->assertEquals(null, $data->first());
-        $this->assertEquals(null, $data->second());
-        $this->assertEquals(null, $data->third());
-        $this->assertEquals(null, $data->fourth());
-        $this->assertEquals(null, $data->fifth());
-        $this->assertEquals(null, $data->sixth());
-        $this->assertEquals(null, $data->seventh());
-        $this->assertEquals(null, $data->eighth());
-        $this->assertEquals(null, $data->ninth());
-        $this->assertEquals(null, $data->tenth());
+        $this->assertNull($data->first());
+        $this->assertNull($data->second());
+        $this->assertNull($data->third());
+        $this->assertNull($data->fourth());
+        $this->assertNull($data->fifth());
+        $this->assertNull($data->sixth());
+        $this->assertNull($data->seventh());
+        $this->assertNull($data->eighth());
+        $this->assertNull($data->ninth());
+        $this->assertNull($data->tenth());
     }
 }
