@@ -52,6 +52,7 @@ The package will automatically register itself.
 - [`fromPairs`](#frompairs)
 - [`glob`](#glob)
 - [`groupByModel`](#groupbymodel)
+- [`head`](#head)
 - [`ifAny`](#ifany)
 - [`ifEmpty`](#ifempty)
 - [`none`](#none)
@@ -329,6 +330,20 @@ $posts->groupByModel('category');
 ```
 
 Full signature: `groupByModel($callback, $preserveKeys, $modelKey, $itemsKey)`
+
+### `head`
+
+Retrieves first item from the collection.
+
+```php
+$collection = collect([1,2,3]);
+
+$collection->head(); // return 1
+
+$collection = collect([]);
+
+$collection->head(); // return null
+```
 
 ### `ifAny`
 
