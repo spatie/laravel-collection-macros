@@ -7,6 +7,6 @@ use Illuminate\Support\Collection;
  *
  * @return mixed
  */
-Collection::macro('head', function() {
+Collection::macro('head', function () {
     return $this->first();
 });
