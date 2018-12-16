@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+
+## 4.2.0 - 2018-12-16
+- add `head` macro
+
 ## 4.1.0 - 2018-11-29
 - add methods to get items by human named indexes
 
