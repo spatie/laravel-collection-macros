@@ -303,7 +303,7 @@ collect([])->firstOrFail(); // throws Spatie\CollectionMacros\Exceptions\Collect
 Transform a collection into an associative array form collection item.
 
 ```php
-$collection = collect(['a', 'b'], ['c', 'd'], ['e', 'f'])->fromPairs();
+$collection = collect([['a', 'b'], ['c', 'd'], ['e', 'f']])->fromPairs();
 
 $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
 ```
