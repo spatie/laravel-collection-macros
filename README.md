@@ -286,7 +286,7 @@ $collection = collect([1, 2, 3, 4, 5, 6])->filterMap(function ($number) {
 $collection->toArray(); // returns [1, 2]
 ```
 
-### `firstOrfail`
+### `firstOrFail`
 
 Get the first item. Throws `Spatie\CollectionMacros\Exceptions\CollectionItemNotFound` if the item was not found.
 
@@ -411,7 +411,7 @@ Identical to `map` but each item in the collection will be processed in parallel
 composer require amphp/parallel-functions
 ```
 
-Be aware that under the hood some overhead is introduced to make the parallel processing possible. When your `$callable` is only a simple operation it's probably better to use `map` instead. Also keep in mind that `parallelMap` can be memory intensive. 
+Be aware that under the hood some overhead is introduced to make the parallel processing possible. When your `$callable` is only a simple operation it's probably better to use `map` instead. Also keep in mind that `parallelMap` can be memory intensive.
 
 ```php
 $pageSources = collect($urls)->parallelMap(function($url) {
@@ -445,15 +445,15 @@ This helps to reduce the memory overhead, as the default worker pool limit is `3
 
 ### `pluckToArray`
 
-Returns array of values of a given key. 
+Returns array of values of a given key.
 
 ```php
-$collection = collect([ 
-    ['a' => 1, 'b' => 10], 
-    ['a' => 2, 'b' => 20], 
-    ['a' => 3, 'b' => 30] 
+$collection = collect([
+    ['a' => 1, 'b' => 10],
+    ['a' => 2, 'b' => 20],
+    ['a' => 3, 'b' => 30]
 ]);
-    
+
 $collection->pluckToArray('a'); // returns [1, 2, 3]
 ```
 
@@ -462,12 +462,12 @@ $collection->pluckToArray('a'); // returns [1, 2, 3]
 Move elements to the start of the collection.
 
 ```php
-$collection = collect([ 
+$collection = collect([
     ['id' => 1],
     ['id' => 2],
     ['id' => 3],
 ]);
-    
+
 $collection
    ->prioritize(function(array $item) {
       return $item['id'] === 2;
