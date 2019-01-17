@@ -60,6 +60,7 @@ The package will automatically register itself.
 - [`parallelMap`](#parallelmap)
 - [`pluckToArray`](#plucktoarray)
 - [`prioritize`](#prioritize)
+- [`recursive`](#recursive)
 - [`rotate`](#rotate)
 - [`sectionBy`](#sectionby)
 - [`simplePaginate`](#simplepaginate)
@@ -474,6 +475,32 @@ $collection
    })
    ->pluck('id')
    ->toArray(); // returns [2, 1, 3]
+```
+
+### `recursive`
+
+Transform recursive all arrays and objects into a collection.
+
+```php
+$test_obj   = new \stdClass();
+$test_array = ['object_test' => $test_obj, 'a'];
+
+$test_collection = collect([
+    'array_test'  => $test_array,
+    'object_test' => $test_obj,
+    'b'           => 1
+]);
+
+$new_collection = $test_collection->recursive();
+
+// collect([
+//      "array_test"  => collect([
+//          "object_test" => collect([]),
+//          0             => "a",
+//      ]),
+//      "object_test" => collect([]),
+//      "b"           => 1,
+// ]);
 ```
 
 ### `rotate`
