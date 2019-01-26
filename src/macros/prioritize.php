@@ -14,5 +14,5 @@ Collection::macro('prioritize', function (callable $callable): Collection {
 
     return $this
         ->filter($callable)
-        ->concat($nonPrioritized);
+        ->union($nonPrioritized);
 });
