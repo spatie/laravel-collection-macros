@@ -11,7 +11,7 @@ use Illuminate\Support\Collection;
  * @return mixed
  */
 
-/**
+/*
  * Commented for refactoring research purpose.
  */
 /*

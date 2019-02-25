@@ -4,8 +4,8 @@ namespace Spatie\CollectionMacros;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
-use Spatie\CollectionMacros\MacroClasses\AfterMacro;
 use Spatie\CollectionMacros\MacroClasses\AtMacro;
+use Spatie\CollectionMacros\MacroClasses\AfterMacro;
 
 class CollectionMacroServiceProvider extends ServiceProvider
 {

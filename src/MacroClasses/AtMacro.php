@@ -11,7 +11,7 @@ class AtMacro
      */
     public function at()
     {
-        return function($index) {
+        return function ($index) {
             return $this->slice($index, 1)->first();
         };
     }
