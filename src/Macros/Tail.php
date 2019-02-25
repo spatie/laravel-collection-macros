@@ -1,0 +1,22 @@
+<?php
+
+namespace Spatie\CollectionMacros\Macros;
+
+use Illuminate\Support\Collection;
+
+class Tail
+{
+    /**
+     * Get the tail of a collection, everything except the first item.
+     *
+     * @param bool $preserveKeys
+     *
+     * @return \Illuminate\Support\Collection
+     */
+    public function tail()
+    {
+        return function (bool $preserveKeys = false): Collection {
+            return ! $preserveKeys ? $this->slice(1)->values() : $this->slice(1);
+        };
+    }
+}
