@@ -11,19 +11,12 @@ use Illuminate\Support\Collection;
  * @return mixed
  */
 Collection::macro('after', function ($currentItem, $fallback = null) {
-    $currentKey = $this->search($currentItem, true);
+    $flat = $this->flatten();
+    $currentKey = $flat->search($currentItem);
 
-    if ($currentKey === false) {
+    if ($currentKey === false || $currentKey == ($flat->count() -1) ) {
         return $fallback;
     }
 
-    $currentOffset = $this->keys()->search($currentKey, true);
-
-    $next = $this->slice($currentOffset, 2);
-
-    if ($next->count() < 2) {
-        return $fallback;
-    }
-
-    return $next->last();
+    return $flat[$currentKey + 1];
 });

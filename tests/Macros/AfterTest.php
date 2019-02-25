@@ -66,4 +66,12 @@ class AfterTest extends TestCase
 
         $this->assertEquals(4, $data->after(3, 4));
     }
+
+    /** @test */
+    public function it_can_retrieve_an_item_that_comes_after_an_item_in_multi_dimentional()
+    {
+        $data = new Collection([1, 2, [3,4]]);
+
+        $this->assertEquals(4, $data->after(3));
+    }
 }
