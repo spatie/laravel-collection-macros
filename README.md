@@ -55,6 +55,7 @@ The package will automatically register itself.
 - [`head`](#head)
 - [`ifAny`](#ifany)
 - [`ifEmpty`](#ifempty)
+- [`join`](#join)
 - [`none`](#none)
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
@@ -371,6 +372,22 @@ collect()->ifEmpty(function(Collection $collection) { // empty collection so thi
 collect([1, 2, 3])->ifEmpty(function(Collection $collection) { // non-empty collection so this won't get called
    echo 'Hello';
 });
+```
+
+### `join`
+
+Join all items from the collection using a string. The final item can be glued with another string.
+ 
+```php
+collect(['a', 'b', 'c']))->join(', ')); // returns 'a, b, c'
+ 
+collect(['a', 'b', 'c']))->join(', ', ' and ')); // returns 'a, b and c'
+ 
+collect(['a', 'b']))->join(', ', ' and ')); // returns 'a and b'
+ 
+collect(['a']))->join(', ', ' and ')); // returns 'a'
+ 
+collect([]))->join(', ', ' and ')); // returns ''
 ```
 
 ### `none`

@@ -2,6 +2,8 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 4.3.0 - 2019-02-25
+- add `join` macro
 
 ## 4.2.0 - 2018-12-16
 - add `head` macro
