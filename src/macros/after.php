@@ -14,7 +14,7 @@ Collection::macro('after', function ($currentItem, $fallback = null) {
     $flat = $this->flatten();
     $currentKey = $flat->search($currentItem);
 
-    if ($currentKey === false || $currentKey == ($flat->count() -1) ) {
+    if ($currentKey === false || $currentKey == ($flat->count() - 1)) {
         return $fallback;
     }
 
