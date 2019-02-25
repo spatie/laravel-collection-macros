@@ -10,6 +10,11 @@ use Illuminate\Support\Collection;
  *
  * @return mixed
  */
+
+/**
+ * Commented for refactoring research purpose.
+ */
+/*
 Collection::macro('after', function ($currentItem, $fallback = null) {
     $currentKey = $this->search($currentItem, true);
 
@@ -27,3 +32,4 @@ Collection::macro('after', function ($currentItem, $fallback = null) {
 
     return $next->last();
 });
+*/

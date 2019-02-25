@@ -4,6 +4,8 @@ namespace Spatie\CollectionMacros;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use Spatie\CollectionMacros\MacroClasses\AfterMacro;
+use Spatie\CollectionMacros\MacroClasses\AtMacro;
 
 class CollectionMacroServiceProvider extends ServiceProvider
 {
@@ -19,5 +21,11 @@ class CollectionMacroServiceProvider extends ServiceProvider
             ->each(function ($macro, $path) {
                 require_once $path;
             });
+
+        /*
+         * Research
+         */
+        Collection::mixin(new AtMacro());
+        Collection::mixin(new AfterMacro());
     }
 }
