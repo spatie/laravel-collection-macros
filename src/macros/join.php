@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 Collection::macro('join', function (string $glue, string $finalGlue = ''): string {
     if ($finalGlue === '') {
         return $this->implode($glue);
-    };
+    }
 
     if ($this->count() === 0) {
         return '';
@@ -23,5 +23,5 @@ Collection::macro('join', function (string $glue, string $finalGlue = ''): strin
 
     $finalItem = $collection->pop();
 
-    return $collection->implode($glue) . $finalGlue . $finalItem;
+    return $collection->implode($glue).$finalGlue.$finalItem;
 });
