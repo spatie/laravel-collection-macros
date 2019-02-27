@@ -6,7 +6,6 @@ use Illuminate\Support\Collection;
 
 /**
  * Join all items from the collection using a string. The final items can use a separate glue string.
- *
  */
 class Join
 {

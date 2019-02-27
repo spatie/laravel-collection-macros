@@ -16,7 +16,7 @@ class At
     public function __invoke()
     {
 
-        /**
+        /*
          * Get a single item from the collection by index.
          *
          * @param mixed $index
