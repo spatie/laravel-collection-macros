@@ -8,7 +8,7 @@ use Spatie\CollectionMacros\CollectionMacroServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
-    public function setUp()
+    public function setup(): void
     {
         $this->createDummyprovider()->register();
     }

@@ -12,7 +12,7 @@ class ParallelMapTest extends TestCase
     /** Symfony\Component\Stopwatch\Stopwatch */
     protected $stopWatch;
 
-    public function setUp()
+    public function setup(): void
     {
         parent::setUp();
 
@@ -91,7 +91,7 @@ class ParallelMapTest extends TestCase
         });
 
         foreach ($sources as $source) {
-            $this->assertContains('</html>', $source);
+            $this->assertStringContainsString('</html>', $source);
         }
     }
 

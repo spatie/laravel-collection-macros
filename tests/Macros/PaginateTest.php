@@ -7,7 +7,7 @@ use Spatie\CollectionMacros\Test\TestCase;
 
 class PaginateTest extends TestCase
 {
-    public function setUp()
+    public function setup(): void
     {
         parent::setUp();
 

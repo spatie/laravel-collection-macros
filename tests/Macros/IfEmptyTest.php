@@ -11,14 +11,14 @@ class IfEmptyTest extends TestCase
     /** @var \Mockery\MockInterface spy */
     private $spy;
 
-    public function setUp()
+    public function setup(): void
     {
         parent::setUp();
 
         $this->spy = Mockery::spy();
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
         if ($container = Mockery::getContainer()) {
             $this->addToAssertionCount($container->mockery_getExpectationCount());

@@ -22,7 +22,7 @@ class Prioritize
 
             return $this
                 ->filter($callable)
-                ->concat($nonPrioritized);
+                ->union($nonPrioritized);
         };
     }
 }
