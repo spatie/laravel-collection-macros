@@ -5,7 +5,7 @@ namespace Spatie\CollectionMacros\Macros;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
- * Paginate the given collection
+ * Paginate the given collection.
  *
  * @param int $perPage
  * @param int $total
