@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 4.3.1 - 2019-02-27
+
+- add support for Laravel 5.8
+
 ## 4.3.0 - 2019-02-25
 - add `join` macro
 
