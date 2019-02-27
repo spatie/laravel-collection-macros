@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -10,13 +12,17 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('eachCons', function (int $chunkSize, bool $preserveKeys = false): Collection {
-    $size = $this->count() - $chunkSize + 1;
-    $result = collect(range(0, $size))->reduce(function ($result, $index) use ($chunkSize, $preserveKeys) {
-        $next = $this->slice($index, $chunkSize);
+class EachCons {
+    public function __invoke() {
+        return function (int $chunkSize, bool $preserveKeys = false): Collection {
+            $size = $this->count() - $chunkSize + 1;
+            $result = collect(range(0, $size))->reduce(function ($result, $index) use ($chunkSize, $preserveKeys) {
+                $next = $this->slice($index, $chunkSize);
 
-        return $next->count() === $chunkSize ? $result->push($preserveKeys ? $next : $next->values()) : $result;
-    }, new static([]));
+                return $next->count() === $chunkSize ? $result->push($preserveKeys ? $next : $next->values()) : $result;
+            }, new static([]));
 
-    return $preserveKeys ? $result : $result->values();
-});
+            return $preserveKeys ? $result : $result->values();
+        };
+    }
+}

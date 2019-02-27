@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Collection;
+namespace Spatie\CollectionMacros\Macros;
 
 /*
  * Check whether a collection doesn't contain any occurrences of a given
@@ -14,10 +14,14 @@ use Illuminate\Support\Collection;
  *
  * @return bool
  */
-Collection::macro('none', function ($key, $value = null): bool {
-    if (func_num_args() === 2) {
-        return ! $this->contains($key, $value);
-    }
+class None {
+    public function __invoke() {
+        return function ($key, $value = null): bool {
+            if (func_num_args() === 2) {
+                return ! $this->contains($key, $value);
+            }
 
-    return ! $this->contains($key);
-});
+            return ! $this->contains($key);
+        };
+    }
+}

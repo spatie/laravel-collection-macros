@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -9,6 +11,10 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('filterMap', function (callable $callback): Collection {
-    return $this->map($callback)->filter();
-});
+class FilterMap {
+    public function __invoke() {
+        return function (callable $callback): Collection {
+            return $this->map($callback)->filter();
+        };
+    }
+}

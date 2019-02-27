@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -12,23 +14,27 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('sectionBy', function ($key, bool $preserveKeys = false, $sectionKey = 0, $itemsKey = 1): Collection {
-    $sectionNameRetriever = $this->valueRetriever($key);
+class SectionBy {
+    public function __invoke() {
+        return function ($key, bool $preserveKeys = false, $sectionKey = 0, $itemsKey = 1): Collection {
+            $sectionNameRetriever = $this->valueRetriever($key);
 
-    $results = new Collection();
+            $results = new Collection();
 
-    foreach ($this->items as $key => $value) {
-        $sectionName = $sectionNameRetriever($value);
+            foreach ($this->items as $key => $value) {
+                $sectionName = $sectionNameRetriever($value);
 
-        if (! $results->last() || $results->last()->get($sectionKey) !== $sectionName) {
-            $results->push(new Collection([
-                $sectionKey => $sectionName,
-                $itemsKey => new Collection(),
-            ]));
-        }
+                if (! $results->last() || $results->last()->get($sectionKey) !== $sectionName) {
+                    $results->push(new Collection([
+                        $sectionKey => $sectionName,
+                        $itemsKey => new Collection(),
+                    ]));
+                }
 
-        $results->last()->get($itemsKey)->offsetSet($preserveKeys ? $key : null, $value);
+                $results->last()->get($itemsKey)->offsetSet($preserveKeys ? $key : null, $value);
+            }
+
+            return $results;
+        };
     }
-
-    return $results;
-});
+}

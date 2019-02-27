@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -9,10 +11,14 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('ifAny', function (callable $callback): Collection {
-    if (! $this->isEmpty()) {
-        $callback($this);
-    }
+class IfAny {
+    public function __invoke() {
+        return function (callable $callback): Collection {
+            if (! $this->isEmpty()) {
+                $callback($this);
+            }
 
-    return $this;
-});
+            return $this;
+        };
+    }
+}

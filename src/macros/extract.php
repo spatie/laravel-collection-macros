@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -9,12 +11,16 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('extract', function ($keys): Collection {
-    $keys = is_array($keys) ? $keys : func_get_args();
+class Extract {
+    public function __invoke() {
+        return function ($keys): Collection {
+            $keys = is_array($keys) ? $keys : func_get_args();
 
-    return array_reduce($keys, function ($extracted, $key) {
-        return $extracted->push(
-            data_get($this->items, $key)
-        );
-    }, new static());
-});
+            return array_reduce($keys, function ($extracted, $key) {
+                return $extracted->push(
+                    data_get($this->items, $key)
+                );
+            }, new static());
+        };
+    }
+}

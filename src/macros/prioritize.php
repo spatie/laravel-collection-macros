@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -9,10 +11,14 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('prioritize', function (callable $callable): Collection {
-    $nonPrioritized = $this->reject($callable);
+class Prioritize {
+    public function __invoke() {
+        return function (callable $callable): Collection {
+            $nonPrioritized = $this->reject($callable);
 
-    return $this
-        ->filter($callable)
-        ->concat($nonPrioritized);
-});
+            return $this
+                ->filter($callable)
+                ->concat($nonPrioritized);
+        };
+    }
+}

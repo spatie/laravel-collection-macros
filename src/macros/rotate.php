@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -9,18 +11,22 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('rotate', function (int $offset): Collection {
-    if ($this->isEmpty()) {
-        return new static;
+class Rotate {
+    public function __invoke() {
+        return function (int $offset): Collection {
+            if ($this->isEmpty()) {
+                return new static;
+            }
+
+            $count = $this->count();
+
+            $offset %= $count;
+
+            if ($offset < 0) {
+                $offset += $count;
+            }
+
+            return new static($this->slice($offset)->merge($this->take($offset)));
+        };
     }
-
-    $count = $this->count();
-
-    $offset %= $count;
-
-    if ($offset < 0) {
-        $offset += $count;
-    }
-
-    return new static($this->slice($offset)->merge($this->take($offset)));
-});
+}

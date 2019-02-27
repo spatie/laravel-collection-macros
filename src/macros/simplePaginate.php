@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Collection;
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Pagination\Paginator;
 
 /*
@@ -12,15 +13,19 @@ use Illuminate\Pagination\Paginator;
  *
  * @return \Illuminate\Contracts\Pagination\Paginator
  */
-Collection::macro('simplePaginate', function (int $perPage = 15, string $pageName = 'page', int $page = null, array $options = []): Paginator {
-    $page = $page ?: Paginator::resolveCurrentPage($pageName);
+class SimplePaginate {
+    public function __invoke() {
+        return function (int $perPage = 15, string $pageName = 'page', int $page = null, array $options = []): Paginator {
+            $page = $page ?: Paginator::resolveCurrentPage($pageName);
 
-    $results = $this->slice(($page - 1) * $perPage)->take($perPage + 1);
+            $results = $this->slice(($page - 1) * $perPage)->take($perPage + 1);
 
-    $options += [
-        'path' => Paginator::resolveCurrentPath(),
-        'pageName' => $pageName,
-    ];
+            $options += [
+                'path' => Paginator::resolveCurrentPath(),
+                'pageName' => $pageName,
+            ];
 
-    return new Paginator($results, $perPage, $page, $options);
-});
+            return new Paginator($results, $perPage, $page, $options);
+        };
+    }
+}

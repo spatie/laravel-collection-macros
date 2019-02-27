@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Collection;
+namespace Spatie\CollectionMacros\Macros;
 
 /*
  * Returns true if $callback returns true for every item. If $callback
@@ -10,28 +10,32 @@ use Illuminate\Support\Collection;
  *
  * @return bool
  */
-Collection::macro('validate', function ($callback): bool {
-    if (is_string($callback) || is_array($callback)) {
-        $validationRule = $callback;
+class Validate {
+    public function __invoke() {
+        return function ($callback): bool {
+            if (is_string($callback) || is_array($callback)) {
+                $validationRule = $callback;
 
-        $callback = function ($item) use ($validationRule) {
-            if (! is_array($item)) {
-                $item = ['default' => $item];
+                $callback = function ($item) use ($validationRule) {
+                    if (! is_array($item)) {
+                        $item = ['default' => $item];
+                    }
+
+                    if (! is_array($validationRule)) {
+                        $validationRule = ['default' => $validationRule];
+                    }
+
+                    return app('validator')->make($item, $validationRule)->passes();
+                };
             }
 
-            if (! is_array($validationRule)) {
-                $validationRule = ['default' => $validationRule];
+            foreach ($this->items as $item) {
+                if (! $callback($item)) {
+                    return false;
+                }
             }
 
-            return app('validator')->make($item, $validationRule)->passes();
+            return true;
         };
     }
-
-    foreach ($this->items as $item) {
-        if (! $callback($item)) {
-            return false;
-        }
-    }
-
-    return true;
-});
+}

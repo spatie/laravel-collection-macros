@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Collection;
+namespace Spatie\CollectionMacros\Macros;
 
 /*
  * Get the array of values of a given key.
@@ -10,6 +10,10 @@ use Illuminate\Support\Collection;
  *
  * @return array
  */
-Collection::macro('pluckToArray', function ($value, $key = null): array {
-    return $this->pluck($value, $key)->toArray();
-});
+class PluckToArray {
+    public function __invoke() {
+        return function ($value, $key = null): array {
+            return $this->pluck($value, $key)->toArray();
+        };
+    }
+}

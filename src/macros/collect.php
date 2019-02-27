@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -10,6 +12,10 @@ use Illuminate\Support\Collection;
  *
  * @return static
  */
-Collection::macro('collect', function ($key, $default = null): Collection {
-    return new static($this->get($key, $default));
-});
+class Collect {
+    public function __invoke() {
+        return function ($key, $default = null): Collection {
+            return new static($this->get($key, $default));
+        };
+    }
+}

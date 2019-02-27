@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Support\Collection;
+namespace Spatie\CollectionMacros\Macros;
 
 /*
  * Get the previous item from the collection.
@@ -10,6 +10,10 @@ use Illuminate\Support\Collection;
  *
  * @return mixed
  */
-Collection::macro('before', function ($currentItem, $fallback = null) {
-    return $this->reverse()->after($currentItem, $fallback);
-});
+class Before {
+    public function __invoke() {
+        return function ($currentItem, $fallback = null) {
+            return $this->reverse()->after($currentItem, $fallback);
+        };
+    }
+}

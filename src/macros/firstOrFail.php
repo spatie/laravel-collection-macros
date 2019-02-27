@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
 
@@ -8,10 +10,14 @@ use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
  *
  * @return mixed
  */
-Collection::macro('firstOrFail', function () {
-    if (! is_null($item = $this->first())) {
-        return $item;
-    }
+class FirstOrFail {
+    public function __invoke() {
+        return function () {
+            if (! is_null($item = $this->first())) {
+                return $item;
+            }
 
-    throw new CollectionItemNotFound('No items found in collection.');
-});
+            throw new CollectionItemNotFound('No items found in collection.');
+        };
+    }
+}

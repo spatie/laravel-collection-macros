@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Amp\Parallel\Worker\Pool;
 use function Amp\Promise\wait;
 use Illuminate\Support\Collection;
@@ -15,18 +17,22 @@ use function Amp\ParallelFunctions\parallelMap;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('parallelMap', function (callable $callback, $workers = null): Collection {
-    $pool = null;
+class ParallelMap {
+    public function __invoke() {
+        return function (callable $callback, $workers = null): Collection {
+            $pool = null;
 
-    if ($workers instanceof Pool) {
-        $pool = $workers;
+            if ($workers instanceof Pool) {
+                $pool = $workers;
+            }
+
+            if (is_int($workers)) {
+                $pool = new DefaultPool($workers);
+            }
+
+            $promises = parallelMap($this->items, $callback, $pool);
+
+            return new static(wait($promises));
+        };
     }
-
-    if (is_int($workers)) {
-        $pool = new DefaultPool($workers);
-    }
-
-    $promises = parallelMap($this->items, $callback, $pool);
-
-    return new static(wait($promises));
-});
+}

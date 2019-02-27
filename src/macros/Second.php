@@ -2,15 +2,10 @@
 
 namespace Spatie\CollectionMacros\Macros;
 
-/*
- * Get the first item from the collection.
- *
- * @return mixed
- */
-class Head {
+class Second {
     public function __invoke() {
         return function () {
-            return $this->first();
+            return $this->get(1);
         };
     }
 }

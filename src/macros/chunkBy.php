@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -10,8 +12,12 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('chunkBy', function ($callback, bool $preserveKeys = false): Collection {
-    return $this->sliceBefore(function ($item, $prevItem) use ($callback) {
-        return $callback($item) !== $callback($prevItem);
-    }, $preserveKeys);
-});
+class ChunkBy {
+    public function __invoke() {
+        return function ($callback, bool $preserveKeys = false): Collection {
+            return $this->sliceBefore(function ($item, $prevItem) use ($callback) {
+                return $callback($item) !== $callback($prevItem);
+            }, $preserveKeys);
+        };
+    }
+}

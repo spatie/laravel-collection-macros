@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -9,6 +11,10 @@ use Illuminate\Support\Collection;
  *
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('tail', function (bool $preserveKeys = false): Collection {
-    return ! $preserveKeys ? $this->slice(1)->values() : $this->slice(1);
-});
+class Tail {
+    public function __invoke() {
+        return function (bool $preserveKeys = false): Collection {
+            return ! $preserveKeys ? $this->slice(1)->values() : $this->slice(1);
+        };
+    }
+}

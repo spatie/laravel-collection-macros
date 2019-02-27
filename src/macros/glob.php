@@ -1,5 +1,7 @@
 <?php
 
+namespace Spatie\CollectionMacros\Macros;
+
 use Illuminate\Support\Collection;
 
 /*
@@ -9,6 +11,10 @@ use Illuminate\Support\Collection;
 
  * @return \Illuminate\Support\Collection
  */
-Collection::macro('glob', function (string $pattern, int $flags = 0): Collection {
-    return Collection::make(glob($pattern, $flags));
-});
+class Glob {
+    public function __invoke() {
+        return function (string $pattern, int $flags = 0): Collection {
+            return Collection::make(glob($pattern, $flags));
+        };
+    }
+}
