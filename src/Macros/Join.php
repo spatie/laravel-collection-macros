@@ -15,7 +15,7 @@ class Join
         return function (string $glue, string $finalGlue = ''): string {
             if ($finalGlue === '') {
                 return $this->implode($glue);
-            };
+            }
 
             if ($this->count() === 0) {
                 return '';
