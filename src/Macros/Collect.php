@@ -4,11 +4,13 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
 
-/*
+/**
  * Get a new collection from the collection by key.
  *
  * @param  mixed  $key
  * @param  mixed  $default
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return static
  */

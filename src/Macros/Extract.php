@@ -4,10 +4,12 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
 
-/*
+/**
  * Extract keys from a collection, like `only`, except:
  * - If a value doesn't exist, it returns null instead of omitting it
  * - It returns a collection without keys, so `list()` can be used.
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return \Illuminate\Support\Collection
  */

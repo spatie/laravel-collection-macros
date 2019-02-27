@@ -4,8 +4,10 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
 
-/*
+/**
  * Transform a collection into an associative array form collection item.
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return \Illuminate\Support\Collection
  */

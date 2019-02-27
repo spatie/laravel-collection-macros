@@ -2,11 +2,13 @@
 
 namespace Spatie\CollectionMacros\Macros;
 
-/*
+/***
  * Get the previous item from the collection.
  *
  * @param mixed $currentItem
  * @param mixed $fallback
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return mixed
  */

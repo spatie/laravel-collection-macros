@@ -5,8 +5,10 @@ namespace Spatie\CollectionMacros\Macros;
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
 
-/*
+/**
  * Get the first item. Throws CollectionItemNotFound if the item was not found.
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return mixed
  */

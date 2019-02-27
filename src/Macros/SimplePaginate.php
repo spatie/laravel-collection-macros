@@ -4,12 +4,14 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Pagination\Paginator;
 
-/*
+/**
  * Paginate the collection into a simple paginator
  *
  * @param int $perPage
  * @param int $page
  * @param string $pageName
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return \Illuminate\Contracts\Pagination\Paginator
  */

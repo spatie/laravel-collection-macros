@@ -4,10 +4,12 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
 
-/*
+/**
  * Move elements to the start of the collection.
  *
  * @param  callable  $callable
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return \Illuminate\Support\Collection
  */

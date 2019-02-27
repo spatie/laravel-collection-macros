@@ -4,13 +4,15 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
 
-/*
+/**
  * Group a collection by an Eloquent model.
  *
  * @param string|callable $callback
  * @param bool $preserveKeys
  * @param mixed $modelKey
  * @param mixed $itemsKey
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return \Illuminate\Support\Collection
  */

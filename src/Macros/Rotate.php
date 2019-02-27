@@ -4,10 +4,12 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
 
-/*
+/**
  * Rotate the items in the collection with given offset
  *
  * @param int $offset
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return \Illuminate\Support\Collection
  */

@@ -4,13 +4,15 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Pagination\LengthAwarePaginator;
 
-/*
+/**
  * Paginate the given collection
  *
  * @param int $perPage
  * @param int $total
  * @param int $page
  * @param string $pageName
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return \Illuminate\Pagination\LengthAwarePaginator
  */

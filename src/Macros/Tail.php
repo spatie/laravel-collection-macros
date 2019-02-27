@@ -4,10 +4,12 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
 
-/*
+/**
  * Get the tail of a collection, everything except the first item.
  *
  * @param bool $preserveKeys
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return \Illuminate\Support\Collection
  */

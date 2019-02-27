@@ -4,11 +4,13 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
 
-/*
+/**
  * Separate a collection into chunks as long as the given callback returns true.
  *
  * @param callable $callback
  * @param bool $preserveKeys
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return \Illuminate\Support\Collection
  */

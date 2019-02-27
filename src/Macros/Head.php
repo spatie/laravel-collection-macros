@@ -2,8 +2,10 @@
 
 namespace Spatie\CollectionMacros\Macros;
 
-/*
+/**
  * Get the first item from the collection.
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return mixed
  */

@@ -4,13 +4,15 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
 
-/*
+/**
  * Splits a collection into sections grouped by a given key.
  *
  * @param mixed $key
  * @param bool $preserveKeys
  * @param mixed $sectionKey
  * @param mixed $itemsKey
+ *
+ * @mixin \Illuminate\Support\Collection
  *
  * @return \Illuminate\Support\Collection
  */

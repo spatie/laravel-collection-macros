@@ -2,11 +2,13 @@
 
 namespace Spatie\CollectionMacros\Macros;
 
-/*
+/**
  * Returns true if $callback returns true for every item. If $callback
  * is a string or an array, regard it as a validation rule.
  *
  * @param string|callable $callback
+ **
+ * @mixin \Illuminate\Support\Collection
  *
  * @return bool
  */
