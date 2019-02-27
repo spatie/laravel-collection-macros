@@ -14,7 +14,8 @@ use Illuminate\Support\Collection;
  */
 class ChunkBy
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($callback, bool $preserveKeys = false): Collection {
             return $this->sliceBefore(function ($item, $prevItem) use ($callback) {
                 return $callback($item) !== $callback($prevItem);

@@ -16,7 +16,8 @@ use Illuminate\Support\Collection;
  */
 class SectionBy
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($key, bool $preserveKeys = false, $sectionKey = 0, $itemsKey = 1): Collection {
             $sectionNameRetriever = $this->valueRetriever($key);
 

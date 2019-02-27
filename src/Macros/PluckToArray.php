@@ -12,7 +12,8 @@ namespace Spatie\CollectionMacros\Macros;
  */
 class PluckToArray
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($value, $key = null): array {
             return $this->pluck($value, $key)->toArray();
         };

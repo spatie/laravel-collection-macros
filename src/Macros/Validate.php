@@ -12,7 +12,8 @@ namespace Spatie\CollectionMacros\Macros;
  */
 class Validate
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($callback): bool {
             if (is_string($callback) || is_array($callback)) {
                 $validationRule = $callback;

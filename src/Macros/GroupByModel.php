@@ -16,7 +16,8 @@ use Illuminate\Support\Collection;
  */
 class GroupByModel
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($callback, bool $preserveKeys = false, $modelKey = 0, $itemsKey = 1): Collection {
             $callback = $this->valueRetriever($callback);
 

@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
  */
 class WithSize
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (int $size): Collection {
             if ($size < 1) {
                 return new Collection();

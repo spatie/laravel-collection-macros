@@ -10,7 +10,8 @@ use Illuminate\Support\Collection;
  */
 class Join
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (string $glue, string $finalGlue = ''): string {
             if ($finalGlue === '') {
                 return $this->implode($glue);
@@ -28,7 +29,7 @@ class Join
 
             $finalItem = $collection->pop();
 
-            return $collection->implode($glue) . $finalGlue . $finalItem;
+            return $collection->implode($glue).$finalGlue.$finalItem;
         };
     }
 }

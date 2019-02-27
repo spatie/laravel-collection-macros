@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
  */
 class Transpose
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (): Collection {
             if ($this->isEmpty()) {
                 return new static();

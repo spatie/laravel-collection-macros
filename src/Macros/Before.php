@@ -12,7 +12,8 @@ namespace Spatie\CollectionMacros\Macros;
  */
 class Before
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($currentItem, $fallback = null) {
             return $this->reverse()->after($currentItem, $fallback);
         };

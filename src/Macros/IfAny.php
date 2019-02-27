@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
  */
 class IfAny
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (callable $callback): Collection {
             if (! $this->isEmpty()) {
                 $callback($this);

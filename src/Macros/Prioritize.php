@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
  */
 class Prioritize
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (callable $callable): Collection {
             $nonPrioritized = $this->reject($callable);
 

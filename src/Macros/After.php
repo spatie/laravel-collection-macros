@@ -12,7 +12,8 @@ namespace Spatie\CollectionMacros\Macros;
  */
 class After
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($currentItem, $fallback = null) {
             $currentKey = $this->search($currentItem, true);
 

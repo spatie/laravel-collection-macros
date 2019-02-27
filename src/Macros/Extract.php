@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
  */
 class Extract
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($keys): Collection {
             $keys = is_array($keys) ? $keys : func_get_args();
 

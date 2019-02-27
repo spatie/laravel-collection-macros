@@ -14,7 +14,8 @@ use Illuminate\Support\Collection;
  */
 class SliceBefore
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($callback, bool $preserveKeys = false): Collection {
             if ($this->isEmpty()) {
                 return new static();

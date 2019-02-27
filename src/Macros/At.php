@@ -11,7 +11,8 @@ namespace Spatie\CollectionMacros\Macros;
  */
 class At
 {
-    public function __invoke() {
+    public function __invoke()
+    {
 
         /*
          * Get a single item from the collection by index.

@@ -14,7 +14,8 @@ use Illuminate\Support\Collection;
  */
 class Collect
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($key, $default = null): Collection {
             return new static($this->get($key, $default));
         };

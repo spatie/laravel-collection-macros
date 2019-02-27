@@ -18,7 +18,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
                 return Collection::hasMacro($macro);
             })
             ->each(function ($macro, $path) {
-                $class = 'Spatie\\CollectionMacros\\Macros\\' . $macro;
+                $class = 'Spatie\\CollectionMacros\\Macros\\'.$macro;
                 Collection::macro(Str::camel($macro), app($class)());
             });
     }

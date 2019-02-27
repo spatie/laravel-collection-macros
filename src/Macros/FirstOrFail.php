@@ -12,7 +12,8 @@ use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
  */
 class FirstOrFail
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function () {
             if (! is_null($item = $this->first())) {
                 return $item;

@@ -15,7 +15,8 @@ use Illuminate\Pagination\Paginator;
  */
 class SimplePaginate
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (int $perPage = 15, string $pageName = 'page', int $page = null, array $options = []): Paginator {
             $page = $page ?: Paginator::resolveCurrentPage($pageName);
 

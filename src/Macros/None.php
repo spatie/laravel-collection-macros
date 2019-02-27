@@ -16,7 +16,8 @@ namespace Spatie\CollectionMacros\Macros;
  */
 class None
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function ($key, $value = null): bool {
             if (func_num_args() === 2) {
                 return ! $this->contains($key, $value);

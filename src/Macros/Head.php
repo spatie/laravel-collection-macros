@@ -9,7 +9,8 @@ namespace Spatie\CollectionMacros\Macros;
  */
 class Head
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function () {
             return $this->first();
         };

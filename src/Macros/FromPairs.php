@@ -11,7 +11,8 @@ use Illuminate\Support\Collection;
  */
 class FromPairs
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (): Collection {
             return $this->reduce(function ($assoc, array $keyValuePair): Collection {
                 list($key, $value) = $keyValuePair;

@@ -14,7 +14,8 @@ use Illuminate\Support\Collection;
  */
 class EachCons
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (int $chunkSize, bool $preserveKeys = false): Collection {
             $size = $this->count() - $chunkSize + 1;
             $result = collect(range(0, $size))->reduce(function ($result, $index) use ($chunkSize, $preserveKeys) {

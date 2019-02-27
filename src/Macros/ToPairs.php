@@ -11,7 +11,8 @@ use Illuminate\Support\Collection;
  */
 class ToPairs
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (): Collection {
             return $this->keys()->map(function ($key) {
                 return [$key, $this->items[$key]];

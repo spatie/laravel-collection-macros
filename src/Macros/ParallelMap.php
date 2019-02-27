@@ -19,7 +19,8 @@ use function Amp\ParallelFunctions\parallelMap;
  */
 class ParallelMap
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (callable $callback, $workers = null): Collection {
             $pool = null;
 

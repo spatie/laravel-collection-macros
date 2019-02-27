@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
  */
 class FilterMap
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (callable $callback): Collection {
             return $this->map($callback)->filter();
         };

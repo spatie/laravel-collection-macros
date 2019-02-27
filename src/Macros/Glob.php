@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
  */
 class Glob
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (string $pattern, int $flags = 0): Collection {
             return Collection::make(glob($pattern, $flags));
         };

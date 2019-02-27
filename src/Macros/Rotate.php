@@ -13,7 +13,8 @@ use Illuminate\Support\Collection;
  */
 class Rotate
 {
-    public function __invoke() {
+    public function __invoke()
+    {
         return function (int $offset): Collection {
             if ($this->isEmpty()) {
                 return new static;
