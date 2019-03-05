@@ -7,7 +7,8 @@ namespace Spatie\CollectionMacros\Macros;
  */
 class Recursive
 {
-	public function __invoke(){
+	public function __invoke()
+	{
 		return function () {
 			return $this->map(function ($value) {
 				if (is_array($value) || is_object($value)) {
