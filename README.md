@@ -61,6 +61,7 @@ The package will automatically register itself.
 - [`parallelMap`](#parallelmap)
 - [`pluckToArray`](#plucktoarray)
 - [`prioritize`](#prioritize)
+- [`recursive`](#recursive)
 - [`rotate`](#rotate)
 - [`sectionBy`](#sectionby)
 - [`simplePaginate`](#simplepaginate)
@@ -491,6 +492,22 @@ $collection
    })
    ->pluck('id')
    ->toArray(); // returns [2, 1, 3]
+```
+
+### `recursive`
+
+Deep collect into multi-dimensional arrays.
+
+```php
+$collection = collect(['alpha', 'beta', 'charlie'],
+                      ['one' => [1], 'two' => [1, 2]])
+                      ->recursive();
+
+$deep = $collection->get(1)->get('two')
+
+get_class($deep)
+
+// Illuminate\Support\Collection
 ```
 
 ### `rotate`
