@@ -2,14 +2,18 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
-## 5.0.0 - 2019-02-27
+## 5.0.1 - 2019-03-07
+- fix `paginate` for pages other than 1
 
+## 5.0.0 - 2019-02-27
 - `prioritize` will keep the keys of the original item
 - drop support for Laravel 5.7 and below
 - drop support for PHP 7.1 and below
 
-## 4.3.1 - 2019-02-27
+## 4.3.2 - 2019-03-07
+- fix `paginate` for pages other than 1
 
+## 4.3.1 - 2019-02-27
 - add support for Laravel 5.8
 
 ## 4.3.0 - 2019-02-25

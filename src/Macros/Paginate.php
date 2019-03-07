@@ -23,7 +23,7 @@ class Paginate
         return function (int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = []): LengthAwarePaginator {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 
-            $results = $this->forPage($page, $perPage);
+            $results = $this->forPage($page, $perPage)->values();
 
             $total = $total ?: $this->count();
 
