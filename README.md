@@ -374,22 +374,6 @@ collect([1, 2, 3])->ifEmpty(function(Collection $collection) { // non-empty coll
 });
 ```
 
-### `join`
-
-Join all items from the collection using a string. The final item can be glued with another string.
- 
-```php
-collect(['a', 'b', 'c']))->join(', ')); // returns 'a, b, c'
- 
-collect(['a', 'b', 'c']))->join(', ', ' and ')); // returns 'a, b and c'
- 
-collect(['a', 'b']))->join(', ', ' and ')); // returns 'a and b'
- 
-collect(['a']))->join(', ', ' and ')); // returns 'a'
- 
-collect([]))->join(', ', ' and ')); // returns ''
-```
-
 ### `none`
 
 Checks whether a collection doesn't contain any occurrences of a given item, key-value pair, or passing truth test. The function accepts the same parameters as the `contains` collection method.

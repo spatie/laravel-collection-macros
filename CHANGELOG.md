@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 5.0.2 - 2019-0319
+
+- require laravel 5.8.4
+- remove `join` method as the same implementation has been added to Laravel
+
 ## 5.0.1 - 2019-03-07
 - fix `paginate` for pages other than 1
 
