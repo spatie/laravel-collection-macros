@@ -12,7 +12,7 @@ class GroupByModelTest extends TestCase
     /** @test */
     public function it_can_group_a_collection_by_a_model_with_a_callable()
     {
-        list($model1, $model2, $collection) = $this->getDummies();
+        [$model1, $model2, $collection] = $this->getDummies();
 
         $expected = [
             [$model1, [
@@ -39,7 +39,7 @@ class GroupByModelTest extends TestCase
     /** @test */
     public function it_can_group_a_collection_by_a_model_with_a_callable_and_custom_key_names()
     {
-        list($model1, $model2, $collection) = $this->getDummies();
+        [$model1, $model2, $collection] = $this->getDummies();
 
         $grouped = $collection->groupByModel(function ($item) {
             return $item['model'];
@@ -71,7 +71,7 @@ class GroupByModelTest extends TestCase
     /** @test */
     public function it_can_group_a_collection_by_a_model_with_a_key()
     {
-        list($model1, $model2, $collection) = $this->getDummies();
+        [$model1, $model2, $collection] = $this->getDummies();
 
         $grouped = $collection->groupByModel('model');
 
@@ -96,7 +96,7 @@ class GroupByModelTest extends TestCase
     /** @test */
     public function it_can_group_a_collection_by_a_model_with_a_key_and_custom_key_names()
     {
-        list($model1, $model2, $collection) = $this->getDummies();
+        [$model1, $model2, $collection] = $this->getDummies();
 
         $grouped = $collection->groupByModel('model', false, 'myKey', 'items');
 
@@ -126,7 +126,7 @@ class GroupByModelTest extends TestCase
     /** @test */
     public function it_can_group_a_collection_by_a_model_with_a_key_and_a_custom_items_key()
     {
-        list($model1, $model2, $collection) = $this->getDummies();
+        [$model1, $model2, $collection] = $this->getDummies();
 
         $grouped = $collection->groupByModel('model', false, 'model', 'myItems');
 
@@ -156,7 +156,7 @@ class GroupByModelTest extends TestCase
     /** @test */
     public function it_can_group_a_collection_by_a_model_and_preserve_keys()
     {
-        list($model1, $model2, $collection) = $this->getDummies();
+        [$model1, $model2, $collection] = $this->getDummies();
 
         $grouped = $collection->groupByModel('model', true, 'model', 'items');
 

@@ -2,7 +2,6 @@
 
 namespace Spatie\CollectionMacros\Macros;
 
-use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
 
 /**
