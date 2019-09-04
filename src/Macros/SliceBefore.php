@@ -29,7 +29,7 @@ class SliceBefore
                 ]);
 
                 return $this->eachCons(2)->reduce(function ($sliced, $previousAndCurrent) use ($callback) {
-                    list($previousItem, $item) = $previousAndCurrent;
+                    [$previousItem, $item] = $previousAndCurrent;
 
                     $callback($item, $previousItem)
                         ? $sliced->push(new static([$item]))
