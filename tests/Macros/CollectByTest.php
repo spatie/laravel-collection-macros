@@ -5,7 +5,7 @@ namespace Spatie\CollectionMacros\Test\Macros;
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Test\TestCase;
 
-class CollectTest extends TestCase
+class CollectByTest extends TestCase
 {
     /** @test */
     public function it_returns_a_collection_containing_the_collected_items()
@@ -21,7 +21,7 @@ class CollectTest extends TestCase
             'should_eat' => true,
         ]);
 
-        $ingredients = $collection->collect('ingredients');
+        $ingredients = $collection->collectBy('ingredients');
 
         $this->assertTrue(is_a($ingredients, Collection::class));
 
@@ -47,9 +47,9 @@ class CollectTest extends TestCase
             'should_eat' => true,
         ]);
 
-        $ingredients = $collection->collect('build_it', $collection->get('ingredients'));
+        $ingredients = $collection->collectBy('build_it', $collection->get('ingredients'));
 
-        $this->assertEquals($collection->collect('ingredients'), $ingredients);
+        $this->assertEquals($collection->collectBy('ingredients'), $ingredients);
     }
 
     /** @test */
@@ -66,7 +66,7 @@ class CollectTest extends TestCase
             'should_eat' => true,
         ]);
 
-        $ingredients = $collection->collect('build_it');
+        $ingredients = $collection->collectBy('build_it');
 
         $this->assertEquals(new Collection, $ingredients);
     }

@@ -14,7 +14,7 @@ use Illuminate\Support\Collection;
  *
  * @return static
  */
-class Collect
+class CollectBy
 {
     public function __invoke()
     {

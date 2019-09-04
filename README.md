@@ -44,7 +44,7 @@ The package will automatically register itself.
     - [`tenth`](#tenth)
 - [`before`](#before)
 - [`chunkBy`](#chunkby)
-- [`collect`](#collect)
+- [`collectBy`](#collectBy)
 - [`eachCons`](#eachcons)
 - [`extract`](#extract)
 - [`filterMap`](#filtermap)
@@ -228,7 +228,7 @@ collect(['A', 'A', 'B', 'A'])->chunkBy(function($item) {
 }); // return Collection([['A', 'A'],['B'], ['A']])
 ```
 
-### `collect`
+### `collectBy`
 
 Get an item at a given key, and collect it.
 
@@ -238,7 +238,7 @@ $collection = collect([
     'bar' => [4, 5, 6],
 ]);
 
-$collection->collect('foo'); // Collection([1, 2, 3])
+$collection->collectBy('foo'); // Collection([1, 2, 3])
 ```
 
 You can also pass a second parameter to be used as a fallback.
@@ -249,7 +249,7 @@ $collection = collect([
     'bar' => [4, 5, 6],
 ]);
 
-$collection->collect('baz', ['Nope']); // Collection(['Nope'])
+$collection->collectBy('baz', ['Nope']); // Collection(['Nope'])
 ```
 
 ### `eachCons`

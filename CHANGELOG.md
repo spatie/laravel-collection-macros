@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 6.0.0 - 2019-09-04
+
+- Laravel 6 support
+- Renamed `collect()` macro to `collectBy()` to resolve Laravel 6 compatibility
+
 ## 5.0.2 - 2019-0319
 
 - require laravel 5.8.4
