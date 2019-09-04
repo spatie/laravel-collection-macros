@@ -44,7 +44,7 @@ The package will automatically register itself.
     - [`tenth`](#tenth)
 - [`before`](#before)
 - [`chunkBy`](#chunkby)
-- [`collectBy`](#collectBy)
+- [`collectBy`](#collectby)
 - [`eachCons`](#eachcons)
 - [`extract`](#extract)
 - [`filterMap`](#filtermap)
@@ -55,7 +55,7 @@ The package will automatically register itself.
 - [`head`](#head)
 - [`ifAny`](#ifany)
 - [`ifEmpty`](#ifempty)
-- [`join`](#join)
+- [`mapByMethod`](#mapbymethod)
 - [`none`](#none)
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
@@ -373,6 +373,23 @@ collect([1, 2, 3])->ifEmpty(function(Collection $collection) { // non-empty coll
    echo 'Hello';
 });
 ```
+
+### `mapByMethod`
+
+Map a collection of (same) objects by a method on the objects.
+Particularly handy if you have to call getters to access private properties on your objects.
+
+```php
+class User {
+    public function lookupHighScore(string $game) : ?int 
+}
+
+$users = App\User::where('active', 1)->get();
+$scores = $users->mapByMethod('lookupHighScore', 'Galaga');
+
+// returns collect([1000, 1200, null, 1300]);
+```
+
 
 ### `none`
 
