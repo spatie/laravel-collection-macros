@@ -23,15 +23,15 @@
     ],
     "require": {
         "php": "^7.2",
-        "laravel/framework": "~5.8.4|^6.0"
+        "laravel/framework": "^6.0|^7.0"
     },
     "require-dev": {
         "amphp/parallel": "^0.2.0",
         "amphp/parallel-functions": "^0.1.2",
         "mockery/mockery": "^1.0",
-        "orchestra/testbench": "~3.8.0|^4.0",
-        "phpunit/phpunit": "^8.0",
-        "symfony/stopwatch": "^4.0"
+        "orchestra/testbench": "^4.0|^5.0",
+        "phpunit/phpunit": "^8.0|^9.0",
+        "symfony/stopwatch": "^4.0|^5.0"
     },
     "suggest": {
         "amphp/parallel-functions": "Required when using the parallel*-macros."
@@ -58,5 +58,7 @@
                 "Spatie\\CollectionMacros\\CollectionMacroServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
