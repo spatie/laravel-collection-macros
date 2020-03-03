@@ -2,11 +2,11 @@
 
 namespace Spatie\CollectionMacros\Macros;
 
+use Amp\Parallel\Worker\DefaultPool;
 use Amp\Parallel\Worker\Pool;
+use function Amp\ParallelFunctions\parallelMap;
 use function Amp\Promise\wait;
 use Illuminate\Support\Collection;
-use Amp\Parallel\Worker\DefaultPool;
-use function Amp\ParallelFunctions\parallelMap;
 
 /**
  * Idential to map but each item will be processed in parallel.

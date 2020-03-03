@@ -2,8 +2,8 @@
 
 namespace Spatie\CollectionMacros\Test;
 
-use ReflectionClass;
 use PHPUnit\Framework\TestCase as BaseTestCase;
+use ReflectionClass;
 use Spatie\CollectionMacros\CollectionMacroServiceProvider;
 
 abstract class TestCase extends BaseTestCase
