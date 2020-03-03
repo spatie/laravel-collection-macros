@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 6.1.0 - 2020-03-03
+
+- Laravel 7 support
+
 ## 6.0.0 - 2019-09-04
 
 - Laravel 6 support
