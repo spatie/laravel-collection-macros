@@ -2,8 +2,8 @@
 
 namespace Spatie\CollectionMacros\Test\Macros;
 
-use Mockery;
 use Illuminate\Support\Collection;
+use Mockery;
 use Spatie\CollectionMacros\Test\TestCase;
 
 class IfAnyTest extends TestCase
