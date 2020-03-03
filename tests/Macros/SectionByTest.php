@@ -42,27 +42,27 @@ class SectionByTest extends TestCase
         $sectioned = $collection->sectionBy('module', false, 'section', 'items');
 
         $expected = [
-             [
-                 'section' => 'Basics',
-                 'items' => [
-                      ['name' => 'Lesson 1', 'module' => 'Basics'],
-                      ['name' => 'Lesson 2', 'module' => 'Basics'],
-                 ],
-             ],
-             [
-                 'section' => 'Advanced',
-                 'items' => [
-                      ['name' => 'Lesson 3', 'module' => 'Advanced'],
-                      ['name' => 'Lesson 4', 'module' => 'Advanced'],
-                 ],
-             ],
-             [
-                 'section' => 'Basics',
-                 'items' => [
-                      ['name' => 'Lesson 5', 'module' => 'Basics'],
-                 ],
-             ],
-         ];
+            [
+                'section' => 'Basics',
+                'items' => [
+                    ['name' => 'Lesson 1', 'module' => 'Basics'],
+                    ['name' => 'Lesson 2', 'module' => 'Basics'],
+                ],
+            ],
+            [
+                'section' => 'Advanced',
+                'items' => [
+                    ['name' => 'Lesson 3', 'module' => 'Advanced'],
+                    ['name' => 'Lesson 4', 'module' => 'Advanced'],
+                ],
+            ],
+            [
+                'section' => 'Basics',
+                'items' => [
+                    ['name' => 'Lesson 5', 'module' => 'Basics'],
+                ],
+            ],
+        ];
 
         $this->assertEquals($expected, $sectioned->map(function ($section) {
             $section['items'] = $section['items']->toArray();
@@ -79,27 +79,27 @@ class SectionByTest extends TestCase
         $sectioned = $collection->sectionBy('module', true, 'module', 'items');
 
         $expected = [
-             [
-                 'module' => 'Basics',
-                 'items' => [
-                      'lesson1' => ['name' => 'Lesson 1', 'module' => 'Basics'],
-                      'lesson2' => ['name' => 'Lesson 2', 'module' => 'Basics'],
-                 ],
-             ],
-             [
-                 'module' => 'Advanced',
-                 'items' => [
-                      'lesson3' => ['name' => 'Lesson 3', 'module' => 'Advanced'],
-                      'lesson4' => ['name' => 'Lesson 4', 'module' => 'Advanced'],
-                 ],
-             ],
-             [
-                 'module' => 'Basics',
-                 'items' => [
-                      'lesson5' => ['name' => 'Lesson 5', 'module' => 'Basics'],
-                 ],
-             ],
-         ];
+            [
+                'module' => 'Basics',
+                'items' => [
+                    'lesson1' => ['name' => 'Lesson 1', 'module' => 'Basics'],
+                    'lesson2' => ['name' => 'Lesson 2', 'module' => 'Basics'],
+                ],
+            ],
+            [
+                'module' => 'Advanced',
+                'items' => [
+                    'lesson3' => ['name' => 'Lesson 3', 'module' => 'Advanced'],
+                    'lesson4' => ['name' => 'Lesson 4', 'module' => 'Advanced'],
+                ],
+            ],
+            [
+                'module' => 'Basics',
+                'items' => [
+                    'lesson5' => ['name' => 'Lesson 5', 'module' => 'Basics'],
+                ],
+            ],
+        ];
 
         $this->assertEquals($expected, $sectioned->map(function ($section) {
             $section['items'] = $section['items']->toArray();

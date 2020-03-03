@@ -2,8 +2,8 @@
 
 namespace Spatie\CollectionMacros\Test\Macros;
 
-use Illuminate\Support\Collection;
 use Amp\Parallel\Worker\DefaultPool;
+use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Test\TestCase;
 use Symfony\Component\Stopwatch\Stopwatch;
 
