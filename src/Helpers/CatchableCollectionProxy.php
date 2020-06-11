@@ -2,46 +2,33 @@
 
 namespace Spatie\CollectionMacros\Helpers;
 
-use Exception;
+use Closure;
 use Illuminate\Support\Enumerable;
 use ReflectionFunction;
+use Throwable;
 
 /**
  * @mixin \Illuminate\Support\Enumerable
  */
 class CatchableCollectionProxy
 {
-    /** @var \Illuminate\Support\Enumerable */
-    protected $collection;
+    protected Enumerable $collection;
 
-    /** @var array */
-    protected $calledMethods = [];
+    protected array $calledMethods = [];
 
     public function __construct(Enumerable $collection)
     {
         $this->collection = $collection;
     }
 
-    /**
-     * @param  string  $method
-     * @param  array  $parameters
-     *
-     * @return $this
-     */
-    public function __call($method, $parameters)
+    public function __call(string $method, array $parameters): self
     {
         $this->calledMethods[] = ['name' => $method, 'parameters' => $parameters];
 
         return $this;
     }
 
-    /**
-     * @param \Closure[] $handlers
-     *
-     * @return \Illuminate\Support\Enumerable
-     * @throws \Exception
-     */
-    public function catch(...$handlers)
+    public function catch(Closure ...$handlers): Enumerable
     {
         $originalCollection = $this->collection;
 
@@ -49,7 +36,7 @@ class CatchableCollectionProxy
             foreach ($this->calledMethods as $calledMethod) {
                 $this->collection = $this->collection->{$calledMethod['name']}(...$calledMethod['parameters']);
             }
-        } catch (Exception $exception) {
+        } catch (Throwable $exception) {
             foreach ($handlers as $callable) {
                 $type = $this->exceptionType($callable);
                 if ($exception instanceof $type) {
@@ -63,14 +50,14 @@ class CatchableCollectionProxy
         return $this->collection;
     }
 
-    private function exceptionType($callable)
+    private function exceptionType(Closure $callable): string
     {
         $reflection = new ReflectionFunction($callable);
 
         if (empty($reflection->getParameters())) {
-            return Exception::class;
+            return Throwable::class;
         }
 
-        return optional($reflection->getParameters()[0]->getType())->getName() ?? Exception::class;
+        return optional($reflection->getParameters()[0]->getType())->getName() ?? Throwable::class;
     }
 }

@@ -7,12 +7,7 @@ use Illuminate\Support\Collection;
 /**
  * Get the consecutive values in the collection defined by the given chunk size.
  *
- * @param int $chunkSize
- * @param bool $preserveKeys
- *
  * @mixin \Illuminate\Support\Collection
- *
- * @return \Illuminate\Support\Collection
  */
 class EachCons
 {

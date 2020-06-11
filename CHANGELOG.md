@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.0.0 - 2020-06-11
+
+- drop support for Laravel 6
+- drop support for PHP 7.3 and below
+
 ## 6.2.0 - 2020-06-11
 
 - add `try` and `catch` macros

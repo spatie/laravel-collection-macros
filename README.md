@@ -1,9 +1,7 @@
 # A set of useful Laravel collection macros
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-collection-macros.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-collection-macros)
-[![StyleCI](https://styleci.io/repos/64222176/shield)](https://styleci.io/repos/64222176)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/laravel-collection-macros/run-tests?label=tests)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/laravel-collection-macros.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/laravel-collection-macros)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-collection-macros.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-collection-macros)
 
 This repository contains some useful collection macros.
