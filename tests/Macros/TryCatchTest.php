@@ -9,7 +9,7 @@ use UnexpectedValueException;
 
 class TryCatchTest extends TestCase
 {
-    public function testCatchableCollection()
+    public function it_will_not_execute_the_callable_in_catch_when_no_exception_was_thrown()
     {
         $collection = collect(['a', 'b', 'c', 1, 2, 3])
             ->try()
@@ -23,7 +23,7 @@ class TryCatchTest extends TestCase
         $this->assertEquals(['A', 'B', 'C', 1, 2, 3], $collection->toArray());
     }
 
-    public function testCatchableCollectionHandlesException()
+    public function the_catch_method_will_handle_a_thrown_exception()
     {
         $collection = collect(['a', 'b', 'c', 1, 2, 3])
             ->try()
@@ -37,7 +37,7 @@ class TryCatchTest extends TestCase
         $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
     }
 
-    public function testCatchableCollectionHandlesCorrectException()
+    public function the_catch_method_will_catch_exception_of_the_right_type()
     {
         $collection = collect(['a', 'b', 'c', 1, 2, 3])
             ->try()
@@ -53,7 +53,7 @@ class TryCatchTest extends TestCase
         $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
     }
 
-    public function testCatchableCollectionRethrowsUnhandledException()
+    public function the_catch_method_will_not_handle_unrelated_exceptions()
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('rethrow me');
@@ -70,7 +70,7 @@ class TryCatchTest extends TestCase
         $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
     }
 
-    public function testCatchableCollectionDefaultsToCatchAll()
+    public function when_no_typehint_is_used_the_catch_method_will_catch_all_exceptions()
     {
         $collection = collect(['a', 'b', 'c', 1, 2, 3])
             ->try()
@@ -84,7 +84,7 @@ class TryCatchTest extends TestCase
         $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
     }
 
-    public function testCatchableCollectionDoesNotRequireParameters()
+    public function when_no_parameters_are_given_to_catch_it_will_catch_all_exceptions()
     {
         $caught = false;
         $collection = collect(['a', 'b', 'c', 1, 2, 3])
@@ -100,7 +100,7 @@ class TryCatchTest extends TestCase
         $this->assertTrue($caught);
     }
 
-    public function testCatchableCollectionAllowsHandlerToReceiveOriginalCollection()
+    public function the_catch_handle_can_receive_the_original_collection()
     {
         $collection = collect(['a', 'b', 'c', 1, 2, 3])
             ->try()
@@ -118,7 +118,7 @@ class TryCatchTest extends TestCase
         $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
     }
 
-    public function testCatchableCollectionAllowsHandlerToReturnCollection()
+    public function the_catch_handler_can_return_a_collection()
     {
         $collection = collect(['a', 'b', 'c', 1, 2, 3])
             ->try()
@@ -134,7 +134,7 @@ class TryCatchTest extends TestCase
         $this->assertEquals(['d', 'e', 'f'], $collection->toArray());
     }
 
-    public function testCatchableCollectionContinuesWithOriginalCollectionAfterException()
+    public function any_method_after_catch_will_receive_the_original_collection_when_an_exception_was_caught()
     {
         $collection = collect(['a', 'b', 'c', 1, 2, 3])
             ->try()
