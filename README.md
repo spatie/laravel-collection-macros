@@ -593,7 +593,7 @@ collect([
 
 ### `try`
 
-If any of the methods between `try` and `catch` throws and exception, then the exception can be handled in `catch`.
+If any of the methods between `try` and `catch` throw an exception, then the exception can be handled in `catch`.
 
 ```php
 collect(['a', 'b', 'c', 1, 2, 3])
