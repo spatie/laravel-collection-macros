@@ -1,7 +1,7 @@
 # A set of useful Laravel collection macros
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-collection-macros.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-collection-macros)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/spatie/laravel-collection-macros/run-tests?label=tests)
+![Run tests](https://github.com/spatie/laravel-collection-macros/workflows/Run%20tests/badge.svg)
 ![Check & fix styling](https://github.com/spatie/laravel-collection-macros/workflows/Check%20&%20fix%20styling/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-collection-macros.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-collection-macros)
 
