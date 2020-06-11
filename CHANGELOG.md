@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.0.1 - 2020-06-11
+
+- use registry over file scan + string manipulation (#179)
+
 ## 7.0.0 - 2020-06-11
 
 - drop support for Laravel 6
