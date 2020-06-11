@@ -44,6 +44,7 @@ The package will automatically register itself.
     - [`ninth`](#ninth)
     - [`tenth`](#tenth)
 - [`before`](#before)
+- [`catch`](#catch)
 - [`chunkBy`](#chunkby)
 - [`collectBy`](#collectBy)
 - [`eachCons`](#eachcons)
@@ -67,6 +68,7 @@ The package will automatically register itself.
 - [`simplePaginate`](#simplepaginate)
 - [`sliceBefore`](#slicebefore)
 - [`tail`](#tail)
+- [`try`](#try)
 - [`toPairs`](#topairs)
 - [`transpose`](#transpose)
 - [`validate`](#validate)
@@ -218,6 +220,10 @@ $currentItem = 1;
 
 $collection->before($currentItem, $collection->last()); // return 3;
 ```
+
+### `catch`
+
+See [`Try`](#try)
 
 ### `chunkBy`
 
@@ -584,6 +590,47 @@ collect([
 //     ['Bob', 'bob@example.com', 'Plumber'],
 //     ['Mary', 'mary@example.com', 'Dentist'],
 // ]
+```
+
+### `try`
+
+If any of the methods between `try` and `catch` throws and exception, then the exception can be handled in `catch`.
+
+```php
+collect(['a', 'b', 'c', 1, 2, 3])
+    ->try()
+    ->map(function ($letter) {
+        return strtoupper($letter);
+    })
+    ->each(function() {
+        throw new Exception('Explosions in the sky');
+    });
+    ->catch(function (Exception $exception) {
+        // handle exeception here
+    })
+    ->map(function() {
+        // further operations can be done, if the exception wasn't rethrow in the `catch`
+    });
+```
+
+While the methods are named `try`/`catch` for familiarity with PHP, the collection itself behaves more like a database transaction. So when an exception is thrown, the original collection (before the try) is returned.
+
+You may gain access to the collection within catch by adding a second parameter to your handler. You may also manipulate the collection within catch by returning a value.
+
+```php
+$collection = collect(['a', 'b', 'c', 1, 2, 3])
+    ->try()
+    ->map(function ($item) {
+        throw new Exception();
+    })
+    ->catch(function (Exception $exception, $collection) {
+        return collect(['d', 'e', 'f']);
+    })
+    ->map(function ($item) {
+        return strtoupper($item);
+    });
+
+// ['D', 'E', 'F']
 ```
 
 ### `validate`

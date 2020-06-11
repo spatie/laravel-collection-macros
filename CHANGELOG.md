@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 6.2.0 - 2020-06-11
+
+- add `try` and `catch` macros
+
 ## 6.1.0 - 2020-03-03
 
 - Laravel 7 support

@@ -7,40 +7,25 @@ use Illuminate\Support\Enumerable;
 use ReflectionFunction;
 
 /**
- * @mixin \Illuminate\Collections\Enumerable
+ * @mixin \Illuminate\Support\Enumerable
  */
 class CatchableCollectionProxy
 {
-    /**
-     * The collection being operated on.
-     *
-     * @var \Illuminate\Collections\Enumerable
-     */
+    /** @var \Illuminate\Support\Enumerable */
     protected $collection;
 
-    /**
-     * The collection methods to handle exceptions for.
-     *
-     * @var array
-     */
+    /** @var array */
     protected $calledMethods = [];
 
-    /**
-     * Create a new proxy instance.
-     *
-     * @param  \Illuminate\Collections\Enumerable  $collection
-     * @return void
-     */
     public function __construct(Enumerable $collection)
     {
         $this->collection = $collection;
     }
 
     /**
-     * Proxy a method call onto the collection items.
-     *
      * @param  string  $method
      * @param  array  $parameters
+     *
      * @return $this
      */
     public function __call($method, $parameters)
@@ -53,7 +38,8 @@ class CatchableCollectionProxy
     /**
      * @param \Closure[] $handlers
      *
-     * @return \Illuminate\Collections\Enumerable
+     * @return \Illuminate\Support\Enumerable
+     * @throws \Exception
      */
     public function catch(...$handlers)
     {
