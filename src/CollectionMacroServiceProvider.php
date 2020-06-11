@@ -10,8 +10,8 @@ class CollectionMacroServiceProvider extends ServiceProvider
     public function register()
     {
         Collection::make($this->macros())
-            ->reject(fn($class, $macro) => Collection::hasMacro($macro))
-            ->each(fn($class, $macro) => Collection::macro($macro, app($class)()));
+            ->reject(fn ($class, $macro) => Collection::hasMacro($macro))
+            ->each(fn ($class, $macro) => Collection::macro($macro, app($class)()));
     }
 
     private function macros(): array
