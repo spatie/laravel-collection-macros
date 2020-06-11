@@ -7,11 +7,7 @@ use Illuminate\Support\Collection;
 /**
  * Map a collection, then filter the results.
  *
- * @param callable $callback
- *
  * @mixin \Illuminate\Support\Collection
- *
- * @return \Illuminate\Support\Collection
  */
 class FilterMap
 {

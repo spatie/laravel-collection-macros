@@ -39,16 +39,24 @@ class SimplePaginateTest extends IntegrationTestCase
     /** @test */
     public function it_removes_trailing_slashes()
     {
-        $p = (new Collection($array = ['item1', 'item2', 'item3']))->simplePaginate(2, 'page', 2,
-            ['path' => 'http://website.com/test/']);
+        $p = (new Collection($array = ['item1', 'item2', 'item3']))->simplePaginate(
+            2,
+            'page',
+            2,
+            ['path' => 'http://website.com/test/']
+        );
         $this->assertEquals('http://website.com/test?page=1', $p->previousPageUrl());
     }
 
     /** @test */
     public function it_generates_urls_without_trailing_slash()
     {
-        $p = (new Collection($array = ['item1', 'item2', 'item3']))->simplePaginate(2, 'page', 2,
-            ['path' => 'http://website.com/test']);
+        $p = (new Collection($array = ['item1', 'item2', 'item3']))->simplePaginate(
+            2,
+            'page',
+            2,
+            ['path' => 'http://website.com/test']
+        );
         $this->assertEquals('http://website.com/test?page=1', $p->previousPageUrl());
     }
 }

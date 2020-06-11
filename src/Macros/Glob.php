@@ -4,12 +4,8 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
 
-/**
+/*
  * Execute a callable if the collection isn't empty, then return the collection.
- *
- * @param callable callback
- *
- * @return \Illuminate\Support\Collection
  */
 class Glob
 {

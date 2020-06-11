@@ -40,31 +40,45 @@ class PaginateTest extends TestCase
     {
         $this->collectionPaginator->setPath('http://website.com');
         $this->collectionPaginator->setPageName('foo');
-        $this->assertEquals('http://website.com?foo=2',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage()));
-        $this->assertEquals('http://website.com?foo=1',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 1));
-        $this->assertEquals('http://website.com?foo=1',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 2));
+        $this->assertEquals(
+            'http://website.com?foo=2',
+            $this->collectionPaginator->url($this->collectionPaginator->currentPage())
+        );
+        $this->assertEquals(
+            'http://website.com?foo=1',
+            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 1)
+        );
+        $this->assertEquals(
+            'http://website.com?foo=1',
+            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 2)
+        );
     }
 
     public function it_can_generate_urls_with_query()
     {
         $this->collectionPaginator->setPath('http://website.com?sort_by=date');
         $this->collectionPaginator->setPageName('foo');
-        $this->assertEquals('http://website.com?sort_by=date&foo=2',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage()));
+        $this->assertEquals(
+            'http://website.com?sort_by=date&foo=2',
+            $this->collectionPaginator->url($this->collectionPaginator->currentPage())
+        );
     }
 
     public function it_can_generate_urls_without_trailing_slashes()
     {
         $this->collectionPaginator->setPath('http://website.com/test');
         $this->collectionPaginator->setPageName('foo');
-        $this->assertEquals('http://website.com/test?foo=2',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage()));
-        $this->assertEquals('http://website.com/test?foo=1',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 1));
-        $this->assertEquals('http://website.com/test?foo=1',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 2));
+        $this->assertEquals(
+            'http://website.com/test?foo=2',
+            $this->collectionPaginator->url($this->collectionPaginator->currentPage())
+        );
+        $this->assertEquals(
+            'http://website.com/test?foo=1',
+            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 1)
+        );
+        $this->assertEquals(
+            'http://website.com/test?foo=1',
+            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 2)
+        );
     }
 }
