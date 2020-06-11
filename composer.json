@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": "^7.2",
-        "laravel/framework": "^6.0|^7.0"
+        "illuminate/support": "^6.0|^7.0"
     },
     "require-dev": {
         "amphp/parallel": "^0.2.5",
