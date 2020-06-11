@@ -22,13 +22,11 @@ class CollectionMacroServiceProvider extends ServiceProvider
 
                 $macro = Str::camel($macro);
 
-                if($macro === 'tryCatch') {
+                if ($macro === 'tryCatch') {
                     $macro = 'try';
                 }
 
                 Collection::macro($macro, app($class)());
             });
-
-
     }
 }
