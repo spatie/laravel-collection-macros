@@ -598,14 +598,12 @@ If any of the methods between `try` and `catch` throw an exception, then the exc
 ```php
 collect(['a', 'b', 'c', 1, 2, 3])
     ->try()
-    ->map(function ($letter) {
-        return strtoupper($letter);
-    })
+    ->map(fn ($letter) => strtoupper($letter))
     ->each(function() {
         throw new Exception('Explosions in the sky');
-    });
+    })
     ->catch(function (Exception $exception) {
-        // handle exeception here
+        // handle exception here
     })
     ->map(function() {
         // further operations can be done, if the exception wasn't rethrow in the `catch`
