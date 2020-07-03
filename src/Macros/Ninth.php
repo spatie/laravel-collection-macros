@@ -7,7 +7,7 @@ class Ninth
     public function __invoke()
     {
         return function () {
-            return $this->get(8);
+            return $this->skip(8)->first();
         };
     }
 }
