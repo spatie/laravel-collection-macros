@@ -7,7 +7,7 @@ class Fifth
     public function __invoke()
     {
         return function () {
-            return $this->get(4);
+            return $this->skip(4)->first();
         };
     }
 }
