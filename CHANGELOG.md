@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.0.2 - 2020-07-03
+
+- improve second, third, ... marcros
+
 ## 7.0.1 - 2020-06-11
 
 - use registry over file scan + string manipulation (#179)
