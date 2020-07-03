@@ -7,7 +7,7 @@ class Third
     public function __invoke()
     {
         return function () {
-            return $this->get(2);
+            return $this->skip(2)->first();
         };
     }
 }
