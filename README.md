@@ -31,6 +31,7 @@ The package will automatically register itself.
 
 ## Macros
 
+- [`accumulate`](#accumulate)
 - [`after`](#after)
 - [`at`](#at)
     - [`second`](#second)
@@ -72,6 +73,16 @@ The package will automatically register itself.
 - [`transpose`](#transpose)
 - [`validate`](#validate)
 - [`withSize`](#withsize)
+
+### `accumulate`
+
+Accumulate the items in the collection.
+
+```php
+$collection = collect([1,2,3]);
+
+$data->accumulate(); // Collection([1,3,6])
+```
 
 ### `after`
 

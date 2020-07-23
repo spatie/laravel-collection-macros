@@ -17,6 +17,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
     private function macros(): array
     {
         return [
+            'accumulate' => \Spatie\CollectionMacros\Macros\Accumulate::class,
             'after' => \Spatie\CollectionMacros\Macros\After::class,
             'at' => \Spatie\CollectionMacros\Macros\At::class,
             'before' => \Spatie\CollectionMacros\Macros\Before::class,
