@@ -16,7 +16,7 @@ class Accumulate
 {
     public function __invoke()
     {
-        return function ($callback = null, $initial = 0) {
+        return function ($callback = null, $initial = null) {
             if (is_null($callback)) {
                 $callback = function ($value) {
                     return $value;
