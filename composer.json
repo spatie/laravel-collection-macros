@@ -23,7 +23,7 @@
     ],
     "require": {
         "php": "^7.4",
-        "illuminate/support": "^7.0"
+        "illuminate/support": "^7.0 || ^8.0"
     },
     "require-dev": {
         "amphp/parallel": "^0.2.5",
