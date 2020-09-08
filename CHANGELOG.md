@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.0.3 - 2020-09-08
+
+- add support for Laravel 8
+
 ## 7.0.2 - 2020-07-03
 
 - improve second, third, ... marcros
