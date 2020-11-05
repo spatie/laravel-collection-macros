@@ -54,7 +54,6 @@ The package will automatically register itself.
 - [`head`](#head)
 - [`ifAny`](#ifany)
 - [`ifEmpty`](#ifempty)
-- [`join`](#join)
 - [`none`](#none)
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
