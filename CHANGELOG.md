@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.1.0 - 2020-12-02
+
+- add support for PHP 8
+
 ## 7.0.3 - 2020-09-08
 
 - add support for Laravel 8
