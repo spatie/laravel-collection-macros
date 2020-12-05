@@ -12,7 +12,7 @@ class ParallelMapTest extends TestCase
     /** Symfony\Component\Stopwatch\Stopwatch */
     protected $stopWatch;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
