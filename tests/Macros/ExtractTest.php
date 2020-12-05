@@ -10,7 +10,7 @@ class ExtractTest extends TestCase
     /** @var \Illuminate\Support\Collection */
     private $user = null;
 
-    public function setup(): void
+    protected function setUp(): void
     {
         parent::setUp();
 
