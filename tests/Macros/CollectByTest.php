@@ -23,7 +23,7 @@ class CollectByTest extends TestCase
 
         $ingredients = $collection->collectBy('ingredients');
 
-        $this->assertTrue(is_a($ingredients, Collection::class));
+        $this->assertInstanceOf(Collection::class, $ingredients);
 
         $this->assertEquals([
             'cheese',

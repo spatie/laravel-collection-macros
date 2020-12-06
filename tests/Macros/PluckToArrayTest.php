@@ -20,7 +20,7 @@ class PluckToArrayTest extends TestCase
 
         $this->assertEquals($expected, $result);
 
-        $this->assertTrue(is_array($result));
+        $this->assertIsArray($result);
     }
 
     /** @test */
