@@ -87,6 +87,15 @@ class GetHumanCountTest extends TestCase
         $this->assertEquals(10, $data->tenth());
     }
 
+
+    /** @test */
+    public function it_gets_the_nth_item_of_the_collection()
+    {
+        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+
+        $this->assertEquals(11, $data->getNth(11));
+    }
+
     /** @test */
     public function it_returns_null_if_index_is_undefined()
     {
@@ -102,5 +111,6 @@ class GetHumanCountTest extends TestCase
         $this->assertNull($data->eighth());
         $this->assertNull($data->ninth());
         $this->assertNull($data->tenth());
+        $this->assertNull($data->getNth(11));
     }
 }

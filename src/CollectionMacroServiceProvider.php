@@ -30,6 +30,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'firstOrFail' => \Spatie\CollectionMacros\Macros\FirstOrFail::class,
             'fourth' => \Spatie\CollectionMacros\Macros\Fourth::class,
             'fromPairs' => \Spatie\CollectionMacros\Macros\FromPairs::class,
+            'getNth' => \Spatie\CollectionMacros\Macros\GetNth::class,
             'glob' => \Spatie\CollectionMacros\Macros\Glob::class,
             'groupByModel' => \Spatie\CollectionMacros\Macros\GroupByModel::class,
             'head' => \Spatie\CollectionMacros\Macros\Head::class,
