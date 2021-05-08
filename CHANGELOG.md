@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.2.0 - 2021-05-09
+
+- add getNth macro (#201)
+
 ## 7.1.0 - 2020-12-02
 
 - add support for PHP 8
