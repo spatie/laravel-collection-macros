@@ -40,6 +40,7 @@ The package will automatically register itself.
     - [`eighth`](#eighth)
     - [`ninth`](#ninth)
     - [`tenth`](#tenth)
+    - [`getNth`](#getNth)
 - [`before`](#before)
 - [`catch`](#catch)
 - [`chunkBy`](#chunkby)
@@ -188,6 +189,15 @@ Retrieve item at the tenth index.
 $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
 $data->tenth(); // 10
+```
+
+### `getNth`
+Retrieve item at the nth item.
+
+```php
+$data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+
+$data->getNth(); // 11
 ```
 
 ### `before`
