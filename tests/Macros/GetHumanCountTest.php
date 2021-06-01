@@ -87,7 +87,6 @@ class GetHumanCountTest extends TestCase
         $this->assertEquals(10, $data->tenth());
     }
 
-
     /** @test */
     public function it_gets_the_nth_item_of_the_collection()
     {
