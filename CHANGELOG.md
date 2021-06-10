@@ -2,6 +2,16 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 6.3.1 - 2021-06-10
+
+- add PHP 8 support
+
+## 6.3.0 - 2021-06-10
+
+**DO NOT USE: incorrectly tagged**
+
+- add PHP 8 support
+
 ## 6.2.0 - 2020-06-11
 
 - add `try` and `catch` macros
