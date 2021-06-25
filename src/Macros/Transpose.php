@@ -24,10 +24,10 @@ class Transpose
 
             $firstItem = $this->first();
 
-            $expectedLength = is_array($firstItem) || $firstItem instanceof Countable ? count($firstItem) : 0;
+            $expectedLength = is_countable($firstItem) ? count($firstItem) : 0;
 
             array_walk($this->items, function ($row) use ($expectedLength) {
-                if ((is_array($row) || $row instanceof Countable) && count($row) !== $expectedLength) {
+                if (is_countable($row) && count($row) !== $expectedLength) {
                     throw new \LengthException("Element's length must be equal.");
                 }
             });
