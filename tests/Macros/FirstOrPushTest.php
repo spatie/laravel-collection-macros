@@ -12,7 +12,7 @@ class FirstOrPushTest extends TestCase
     {
         $data = new Collection([1, 2, 3]);
 
-        $this->assertEquals(1, $data->firstOrPush(fn($item) => $item === 1, 2));
+        $this->assertEquals(1, $data->firstOrPush(fn ($item) => $item === 1, 2));
     }
 
     /** @test */
@@ -20,21 +20,21 @@ class FirstOrPushTest extends TestCase
     {
         $data = new Collection([1, 2]);
 
-        $this->assertEquals(3, $data->firstOrPush(fn($item) => $item === 3, 3));
-        $this->assertEquals(3, $data->firstOrPush(fn($item) => $item === 3, 4));
+        $this->assertEquals(3, $data->firstOrPush(fn ($item) => $item === 3, 3));
+        $this->assertEquals(3, $data->firstOrPush(fn ($item) => $item === 3, 4));
     }
 
     /** @test */
     public function the_value_parameter_can_be_a_callable()
     {
-        $this->assertEquals(1, (new Collection())->firstOrPush(fn($item) => false, fn() => 1));
+        $this->assertEquals(1, (new Collection())->firstOrPush(fn ($item) => false, fn () => 1));
     }
 
     /** @test */
     public function a_collection_object_can_be_specified_as_the_push_target()
     {
         $data = new Collection([1, 2, 3]);
-        $data->filter(fn($item) => false)->firstOrPush(fn($item) => false, 4, $data);
+        $data->filter(fn ($item) => false)->firstOrPush(fn ($item) => false, 4, $data);
 
         $this->assertEquals(new Collection([1, 2, 3, 4]), $data);
     }
