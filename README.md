@@ -318,6 +318,8 @@ collect([])->firstOrFail(); // throws Spatie\CollectionMacros\Exceptions\Collect
 Retrieve the first item using the callable given as the first parameter. If no value exists, push the value of the second
 parameter into the collection. You can pass a callable as the second parameter.
 
+This method is really useful when dealing with cached class properties, where you want to store a value retrieved from an API or computationally expensive function in a collection to be used multiple times.
+
 ```php
 $collection = collect([1, 2, 3])->firstOrPush(fn($item) => $item === 4, 4);
 
