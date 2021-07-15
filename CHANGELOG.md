@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.3.0 - 2021-07-15
+
+- add `firstOrPush`
+
 ## 7.2.0 - 2021-05-09
 
 - add getNth macro (#201)
