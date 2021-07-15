@@ -49,6 +49,7 @@ The package will automatically register itself.
 - [`extract`](#extract)
 - [`filterMap`](#filtermap)
 - [`firstOrFail`](#firstorfail)
+- [`firstOrPush`](#firstorpush)
 - [`fromPairs`](#frompairs)
 - [`glob`](#glob)
 - [`groupByModel`](#groupbymodel)
@@ -310,6 +311,26 @@ $collection = collect([1, 2, 3, 4, 5, 6])->firstOrFail();
 $collection->toArray(); // returns [1]
 
 collect([])->firstOrFail(); // throws Spatie\CollectionMacros\Exceptions\CollectionItemNotFound
+```
+
+### `firstOrPush`
+
+Retrieve the first item using the callable given as the first parameter. If no value exists, push the value of the second
+parameter into the collection. You can pass a callable as the second parameter.
+
+```php
+$collection = collect([1, 2, 3])->firstOrPush(fn($item) => $item === 4, 4);
+
+$collection->toArray(); // returns [1, 2, 3, 4]
+```
+
+Occasionally, you'll want to specify the target collection to be pushed to. You may pass this as a third parameter.
+
+```php
+$collection = collect([1, 2, 3]);
+$collection->filter()->firstOrPush(fn($item) => $item === 4, 4, $collection);
+
+$collection->toArray(); // returns [1, 2, 3, 4]
 ```
 
 ### `fromPairs`
