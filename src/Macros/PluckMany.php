@@ -7,13 +7,13 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 /**
- * Get the value of several keys.
+ * Get a Collection with only the specified keys.
  *
  * @param  array  $keys
  *
  * @mixin \Illuminate\Support\Collection
  *
- * @return array
+ * @return Collection
  */
 class PluckMany
 {
