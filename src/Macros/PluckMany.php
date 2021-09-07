@@ -19,8 +19,7 @@ class PluckMany
 {
     public function __invoke()
     {
-        return function ($keys): Collection
-        {
+        return function ($keys): Collection {
             return $this->map(function ($item) use ($keys) {
                 if ($item instanceof Collection) {
                     return $item->only($keys);

@@ -13,6 +13,7 @@ class FirstOrFailTest extends TestCase
     {
         if (method_exists(Collection::class, 'firstOrFail')) {
             $this->expectNotToPerformAssertions();
+
             return;
         }
 
@@ -26,6 +27,7 @@ class FirstOrFailTest extends TestCase
     {
         if (method_exists(Collection::class, 'firstOrFail')) {
             $this->expectNotToPerformAssertions();
+
             return;
         }
 

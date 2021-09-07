@@ -33,7 +33,8 @@ class PluckManyTest extends TestCase
             ['id' => 2, 'name' => 'tomo', 'hobby' => 'cooking'],
         ]);
 
-        $this->assertEquals([
+        $this->assertEquals(
+            [
             (object) ['name' => 'matt', 'hobby' => 'coding'],
             ['name' => 'tomo', 'hobby' => 'cooking'],
         ],
@@ -49,7 +50,8 @@ class PluckManyTest extends TestCase
             new TestArrayAccessImplementation(['id' => 2, 'name' => 'belle', 'hobby' => 'cross-stitch']),
         ]);
 
-        $this->assertEquals([
+        $this->assertEquals(
+            [
             ['name' => 'marco', 'hobby' => 'drinking'],
             ['name' => 'belle', 'hobby' => 'cross-stitch'],
         ],
