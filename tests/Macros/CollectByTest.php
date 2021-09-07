@@ -68,6 +68,6 @@ class CollectByTest extends TestCase
 
         $ingredients = $collection->collectBy('build_it');
 
-        $this->assertEquals(new Collection, $ingredients);
+        $this->assertEquals(new Collection(), $ingredients);
     }
 }

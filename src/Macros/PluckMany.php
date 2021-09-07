@@ -24,17 +24,17 @@ class PluckMany
                 if ($item instanceof Collection) {
                     return $item->only($keys);
                 }
-    
+
                 if (is_array($item)) {
                     return Arr::only($item, $keys);
                 }
-    
+
                 if ($item instanceof ArrayAccess) {
                     return collect($keys)->mapWithKeys(function ($key) use ($item) {
                         return [$key => $item[$key]];
                     })->toArray();
                 }
-    
+
                 return (object) Arr::only(get_object_vars($item), $keys);
             });
         };
