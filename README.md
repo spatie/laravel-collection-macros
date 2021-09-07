@@ -59,6 +59,7 @@ The package will automatically register itself.
 - [`none`](#none)
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
+- [`pluckMany`](#pluckmany)
 - [`pluckToArray`](#plucktoarray)
 - [`prioritize`](#prioritize)
 - [`rotate`](#rotate)
@@ -479,6 +480,25 @@ $pageSources = collect($urls)->parallelMap(function($url) {
 ```
 
 This helps to reduce the memory overhead, as the default worker pool limit is `32` (as defined in `amphp/parallel`). Using fewer worker threads can significantly reduce memory and processing overhead, in many cases. Benchmark and customise the worker thread limit to suit your particular use-case.
+
+### `pluckMany`
+
+Returns a collection with only the specified keys.
+
+```php
+$collection = collect([
+    ['a' => 1, 'b' => 10, 'c' => 100],
+    ['a' => 2, 'b' => 20, 'c' => 200],
+]);
+
+$collection->pluckMany(['a', 'b']);
+
+// returns
+// collect([
+//     ['a' => 1, 'b' => 10],
+//     ['a' => 2, 'b' => 20],
+// ]);
+```
 
 ### `pluckToArray`
 
