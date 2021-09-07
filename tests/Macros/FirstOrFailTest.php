@@ -28,8 +28,9 @@ class FirstOrFailTest extends TestCase
             $this->expectNotToPerformAssertions();
             return;
         }
-        
+
         $this->expectException(CollectionItemNotFound::class);
+
         Collection::make()->firstOrFail();
     }
 }
