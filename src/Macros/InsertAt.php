@@ -19,7 +19,7 @@ class InsertAt
 {
     public function __invoke()
     {
-        return function (int $index, mixed $item, mixed $key = null): Collection {
+        return function (int $index, $item, $key = null): Collection {
                 $after = $this->splice($index);
                 $this->items = isset($key)
                     ? $this->put($key, $item)->merge($after)->toArray()
