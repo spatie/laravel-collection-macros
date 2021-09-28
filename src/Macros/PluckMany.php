@@ -34,6 +34,7 @@ class PluckMany
                         return [$key => $item[$key]];
                     })->toArray();
                 }
+
                 return (object) Arr::only(get_object_vars($item), $keys);
             });
         };
