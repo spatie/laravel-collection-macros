@@ -7,35 +7,33 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 /**
- * Get the value of several keys.
+ * Get a Collection with only the specified keys.
  *
  * @param  array  $keys
  *
  * @mixin \Illuminate\Support\Collection
  *
- * @return array
+ * @return Collection
  */
 class PluckMany
 {
     public function __invoke()
     {
-        return function ($keys): Collection
-        {
+        return function ($keys): Collection {
             return $this->map(function ($item) use ($keys) {
                 if ($item instanceof Collection) {
                     return $item->only($keys);
                 }
-    
+
                 if (is_array($item)) {
                     return Arr::only($item, $keys);
                 }
-    
+
                 if ($item instanceof ArrayAccess) {
                     return collect($keys)->mapWithKeys(function ($key) use ($item) {
                         return [$key => $item[$key]];
                     })->toArray();
                 }
-    
                 return (object) Arr::only(get_object_vars($item), $keys);
             });
         };

@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.4.0 - 2021-09-07
+
+- add `pluckMany` (#207)
+
 ## 7.3.0 - 2021-07-15
 
 - add `firstOrPush`

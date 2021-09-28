@@ -19,7 +19,7 @@ class Rotate
     {
         return function (int $offset): Collection {
             if ($this->isEmpty()) {
-                return new static;
+                return new static();
             }
 
             $count = $this->count();

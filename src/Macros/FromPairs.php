@@ -19,7 +19,7 @@ class FromPairs
                 $assoc[$key] = $value;
 
                 return $assoc;
-            }, new static);
+            }, new static());
         };
     }
 }
