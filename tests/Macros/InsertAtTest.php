@@ -34,4 +34,11 @@ class InsertAtTest extends TestCase
         $collection = Collection::make(['zero' => 0, 'two' => 2, 'three' => 3])->insertAt(1, 'one');
         $this->assertEquals(['zero' => 0, 'one', 'two' => 2, 'three' => 3], $collection->toArray());
     }
+
+    /** @test */
+    public function it_inserts_with_a_key()
+    {
+        $collection = Collection::make(['zero' => 0, 'two' => 2, 'three' => 3])->insertAt(1, 5, 'five');
+        $this->assertEquals(['zero' => 0, 'five' => 5, 'two' => 2, 'three' => 3], $collection->toArray());
+    }
 }

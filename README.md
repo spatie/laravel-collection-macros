@@ -414,10 +414,14 @@ collect([1, 2, 3])->ifEmpty(function(Collection $collection) { // non-empty coll
 
 ### `insertAt`
 
-Inserts an item at a given index and returns the updated Collection instance.
+Inserts an item at a given index and returns the updated Collection instance. Optionally a key can be given.
 
 ```php
-collect(['zero', 'two', 'three'])->insertAt(1, 'one')); // Collection contains ['zero', 'one', 'two', 'three']
+collect(['zero', 'two', 'three'])->insertAt(1, 'one');
+// Collection contains ['zero', 'one', 'two', 'three']
+
+collect(['zero' => 0, 'two' => 2, 'three' => 3]->insertAt(1, 5, 'five');
+// Collection contains ['zero' => 0, 'five' => 5, 'two' => 2, 'three' => 3]
 ```
 
 ### `none`
