@@ -19,21 +19,11 @@ class InsertAt
 {
     public function __invoke()
     {
-        $insertWithKey = function (Collection $collection, int $index, mixed $item, mixed $key) {
-            $after = $collection->splice($index);
-            return $collection->put($key, $item)->merge($after);
-        };
-
-        $insertWithoutKey = function (Collection $collection, int $index, mixed $item) {
-            $after = $collection->splice($index);
-            return $collection->push($item)->merge($after);
-        };
-
-        return function (int $index, mixed $item, mixed $key = null)
-            use ($insertWithKey, $insertWithoutKey): Collection {
+        return function (int $index, mixed $item, mixed $key = null): Collection {
+                $after = $this->splice($index);
                 $this->items = isset($key)
-                    ? $insertWithKey($this, $index, $item, $key)->toArray()
-                    : $insertWithoutKey($this, $index, $item)->toArray();
+                    ? $this->put($key, $item)->merge($after)->toArray()
+                    : $this->push($item)->merge($after)->toArray();
                 return $this;
         };
     }
