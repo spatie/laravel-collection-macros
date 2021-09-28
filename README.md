@@ -56,6 +56,7 @@ The package will automatically register itself.
 - [`head`](#head)
 - [`ifAny`](#ifany)
 - [`ifEmpty`](#ifempty)
+- [`insertAt`](#insertat)
 - [`none`](#none)
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
@@ -409,6 +410,14 @@ collect()->ifEmpty(function(Collection $collection) { // empty collection so thi
 collect([1, 2, 3])->ifEmpty(function(Collection $collection) { // non-empty collection so this won't get called
    echo 'Hello';
 });
+```
+
+### `insertAt`
+
+Inserts an item at a given index and returns the updated Collection instance.
+
+```php
+collect(['zero', 'two', 'three'])->insertAt(1, 'one')); // Collection contains ['zero', 'one', 'two', 'three']
 ```
 
 ### `none`
