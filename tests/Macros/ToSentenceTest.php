@@ -16,7 +16,7 @@ class ToSentenceTest extends TestCase
     /** @test */
     public function it_can_create_a_sentence_from_empty_collection()
     {
-        $data = new Collection;
+        $data = new Collection();
 
         $this->assertEquals('', $data->toSentence());
     }
