@@ -56,6 +56,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'tenth' => \Spatie\CollectionMacros\Macros\Tenth::class,
             'third' => \Spatie\CollectionMacros\Macros\Third::class,
             'toPairs' => \Spatie\CollectionMacros\Macros\ToPairs::class,
+            'toSentence' => \Spatie\CollectionMacros\Macros\ToSentence::class,
             'transpose' => \Spatie\CollectionMacros\Macros\Transpose::class,
             'try' => \Spatie\CollectionMacros\Macros\TryCatch::class,
             'validate' => \Spatie\CollectionMacros\Macros\Validate::class,
