@@ -20,11 +20,12 @@ class InsertAt
     public function __invoke()
     {
         return function (int $index, $item, $key = null): Collection {
-                $after = $this->splice($index);
-                $this->items = isset($key)
+            $after = $this->splice($index);
+            $this->items = isset($key)
                     ? $this->put($key, $item)->merge($after)->toArray()
                     : $this->push($item)->merge($after)->toArray();
-                return $this;
+
+            return $this;
         };
     }
 }

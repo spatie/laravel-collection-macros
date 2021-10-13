@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.5.0 - 2021-10-05
+
+- add `insertAt` macro (#209)
+
 ## 7.4.0 - 2021-09-07
 
 - add `pluckMany` (#207)
