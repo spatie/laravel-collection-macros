@@ -56,7 +56,11 @@ The package will automatically register itself.
 - [`head`](#head)
 - [`ifAny`](#ifany)
 - [`ifEmpty`](#ifempty)
+- [`insertAfter`](#insertafter)
+- [`insertAfterKey`](#insertafterkey)
 - [`insertAt`](#insertat)
+- [`insertBefore`](#insertbefore)
+- [`insertBeforeKey`](#insertbeforekey)
 - [`none`](#none)
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
@@ -412,6 +416,32 @@ collect([1, 2, 3])->ifEmpty(function(Collection $collection) { // non-empty coll
 });
 ```
 
+### `insertAfter`
+
+Inserts an item after the first occurrence of a given item and returns the updated Collection instance.
+Optionally a key can be given.
+
+```php
+collect(['zero', 'two', 'three'])->insertAfter('zero', 'one');
+// Collection contains ['zero', 'one', 'two', 'three']
+
+collect(['zero' => 0, 'two' => 2, 'three' => 3]->insertAfter(0, 5, 'five');
+// Collection contains ['zero' => 0, 'five' => 5, 'two' => 2, 'three' => 3]
+```
+
+### `insertAfterKey`
+
+Inserts an item after a given key and returns the updated Collection instance.
+Optionally a key for the new item can be given.
+
+```php
+collect(['zero', 'two', 'three'])->insertAfterKey(0, 'one');
+// Collection contains ['zero', 'one', 'two', 'three']
+
+collect(['zero' => 0, 'two' => 2, 'three' => 3]->insertAfterKey('zero', 5, 'five');
+// Collection contains ['zero' => 0, 'five' => 5, 'two' => 2, 'three' => 3]
+```
+
 ### `insertAt`
 
 Inserts an item at a given index and returns the updated Collection instance. Optionally a key can be given.
@@ -421,6 +451,32 @@ collect(['zero', 'two', 'three'])->insertAt(1, 'one');
 // Collection contains ['zero', 'one', 'two', 'three']
 
 collect(['zero' => 0, 'two' => 2, 'three' => 3]->insertAt(1, 5, 'five');
+// Collection contains ['zero' => 0, 'five' => 5, 'two' => 2, 'three' => 3]
+```
+
+### `insertBefore`
+
+Inserts an item before the first occurrence of a given item and returns the updated Collection instance.
+Optionally a key can be given.
+
+```php
+collect(['zero', 'two', 'three'])->insertBefore('two', 'one');
+// Collection contains ['zero', 'one', 'two', 'three']
+
+collect(['zero' => 0, 'two' => 2, 'three' => 3]->insertBefore(2, 5, 'five');
+// Collection contains ['zero' => 0, 'five' => 5, 'two' => 2, 'three' => 3]
+```
+
+### `insertBeforeKey`
+
+Inserts an item before a given key and returns the updated Collection instance.
+Optionally a key for the new item can be given.
+
+```php
+collect(['zero', 'two', 'three'])->insertBeforeKey(1, 'one');
+// Collection contains ['zero', 'one', 'two', 'three']
+
+collect(['zero' => 0, 'two' => 2, 'three' => 3]->insertBeforeKey('two', 5, 'five');
 // Collection contains ['zero' => 0, 'five' => 5, 'two' => 2, 'three' => 3]
 ```
 
