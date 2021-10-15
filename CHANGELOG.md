@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.6.0 - 2021-10-15
+
+- Fix docblock indentation by @dwightwatson in https://github.com/spatie/laravel-collection-macros/pull/211
+- Add before and after macros by @shugyosha89 in https://github.com/spatie/laravel-collection-macros/pull/213
+- Using slice to get the nth element by @mateusjunges in https://github.com/spatie/laravel-collection-macros/pull/214
+
 ## 7.5.0 - 2021-10-05
 
 - add `insertAt` macro (#209)
