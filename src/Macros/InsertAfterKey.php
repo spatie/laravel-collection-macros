@@ -21,6 +21,7 @@ class InsertAfterKey
     {
         return function ($afterKey, $item, $key = null): Collection {
             $index = array_search($afterKey, array_keys($this->items));
+
             return $this->insertAt($index + 1, $item, $key);
         };
     }

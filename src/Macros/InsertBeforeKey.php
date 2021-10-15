@@ -21,6 +21,7 @@ class InsertBeforeKey
     {
         return function ($beforeKey, $item, $key = null): Collection {
             $index = array_search($beforeKey, array_keys($this->items));
+
             return $this->insertAt($index, $item, $key);
         };
     }

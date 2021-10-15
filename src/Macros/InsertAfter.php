@@ -21,6 +21,7 @@ class InsertAfter
     {
         return function ($after, $item, $key = null): Collection {
             $afterKey = array_search($after, $this->items);
+
             return $this->insertAfterKey($afterKey, $item, $key);
         };
     }
