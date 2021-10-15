@@ -17,7 +17,7 @@ class GetNth
     public function __invoke()
     {
         return function (int $nth) {
-            return $this->skip($nth - 1)->first();
+            return $this->slice($nth - 1, 1)->first();
         };
     }
 }
