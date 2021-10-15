@@ -21,9 +21,9 @@ class At
          *
          * @param mixed $index
          *
- * @mixin \Illuminate\Support\Collection
- *
- * @return mixed
+         * @mixin \Illuminate\Support\Collection
+         *
+         * @return mixed
          */
         return function ($index) {
             return $this->slice($index, 1)->first();
