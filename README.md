@@ -404,8 +404,8 @@ When `$if` returns a truthy value, then `$then` will be returned, otherwise `$el
 Here are some examples:
 
 ```php
-collect()->if(true, then: true, else: false) // returns true
-collect()->if(false, then: true, else: false) // returns false
+collect()->if(true, then: true, else: false); // returns true
+collect()->if(false, then: true, else: false); // returns false
 ```
 
 When a closure is passed to `$if`, `$then` or `$else`, the entire collection will be passed as an argument to that closure.
