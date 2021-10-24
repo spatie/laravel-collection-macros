@@ -35,6 +35,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'glob' => \Spatie\CollectionMacros\Macros\Glob::class,
             'groupByModel' => \Spatie\CollectionMacros\Macros\GroupByModel::class,
             'head' => \Spatie\CollectionMacros\Macros\Head::class,
+            'if' => \Spatie\CollectionMacros\Macros\IfMacro::class,
             'ifAny' => \Spatie\CollectionMacros\Macros\IfAny::class,
             'ifEmpty' => \Spatie\CollectionMacros\Macros\IfEmpty::class,
             'insertAfter' => \Spatie\CollectionMacros\Macros\InsertAfter::class,

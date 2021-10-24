@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.7.0 - 2021-10-24
+
+- add `if` macro
+
 ## 7.6.0 - 2021-10-15
 
 - Fix docblock indentation by @dwightwatson in https://github.com/spatie/laravel-collection-macros/pull/211
