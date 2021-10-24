@@ -54,6 +54,7 @@ The package will automatically register itself.
 - [`glob`](#glob)
 - [`groupByModel`](#groupbymodel)
 - [`head`](#head)
+- [`if`](#if)
 - [`ifAny`](#ifany)
 - [`ifEmpty`](#ifempty)
 - [`insertAfter`](#insertafter)
@@ -386,6 +387,47 @@ $collection->head(); // return 1
 $collection = collect([]);
 
 $collection->head(); // return null
+```
+
+### `if`
+
+The `if` macro can help  branch collection chains. This is the signature of this macro: 
+
+```php
+if(mixed $if, mixed $then = null, mixed $else = null): mixed
+```
+
+`$if`, `$then` and `$else` can be any type. If a closure is passed to any of these parameters, then that closure will be executed and the macro will use its results.
+
+When `$if` returns a truthy value, then `$then` will be returned, otherwise `$else` will be returned.
+
+Here are some examples:
+
+```php
+collect()->if(true, then: true, else: false) // returns true
+collect()->if(false, then: true, else: false) // returns false
+```
+
+When a closure is passed to `$if`, `$then` or `$else`, the entire collection will be passed as an argument to that closure.
+
+```php
+// the `then` closure will be executed
+// the first element of the returned collection now contains "THIS IS THE VALUE"
+$collection = collect(['this is a value'])
+    ->if(
+        fn(Collection $collection) => $collection->contains('this is a value'),
+        then: fn(Collection $collection) => $collection->map(fn(string $item) => strtoupper($item)),
+        else: fn(Collection $collection) => $collection->map(fn(string $item) => Str::kebab($item))
+    );
+
+// the `else` closure will be executed
+// the first element of the returned collection now contains "this-is-another-value"
+$collection = collect(['this is another value'])
+    ->if(
+        fn(Collection $collection) => $collection->contains('this is a value'),
+        then: fn(Collection $collection) => $collection->map(fn(string $item) => strtoupper($item)),
+        else: fn(Collection $collection) => $collection->map(fn(string $item) => Str::kebab($item))
+    );
 ```
 
 ### `ifAny`
