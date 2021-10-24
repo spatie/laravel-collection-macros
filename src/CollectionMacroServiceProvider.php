@@ -4,7 +4,6 @@ namespace Spatie\CollectionMacros;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
-use Spatie\CollectionMacros\Macros\IfMacro;
 
 class CollectionMacroServiceProvider extends ServiceProvider
 {

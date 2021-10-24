@@ -24,9 +24,9 @@ class IfTest extends TestCase
     {
         $collection = collect([$sentence])
             ->if(
-                fn(Collection $collection) => $collection->contains('this is the value'),
-                then: fn(Collection $collection) => $collection->map(fn(string $item) => strtoupper($item)),
-                else: fn(Collection $collection) => $collection->map(fn(string $item) => Str::kebab($item))
+                fn (Collection $collection) => $collection->contains('this is the value'),
+                then: fn (Collection $collection) => $collection->map(fn (string $item) => strtoupper($item)),
+                else: fn (Collection $collection) => $collection->map(fn (string $item) => Str::kebab($item))
             );
 
         $this->assertEquals($modifiedSentence, $collection[0]);
@@ -43,10 +43,10 @@ class IfTest extends TestCase
     /** @test */
     public function the_branches_are_optional()
     {
-        $result =  collect(['this is a value'])
+        $result = collect(['this is a value'])
             ->if(
                 false,
-                then: fn(Collection $collection) => 'something',
+                then: fn (Collection $collection) => 'something',
             );
 
         $this->assertNull($result);

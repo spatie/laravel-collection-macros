@@ -6,12 +6,11 @@ class IfMacro
 {
     public function __invoke()
     {
-        return function(
+        return function (
             mixed $if,
             mixed $then = null,
             mixed $else = null,
-        ):
-        mixed {
+        ): mixed {
             return value($if, $this)
                 ? value($then, $this)
                 : value($else, $this);
