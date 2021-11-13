@@ -51,6 +51,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'pluckToArray' => \Spatie\CollectionMacros\Macros\PluckToArray::class,
             'prioritize' => \Spatie\CollectionMacros\Macros\Prioritize::class,
             'rotate' => \Spatie\CollectionMacros\Macros\Rotate::class,
+            'recursive' => \Spatie\CollectionMacros\Macros\Recursive::class,
             'second' => \Spatie\CollectionMacros\Macros\Second::class,
             'sectionBy' => \Spatie\CollectionMacros\Macros\SectionBy::class,
             'seventh' => \Spatie\CollectionMacros\Macros\Seventh::class,
