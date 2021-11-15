@@ -68,6 +68,7 @@ The package will automatically register itself.
 - [`pluckMany`](#pluckmany)
 - [`pluckToArray`](#plucktoarray)
 - [`prioritize`](#prioritize)
+- [`recursive`](#recursive)
 - [`rotate`](#rotate)
 - [`sectionBy`](#sectionby)
 - [`simplePaginate`](#simplepaginate)
@@ -642,6 +643,20 @@ $collection
    })
    ->pluck('id')
    ->toArray(); // returns [2, 1, 3]
+```
+
+### `recursive`
+
+Convert an array and its children to collection using recursion.
+
+```php
+collect([
+  'item' => [
+     'children' => []
+  ]   
+])->recursive();
+
+// subsequent arrays are now collections
 ```
 
 ### `rotate`
