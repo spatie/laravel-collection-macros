@@ -25,8 +25,8 @@ class GetDeeplyTest extends TestCase
             'foo' => [
                 'bar' => [
                     'baz' => 100,
-                ]
-            ]
+                ],
+            ],
         ]);
 
         $this->assertSame(
