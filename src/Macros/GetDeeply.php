@@ -5,7 +5,7 @@ namespace Spatie\CollectionMacros\Macros;
 use Illuminate\Support\Arr;
 
 /***
- * Get the previous item from the collection.
+ * Get an item from the collection with multidimensional data using "dot" notation.
  *
  * @param int $nth
  * @param mixed $fallback
