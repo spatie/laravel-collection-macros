@@ -7,8 +7,8 @@ use Illuminate\Support\Arr;
 /***
  * Get an item from the collection with multidimensional data using "dot" notation.
  *
- * @param int $nth
- * @param mixed $fallback
+ * @param mixed $key
+ * @param mixed $default
  *
  * @mixin \Illuminate\Support\Collection
  *
