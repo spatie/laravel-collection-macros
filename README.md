@@ -51,6 +51,7 @@ The package will automatically register itself.
 - [`firstOrFail`](#firstorfail)
 - [`firstOrPush`](#firstorpush)
 - [`fromPairs`](#frompairs)
+- [`getDeeply`](#getdeeply)
 - [`glob`](#glob)
 - [`groupByModel`](#groupbymodel)
 - [`head`](#head)
@@ -351,6 +352,23 @@ Transform a collection into an associative array form collection item.
 $collection = collect([['a', 'b'], ['c', 'd'], ['e', 'f']])->fromPairs();
 
 $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
+```
+
+### `getDeeply`
+
+Returns an item from the collection with multidimensional data using "dot" notation.
+Works the same way as native Collection's `pull` method, but without removing an item from the collection.
+
+```php
+$collection = new Collection([
+    'foo' => [
+        'bar' => [
+            'baz' => 100,
+        ]
+    ]
+]);
+
+$collection->getDeeply('foo.bar.baz') // 100
 ```
 
 ### `glob`
