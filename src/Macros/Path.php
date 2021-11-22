@@ -14,7 +14,7 @@ use Illuminate\Support\Arr;
  *
  * @return mixed
  */
-class GetDeeply
+class Path
 {
     public function __invoke()
     {

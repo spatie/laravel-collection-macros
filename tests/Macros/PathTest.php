@@ -5,7 +5,7 @@ namespace Spatie\CollectionMacros\Test\Macros;
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Test\TestCase;
 
-class GetDeeplyTest extends TestCase
+class PathTest extends TestCase
 {
     /** @test */
     public function it_retrieves_item_from_collection()
@@ -14,7 +14,7 @@ class GetDeeplyTest extends TestCase
 
         $this->assertSame(
             'foo',
-            $collection->getDeeply(0)
+            $collection->path(0)
         );
     }
 
@@ -31,7 +31,7 @@ class GetDeeplyTest extends TestCase
 
         $this->assertSame(
             100,
-            $collection->getDeeply('foo.bar.baz')
+            $collection->path('foo.bar.baz')
         );
     }
 
@@ -40,7 +40,7 @@ class GetDeeplyTest extends TestCase
     {
         $collection = new Collection(['foo', 'bar']);
 
-        $collection->getDeeply(0);
+        $collection->path(0);
 
         $this->assertEquals(
             [
@@ -58,7 +58,7 @@ class GetDeeplyTest extends TestCase
 
         $this->assertSame(
             'foo',
-            $collection->getDeeply(0, 'foo')
+            $collection->path(0, 'foo')
         );
     }
 }

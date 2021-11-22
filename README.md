@@ -51,7 +51,6 @@ The package will automatically register itself.
 - [`firstOrFail`](#firstorfail)
 - [`firstOrPush`](#firstorpush)
 - [`fromPairs`](#frompairs)
-- [`getDeeply`](#getdeeply)
 - [`glob`](#glob)
 - [`groupByModel`](#groupbymodel)
 - [`head`](#head)
@@ -66,6 +65,7 @@ The package will automatically register itself.
 - [`none`](#none)
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
+- [`path`](#path)
 - [`pluckMany`](#pluckmany)
 - [`pluckToArray`](#plucktoarray)
 - [`prioritize`](#prioritize)
@@ -354,23 +354,6 @@ $collection = collect([['a', 'b'], ['c', 'd'], ['e', 'f']])->fromPairs();
 $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
 ```
 
-### `getDeeply`
-
-Returns an item from the collection with multidimensional data using "dot" notation.
-Works the same way as native Collection's `pull` method, but without removing an item from the collection.
-
-```php
-$collection = new Collection([
-    'foo' => [
-        'bar' => [
-            'baz' => 100,
-        ]
-    ]
-]);
-
-$collection->getDeeply('foo.bar.baz') // 100
-```
-
 ### `glob`
 
 Returns a collection of a `glob()` result.
@@ -610,6 +593,23 @@ $pageSources = collect($urls)->parallelMap(function($url) {
 ```
 
 This helps to reduce the memory overhead, as the default worker pool limit is `32` (as defined in `amphp/parallel`). Using fewer worker threads can significantly reduce memory and processing overhead, in many cases. Benchmark and customise the worker thread limit to suit your particular use-case.
+
+### `path`
+
+Returns an item from the collection with multidimensional data using "dot" notation.
+Works the same way as native Collection's `pull` method, but without removing an item from the collection.
+
+```php
+$collection = new Collection([
+    'foo' => [
+        'bar' => [
+            'baz' => 'value',
+        ]
+    ]
+]);
+
+$collection->path('foo.bar.baz') // 'value'
+```
 
 ### `pluckMany`
 
