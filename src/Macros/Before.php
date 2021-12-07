@@ -2,7 +2,7 @@
 
 namespace Spatie\CollectionMacros\Macros;
 
-/***
+/**
  * Get the previous item from the collection.
  *
  * @param mixed $currentItem
