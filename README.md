@@ -207,7 +207,7 @@ Retrieve item at the nth item.
 ```php
 $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
-$data->getNth(); // 11
+$data->getNth(11); // 11
 ```
 
 ### `before`
