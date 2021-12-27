@@ -72,6 +72,7 @@ The package will automatically register itself.
 - [`recursive`](#recursive)
 - [`rotate`](#rotate)
 - [`sectionBy`](#sectionby)
+- [`set`](#set)
 - [`simplePaginate`](#simplepaginate)
 - [`sliceBefore`](#slicebefore)
 - [`tail`](#tail)
@@ -845,6 +846,24 @@ Create a new collection with the specified amount of items.
 ```php
 Collection::withSize(1)->toArray(); // return [1];
 Collection::withSize(5)->toArray(); // return [1,2,3,4,5];
+```
+
+### `set`
+
+The Collection::set method sets a value within a deeply nested array using "dot" notation:
+
+```php
+$collection = Collection([
+    'user' => [
+        'name' => 'taylor',
+    ]
+]);
+
+// ['user' => ['name' => 'taylor']];
+
+$collection->set('user.name', 'dayle');
+
+// ['user' => ['name' => 'dayle']];
 ```
 
 ## Changelog

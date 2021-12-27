@@ -67,6 +67,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'try' => \Spatie\CollectionMacros\Macros\TryCatch::class,
             'validate' => \Spatie\CollectionMacros\Macros\Validate::class,
             'withSize' => \Spatie\CollectionMacros\Macros\WithSize::class,
+            'set' => \Spatie\CollectionMacros\Macros\Set::class,
         ];
     }
 }
