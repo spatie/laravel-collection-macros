@@ -6,6 +6,8 @@ use Exception;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
+use ReflectionClass;
+use ReflectionProperty;
 use Spatie\CollectionMacros\Exceptions\CollectionItemNotSetable;
 
 class Set
@@ -14,11 +16,11 @@ class Set
     {
         $instance = $this;
 
-        return function ($key, $value, $items = null) use ($defaultItems, $instance) {
+        return function ($key, $value, $items = null, $depth = 0) use ($defaultItems, $instance) {
 
             $items ??= $defaultItems ?? $this->items;
 
-            $this->items = $instance->run($key, $value, $items);
+            $this->items = $instance->run($key, $value, $items, $depth);
 
             return $this;
         };
@@ -27,12 +29,11 @@ class Set
     /**
      * @throws CollectionItemNotSetable
      */
-    public function run($key, $value, $items): array
+    public function run($key, $value, $items, $depth = 0): array
     {
         $instance = $this;
 
         $path = explode('.', $key);
-        $breadcrumb = [];
 
         $parts = count($path);
 
@@ -44,17 +45,10 @@ class Set
         }
 
         foreach ($path as $pathKey => $pathItem) {
-            $breadcrumb[] = $pathItem;
-
+            
             unset($path[$pathKey]);
 
             if (! $item ??= $items[$pathItem]) {
-                return $items;
-            }
-
-            if (count($path) === 1) {
-                Arr::set($items, $key, $value);
-
                 return $items;
             }
 
@@ -83,10 +77,10 @@ class Set
                     }
 
                     if ($dataValue instanceof Arrayable) {
-
                         $result = $instance($dataValue->toArray())(
-                            implode('.', $currentPath),
-                            $value
+                            key: implode('.', $currentPath),
+                            value: $value,
+                            depth: $depth + 1,
                         );
 
                         foreach ($result->items as $resultKey => $resultValue) {
@@ -95,6 +89,32 @@ class Set
 
                         break;
                     }
+                }
+
+                return $items;
+            }
+
+            if ($item instanceof \StdClass
+                || is_object($item)
+            ) {
+                // Retrieve the StdClass attributes
+                $values = [];
+                foreach ($item as $itemKey => $itemValue) {
+                    $values[$itemKey] = $itemValue;
+                }
+
+                $result = $instance($values)(
+                    key: implode('.', $path),
+                    value: $value,
+                    depth: $depth + 1,
+                );
+
+                foreach ($result->items as $resultKey => $resultValue) {
+                    $item->$resultKey = $resultValue;
+                }
+
+                if ($depth === 1) {
+                    $items[$pathItem] = $item;
                 }
 
                 return $items;

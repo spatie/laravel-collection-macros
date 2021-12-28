@@ -866,6 +866,30 @@ $collection->set('user.name', 'dayle');
 // ['user' => ['name' => 'dayle']];
 ```
 
+This also works for models
+```php
+$collection = Collection([
+    'user' => new User([
+        'name' => 'taylor',
+    ])
+]);
+
+$collection->set('user.name', 'dayle');
+```
+
+And also for relationships in models
+```php
+$collection = Collection([
+    'user' => new User([
+        'address' => new Address([
+            'street' => 'lane A',        
+        ]),
+    ]),
+]);
+
+$collection->set('user.address.street', 'lane B');
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.

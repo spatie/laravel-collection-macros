@@ -64,7 +64,7 @@ class SetTest extends TestCase
     }
 
     /** @test */
-    public function it_cannot_set_values_recursively_in_dot_notation_with_not_arrayable_object()
+    public function it_can_set_values_recursively_in_dot_notation_with_std_class()
     {
         $user1 = new \StdClass();
         $user1->user = [
@@ -72,9 +72,33 @@ class SetTest extends TestCase
             'email' => 'foo'
         ];
 
-        $this->expectException(CollectionItemNotSetable::class);
+        $data = new Collection(['test' => $user1]);
+        $data = $data->set('test.user.name', 'dayle');
+
+        $stdClass = clone $user1;
+        $stdClass->user['name'] = 'dayle';
+
+        $this->assertEquals(['test' => $stdClass], $data->toArray());
+    }
+
+    /** @test */
+    public function it_can_set_values_recursively_in_dot_notation_with_class_object()
+    {
+        $user1 = new Class(user: [
+            'name' => 'taylor',
+            'email' => 'foo'
+        ]) {
+            public function __construct(public $user)
+            {
+            }
+        };
 
         $data = new Collection(['test' => $user1]);
-        $data->set('test.user.name', 'dayle');
+        $data = $data->set('test.user.name', 'dayle');
+
+        $classObject = clone $user1;
+        $classObject->user['name'] = 'dayle';
+
+        $this->assertEquals(['test' => $classObject], $data->toArray());
     }
 }
