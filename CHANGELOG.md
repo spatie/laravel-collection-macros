@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.10.0 - 2022-01-13
+
+- support Laravel 9
+
 ## 7.9.0 - 2021-11-22
 
 ## What's Changed
