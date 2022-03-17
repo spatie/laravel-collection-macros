@@ -17,8 +17,8 @@ class WeightedRandom extends TestCase
         ]);
 
         $mostPopularValue = Collection::range(0, 1000)
-            ->map(function() use ($items) {
-                return $items->weightedRandom(function(array $item) {
+            ->map(function () use ($items) {
+                return $items->weightedRandom(function (array $item) {
                     return $item['weight'];
                 });
             })
@@ -42,7 +42,7 @@ class WeightedRandom extends TestCase
             ['value' => 'c', 'weight' => 0],
         ]);
 
-        $pickedItem = $items->weightedRandom(fn(array $item) => $item['weight']);
+        $pickedItem = $items->weightedRandom(fn (array $item) => $item['weight']);
 
         $this->assertEquals('c', $pickedItem['value']);
     }
@@ -56,7 +56,7 @@ class WeightedRandom extends TestCase
             ['value' => 'c', 'weight' => 0],
         ]);
 
-        $this->assertIsArray($items->weightedRandom(fn(array $item) => $item['weight']));
+        $this->assertIsArray($items->weightedRandom(fn (array $item) => $item['weight']));
     }
 
     /** @test */
