@@ -844,7 +844,7 @@ collect(['sebastian@spatie.be', 'freek@spatie.be'])->validate('email'); // retur
 
 ### `weightedRandom`
 
-Returns a random item by a weight. In this example, the item with `a` has the most change to get picked, and the item with `c` the least.
+Returns a random item by a weight. In this example, the item with `a` has the most chance to get picked, and the item with `c` the least.
 
 ```php
 // pass the field name that should be used as a weight
@@ -859,8 +859,6 @@ $randomItem = collect([
 Alternatively, you can pass a callable to get the weight.
 
 ```php
-// pass the field name that should be used as a weight
-
 $randomItem = collect([
     ['value' => 'a', 'weight' => 30],
     ['value' => 'b', 'weight' => 20],
