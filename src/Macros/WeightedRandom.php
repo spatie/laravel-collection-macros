@@ -10,7 +10,7 @@ class WeightedRandom
             if (is_string($weightAttribute)) {
                 $attributeName = $weightAttribute;
 
-                $weightAttribute = function($item) use ($attributeName) {
+                $weightAttribute = function ($item) use ($attributeName) {
                     return $item[$attributeName];
                 };
             }
@@ -28,7 +28,7 @@ class WeightedRandom
                         'item' => $item,
                     ];
                 })
-                ->filter(function(array $weightedItem) {
+                ->filter(function (array $weightedItem) {
                     return $weightedItem['weight'] > 0;
                 });
 
