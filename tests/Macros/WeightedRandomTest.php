@@ -5,7 +5,7 @@ namespace Spatie\CollectionMacros\Test\Macros;
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Test\TestCase;
 
-class WeightedRandom extends TestCase
+class WeightedRandomTest extends TestCase
 {
     /** @test */
     public function it_will_probably_return_the_heaviest_item_most()
