@@ -11,6 +11,8 @@ abstract class TestCase extends BaseTestCase
     protected function setUp(): void
     {
         $this->createDummyprovider()->register();
+
+        ray()->newScreen($this->getName());
     }
 
     protected function createDummyprovider(): CollectionMacroServiceProvider

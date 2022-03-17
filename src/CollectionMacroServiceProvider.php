@@ -66,6 +66,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'transpose' => \Spatie\CollectionMacros\Macros\Transpose::class,
             'try' => \Spatie\CollectionMacros\Macros\TryCatch::class,
             'validate' => \Spatie\CollectionMacros\Macros\Validate::class,
+            'weightedRandom' => \Spatie\CollectionMacros\Macros\WeightedRandom::class,
             'withSize' => \Spatie\CollectionMacros\Macros\WithSize::class,
         ];
     }
