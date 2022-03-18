@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.11.0 - 2022-03-18
+
+## What's Changed
+
+- Add `weightedRandom` macro by @freekmurze in https://github.com/spatie/laravel-collection-macros/pull/224
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.10.0...7.11.0
+
 ## 7.10.0 - 2022-01-13
 
 - support Laravel 9
