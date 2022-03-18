@@ -82,6 +82,7 @@ The package will automatically register itself.
 - [`toPairs`](#topairs)
 - [`transpose`](#transpose)
 - [`validate`](#validate)
+- [`weightedRandom`](#weightedRandom)
 - [`withSize`](#withsize)
 
 ### `after`
@@ -840,6 +841,34 @@ collect(['foo', 'foo'])->validate(function ($item) {
 collect(['sebastian@spatie.be', 'bla'])->validate('email'); // returns false
 collect(['sebastian@spatie.be', 'freek@spatie.be'])->validate('email'); // returns true
 ```
+
+### `weightedRandom`
+
+Returns a random item by a weight. In this example, the item with `a` has the most chance to get picked, and the item with `c` the least.
+
+```php
+// pass the field name that should be used as a weight
+
+$randomItem = collect([
+    ['value' => 'a', 'weight' => 30],
+    ['value' => 'b', 'weight' => 20],
+    ['value' => 'c', 'weight' => 10],
+])->weightedRandom('weight');
+```
+
+Alternatively, you can pass a callable to get the weight.
+
+```php
+$randomItem = collect([
+    ['value' => 'a', 'weight' => 30],
+    ['value' => 'b', 'weight' => 20],
+    ['value' => 'c', 'weight' => 10],
+])->weightedRandom(function(array $item) {
+   return $item['weight'];
+});
+```
+
+
 
 ### `withSize`
 
