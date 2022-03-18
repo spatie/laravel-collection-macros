@@ -11,7 +11,7 @@ class WeightedRandom
                 $attributeName = $weightAttribute;
 
                 $weightAttribute = function ($item) use ($attributeName) {
-                    return $item[$attributeName];
+                    return data_get($attributeName, $item);
                 };
             }
 
