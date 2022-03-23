@@ -17,7 +17,7 @@ class Recursive
     {
         return function (): Collection {
             return $this->map(function ($value) {
-                if (is_array($value) || is_object($value)) {
+                if (!($value instanceof \Closure) && (is_array($value) || is_object($value))) {
                     return collect($value)->recursive();
                 }
 
