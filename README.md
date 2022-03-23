@@ -56,6 +56,7 @@ The package will automatically register itself.
 - [`fromPairs`](#frompairs)
 - [`glob`](#glob)
 - [`groupByModel`](#groupbymodel)
+- [`hasNotNull`](#hasnotnull)
 - [`head`](#head)
 - [`if`](#if)
 - [`ifAny`](#ifany)
@@ -380,6 +381,17 @@ $posts->groupByModel('category');
 ```
 
 Full signature: `groupByModel($callback, $preserveKeys, $modelKey, $itemsKey)`
+
+### `hasNotNull`
+
+Determines if a given key exists in the Collection and its value is not null. (Uses the `has` and `get` collection methods.)
+
+```php
+collect(['foo'])->hasNotNull('foo'); // returns false
+collect(['foo' => null])->hasNotNull('foo'); // returns false
+
+collect(['foo' => 'bar'])->hasNotNull('foo'); // returns true
+```
 
 ### `head`
 
