@@ -11,8 +11,8 @@ class HasNotNullTest extends TestCase
     /** @test */
     public function it_can_check_if_a_key_exists_and_is_not_null()
     {
-        $this->assertFalse(Collection::make(['foo'])->hasNotNull());
-        $this->assertFalse(Collection::make(['foo' => null])->hasNotNull());
-        $this->assertTrue(Collection::make(['foo' => 'bar'])->hasNotNull());
+        $this->assertFalse(Collection::make(['foo'])->hasNotNull('foo'));
+        $this->assertFalse(Collection::make(['foo' => null])->hasNotNull('foo'));
+        $this->assertTrue(Collection::make(['foo' => 'bar'])->hasNotNull('foo'));
     }
 }
