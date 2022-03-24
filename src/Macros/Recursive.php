@@ -3,6 +3,7 @@
 namespace Spatie\CollectionMacros\Macros;
 
 use Illuminate\Support\Collection;
+use Closure;
 
 /**
  * Recursivly convert arrays and objects within a multi-dimensional array to Collections
@@ -17,7 +18,11 @@ class Recursive
     {
         return function (): Collection {
             return $this->map(function ($value) {
-                if (!($value instanceof \Closure) && (is_array($value) || is_object($value))) {
+                if ($value instanceof Closure) {
+                    return $value;
+                }
+
+                if (is_array($value) || is_object($value)) {
                     return collect($value)->recursive();
                 }
 

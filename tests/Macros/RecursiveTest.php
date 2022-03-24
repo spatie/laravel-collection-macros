@@ -4,6 +4,7 @@ namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Test\TestCase;
+use Closure;
 
 class RecursiveTest extends TestCase
 {
@@ -44,7 +45,7 @@ class RecursiveTest extends TestCase
             ->recursive();
 
         $this->assertInstanceOf(Collection::class, $collection['child']);
-        $this->assertInstanceOf(\Closure::class, $collection['child']['anotherchild']);
+        $this->assertInstanceOf(Closure::class, $collection['child']['anotherchild']);
         $this->assertNotInstanceOf(Collection::class, $collection['child']['anotherchild']);
     }
 }
