@@ -22,13 +22,13 @@ class Nullify
             return $this->map(
                 fn ($value) => blank($value) ? null : (function () use ($value) {
                     if (is_iterable($value)) {
-                        foreach ($value as $key => $nestedValue) {
-                            if (blank($nestedValue)) {
+                        foreach ($value as $key => $nested) {
+                            if (blank($nested)) {
                                 $value[$key] = null;
                             }
 
-                            if ($nestedValue instanceof Collection) {
-                                $value[$key] = $nestedValue->nullify();
+                            if ($nested instanceof Collection) {
+                                $value[$key] = $nested->nullify();
                             }
                         }
                     }
