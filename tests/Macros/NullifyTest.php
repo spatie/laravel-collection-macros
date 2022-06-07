@@ -13,19 +13,19 @@ class NullifyTest extends TestCase
     public function it_can_nullify_values_in_collection()
     {
         $result = Collection::make([
-            'first_name'  => null,
-            'last_name'   => '',
-            'full_name'   => collect(),
-            'nick_name'   => [],
-            'countable'   => new SplObjectStorage,
+            'null'        => null,
+            'empty'       => '',
+            'array'       => [],
+            'collection'  => collect(),
+            'countable'   => new \SplObjectStorage,
             'correct_one' => 'Correct one!',
         ])->nullify()->toArray();
 
         $this->assertSame([
-            'first_name'  => null,
-            'last_name'   => null,
-            'full_name'   => null,
-            'nick_name'   => null,
+            'null'        => null,
+            'empty'       => null,
+            'array'       => null,
+            'collection'  => null,
             'countable'   => null,
             'correct_one' => 'Correct one!',
         ], $result);
