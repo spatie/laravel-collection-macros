@@ -2,6 +2,7 @@
 
 namespace Spatie\CollectionMacros\Test\Macros;
 
+use ArrayIterator;
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Test\TestCase;
 use SplObjectStorage;
@@ -63,6 +64,26 @@ class NullifyTest extends TestCase
             'full_name'  => ['first_part' => true, 'last_part'  => collect(['additional_part' => null])],
         ]);
 
+        $this->assertEquals($expected, $nullified);
+    }
+
+    /** @test */
+    public function test_array_iterator_behaves_as_expected_when_nullify()
+    {
+        $nullified = Collection::make(['iterator' => new ArrayIterator([1, 2, 3])])->nullify();
+        $expected  = Collection::make(['iterator' => new ArrayIterator([1, 2, 3])]);
+        $this->assertEquals($expected, $nullified);
+
+        $nullified = Collection::make(['iterator' => new ArrayIterator])->nullify();
+        $expected  = Collection::make(['iterator' => null]);
+        $this->assertEquals($expected, $nullified);
+    }
+
+    /** @test */
+    public function test_generators_passes_through_nullify()
+    {
+        $nullified = Collection::make(['generator' => (fn () => yield 0)()])->nullify();
+        $expected  = Collection::make(['generator' => (fn () => yield 0)()]);
         $this->assertEquals($expected, $nullified);
     }
 }
