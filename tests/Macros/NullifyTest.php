@@ -35,10 +35,10 @@ class NullifyTest extends TestCase
     public function it_can_nullify_values_in_collection_with_nested_array_access()
     {
         $result = Collection::make([
-            'test'       => new \SplObjectStorage,
+            'test'       => new SplObjectStorage,
             'first_name' => collect(['first_part' => false, 'last_part' => '']),
             'last_name'  => collect(['first_part' => true, 'last_part' => []]),
-            'full_name'  => collect(['first_part' => new \SplObjectStorage, 'last_part' => collect(['additional_part' => ''])]),
+            'full_name'  => collect(['first_part' => new SplObjectStorage, 'last_part' => collect(['additional_part' => ''])]),
         ])->nullify()->toArray();
 
         $this->assertSame([
