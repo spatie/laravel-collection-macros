@@ -68,6 +68,8 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'validate' => \Spatie\CollectionMacros\Macros\Validate::class,
             'weightedRandom' => \Spatie\CollectionMacros\Macros\WeightedRandom::class,
             'withSize' => \Spatie\CollectionMacros\Macros\WithSize::class,
+            'containsAll' => \Spatie\CollectionMacros\Macros\ContainsAll::class,
+            'containsAny' => \Spatie\CollectionMacros\Macros\ContainsAny::class,
         ];
     }
 }
