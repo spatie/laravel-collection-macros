@@ -576,36 +576,27 @@ collect([
     'last_name'  => collect([
         'parts'  => [],
     ]),
-    'full_name'  => [
+    'full_name'  => collect([
         'parts'  => collect([
             'additional_part' => '',
         ]),
-    ],
-])->nullify();
+    ]),
+])->nullify()->toArray();
 
 // Returns:
-// Illuminate\Support\Collection^ {#936
-//  #items: array:3 [
-//    "first_name" => array:2 [
-//      "parts" => null
-//    ]
-//    "last_name" => Illuminate\Support\Collection^ {#942
-//      #items: array:2 [
-//        "parts" => null
-//      ]
-//      #escapeWhenCastingToString: false
-//    }
-//    "full_name" => array:2 [
-//      "parts" => Illuminate\Support\Collection^ {#941
-//        #items: array:1 [
-//          "additional_part" => null
-//        ]
-//        #escapeWhenCastingToString: false
-//      }
+// array:3 [
+//  "first_name" => array:1 [
+//    "parts" => null
+//  ]
+//  "last_name" => array:1 [
+//    "parts" => null
+//  ]
+//  "full_name" => array:1 [
+//    "parts" => array:1 [
+//      "additional_part" => null
 //    ]
 //  ]
-//  #escapeWhenCastingToString: false
-// }
+// ]
 ```
 
 ### `paginate`
