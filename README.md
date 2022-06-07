@@ -66,6 +66,7 @@ The package will automatically register itself.
 - [`insertBefore`](#insertbefore)
 - [`insertBeforeKey`](#insertbeforekey)
 - [`none`](#none)
+- [`nullify`](#nullify)
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
 - [`path`](#path)
@@ -542,6 +543,66 @@ collect([['name' => 'foo']])->none('name', 'foo'); // returns false
 collect(['name' => 'foo'])->none(function ($key, $value) {
    return $key === 'name' && $value === 'bar';
 }); // returns true
+```
+
+### `nullify`
+
+Checks whether a collection has blank values and sets the values null if so.
+```php
+collect([
+    'first_name'  => null,
+    'last_name'   => '',
+    'full_name'   => collect(),
+    'nick_name'   => [],
+    'correct_one' => 'Correct one!',
+])->nullify()->toArray()
+
+// Returns:
+// array:5 [
+//   'first_name'  => null,
+//   'last_name'   => null,
+//   'full_name'   => null,
+//   'nick_name'   => null,
+//   'correct_one' => 'Correct one!',
+// ]
+
+collect([
+    'first_name' => [
+        'parts'  => '',
+    ],
+    'last_name'  => collect([
+        'parts'  => [],
+    ]),
+    'full_name'  => [
+        'parts'  => collect([
+            'additional_part' => '',
+        ]),
+    ],
+])->nullify()
+
+// Returns:
+// Illuminate\Support\Collection^ {#936
+//  #items: array:3 [
+//    "first_name" => array:2 [
+//      "parts" => null
+//    ]
+//    "last_name" => Illuminate\Support\Collection^ {#942
+//      #items: array:2 [
+//        "parts" => null
+//      ]
+//      #escapeWhenCastingToString: false
+//    }
+//    "full_name" => array:2 [
+//      "parts" => Illuminate\Support\Collection^ {#941
+//        #items: array:1 [
+//          "additional_part" => null
+//        ]
+//        #escapeWhenCastingToString: false
+//      }
+//    ]
+//  ]
+//  #escapeWhenCastingToString: false
+// }
 ```
 
 ### `paginate`
