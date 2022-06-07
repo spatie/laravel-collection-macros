@@ -554,6 +554,7 @@ collect([
     'last_name'   => '',
     'full_name'   => collect(),
     'nick_name'   => [],
+    'countable'   => new \SplObjectStorage,
     'correct_one' => 'Correct one!',
 ])->nullify()->toArray();
 
@@ -563,6 +564,7 @@ collect([
 //   'last_name'   => null,
 //   'full_name'   => null,
 //   'nick_name'   => null,
+//   'countable'   => null,
 //   'correct_one' => 'Correct one!',
 // ]
 
