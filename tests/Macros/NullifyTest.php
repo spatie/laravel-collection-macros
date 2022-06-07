@@ -4,6 +4,7 @@ namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Test\TestCase;
+use SplObjectStorage;
 
 class NullifyTest extends TestCase
 {
@@ -15,6 +16,7 @@ class NullifyTest extends TestCase
             'last_name'   => '',
             'full_name'   => collect(),
             'nick_name'   => [],
+            'countable'   => new SplObjectStorage,
             'correct_one' => 'Correct one!',
         ])->nullify()->toArray();
 
@@ -23,6 +25,7 @@ class NullifyTest extends TestCase
             'last_name'   => null,
             'full_name'   => null,
             'nick_name'   => null,
+            'countable'   => null,
             'correct_one' => 'Correct one!',
         ], $result);
     }
