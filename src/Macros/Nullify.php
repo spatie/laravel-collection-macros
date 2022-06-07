@@ -21,7 +21,7 @@ class Nullify
             return $this->map(
                 fn ($value) => ! blank($value)
                     ? (function () use ($value) {
-                        if (is_array($value) || $value instanceof ArrayAccess) {
+                        if ((is_array($value) || $value instanceof \ArrayAccess) && is_iterable($value)) {
                             foreach ($value as $key => $nestedValue) {
                                 if (blank($nestedValue)) {
                                     $value[$key] = null;
