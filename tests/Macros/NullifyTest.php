@@ -40,7 +40,7 @@ class NullifyTest extends TestCase
             'full_name'  => collect(['first_part' => new \SplObjectStorage, 'last_part' => collect(['additional_part' => ''])]),
         ])->nullify()->toArray();
 
-        $this->assertEquals([
+        $this->assertSame([
             'test'       => null,
             'first_name' => ['first_part' => false, 'last_part' => null],
             'last_name'  => ['first_part' => true, 'last_part' => null],
