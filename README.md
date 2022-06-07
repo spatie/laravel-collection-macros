@@ -555,7 +555,7 @@ collect([
     'full_name'   => collect(),
     'nick_name'   => [],
     'correct_one' => 'Correct one!',
-])->nullify()->toArray()
+])->nullify()->toArray();
 
 // Returns:
 // array:5 [
@@ -578,7 +578,7 @@ collect([
             'additional_part' => '',
         ]),
     ],
-])->nullify()
+])->nullify();
 
 // Returns:
 // Illuminate\Support\Collection^ {#936
