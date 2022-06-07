@@ -45,6 +45,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'insertBeforeKey' => \Spatie\CollectionMacros\Macros\InsertBeforeKey::class,
             'ninth' => \Spatie\CollectionMacros\Macros\Ninth::class,
             'none' => \Spatie\CollectionMacros\Macros\None::class,
+            'nullify' => \Spatie\CollectionMacros\Macros\Nullify::class,
             'paginate' => \Spatie\CollectionMacros\Macros\Paginate::class,
             'parallelMap' => \Spatie\CollectionMacros\Macros\ParallelMap::class,
             'path' => \Spatie\CollectionMacros\Macros\Path::class,
