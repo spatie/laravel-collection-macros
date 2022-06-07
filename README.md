@@ -548,6 +548,7 @@ collect(['name' => 'foo'])->none(function ($key, $value) {
 ### `nullify`
 
 Checks whether a collection has blank values and sets the values null if so.
+
 ```php
 collect([
     'first_name'  => null,
