@@ -22,6 +22,9 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'before' => \Spatie\CollectionMacros\Macros\Before::class,
             'chunkBy' => \Spatie\CollectionMacros\Macros\ChunkBy::class,
             'collectBy' => \Spatie\CollectionMacros\Macros\CollectBy::class,
+            'containsAll' => \Spatie\CollectionMacros\Macros\ContainsAll::class,
+            'containsAny' => \Spatie\CollectionMacros\Macros\ContainsAny::class,
+            'containsAnyNone' => \Spatie\CollectionMacros\Macros\containsAnyNone::class,
             'eachCons' => \Spatie\CollectionMacros\Macros\EachCons::class,
             'eighth' => \Spatie\CollectionMacros\Macros\Eighth::class,
             'extract' => \Spatie\CollectionMacros\Macros\Extract::class,
@@ -68,8 +71,6 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'validate' => \Spatie\CollectionMacros\Macros\Validate::class,
             'weightedRandom' => \Spatie\CollectionMacros\Macros\WeightedRandom::class,
             'withSize' => \Spatie\CollectionMacros\Macros\WithSize::class,
-            'containsAll' => \Spatie\CollectionMacros\Macros\ContainsAll::class,
-            'containsAny' => \Spatie\CollectionMacros\Macros\ContainsAny::class,
         ];
     }
 }

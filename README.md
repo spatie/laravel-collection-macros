@@ -66,6 +66,9 @@ The package will automatically register itself.
 - [`insertBefore`](#insertbefore)
 - [`insertBeforeKey`](#insertbeforekey)
 - [`none`](#none)
+- [`containsAll`](#containsAll)
+- [`containsAny`](#containsAny)
+- [`containsAnyNone`](#containsAnyNone)
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
 - [`path`](#path)
@@ -397,7 +400,7 @@ $collection->head(); // return null
 
 ### `if`
 
-The `if` macro can help  branch collection chains. This is the signature of this macro: 
+The `if` macro can help branch collection chains. This is the signature of this macro: 
 
 ```php
 if(mixed $if, mixed $then = null, mixed $else = null): mixed
@@ -542,6 +545,33 @@ collect([['name' => 'foo']])->none('name', 'foo'); // returns false
 collect(['name' => 'foo'])->none(function ($key, $value) {
    return $key === 'name' && $value === 'bar';
 }); // returns true
+```
+
+### `containsAll`
+
+Checks whether a collection contains all values of the items that are identified.
+
+```php
+collect(['foo', 'bar', 'baz'])->containsAll(['bar', 'foo']); // returns true
+collect(['foo', 'bar'])->containsAll(['bar', 'foo', 'baz']); // returns false
+```
+
+### `containsAny`
+
+Checks whether a collection contains any values of the items that are identified.
+
+```php
+collect(['foo'])->containsAny(['foo', 'baz']); // returns true
+collect(['foo'])->containsAny(['bar', 'baz']); // returns false
+```
+
+### `containsAnyNone`
+
+Checks whether a collection doesn't contains any values of the items that are identified.
+
+```php
+collect(['foo'])->containsAnyNone(['bar', 'baz']); // returns true
+collect(['foo'])->containsAnyNone(['foo', 'baz']); // returns false
 ```
 
 ### `paginate`

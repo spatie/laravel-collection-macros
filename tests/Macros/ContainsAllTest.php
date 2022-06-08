@@ -10,11 +10,11 @@ class ContainsAllTest extends TestCase
     /** @test */
     public function it_contains_all()
     {
-        $c = Collection::make([1, 3, 5]);
+        $collection = Collection::make([1, 3, 5]);
 
-        $this->assertTrue($c->containsAll([1, 3, 5]));
-        $this->assertTrue($c->containsAll(['1', '3', '5']));
-        $this->assertFalse($c->containsAll([2]));
-        $this->assertFalse($c->containsAll(['2']));
+        $this->assertTrue($collection->containsAll([1, 3, 5]));
+        $this->assertTrue($collection->containsAll(['1', '3', '5']));
+        $this->assertFalse($collection->containsAll([2]));
+        $this->assertFalse($collection->containsAll(['2']));
     }
 }
