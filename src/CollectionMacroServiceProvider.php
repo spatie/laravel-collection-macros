@@ -24,7 +24,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'collectBy' => \Spatie\CollectionMacros\Macros\CollectBy::class,
             'containsAll' => \Spatie\CollectionMacros\Macros\ContainsAll::class,
             'containsAny' => \Spatie\CollectionMacros\Macros\ContainsAny::class,
-            'containsAnyNone' => \Spatie\CollectionMacros\Macros\ContainsAnyNone::class,
+            'doesNotContain' => \Spatie\CollectionMacros\Macros\DoesNotContain::class,
             'eachCons' => \Spatie\CollectionMacros\Macros\EachCons::class,
             'eighth' => \Spatie\CollectionMacros\Macros\Eighth::class,
             'extract' => \Spatie\CollectionMacros\Macros\Extract::class,

@@ -16,5 +16,10 @@ class ContainsAllTest extends TestCase
         $this->assertTrue($collection->containsAll(['1', '3', '5']));
         $this->assertFalse($collection->containsAll([2]));
         $this->assertFalse($collection->containsAll(['2']));
+
+        $this->assertTrue($collection->containsAll(1, 3, 5));
+        $this->assertTrue($collection->containsAll('1', '3', '5'));
+        $this->assertFalse($collection->containsAll(2));
+        $this->assertFalse($collection->containsAll('2'));
     }
 }

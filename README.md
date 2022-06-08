@@ -50,7 +50,7 @@ The package will automatically register itself.
 - [`collectBy`](#collectBy)
 - [`containsAll`](#containsAll)
 - [`containsAny`](#containsAny)
-- [`containsAnyNone`](#containsAnyNone)
+- [`doesNotContain`](#doesNotContain)
 - [`eachCons`](#eachcons)
 - [`extract`](#extract)
 - [`filterMap`](#filtermap)
@@ -280,6 +280,42 @@ $collection = collect([
 ]);
 
 $collection->collectBy('baz', ['Nope']); // Collection(['Nope'])
+```
+
+### `containsAll`
+
+Checks whether a collection contains all values of the items that are identified.
+
+```php
+collect(['foo', 'bar', 'baz'])->containsAll('bar', 'foo'); // returns true
+collect(['foo', 'bar'])->containsAll('bar', 'foo', 'baz'); // returns false
+
+collect(['foo', 'bar', 'baz'])->containsAll(['bar', 'foo']); // returns true
+collect(['foo', 'bar'])->containsAll(['bar', 'foo', 'baz']); // returns false
+```
+
+### `containsAny`
+
+Checks whether a collection contains any values of the items that are identified.
+
+```php
+collect(['foo'])->containsAny('foo'); // returns true
+collect(['foo'])->containsAny('bar', 'baz'); // returns false
+
+collect(['foo'])->containsAny(['foo', 'baz']); // returns true
+collect(['foo'])->containsAny(['bar', 'baz']); // returns false
+```
+
+### `doesNotContain`
+
+Checks whether a collection doesn't contains any values of the items that are identified.
+
+```php
+collect(['foo'])->doesNotContain('bar'); // returns true
+collect(['foo'])->doesNotContain('foo', 'baz'); // returns false
+
+collect(['foo'])->doesNotContain(['bar', 'baz']); // returns true
+collect(['foo'])->doesNotContain(['foo', 'baz']); // returns false
 ```
 
 ### `eachCons`
@@ -545,33 +581,6 @@ collect([['name' => 'foo']])->none('name', 'foo'); // returns false
 collect(['name' => 'foo'])->none(function ($key, $value) {
    return $key === 'name' && $value === 'bar';
 }); // returns true
-```
-
-### `containsAll`
-
-Checks whether a collection contains all values of the items that are identified.
-
-```php
-collect(['foo', 'bar', 'baz'])->containsAll(['bar', 'foo']); // returns true
-collect(['foo', 'bar'])->containsAll(['bar', 'foo', 'baz']); // returns false
-```
-
-### `containsAny`
-
-Checks whether a collection contains any values of the items that are identified.
-
-```php
-collect(['foo'])->containsAny(['foo', 'baz']); // returns true
-collect(['foo'])->containsAny(['bar', 'baz']); // returns false
-```
-
-### `containsAnyNone`
-
-Checks whether a collection doesn't contains any values of the items that are identified.
-
-```php
-collect(['foo'])->containsAnyNone(['bar', 'baz']); // returns true
-collect(['foo'])->containsAnyNone(['foo', 'baz']); // returns false
 ```
 
 ### `paginate`

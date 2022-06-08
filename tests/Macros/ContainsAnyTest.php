@@ -14,5 +14,8 @@ class ContainsAnyTest extends TestCase
 
         $this->assertTrue($collection->containsAny([1, 2]));
         $this->assertFalse($collection->containsAny([2, 4]));
+
+        $this->assertTrue($collection->containsAny(1, 2));
+        $this->assertFalse($collection->containsAny(2, 4));
     }
 }
