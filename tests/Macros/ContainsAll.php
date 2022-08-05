@@ -15,8 +15,7 @@ class ContainsAll extends TestCase
     public function it_returns_true_if_the_collection_contains_all_given_items(
         bool $expectedResult,
         array $otherItems
-    )
-    {
+    ) {
         $actualResult = (new Collection(['a', 'b', 'c']))->containsAll($otherItems);
 
         $this->assertEquals($expectedResult, $actualResult);
