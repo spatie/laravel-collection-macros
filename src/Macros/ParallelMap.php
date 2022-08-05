@@ -4,8 +4,10 @@ namespace Spatie\CollectionMacros\Macros;
 
 use Amp\Parallel\Worker\DefaultPool;
 use Amp\Parallel\Worker\Pool;
+
 use function Amp\ParallelFunctions\parallelMap;
 use function Amp\Promise\wait;
+
 use Illuminate\Support\Collection;
 
 /**
