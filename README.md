@@ -48,6 +48,7 @@ The package will automatically register itself.
 - [`catch`](#catch)
 - [`chunkBy`](#chunkby)
 - [`collectBy`](#collectBy)
+- [`containsAtLeastOneOf`](#containsAtLeastOneOf)
 - [`eachCons`](#eachcons)
 - [`extract`](#extract)
 - [`filterMap`](#filtermap)
@@ -279,6 +280,19 @@ $collection = collect([
 $collection->collectBy('baz', ['Nope']); // Collection(['Nope'])
 ```
 
+### `containsAtLeastOneOf`
+
+Will return `true` if one or more of the given values exist in the collection.
+
+```php
+$collection = collect(['a', 'b', 'c']);
+
+$collection->containsAtLeastOneOf(['b', 'c', 'd']); // returns true
+$collection->containsAtLeastOneOf(['c', 'd', 'e']); // returns true
+$collection->containsAtLeastOneOf(['d', 'e', 'f']); // returns false
+$collection->containsAtLeastOneOf([]); // returns false
+```
+``
 ### `eachCons`
 
 Get the following consecutive neighbours in a collection from a given chunk size. If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the original keys.

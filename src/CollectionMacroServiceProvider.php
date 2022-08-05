@@ -22,6 +22,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'before' => \Spatie\CollectionMacros\Macros\Before::class,
             'chunkBy' => \Spatie\CollectionMacros\Macros\ChunkBy::class,
             'collectBy' => \Spatie\CollectionMacros\Macros\CollectBy::class,
+            'containsAtLeastOneOf' => \Spatie\CollectionMacros\Macros\ContainsAtLeastOneOf::class,
             'eachCons' => \Spatie\CollectionMacros\Macros\EachCons::class,
             'eighth' => \Spatie\CollectionMacros\Macros\Eighth::class,
             'extract' => \Spatie\CollectionMacros\Macros\Extract::class,
