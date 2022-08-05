@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.12.0 - 2022-08-05
+
+### What's Changed
+
+- Update .gitattributes by @angeljqv in https://github.com/spatie/laravel-collection-macros/pull/231
+- Added `containsAny` and `containsAll` by @freekmurze and @michaelnabil230
+
+### New Contributors
+
+- @angeljqv made their first contribution in https://github.com/spatie/laravel-collection-macros/pull/231
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.11.0...7.12.0
+
 ## 7.11.0 - 2022-03-18
 
 ## What's Changed

@@ -15,8 +15,7 @@ class ContainsAny extends TestCase
     public function it_returns_true_if_the_collection_contains_at_least_one_of_the_given_items(
         bool $expectedResult,
         array $otherItems
-    )
-    {
+    ) {
         $actualResult = (new Collection(['a', 'b', 'c']))->containsAny($otherItems);
 
         $this->assertEquals($expectedResult, $actualResult);
