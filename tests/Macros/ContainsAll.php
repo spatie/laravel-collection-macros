@@ -5,19 +5,19 @@ namespace Spatie\CollectionMacros\Test\Macros;
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Test\TestCase;
 
-class ContainsAtLeastOneOfTest extends TestCase
+class ContainsAll extends TestCase
 {
     /**
      * @test
      *
      * @dataProvider testCases
      */
-    public function it_returns_true_if_the_collection_contains_at_least_one_of_the_given_items(
+    public function it_returns_true_if_the_collection_contains_all_given_items(
         bool $expectedResult,
         array $otherItems
     )
     {
-        $actualResult = (new Collection(['a', 'b', 'c']))->containsAtLeastOneOf($otherItems);
+        $actualResult = (new Collection(['a', 'b', 'c']))->containsAll($otherItems);
 
         $this->assertEquals($expectedResult, $actualResult);
     }
@@ -26,9 +26,9 @@ class ContainsAtLeastOneOfTest extends TestCase
     {
         return [
             [false, ['d', 'e']],
-            [true, ['c', 'd']],
+            [false, ['c', 'd']],
             [true, ['b', 'c']],
-            [false, []],
+            [true, []],
         ];
     }
 }

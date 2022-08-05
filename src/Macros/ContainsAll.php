@@ -13,14 +13,14 @@ use Illuminate\Support\Collection;
  *
  * @return bool
  */
-class ContainsAtLeastOneOf
+class ContainsAll
 {
     public function __invoke()
     {
-        return function ($otherValues = []): bool {
-            $intersectingItems = array_intersect($this->items, $otherValues);
+        return function ($values = []): bool {
+            $values = (new Collection($values))->unique();
 
-            return count($intersectingItems) > 0;
+            return $this->intersect($values)->count() == $values->count();
         };
     }
 }

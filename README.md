@@ -48,7 +48,8 @@ The package will automatically register itself.
 - [`catch`](#catch)
 - [`chunkBy`](#chunkby)
 - [`collectBy`](#collectBy)
-- [`containsAtLeastOneOf`](#containsAtLeastOneOf)
+- [`containsAny`](#containsAny)
+- [`containsAll`](#containsAll)
 - [`eachCons`](#eachcons)
 - [`extract`](#extract)
 - [`filterMap`](#filtermap)
@@ -280,19 +281,32 @@ $collection = collect([
 $collection->collectBy('baz', ['Nope']); // Collection(['Nope'])
 ```
 
-### `containsAtLeastOneOf`
+### `containsAny`
 
 Will return `true` if one or more of the given values exist in the collection.
 
 ```php
 $collection = collect(['a', 'b', 'c']);
 
-$collection->containsAtLeastOneOf(['b', 'c', 'd']); // returns true
-$collection->containsAtLeastOneOf(['c', 'd', 'e']); // returns true
-$collection->containsAtLeastOneOf(['d', 'e', 'f']); // returns false
-$collection->containsAtLeastOneOf([]); // returns false
+$collection->containsAny(['b', 'c', 'd']); // returns true
+$collection->containsAny(['c', 'd', 'e']); // returns true
+$collection->containsAny(['d', 'e', 'f']); // returns false
+$collection->containsAny([]); // returns false
 ```
-``
+
+### `containsAll`
+
+Will return `true` if all given values exist in the collection.
+
+```php
+$collection = collect(['a', 'b', 'c']);
+
+$collection->containsAll(['b', 'c', 'd']); // returns true
+$collection->containsAll(['c', 'd', 'e']); // returns false
+$collection->containsAll(['d', 'e', 'f']); // returns false
+$collection->containsAll([]); // returns true
+```
+
 ### `eachCons`
 
 Get the following consecutive neighbours in a collection from a given chunk size. If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the original keys.
