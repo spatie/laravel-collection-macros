@@ -301,9 +301,9 @@ Will return `true` if all given values exist in the collection.
 ```php
 $collection = collect(['a', 'b', 'c']);
 
-$collection->containsAll(['b', 'c', 'd']); // returns true
-$collection->containsAll(['c', 'd', 'e']); // returns false
-$collection->containsAll(['d', 'e', 'f']); // returns false
+$collection->containsAll(['b', 'c',]); // returns true
+$collection->containsAll(['c', 'd']); // returns false
+$collection->containsAll(['d', 'e']); // returns false
 $collection->containsAll([]); // returns true
 ```
 
