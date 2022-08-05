@@ -292,7 +292,7 @@ $collection->containsAtLeastOneOf(['c', 'd', 'e']); // returns true
 $collection->containsAtLeastOneOf(['d', 'e', 'f']); // returns false
 $collection->containsAtLeastOneOf([]); // returns false
 ```
-``
+
 ### `eachCons`
 
 Get the following consecutive neighbours in a collection from a given chunk size. If the optional parameter `$preserveKeys` as `true` is passed, it will preserve the original keys.
