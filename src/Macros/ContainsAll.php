@@ -5,7 +5,7 @@ namespace Spatie\CollectionMacros\Macros;
 use Illuminate\Support\Collection;
 
 /**
- * Returns true if the collection contains one of the given $otherValues
+ * Returns true if the collection contains all of the given $otherValues
  *
  * @param  array|Collection  $otherValues
  *
