@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.12.1 - 2022-10-03
+
+### What's Changed
+
+- Update containsAll description by @NilLlisterri in https://github.com/spatie/laravel-collection-macros/pull/233
+
+### New Contributors
+
+- @NilLlisterri made their first contribution in https://github.com/spatie/laravel-collection-macros/pull/233
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.12.0...7.12.1
+
 ## 7.12.0 - 2022-08-05
 
 ### What's Changed
