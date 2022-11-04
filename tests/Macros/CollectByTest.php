@@ -1,73 +1,61 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
-
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class CollectByTest extends TestCase
-{
-    /** @test */
-    public function it_returns_a_collection_containing_the_collected_items()
-    {
-        $collection = new Collection([
-            'name' => 'taco',
-            'ingredients' => [
-                'cheese',
-                'lettuce',
-                'beef',
-                'tortilla',
-            ],
-            'should_eat' => true,
-        ]);
-
-        $ingredients = $collection->collectBy('ingredients');
-
-        $this->assertInstanceOf(Collection::class, $ingredients);
-
-        $this->assertEquals([
+it('returns a collection containing the collected items ', function () {
+    $collection = new Collection([
+        'name' => 'taco',
+        'ingredients' => [
             'cheese',
             'lettuce',
             'beef',
             'tortilla',
-        ], $ingredients->toArray());
-    }
+        ],
+        'should_eat' => true,
+    ]);
 
-    /** @test */
-    public function it_returns_default_when_key_is_missing()
-    {
-        $collection = new Collection([
-            'name' => 'taco',
-            'ingredients' => [
-                'cheese',
-                'lettuce',
-                'beef',
-                'tortilla',
-            ],
-            'should_eat' => true,
-        ]);
+    $ingredients = $collection->collectBy('ingredients');
 
-        $ingredients = $collection->collectBy('build_it', $collection->get('ingredients'));
+    expect($ingredients)->toBeInstanceOf(Collection::class);
 
-        $this->assertEquals($collection->collectBy('ingredients'), $ingredients);
-    }
+    expect($ingredients->toArray())->toEqual([
+        'cheese',
+        'lettuce',
+        'beef',
+        'tortilla',
+    ]);
+});
 
-    /** @test */
-    public function it_returns_empty_collection_when_missing_key_without_default()
-    {
-        $collection = new Collection([
-            'name' => 'taco',
-            'ingredients' => [
-                'cheese',
-                'lettuce',
-                'beef',
-                'tortilla',
-            ],
-            'should_eat' => true,
-        ]);
+it('returns default when key is missing', function () {
+    $collection = new Collection([
+        'name' => 'taco',
+        'ingredients' => [
+            'cheese',
+            'lettuce',
+            'beef',
+            'tortilla',
+        ],
+        'should_eat' => true,
+    ]);
 
-        $ingredients = $collection->collectBy('build_it');
+    $ingredients = $collection->collectBy('build_it', $collection->get('ingredients'));
 
-        $this->assertEquals(new Collection(), $ingredients);
-    }
-}
+    expect($ingredients)->toEqual($collection->collectBy('ingredients'));
+});
+
+it('returns empty collection when missing key without default', function () {
+    $collection = new Collection([
+        'name' => 'taco',
+        'ingredients' => [
+            'cheese',
+            'lettuce',
+            'beef',
+            'tortilla',
+        ],
+        'should_eat' => true,
+    ]);
+
+    $ingredients = $collection->collectBy('build_it');
+
+    expect($ingredients)->toEqual(new Collection());
+});
