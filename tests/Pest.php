@@ -1,5 +1,19 @@
 <?php
 
-// uses(Spatie\CollectionMacros\Test\TestCase::class)->in('.');
+use Spatie\CollectionMacros\Test\IntegrationTestCase;
+use Spatie\CollectionMacros\Test\TestCase;
 
-// uses(Spatie\CollectionMacros\Test\IntegrationTestCase::class)->in('SimplePaginateTest');
+$integratonTestCaseFiles = ['SimplePaginateTest.php'];
+
+$simpleTestCaseTests =  collect(scandir(__DIR__ . '/Macros'))
+    ->filter(fn (string $item) => str($item)->endsWith('Test.php'))
+    ->reject(fn (string $item) => in_array($item, $integratonTestCaseFiles))
+    ->map(fn (string $item) => './Macros/' . $item)
+    ->toArray();
+
+$integratonTestCaseFiles = collect($integratonTestCaseFiles)
+    ->map(fn (string $item) => './Macros/' . $item)
+    ->toArray();
+
+uses(TestCase::class)->in(...$simpleTestCaseTests);
+uses(IntegrationTestCase::class)->in(...$integratonTestCaseFiles);

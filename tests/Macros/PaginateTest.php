@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Collection;
 
-uses(Spatie\CollectionMacros\Test\TestCase::class);
-
 beforeEach(
     function () {
         $this->collectionPaginator = (new Collection(['item1', 'item2', 'item3', 'item4']))->paginate(2, 'page', 2, null);
