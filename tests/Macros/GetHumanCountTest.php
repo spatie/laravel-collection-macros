@@ -1,115 +1,47 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
-
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class GetHumanCountTest extends TestCase
-{
-    /** @test */
-    public function it_gets_the_first_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+beforeEach(function () {
+    $this->data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+});
 
-        $this->assertEquals(1, $data->first());
+it(
+    'gets the nth item of the by collection by method',
+    function (string $method, int $value) {
+        expect($this->data->$method())->toEqual($value);
     }
+)->with([
+    'first' => ['first', 1],
+    'second' => ['second', 2],
+    'third' => ['third', 3],
+    'fourth' => ['fourth', 4],
+    'fifth' => ['fifth', 5],
+    'sixth' => ['sixth', 6],
+    'seventh' => ['seventh', 7],
+    'eighth' => ['eighth', 8],
+    'ninth' => ['ninth', 9],
+    'tenth' => ['tenth', 10]
+]);
 
-    /** @test */
-    public function it_gets_the_second_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the nth item of the collection')
+    ->expect(fn () => $this->data->getNth(11))
+    ->toEqual(11);
 
-        $this->assertEquals(2, $data->second());
-    }
+it('returns `null` if index is undefined', function () {
+    $data = new Collection();
 
-    /** @test */
-    public function it_gets_the_third_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-        $this->assertEquals(3, $data->third());
-    }
-
-    /** @test */
-    public function it_gets_the_fourth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-        $this->assertEquals(4, $data->fourth());
-    }
-
-    /** @test */
-    public function it_gets_the_fifth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-        $this->assertEquals(5, $data->fifth());
-    }
-
-    /** @test */
-    public function it_gets_the_sixth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-        $this->assertEquals(6, $data->sixth());
-    }
-
-    /** @test */
-    public function it_gets_the_seventh_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-        $this->assertEquals(7, $data->seventh());
-    }
-
-    /** @test */
-    public function it_gets_the_eighth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-        $this->assertEquals(8, $data->eighth());
-    }
-
-    /** @test */
-    public function it_gets_the_ninth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-        $this->assertEquals(9, $data->ninth());
-    }
-
-    /** @test */
-    public function it_gets_the_tenth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
-
-        $this->assertEquals(10, $data->tenth());
-    }
-
-    /** @test */
-    public function it_gets_the_nth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
-
-        $this->assertEquals(11, $data->getNth(11));
-    }
-
-    /** @test */
-    public function it_returns_null_if_index_is_undefined()
-    {
-        $data = new Collection();
-
-        $this->assertNull($data->first());
-        $this->assertNull($data->second());
-        $this->assertNull($data->third());
-        $this->assertNull($data->fourth());
-        $this->assertNull($data->fifth());
-        $this->assertNull($data->sixth());
-        $this->assertNull($data->seventh());
-        $this->assertNull($data->eighth());
-        $this->assertNull($data->ninth());
-        $this->assertNull($data->tenth());
-        $this->assertNull($data->getNth(11));
-    }
-}
+    expect([
+        $data->first(),
+        $data->second(),
+        $data->third(),
+        $data->fourth(),
+        $data->fifth(),
+        $data->sixth(),
+        $data->seventh(),
+        $data->eighth(),
+        $data->ninth(),
+        $data->tenth(),
+        $data->getNth(11),
+    ])->each->toBeNull();
+});
