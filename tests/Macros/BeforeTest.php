@@ -1,69 +1,51 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
-
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class BeforeTest extends TestCase
-{
-    /** @test */
-    public function it_can_retrieve_an_item_that_comes_before_an_item()
-    {
-        $data = new Collection([1, 2, 3]);
+it('can retrieve an item that comes before an item', function () {
+    $data = new Collection([1, 2, 3]);
 
-        $this->assertEquals(1, $data->before(2));
-    }
+    expect($data->before(2))->toEqual(1);
+});
 
-    /** @test */
-    public function it_retrieves_items_by_value_and_doesnt_reorder_them()
-    {
-        $data = new Collection([
-            4 => 3,
-            2 => 1,
-            1 => 2,
-            3 => 4,
-        ]);
+it('retrieves items by value and does not reorder them', function () {
+    $data = new Collection([
+        4 => 3,
+        2 => 1,
+        1 => 2,
+        3 => 4,
+    ]);
 
-        $this->assertEquals(2, $data->before(4));
-    }
+    expect($data->before(4))->toEqual(2);
+});
 
-    /** @test */
-    public function it_can_find_the_previous_item_in_a_collection_of_strings()
-    {
-        $data = new Collection([
-            'foo' => 'bar',
-            'bar' => 'foo',
-        ]);
+it('can find the previous item in a collection of strings', function () {
+    $data = new Collection([
+        'foo' => 'bar',
+        'bar' => 'foo',
+    ]);
 
-        $this->assertEquals('bar', $data->before('foo'));
-    }
+    expect($data->before('foo'))->toEqual('bar');
+});
 
-    /** @test */
-    public function it_can_find_the_previous_item_based_on_a_callback()
-    {
-        $data = new Collection([3, 1, 2]);
+it('can find the previous item based on a callback', function () {
+    $data = new Collection([3, 1, 2]);
 
-        $result = $data->before(function ($item) {
-            return $item < 2;
-        });
+    $result = $data->before(function ($item) {
+        return $item < 2;
+    });
 
-        $this->assertEquals(3, $result);
-    }
+    expect($result)->toEqual(3);
+});
 
-    /** @test */
-    public function it_returns_null_if_there_isnt_a_previous_item()
-    {
-        $data = new Collection([1, 2, 3]);
+it("returns `null` if there isn't a previous item", function () {
+    $data = new Collection([1, 2, 3]);
 
-        $this->assertNull($data->before(1));
-    }
+    expect($data->before(1))->toBeNull();
+});
 
-    /** @test */
-    public function it_can_return_a_fallback_value_if_there_isnt_a_previous_item()
-    {
-        $data = new Collection([1, 2, 3]);
+it("can return a fallback value if there isn't a previous item", function () {
+    $data = new Collection([1, 2, 3]);
 
-        $this->assertEquals('The void', $data->before(1, 'The void'));
-    }
-}
+    expect($data->before(1, 'The void'))->toEqual('The void');
+});
