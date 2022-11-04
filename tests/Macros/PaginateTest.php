@@ -1,84 +1,66 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
-
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class PaginateTest extends TestCase
-{
-    protected function setUp(): void
-    {
-        parent::setUp();
+uses(Spatie\CollectionMacros\Test\TestCase::class);
 
+beforeEach(
+    function () {
         $this->collectionPaginator = (new Collection(['item1', 'item2', 'item3', 'item4']))->paginate(2, 'page', 2, null);
     }
+);
 
-    /** @test */
-    public function it_provides_paginate_macro()
-    {
-        $this->assertTrue(Collection::hasMacro('paginate'));
-    }
+it('provides `paginate` macro')
+    ->expect(fn () => Collection::hasMacro('paginate'))
+    ->toBeTrue();
 
-    /** @test */
-    public function it_gives_correct_total_number()
-    {
-        $this->assertEquals(4, $this->collectionPaginator->total());
-    }
+it('gives correct total number')
+    ->expect(fn () => $this->collectionPaginator->total())
+    ->toEqual(4);
 
-    /** @test */
-    public function it_gets_and_sets_page_name()
-    {
-        $this->collectionPaginator = (new Collection(range(0, 22)))->paginate();
-        $this->assertEquals('page', $this->collectionPaginator->getPageName());
-        $this->collectionPaginator->setPageName('p');
-        $this->assertEquals('p', $this->collectionPaginator->getPageName());
-    }
+it('gets and sets page name', function () {
+    $this->collectionPaginator = (new Collection(range(0, 22)))->paginate();
 
-    /** @test */
-    public function it_can_generate_urls()
-    {
-        $this->collectionPaginator->setPath('http://website.com');
-        $this->collectionPaginator->setPageName('foo');
-        $this->assertEquals(
-            'http://website.com?foo=2',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage())
-        );
-        $this->assertEquals(
-            'http://website.com?foo=1',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 1)
-        );
-        $this->assertEquals(
-            'http://website.com?foo=1',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 2)
-        );
-    }
+    expect($this->collectionPaginator->getPageName())->toEqual('page');
 
-    public function it_can_generate_urls_with_query()
-    {
-        $this->collectionPaginator->setPath('http://website.com?sort_by=date');
-        $this->collectionPaginator->setPageName('foo');
-        $this->assertEquals(
-            'http://website.com?sort_by=date&foo=2',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage())
-        );
-    }
+    $this->collectionPaginator->setPageName('p');
 
-    public function it_can_generate_urls_without_trailing_slashes()
-    {
-        $this->collectionPaginator->setPath('http://website.com/test');
-        $this->collectionPaginator->setPageName('foo');
-        $this->assertEquals(
-            'http://website.com/test?foo=2',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage())
-        );
-        $this->assertEquals(
-            'http://website.com/test?foo=1',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 1)
-        );
-        $this->assertEquals(
-            'http://website.com/test?foo=1',
-            $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 2)
-        );
-    }
-}
+    expect($this->collectionPaginator->getPageName())->toEqual('p');
+});
+
+it('can generate urls', function () {
+    $this->collectionPaginator->setPath('http://website.com');
+    $this->collectionPaginator->setPageName('foo');
+
+    expect(
+        $this->collectionPaginator->url($this->collectionPaginator->currentPage())
+    )->toEqual('http://website.com?foo=2');
+
+    expect([
+        $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 1),
+        $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 2)
+    ])->each->toEqual('http://website.com?foo=1');
+});
+
+it('can generate urls with query', function () {
+    $this->collectionPaginator->setPath('http://website.com?sort_by=date');
+    $this->collectionPaginator->setPageName('foo');
+
+    expect(
+        $this->collectionPaginator->url($this->collectionPaginator->currentPage())
+    )->toEqual('http://website.com?sort_by=date&foo=2');
+});
+
+it('can generate urls without trailing slashes', function () {
+    $this->collectionPaginator->setPath('http://website.com/test');
+    $this->collectionPaginator->setPageName('foo');
+
+    expect(
+        $this->collectionPaginator->url($this->collectionPaginator->currentPage())
+    )->toEqual('http://website.com/test?foo=2');
+
+    expect([
+        $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 1),
+        $this->collectionPaginator->url($this->collectionPaginator->currentPage() - 2)
+    ])->each->toEqual('http://website.com/test?foo=1');
+});
