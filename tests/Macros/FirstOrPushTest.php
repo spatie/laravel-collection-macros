@@ -1,41 +1,32 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
-
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class FirstOrPushTest extends TestCase
-{
-    /** @test */
-    public function it_can_retrieve_a_value_if_one_exists()
-    {
-        $data = new Collection([1, 2, 3]);
+it('can retrieve a value if one exists', function () {
+    $data = new Collection([1, 2, 3]);
 
-        $this->assertEquals(1, $data->firstOrPush(fn ($item) => $item === 1, 2));
-    }
+    expect($data->firstOrPush(fn ($item) => $item === 1, 2))->toEqual(1);
+});
 
-    /** @test */
-    public function if_a_value_doesnt_exist_the_second_argument_is_pushed_in_to_the_collection_and_returned()
-    {
+test(
+    "if a value doesn't exist the second argument is pushed in to the collection an returned",
+    function () {
         $data = new Collection([1, 2]);
 
-        $this->assertEquals(3, $data->firstOrPush(fn ($item) => $item === 3, 3));
-        $this->assertEquals(3, $data->firstOrPush(fn ($item) => $item === 3, 4));
+        expect([
+            $data->firstOrPush(fn ($item) => $item === 3, 3),
+            $data->firstOrPush(fn ($item) => $item === 3, 4)
+        ])->each->toEqual(3);
     }
+);
 
-    /** @test */
-    public function the_value_parameter_can_be_a_callable()
-    {
-        $this->assertEquals(1, (new Collection())->firstOrPush(fn ($item) => false, fn () => 1));
-    }
+test('the value parameter can be a callable')
+    ->expect(fn () => (new Collection())->firstOrPush(fn ($item) => false, fn () => 1))
+    ->toEqual(1);
 
-    /** @test */
-    public function a_collection_object_can_be_specified_as_the_push_target()
-    {
-        $data = new Collection([1, 2, 3]);
-        $data->filter(fn ($item) => false)->firstOrPush(fn ($item) => false, 4, $data);
+test('a collection object can be specified as the push target', function () {
+    $data = new Collection([1, 2, 3]);
+    $data->filter(fn ($item) => false)->firstOrPush(fn ($item) => false, 4, $data);
 
-        $this->assertEquals(new Collection([1, 2, 3, 4]), $data);
-    }
-}
+    expect(new Collection([1, 2, 3, 4]))->toEqual($data);
+});
