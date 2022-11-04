@@ -1,68 +1,46 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
-
 use Illuminate\Support\Collection;
-use Mockery;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class IfAnyTest extends TestCase
-{
-    /** @var \Mockery\MockInterface spy */
-    private $spy;
+beforeEach(fn () => $this->spy = Mockery::spy());
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        $this->spy = Mockery::spy();
+afterEach(function () {
+    if ($container = Mockery::getContainer()) {
+        $this->addToAssertionCount($container->mockery_getExpectationCount());
     }
 
-    protected function tearDown(): void
-    {
-        if ($container = Mockery::getContainer()) {
-            $this->addToAssertionCount($container->mockery_getExpectationCount());
-        }
+    Mockery::close();
+});
 
-        Mockery::close();
-    }
+it("executes the callable if the collection isn't empty", function () {
+    Collection::make(['foo'])->ifAny(function () {
+        $this->spy->someCall();
+    });
 
-    /** @test */
-    public function it_executes_the_callable_if_the_collection_isnt_empty()
-    {
-        Collection::make(['foo'])->ifAny(function () {
-            $this->spy->someCall();
-        });
+    $this->spy->shouldHaveReceived('someCall')->once();
+});
 
-        $this->spy->shouldHaveReceived('someCall')->once();
-    }
+it('passes the collection in the callback', function () {
+    $originCollection = Collection::make(['foo']);
 
-    /** @test */
-    public function it_pass_the_collection_in_the_callback()
-    {
-        $originCollection = Collection::make(['foo']);
+    $originCollection->ifAny(
+        fn (Collection $collection) => expect($collection)->toEqual($originCollection)
+    );
+});
 
-        $originCollection->ifAny(function (Collection $collection) use ($originCollection) {
-            $this->assertEquals($originCollection, $collection);
-        });
-    }
+it("doesn't execute the callable if the collection is empty", function () {
+    Collection::make()->ifAny(function () {
+        $this->spy->someCall();
+    });
 
-    /** @test */
-    public function it_doesnt_execute_the_callable_if_the_collection_is_empty()
-    {
-        Collection::make()->ifAny(function () {
-            $this->spy->someCall();
-        });
+    $this->spy->shouldNotHaveReceived('someCall');
+});
 
-        $this->spy->shouldNotHaveReceived('someCall');
-    }
+it('provides a fluent interface', function () {
+    $collection = Collection::make();
 
-    /** @test */
-    public function it_provides_a_fluent_interface()
-    {
-        $collection = Collection::make();
-
-        $this->assertEquals($collection, $collection->ifAny(function () {
-        }));
-    }
-}
+    expect(
+        $collection->ifAny(function () {
+        })
+    )->toEqual($collection);
+});
