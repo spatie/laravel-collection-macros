@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.12.2 - 2022-11-10
+
+### What's Changed
+
+- Fix warnings on running the test suite by @alexmanase in https://github.com/spatie/laravel-collection-macros/pull/238
+
+### New Contributors
+
+- @alexmanase made their first contribution in https://github.com/spatie/laravel-collection-macros/pull/238
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.12.1...7.12.2
+
 ## 7.12.1 - 2022-10-03
 
 ### What's Changed
