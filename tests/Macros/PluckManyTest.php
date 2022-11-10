@@ -35,9 +35,9 @@ class PluckManyTest extends TestCase
 
         $this->assertEquals(
             [
-            (object) ['name' => 'matt', 'hobby' => 'coding'],
-            ['name' => 'tomo', 'hobby' => 'cooking'],
-        ],
+                (object) ['name' => 'matt', 'hobby' => 'coding'],
+                ['name' => 'tomo', 'hobby' => 'cooking'],
+            ],
             $data->pluckMany(['name', 'hobby'])->all()
         );
     }
@@ -52,9 +52,9 @@ class PluckManyTest extends TestCase
 
         $this->assertEquals(
             [
-            ['name' => 'marco', 'hobby' => 'drinking'],
-            ['name' => 'belle', 'hobby' => 'cross-stitch'],
-        ],
+                ['name' => 'marco', 'hobby' => 'drinking'],
+                ['name' => 'belle', 'hobby' => 'cross-stitch'],
+            ],
             $data->pluckMany(['name', 'hobby'])->all()
         );
     }
@@ -69,22 +69,22 @@ class TestArrayAccessImplementation implements ArrayAccess
         $this->arr = $arr;
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return isset($this->arr[$offset]);
     }
 
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->arr[$offset];
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         $this->arr[$offset] = $value;
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->arr[$offset]);
     }
