@@ -26,8 +26,8 @@
         "illuminate/support": "^8.71|^9.0"
     },
     "require-dev": {
-        "amphp/parallel": "^0.2.5",
-        "amphp/parallel-functions": "^0.1.3",
+        "amphp/parallel": "^1.4.1",
+        "amphp/parallel-functions": "^1.1.0",
         "mockery/mockery": "^1.4.2",
         "orchestra/testbench": "^6.23|^7.0",
         "phpunit/phpunit": "^9.4.4",
