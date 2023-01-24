@@ -10,9 +10,11 @@ jobs:
             matrix:
                 os: [ubuntu-latest]
                 php: [8.2, 8.1, 8.0]
-                laravel: [9.*, 8.*]
+                laravel: [10.*, 9.*, 8.*]
                 dependency-version: [prefer-stable]
                 include:
+                    -   testbench: 8.*
+                        laravel: 10.*
                     -   testbench: 7.*
                         laravel: 9.*
                     -   testbench: ^6.23
@@ -23,7 +25,7 @@ jobs:
 
         steps:
             -   name: Checkout code
-                uses: actions/checkout@v2
+                uses: actions/checkout@v3
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
