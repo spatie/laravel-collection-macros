@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.12.3 - 2023-01-24
+
+- support L10
+
 ## 7.12.2 - 2022-11-10
 
 ### What's Changed
