@@ -18,7 +18,7 @@ class Recursive
 {
     public function __invoke()
     {
-        return function (?int $maxDepth = INF, ?int $depth = 0, ): Collection {
+        return function (?int $maxDepth = INF, ?int $depth = 0): Collection {
             return $this->map(function ($value) use ($depth, $maxDepth) {
                 if ($depth > $maxDepth) {
                     return $value;

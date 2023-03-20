@@ -32,4 +32,18 @@ class RecursiveTest extends TestCase
         $this->assertInstanceOf(Collection::class, $collection['child']);
         $this->assertInstanceOf(Collection::class, $collection['child']['anotherchild']);
     }
+
+        /** @test */
+        public function it_coverts_child_arrays_to_collections_with_a_max_depth()
+        {
+            $collection = Collection::make([
+                'child' => [
+                    1, 2, 3, 'anotherchild' => [1, 2, 3],
+                ],
+            ])
+                ->recursive(1);
+    
+            $this->assertInstanceOf(Collection::class, $collection['child']);
+            $this->assertInstanceOf(array, $collection['child']['anotherchild']);
+        }
 }
