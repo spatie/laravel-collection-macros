@@ -77,6 +77,7 @@ The package will automatically register itself.
 - [`simplePaginate`](#simplepaginate)
 - [`sliceBefore`](#slicebefore)
 - [`tail`](#tail)
+- [`try`](#try)
 - [`toPairs`](#topairs)
 - [`transpose`](#transpose)
 - [`validate`](#validate)
