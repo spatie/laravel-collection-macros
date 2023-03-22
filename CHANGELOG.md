@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.12.4 - 2023-03-22
+
+### What's Changed
+
+- Add max depth parameter for recursive macro by @Kyzegs in https://github.com/spatie/laravel-collection-macros/pull/240
+
+### New Contributors
+
+- @Kyzegs made their first contribution in https://github.com/spatie/laravel-collection-macros/pull/240
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.12.3...7.12.4
+
 ## 7.12.3 - 2023-01-24
 
 - support L10
