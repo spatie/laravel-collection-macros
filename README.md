@@ -77,7 +77,6 @@ The package will automatically register itself.
 - [`simplePaginate`](#simplepaginate)
 - [`sliceBefore`](#slicebefore)
 - [`tail`](#tail)
-- [`try`](#try)
 - [`toPairs`](#topairs)
 - [`transpose`](#transpose)
 - [`validate`](#validate)
@@ -704,6 +703,40 @@ collect([
 ])->recursive();
 
 // subsequent arrays are now collections
+```
+
+In some cases you may not want to turn all the children into a collection. You can convert only to a certain depth by providing a number to the recursive method.
+
+```php
+collect([
+  'item' => [
+     'children' => [
+        'one' => [1],
+        'two' => [2]
+     ]
+  ]   
+])->recursive(1); // Collection(['item' => Collection(['children' => ['one' => [1], 'two' => [2]]])])
+```
+
+This can be useful when you know that at a certain depth it'll not be necessary or that it may break your code.
+
+```php
+collect([
+  'item' => [
+     'children' => [
+        'one' => [1],
+        'two' => [2]
+     ]
+  ]   
+])
+  ->recursive(1)
+  ->map(function ($item) {
+    return $item->map(function ($children) {
+      return $children->mapInto(Model::class);
+    });
+  }); // Collection(['item' => Collection(['children' => ['one' => Model(), 'two' => Model()]])])
+
+// If we do not pass a max depth we will get the error "Argument #1 ($attributes) must be of type array"
 ```
 
 ### `rotate`
