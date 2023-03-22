@@ -39,7 +39,7 @@ class RecursiveTest extends TestCase
         $collection = Collection::make([
             'child' => [
                 1, 2, 3, 'anotherchild' => [
-                    1, 2, 3, 'lastchild' => [1, 2, 3]
+                    1, 2, 3, 'lastchild' => [1, 2, 3],
                 ],
             ],
         ])
