@@ -6,12 +6,12 @@ use ArrayAccess;
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Test\TestCase;
 
-class PluckManyTest extends TestCase
+class PluckManyValuesTest extends TestCase
 {
     /** @test */
-    public function it_provides_a_pluckMany_macro()
+    public function it_provides_a_pluckManyValues_macro()
     {
-        $this->assertTrue(Collection::hasMacro('pluckMany'));
+        $this->assertTrue(Collection::hasMacro('pluckManyValues'));
     }
 
     /** @test */
@@ -22,7 +22,7 @@ class PluckManyTest extends TestCase
             collect(['id' => 2, 'name' => 'tomo', 'hobby' => 'cooking']),
         ]);
 
-        $this->assertEquals($data->map->only(['name', 'hobby']->map->values()), $data->pluckManyValues(['name', 'hobby']));
+        $this->assertEquals($data->map->only(['name', 'hobby'])->map->values(), $data->pluckManyValues(['name', 'hobby']));
     }
 
     /** @test */
@@ -60,32 +60,3 @@ class PluckManyTest extends TestCase
     }
 }
 
-class TestArrayAccessImplementation implements ArrayAccess
-{
-    private $arr;
-
-    public function __construct($arr)
-    {
-        $this->arr = $arr;
-    }
-
-    public function offsetExists($offset): bool
-    {
-        return isset($this->arr[$offset]);
-    }
-
-    public function offsetGet($offset): mixed
-    {
-        return $this->arr[$offset];
-    }
-
-    public function offsetSet($offset, $value): void
-    {
-        $this->arr[$offset] = $value;
-    }
-
-    public function offsetUnset($offset): void
-    {
-        unset($this->arr[$offset]);
-    }
-}
