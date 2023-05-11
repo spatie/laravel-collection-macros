@@ -20,6 +20,8 @@ class PluckMany
     public function __invoke()
     {
         return function ($keys): Collection {
+            // Allow passing multiple keys as multiple arguments
+            $keys = is_array($keys) ? $keys : func_get_args();
             return $this->map(function ($item) use ($keys) {
                 if ($item instanceof Collection) {
                     return $item->only($keys);

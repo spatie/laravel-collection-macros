@@ -69,6 +69,7 @@ The package will automatically register itself.
 - [`parallelMap`](#parallelmap)
 - [`path`](#path)
 - [`pluckMany`](#pluckmany)
+- [`pluckManyValues`](#pluckmanyvalues)
 - [`pluckToArray`](#plucktoarray)
 - [`prioritize`](#prioritize)
 - [`recursive`](#recursive)
@@ -656,6 +657,25 @@ $collection->pluckMany(['a', 'b']);
 // collect([
 //     ['a' => 1, 'b' => 10],
 //     ['a' => 2, 'b' => 20],
+// ]);
+```
+
+### `pluckManyValues`
+
+Returns a collection with only the specified keys' values.
+
+```php
+$collection = collect([
+    ['a' => 1, 'b' => 10, 'c' => 100],
+    ['a' => 2, 'b' => 20, 'c' => 200],
+]);
+
+$collection->pluckMany(['a', 'b']);
+
+// returns
+// collect([
+//     [1, 10],
+//     [2, 20],
 // ]);
 ```
 
