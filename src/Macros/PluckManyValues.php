@@ -30,13 +30,7 @@ class PluckManyValues
                 if (is_array($item)) {
                     return array_values($item);
                 }
-
-                // if ($item instanceof ArrayAccess) {
-                //     return collect($keys)->mapWithKeys(function ($key) use ($item) {
-                //         return [$key => $item[$key]];
-                //     })->toArray();
-                // }
-
+                
                 return (object) array_values(get_object_vars($item));
             });
         };
