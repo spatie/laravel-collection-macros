@@ -2,8 +2,6 @@
 
 namespace Spatie\CollectionMacros\Macros;
 
-use ArrayAccess;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 /**
@@ -22,6 +20,7 @@ class PluckManyValues
         return function ($keys): Collection {
             // Allow passing multiple keys as multiple arguments
             $keys = is_array($keys) ? $keys : func_get_args();
+
             return $this->pluckMany($keys)->map(function ($item) {
                 if ($item instanceof Collection) {
                     return $item->values();
@@ -30,7 +29,7 @@ class PluckManyValues
                 if (is_array($item)) {
                     return array_values($item);
                 }
-                
+
                 return (object) array_values(get_object_vars($item));
             });
         };

@@ -2,7 +2,6 @@
 
 namespace Spatie\CollectionMacros\Test\Macros;
 
-use ArrayAccess;
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Test\TestCase;
 
@@ -59,4 +58,3 @@ class PluckManyValuesTest extends TestCase
         );
     }
 }
-
