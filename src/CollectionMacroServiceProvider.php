@@ -51,6 +51,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'parallelMap' => \Spatie\CollectionMacros\Macros\ParallelMap::class,
             'path' => \Spatie\CollectionMacros\Macros\Path::class,
             'pluckMany' => \Spatie\CollectionMacros\Macros\PluckMany::class,
+            'pluckManyValues' => \Spatie\CollectionMacros\Macros\PluckManyValues::class,
             'pluckToArray' => \Spatie\CollectionMacros\Macros\PluckToArray::class,
             'prioritize' => \Spatie\CollectionMacros\Macros\Prioritize::class,
             'recursive' => \Spatie\CollectionMacros\Macros\Recursive::class,
