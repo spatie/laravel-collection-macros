@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.12.5 - 2023-05-11
+
+### What's Changed
+
+- Sfink pluck many values by @sfinktah in https://github.com/spatie/laravel-collection-macros/pull/242
+
+### New Contributors
+
+- @sfinktah made their first contribution in https://github.com/spatie/laravel-collection-macros/pull/242
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.12.4...7.12.5
+
 ## 7.12.4 - 2023-03-22
 
 ### What's Changed
