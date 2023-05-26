@@ -56,13 +56,26 @@ class RecursiveTest extends TestCase
     public function it_allows_object_like_access_to_items(): void
     {
         $collection = Collection::make([
-            'child' => [ 1, 2, 3, 'anotherchild' => (object) [1, 2, 3]],
+            'child' => ['intchild' => 1, 2, 3, 'anotherchild' => (object) [1, 2, 3]],
         ])
             ->recursive();
 
         $this->assertInstanceOf(Collection::class, $collection->child);
         $this->assertInstanceOf(Collection::class, $collection->child->anotherchild);
-        $this->assertInstanceOf(Collection::class, $collection->first()->anotherchild);
+        $this->assertIsInt($collection->child->intchild);
+    }
+
+    /** @test */
+    public function it_does_not_add_properties_for_integer_keys(): void
+    {
+        $collection = Collection::make([
+            'child' => [1 => 'notproperty', 2, 3, 'anotherchild' => (object) [1, 2, 3]],
+        ])
+            ->recursive();
+
+        $this->expectExceptionMessage('Property [1] does not exist on this collection instance.');
+
+        $collection->child->{'1'};
     }
 
     /** @test */

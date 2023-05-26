@@ -27,16 +27,19 @@ class Recursive
         ): Collection {
             return $this->transform(function ($value, $key) use ($depth, $maxDepth, $shouldExit) {
                 if (
-                    $depth > $maxDepth
-                    || $value instanceof Closure
-                    || ! (is_array($value) || is_object($value))
-                    || ($shouldExit && $shouldExit($value, $key, $depth, $maxDepth))
+                    ! ($depth > $maxDepth)
+                    && ! ($value instanceof Closure)
+                    && (is_array($value) || is_object($value))
+                    && ! ($shouldExit && $shouldExit($value, $key, $depth, $maxDepth))
                 ) {
-                    return $this->{$key} = $value;
+                    $value = (new static($value))->recursive($maxDepth, $depth + 1, $shouldExit);
                 }
 
-                return $this->{$key} = (new static($value))
-                    ->recursive($maxDepth, $depth + 1, $shouldExit);
+                if (is_string($key)) {
+                    $this->{$key} = $value;
+                }
+
+                return $value;
             });
         };
     }
