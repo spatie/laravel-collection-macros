@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Collection;
 
 /**
- * Recursivly convert arrays and objects within a multi-dimensional array to Collections
+ * Recursively convert arrays and objects within a multi-dimensional array to Collections
  *
  * @param float $maxDepth
  * @param int $depth
