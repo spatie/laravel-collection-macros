@@ -717,13 +717,16 @@ $collection
 Convert an array and its children to collection using recursion.
 
 ```php
-collect([
+$collection = collect([
   'item' => [
      'children' => []
   ]   
 ])->recursive();
 
-// subsequent arrays are now collections
+$collection->first()->children;
+$collection->item->children;
+
+// subsequent arrays are now collections and allows object-like access to items
 ```
 
 In some cases you may not want to turn all the children into a collection. You can convert only to a certain depth by providing a number to the recursive method.
@@ -758,6 +761,24 @@ collect([
   }); // Collection(['item' => Collection(['children' => ['one' => Model(), 'two' => Model()]])])
 
 // If we do not pass a max depth we will get the error "Argument #1 ($attributes) must be of type array"
+```
+
+There also may be times where you need to customize the recursion exit criteria. You may do this by passing a closure which returns `true` if the recursion should cease and `false` otherwise.
+
+The closure accepts the current value, $key and depth, as well as the maximum depth for reference.
+```php
+collect([
+  'item' => [
+     'children' => [
+        'one' => now(),
+     ]
+  ]
+])
+  ->recursive(
+      shouldExit: fn ($value, $key, $depth, $maxDepth) => $value instanceof Carbon
+  );
+
+// Prevents Carbon instances from being converted to collections
 ```
 
 ### `rotate`
