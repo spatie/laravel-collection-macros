@@ -25,15 +25,34 @@ class Recursive
             int $depth = 0,
             ?Closure $shouldExit = null,
         ): Collection {
-            return $this->transform(function ($value, $key) use ($depth, $maxDepth, $shouldExit) {
-                if (
-                    ! ($depth > $maxDepth)
-                    && ! ($value instanceof Closure)
-                    && (is_array($value) || is_object($value))
-                    && ! ($shouldExit && $shouldExit($value, $key, $depth, $maxDepth))
-                ) {
-                    $value = (new static($value))->recursive($maxDepth, $depth + 1, $shouldExit);
+            $transformValue = function (
+                mixed $value,
+                mixed $key,
+                float $maxDepth = INF,
+                int $depth = 0,
+                ?Closure $shouldExit = null,
+            ): mixed {
+                if ($depth > $maxDepth) {
+                    return $value;
                 }
+
+                if ($value instanceof Closure) {
+                    return $value;
+                }
+
+                if (! (is_array($value) || is_object($value))) {
+                    return $value;
+                }
+
+                if ($shouldExit && $shouldExit($value, $key, $depth, $maxDepth)) {
+                    return $value;
+                }
+
+                return (new static($value))->recursive($maxDepth, $depth + 1, $shouldExit);
+            };
+
+            return $this->transform(function ($value, $key) use ($depth, $maxDepth, $shouldExit, $transformValue) {
+                $value = $transformValue($value, $key, $maxDepth, $depth, $shouldExit);
 
                 if (is_string($key)) {
                     $this->{$key} = $value;
