@@ -64,6 +64,7 @@ The package will automatically register itself.
 - [`insertAt`](#insertat)
 - [`insertBefore`](#insertbefore)
 - [`insertBeforeKey`](#insertbeforekey)
+- [`keysToProperties`](#keysToProperties)
 - [`none`](#none)
 - [`paginate`](#paginate)
 - [`parallelMap`](#parallelmap)
@@ -552,6 +553,16 @@ collect(['zero', 'two', 'three'])->insertBeforeKey(1, 'one');
 
 collect(['zero' => 0, 'two' => 2, 'three' => 3]->insertBeforeKey('two', 5, 'five');
 // Collection contains ['zero' => 0, 'five' => 5, 'two' => 2, 'three' => 3]
+```
+
+### `keysToProperties`
+
+Creates properties from the collection keys (only string keys);
+
+```php
+$collection = collect(['zero' => 0, 'two' => 2, 'three' => 3])
+    ->keysToProperties();
+// Collection items can now be accessed as properties: `$collection->zero` vs `$collection['zero']`
 ```
 
 ### `none`
