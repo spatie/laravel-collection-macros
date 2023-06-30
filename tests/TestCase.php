@@ -12,7 +12,7 @@ abstract class TestCase extends BaseTestCase
     {
         $this->createDummyprovider()->register();
 
-        ray()->newScreen($this->getName());
+        ray()->newScreen($this->name());
     }
 
     protected function createDummyprovider(): CollectionMacroServiceProvider

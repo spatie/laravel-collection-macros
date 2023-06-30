@@ -1,75 +1,62 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class WeightedRandomTest extends TestCase
-{
-    /** @test */
-    public function it_will_probably_return_the_heaviest_item_most()
-    {
-        $items = collect([
-            ['value' => 'a', 'weight' => 1],
-            ['value' => 'b', 'weight' => 10],
-            ['value' => 'c', 'weight' => 1],
-        ]);
+it('will probably return the heaviest item most', function () {
+    $items = collect([
+        ['value' => 'a', 'weight' => 1],
+        ['value' => 'b', 'weight' => 10],
+        ['value' => 'c', 'weight' => 1],
+    ]);
 
-        $mostPopularValue = Collection::range(0, 1000)
-            ->map(function () use ($items) {
-                return $items->weightedRandom(function (array $item) {
-                    return $item['weight'];
-                });
-            })
-            ->groupBy('value')
-            ->map
-            ->count()
-            ->sortDesc()
-            ->flip()
-            ->first();
+    $mostPopularValue = Collection::range(0, 1000)
+        ->map(function () use ($items) {
+            return $items->weightedRandom(function (array $item) {
+                return $item['weight'];
+            });
+        })
+        ->groupBy('value')
+        ->map
+        ->count()
+        ->sortDesc()
+        ->flip()
+        ->first();
 
-        $this->assertEquals('b', $mostPopularValue);
-    }
+    expect($mostPopularValue)->toEqual('b');
+});
 
-    /** @test */
-    public function it_will_not_pick_a_value_without_a_weight()
-    {
-        $items = collect([
-            ['value' => 'a', 'weight' => 0],
-            ['value' => 'b', 'weight' => 0],
-            ['value' => 'c', 'weight' => 1],
-            ['value' => 'c', 'weight' => 0],
-        ]);
+it('will not pick a value without a weight', function () {
+    $items = collect([
+        ['value' => 'a', 'weight' => 0],
+        ['value' => 'b', 'weight' => 0],
+        ['value' => 'c', 'weight' => 1],
+        ['value' => 'c', 'weight' => 0],
+    ]);
 
-        $pickedItem = $items->weightedRandom(fn (array $item) => $item['weight']);
+    $pickedItem = $items->weightedRandom(fn (array $item) => $item['weight']);
 
-        $this->assertEquals('c', $pickedItem['value']);
-    }
+    expect($pickedItem['value'])->toEqual('c');
+});
 
-    /** @test */
-    public function it_will_pick_a_random_value_when_all_values_are_zero()
-    {
-        $items = collect([
-            ['value' => 'a', 'weight' => 0],
-            ['value' => 'b', 'weight' => 0],
-            ['value' => 'c', 'weight' => 0],
-        ]);
+it('will pick a random value when all values are zero', function () {
+    $items = collect([
+        ['value' => 'a', 'weight' => 0],
+        ['value' => 'b', 'weight' => 0],
+        ['value' => 'c', 'weight' => 0],
+    ]);
 
-        $this->assertIsArray($items->weightedRandom(fn (array $item) => $item['weight']));
-    }
+    expect($items->weightedRandom(fn (array $item) => $item['weight']))->toBeArray();
+});
 
-    /** @test */
-    public function it_can_pick_a_weighted_random_by_attribute_name()
-    {
-        $items = collect([
-            ['value' => 'a', 'weight' => 0],
-            ['value' => 'b', 'weight' => 1],
-            ['value' => 'c', 'weight' => 0],
-        ]);
+it('can pick a weighted random by attribute name', function () {
+    $items = collect([
+        ['value' => 'a', 'weight' => 0],
+        ['value' => 'b', 'weight' => 1],
+        ['value' => 'c', 'weight' => 0],
+    ]);
 
-        $item = ($items->weightedRandom('weight'));
+    $item = ($items->weightedRandom('weight'));
 
-        $this->assertEquals('b', $item['value']);
-    }
-}
+    expect($item['value'])->toEqual('b');
+});

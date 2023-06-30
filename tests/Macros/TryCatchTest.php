@@ -1,162 +1,135 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
 
-use Exception;
-use InvalidArgumentException;
-use Spatie\CollectionMacros\Test\TestCase;
-use UnexpectedValueException;
+it('will not execute the callable in catch when no exception was thrown', function () {
+    $collection = collect(['a', 'b', 'c', 1, 2, 3])
+        ->try()
+        ->map(function ($letter) {
+            return strtoupper($letter);
+        })
+        ->catch(function (Exception $exception) {
+            $this->fail('caught unexpected exception: '.$exception->getMessage());
+        });
 
-class TryCatchTest extends TestCase
-{
-    /** @test */
-    public function it_will_not_execute_the_callable_in_catch_when_no_exception_was_thrown()
-    {
-        $collection = collect(['a', 'b', 'c', 1, 2, 3])
-            ->try()
-            ->map(function ($letter) {
-                return strtoupper($letter);
-            })
-            ->catch(function (Exception $exception) {
-                $this->fail('caught unexpected exception: '.$exception->getMessage());
-            });
+    expect($collection->toArray())->toEqual(['A', 'B', 'C', 1, 2, 3]);
+});
 
-        $this->assertEquals(['A', 'B', 'C', 1, 2, 3], $collection->toArray());
-    }
+test('the catch method will handle a thrown exception', function () {
+    $collection = collect(['a', 'b', 'c', 1, 2, 3])
+        ->try()
+        ->map(function ($letter) {
+            throw new Exception('a catchable collection exception');
+        })
+        ->catch(function (Exception $exception) {
+            expect($exception->getMessage())->toEqual('a catchable collection exception');
+        });
 
-    /** @test */
-    public function the_catch_method_will_handle_a_thrown_exception()
-    {
-        $collection = collect(['a', 'b', 'c', 1, 2, 3])
-            ->try()
-            ->map(function ($letter) {
-                throw new Exception('a catchable collection exception');
-            })
-            ->catch(function (Exception $exception) {
-                $this->assertEquals('a catchable collection exception', $exception->getMessage());
-            });
+    expect($collection->toArray())->toEqual(['a', 'b', 'c', 1, 2, 3]);
+});
 
-        $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
-    }
+test('the catch method will catch exception of the right type', function () {
+    $collection = collect(['a', 'b', 'c', 1, 2, 3])
+        ->try()
+        ->each(function () {
+            throw new InvalidArgumentException('an exception thrown by each');
+        })
+        ->catch(function (InvalidArgumentException $exception) {
+            expect($exception->getMessage())->toEqual('an exception thrown by each');
+        }, function (UnexpectedValueException $exception) {
+            $this->fail('the incorrect exception was caught');
+        });
 
-    /** @test */
-    public function the_catch_method_will_catch_exception_of_the_right_type()
-    {
-        $collection = collect(['a', 'b', 'c', 1, 2, 3])
-            ->try()
-            ->each(function () {
-                throw new InvalidArgumentException('an exception thrown by each');
-            })
-            ->catch(function (InvalidArgumentException $exception) {
-                $this->assertEquals('an exception thrown by each', $exception->getMessage());
-            }, function (UnexpectedValueException $exception) {
-                $this->fail('the incorrect exception was caught');
-            });
+    expect($collection->toArray())->toEqual(['a', 'b', 'c', 1, 2, 3]);
+});
 
-        $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
-    }
+test('the catch method will not handle unrelated exceptions', function () {
+    $this->expectException(Exception::class);
+    $this->expectExceptionMessage('rethrow me');
 
-    /** @test */
-    public function the_catch_method_will_not_handle_unrelated_exceptions()
-    {
-        $this->expectException(Exception::class);
-        $this->expectExceptionMessage('rethrow me');
+    $collection = collect(['a', 'b', 'c', 1, 2, 3])
+        ->try()
+        ->map(function ($letter) {
+            throw new Exception('rethrow me');
+        })
+        ->catch(function (InvalidArgumentException $exception) {
+            $this->fail('the incorrect exception was caught');
+        });
 
-        $collection = collect(['a', 'b', 'c', 1, 2, 3])
-            ->try()
-            ->map(function ($letter) {
-                throw new Exception('rethrow me');
-            })
-            ->catch(function (InvalidArgumentException $exception) {
-                $this->fail('the incorrect exception was caught');
-            });
+    expect($collection->toArray())->toEqual(['a', 'b', 'c', 1, 2, 3]);
+});
 
-        $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
-    }
+test('when no typehint is used the catch method will catch all exceptions', function () {
+    $collection = collect(['a', 'b', 'c', 1, 2, 3])
+        ->try()
+        ->map(function ($letter) {
+            throw new Exception('catch me with no type-hint');
+        })
+        ->catch(function ($exception) {
+            expect($exception->getMessage())->toEqual('catch me with no type-hint');
+        });
 
-    /** @test */
-    public function when_no_typehint_is_used_the_catch_method_will_catch_all_exceptions()
-    {
-        $collection = collect(['a', 'b', 'c', 1, 2, 3])
-            ->try()
-            ->map(function ($letter) {
-                throw new Exception('catch me with no type-hint');
-            })
-            ->catch(function ($exception) {
-                $this->assertEquals('catch me with no type-hint', $exception->getMessage());
-            });
+    expect($collection->toArray())->toEqual(['a', 'b', 'c', 1, 2, 3]);
+});
 
-        $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
-    }
+test('when no parameters are given to catch it will catch all exceptions', function () {
+    $caught = false;
+    $collection = collect(['a', 'b', 'c', 1, 2, 3])
+        ->try()
+        ->map(function ($letter) {
+            throw new Exception('catch me with no parameters to catch');
+        })
+        ->catch(function () use (&$caught) {
+            $caught = true;
+        });
 
-    /** @test */
-    public function when_no_parameters_are_given_to_catch_it_will_catch_all_exceptions()
-    {
-        $caught = false;
-        $collection = collect(['a', 'b', 'c', 1, 2, 3])
-            ->try()
-            ->map(function ($letter) {
-                throw new Exception('catch me with no parameters to catch');
-            })
-            ->catch(function () use (&$caught) {
-                $caught = true;
-            });
+    expect($collection->toArray())->toEqual(['a', 'b', 'c', 1, 2, 3]);
+    expect($caught)->toBeTrue();
+});
 
-        $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
-        $this->assertTrue($caught);
-    }
+test('the catch handle can receive the original collection', function () {
+    $collection = collect(['a', 'b', 'c', 1, 2, 3])
+        ->try()
+        ->map(function ($letter) {
+            return strtoupper($letter);
+        })
+        ->each(function ($letter) {
+            throw new Exception('catch me');
+        })
+        ->catch(function (Exception $exception, $collection) {
+            expect($exception->getMessage())->toEqual('catch me');
+            expect($collection->toArray())->toEqual(['a', 'b', 'c', 1, 2, 3]);
+        });
 
-    /** @test */
-    public function the_catch_handle_can_receive_the_original_collection()
-    {
-        $collection = collect(['a', 'b', 'c', 1, 2, 3])
-            ->try()
-            ->map(function ($letter) {
-                return strtoupper($letter);
-            })
-            ->each(function ($letter) {
-                throw new Exception('catch me');
-            })
-            ->catch(function (Exception $exception, $collection) {
-                $this->assertEquals('catch me', $exception->getMessage());
-                $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
-            });
+    expect($collection->toArray())->toEqual(['a', 'b', 'c', 1, 2, 3]);
+});
 
-        $this->assertEquals(['a', 'b', 'c', 1, 2, 3], $collection->toArray());
-    }
+test('the catch handler can return a collection', function () {
+    $collection = collect(['a', 'b', 'c', 1, 2, 3])
+        ->try()
+        ->map(function ($letter) {
+            throw new Exception('catch me');
+        })
+        ->catch(function (Exception $exception, $collection) {
+            expect($exception->getMessage())->toEqual('catch me');
 
-    /** @test */
-    public function the_catch_handler_can_return_a_collection()
-    {
-        $collection = collect(['a', 'b', 'c', 1, 2, 3])
-            ->try()
-            ->map(function ($letter) {
-                throw new Exception('catch me');
-            })
-            ->catch(function (Exception $exception, $collection) {
-                $this->assertEquals('catch me', $exception->getMessage());
+            return collect(['d', 'e', 'f']);
+        });
 
-                return collect(['d', 'e', 'f']);
-            });
+    expect($collection->toArray())->toEqual(['d', 'e', 'f']);
+});
 
-        $this->assertEquals(['d', 'e', 'f'], $collection->toArray());
-    }
+test('any method after catch will receive the original collection when an exception was caught', function () {
+    $collection = collect(['a', 'b', 'c', 1, 2, 3])
+        ->try()
+        ->map(function ($item) {
+            throw new Exception('carry on');
+        })
+        ->catch(function (Exception $exception) {
+            expect($exception->getMessage())->toEqual('carry on');
+        })
+        ->filter(function ($item) {
+            return is_int($item);
+        });
 
-    /** @test */
-    public function any_method_after_catch_will_receive_the_original_collection_when_an_exception_was_caught()
-    {
-        $collection = collect(['a', 'b', 'c', 1, 2, 3])
-            ->try()
-            ->map(function ($item) {
-                throw new Exception('carry on');
-            })
-            ->catch(function (Exception $exception) {
-                $this->assertEquals('carry on', $exception->getMessage());
-            })
-            ->filter(function ($item) {
-                return is_int($item);
-            });
-
-        $this->assertEquals([3 => 1, 2, 3], $collection->toArray());
-    }
-}
+    expect($collection->toArray())->toEqual([3 => 1, 2, 3]);
+});

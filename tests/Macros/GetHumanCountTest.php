@@ -1,115 +1,86 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class GetHumanCountTest extends TestCase
-{
-    /** @test */
-    public function it_gets_the_first_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the first item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(1, $data->first());
-    }
+    expect($data->first())->toEqual(1);
+});
 
-    /** @test */
-    public function it_gets_the_second_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the second item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(2, $data->second());
-    }
+    expect($data->second())->toEqual(2);
+});
 
-    /** @test */
-    public function it_gets_the_third_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the third item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(3, $data->third());
-    }
+    expect($data->third())->toEqual(3);
+});
 
-    /** @test */
-    public function it_gets_the_fourth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the fourth item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(4, $data->fourth());
-    }
+    expect($data->fourth())->toEqual(4);
+});
 
-    /** @test */
-    public function it_gets_the_fifth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the fifth item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(5, $data->fifth());
-    }
+    expect($data->fifth())->toEqual(5);
+});
 
-    /** @test */
-    public function it_gets_the_sixth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the sixth item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(6, $data->sixth());
-    }
+    expect($data->sixth())->toEqual(6);
+});
 
-    /** @test */
-    public function it_gets_the_seventh_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the seventh item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(7, $data->seventh());
-    }
+    expect($data->seventh())->toEqual(7);
+});
 
-    /** @test */
-    public function it_gets_the_eighth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the eighth item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(8, $data->eighth());
-    }
+    expect($data->eighth())->toEqual(8);
+});
 
-    /** @test */
-    public function it_gets_the_ninth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the ninth item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(9, $data->ninth());
-    }
+    expect($data->ninth())->toEqual(9);
+});
 
-    /** @test */
-    public function it_gets_the_tenth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the tenth item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(10, $data->tenth());
-    }
+    expect($data->tenth())->toEqual(10);
+});
 
-    /** @test */
-    public function it_gets_the_nth_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+it('gets the nth item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
 
-        $this->assertEquals(11, $data->getNth(11));
-    }
+    expect($data->getNth(11))->toEqual(11);
+});
 
-    /** @test */
-    public function it_returns_null_if_index_is_undefined()
-    {
-        $data = new Collection();
+it('returns null if index is undefined', function () {
+    $data = new Collection();
 
-        $this->assertNull($data->first());
-        $this->assertNull($data->second());
-        $this->assertNull($data->third());
-        $this->assertNull($data->fourth());
-        $this->assertNull($data->fifth());
-        $this->assertNull($data->sixth());
-        $this->assertNull($data->seventh());
-        $this->assertNull($data->eighth());
-        $this->assertNull($data->ninth());
-        $this->assertNull($data->tenth());
-        $this->assertNull($data->getNth(11));
-    }
-}
+    expect($data->first())->toBeNull();
+    expect($data->second())->toBeNull();
+    expect($data->third())->toBeNull();
+    expect($data->fourth())->toBeNull();
+    expect($data->fifth())->toBeNull();
+    expect($data->sixth())->toBeNull();
+    expect($data->seventh())->toBeNull();
+    expect($data->eighth())->toBeNull();
+    expect($data->ninth())->toBeNull();
+    expect($data->tenth())->toBeNull();
+    expect($data->getNth(11))->toBeNull();
+});

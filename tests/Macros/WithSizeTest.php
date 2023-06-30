@@ -1,23 +1,14 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class WithSizeTest extends TestCase
-{
-    /** @test */
-    public function it_can_create_a_collection_with_the_specified_size()
-    {
-        $this->assertEquals([1], Collection::withSize(1)->toArray());
-        $this->assertEquals([1, 2, 3], Collection::withSize(3)->toArray());
-    }
+it('can create a collection with the specified size', function () {
+    expect(Collection::withSize(1)->toArray())->toEqual([1]);
+    expect(Collection::withSize(3)->toArray())->toEqual([1, 2, 3]);
+});
 
-    /** @test */
-    public function it_can_creates_an_empty_collection_if_the_given_size_is_lower_than_one()
-    {
-        $this->assertCount(0, Collection::withSize(0));
-        $this->assertCount(0, Collection::withSize(-1));
-    }
-}
+it('can creates an empty collection if the given size is lower than one', function () {
+    expect(Collection::withSize(0))->toHaveCount(0);
+    expect(Collection::withSize(-1))->toHaveCount(0);
+});

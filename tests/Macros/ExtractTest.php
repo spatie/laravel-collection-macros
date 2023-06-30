@@ -1,61 +1,38 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class ExtractTest extends TestCase
-{
-    /** @var \Illuminate\Support\Collection */
-    private $user = null;
+beforeEach(function () {
+    $this->user = collect([
+        'name' => 'Sebastian',
+        'company' => 'Spatie',
+        'role' => [
+            'name' => 'Developer',
+        ],
+    ]);
+});
 
-    protected function setUp(): void
-    {
-        parent::setUp();
+it('provides an extract macro', function () {
+    expect(Collection::hasMacro('extract'))->toBeTrue();
+});
 
-        $this->user = collect([
-            'name' => 'Sebastian',
-            'company' => 'Spatie',
-            'role' => [
-                'name' => 'Developer',
-            ],
-        ]);
-    }
+it('can extract a key', function () {
+    expect($this->user->extract('name')->toArray())->toEqual(['Sebastian']);
+});
 
-    /** @test */
-    public function it_provides_an_extract_macro()
-    {
-        $this->assertTrue(Collection::hasMacro('extract'));
-    }
+it('can extract multiple keys', function () {
+    expect($this->user->extract('name', 'company')->toArray())->toEqual(['Sebastian', 'Spatie']);
+});
 
-    /** @test */
-    public function it_can_extract_a_key()
-    {
-        $this->assertEquals(['Sebastian'], $this->user->extract('name')->toArray());
-    }
+it('can extract multiple keys with an array', function () {
+    expect($this->user->extract(['name', 'company'])->toArray())->toEqual(['Sebastian', 'Spatie']);
+});
 
-    /** @test */
-    public function it_can_extract_multiple_keys()
-    {
-        $this->assertEquals(['Sebastian', 'Spatie'], $this->user->extract('name', 'company')->toArray());
-    }
+it('can extract nested keys', function () {
+    expect($this->user->extract('name', 'role.name')->toArray())->toEqual(['Sebastian', 'Developer']);
+});
 
-    /** @test */
-    public function it_can_extract_multiple_keys_with_an_array()
-    {
-        $this->assertEquals(['Sebastian', 'Spatie'], $this->user->extract(['name', 'company'])->toArray());
-    }
-
-    /** @test */
-    public function it_can_extract_nested_keys()
-    {
-        $this->assertEquals(['Sebastian', 'Developer'], $this->user->extract('name', 'role.name')->toArray());
-    }
-
-    /** @test */
-    public function it_extracts_null_when_a_keys_doesnt_exist()
-    {
-        $this->assertEquals([null, 'Sebastian'], $this->user->extract('id', 'name')->toArray());
-    }
-}
+it('extracts null when a keys doesnt exist', function () {
+    expect($this->user->extract('id', 'name')->toArray())->toEqual([null, 'Sebastian']);
+});

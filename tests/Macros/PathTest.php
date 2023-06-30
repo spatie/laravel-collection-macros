@@ -1,64 +1,39 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class PathTest extends TestCase
-{
-    /** @test */
-    public function it_retrieves_item_from_collection()
-    {
-        $collection = new Collection(['foo', 'bar']);
+it('retrieves item from collection', function () {
+    $collection = new Collection(['foo', 'bar']);
 
-        $this->assertSame(
-            'foo',
-            $collection->path(0)
-        );
-    }
+    expect($collection->path(0))->toBe('foo');
+});
 
-    /** @test */
-    public function it_retrieves_item_from_collection_using_dot_notation()
-    {
-        $collection = new Collection([
-            'foo' => [
-                'bar' => [
-                    'baz' => 100,
-                ],
+it('retrieves item from collection using dot notation', function () {
+    $collection = new Collection([
+        'foo' => [
+            'bar' => [
+                'baz' => 100,
             ],
-        ]);
+        ],
+    ]);
 
-        $this->assertSame(
-            100,
-            $collection->path('foo.bar.baz')
-        );
-    }
+    expect($collection->path('foo.bar.baz'))->toBe(100);
+});
 
-    /** @test */
-    public function it_doesnt_remove_item_from_collection()
-    {
-        $collection = new Collection(['foo', 'bar']);
+it('doesnt remove item from collection', function () {
+    $collection = new Collection(['foo', 'bar']);
 
-        $collection->path(0);
+    $collection->path(0);
 
-        $this->assertEquals(
-            [
-                0 => 'foo',
-                1 => 'bar',
-            ],
-            $collection->all()
-        );
-    }
+    expect($collection->all())->toEqual([
+        0 => 'foo',
+        1 => 'bar',
+    ]);
+});
 
-    /** @test */
-    public function it_returns_default()
-    {
-        $collection = new Collection([]);
+it('returns default', function () {
+    $collection = new Collection([]);
 
-        $this->assertSame(
-            'foo',
-            $collection->path(0, 'foo')
-        );
-    }
-}
+    expect($collection->path(0, 'foo'))->toBe('foo');
+});

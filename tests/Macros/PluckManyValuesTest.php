@@ -1,60 +1,42 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
+use Spatie\CollectionMacros\Test\TestSupport\TestArrayAccessImplementation;
 
-class PluckManyValuesTest extends TestCase
-{
-    /** @test */
-    public function it_provides_a_pluckManyValues_macro()
-    {
-        $this->assertTrue(Collection::hasMacro('pluckManyValues'));
-    }
+it('provides a pluck many values macro', function () {
+    expect(Collection::hasMacro('pluckManyValues'))->toBeTrue();
+});
 
-    /** @test */
-    public function it_can_pluck_from_a_collection_of_collections()
-    {
-        $data = Collection::make([
-            collect(['id' => 1, 'name' => 'matt', 'hobby' => 'coding']),
-            collect(['id' => 2, 'name' => 'tomo', 'hobby' => 'cooking']),
-        ]);
+it('can pluck from a collection of collections', function () {
+    $data = Collection::make([
+        collect(['id' => 1, 'name' => 'matt', 'hobby' => 'coding']),
+        collect(['id' => 2, 'name' => 'tomo', 'hobby' => 'cooking']),
+    ]);
 
-        $this->assertEquals($data->map->only(['name', 'hobby'])->map->values(), $data->pluckManyValues(['name', 'hobby']));
-    }
+    expect($data->pluckManyValues(['name', 'hobby']))->toEqual($data->map->only(['name', 'hobby'])->map->values());
+});
 
-    /** @test */
-    public function it_can_pluck_from_array_and_object_items()
-    {
-        $data = Collection::make([
-            (object) ['id' => 1, 'name' => 'matt', 'hobby' => 'coding'],
-            ['id' => 2, 'name' => 'tomo', 'hobby' => 'cooking'],
-        ]);
+it('can pluck from array and object items', function () {
+    $data = Collection::make([
+        (object) ['id' => 1, 'name' => 'matt', 'hobby' => 'coding'],
+        ['id' => 2, 'name' => 'tomo', 'hobby' => 'cooking'],
+    ]);
 
-        $this->assertEquals(
-            [
-                (object) ['matt', 'coding'],
-                ['tomo', 'cooking'],
-            ],
-            $data->pluckManyValues(['name', 'hobby'])->all()
-        );
-    }
+    expect($data->pluckManyValues(['name', 'hobby'])->all())->toEqual([
+        (object) ['matt', 'coding'],
+        ['tomo', 'cooking'],
+    ]);
+});
 
-    /** @test */
-    public function it_can_pluck_from_objects_that_implement_array_access_interface()
-    {
-        $data = Collection::make([
-            new TestArrayAccessImplementation(['id' => 1, 'name' => 'marco', 'hobby' => 'drinking']),
-            new TestArrayAccessImplementation(['id' => 2, 'name' => 'belle', 'hobby' => 'cross-stitch']),
-        ]);
+it('can pluck from objects that implement array access interface', function () {
+    $data = Collection::make([
+        new TestArrayAccessImplementation(['id' => 1, 'name' => 'marco', 'hobby' => 'drinking']),
+        new TestArrayAccessImplementation(['id' => 2, 'name' => 'belle', 'hobby' => 'cross-stitch']),
+    ]);
 
-        $this->assertEquals(
-            [
-                ['marco', 'drinking'],
-                ['belle', 'cross-stitch'],
-            ],
-            $data->pluckManyValues(['name', 'hobby'])->all()
-        );
-    }
-}
+    expect($data->pluckManyValues(['name', 'hobby'])->all())->toEqual([
+        ['marco', 'drinking'],
+        ['belle', 'cross-stitch'],
+    ]);
+});

@@ -1,53 +1,29 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class InsertBeforeKeyTest extends TestCase
-{
-    /** @test */
-    public function it_provides_an_insertBeforeKey_macro()
-    {
-        $this->assertTrue(Collection::hasMacro('insertBeforeKey'));
-    }
+it('provides an insert before key macro', function () {
+    expect(Collection::hasMacro('insertBeforeKey'))->toBeTrue();
+});
 
-    /** @test */
-    public function it_inserts_with_unkeyed_array()
-    {
-        $collection = Collection::make(['zero', 'two', 'three']);
-        $collection->insertBeforeKey(1, 'one');
-        $this->assertEquals(json_encode(['zero', 'one', 'two', 'three']), json_encode($collection->toArray()));
-    }
+it('inserts with unkeyed array', function () {
+    $collection = Collection::make(['zero', 'two', 'three']);
+    $collection->insertBeforeKey(1, 'one');
+    expect(json_encode($collection->toArray()))->toEqual(json_encode(['zero', 'one', 'two', 'three']));
+});
 
-    /** @test */
-    public function it_returns_the_updated_collection()
-    {
-        $collection = Collection::make(['zero', 'two', 'three'])->insertBeforeKey(1, 'one');
-        $this->assertEquals(
-            json_encode(['zero', 'one', 'two', 'three']),
-            json_encode($collection->toArray())
-        );
-    }
+it('returns the updated collection', function () {
+    $collection = Collection::make(['zero', 'two', 'three'])->insertBeforeKey(1, 'one');
+    expect(json_encode($collection->toArray()))->toEqual(json_encode(['zero', 'one', 'two', 'three']));
+});
 
-    /** @test */
-    public function it_maintains_array_keys()
-    {
-        $collection = Collection::make(['zero' => 0, 'two' => 2, 'three' => 3])->insertBeforeKey('two', 'one');
-        $this->assertEquals(
-            json_encode(['zero' => 0, 'one', 'two' => 2, 'three' => 3]),
-            json_encode($collection->toArray())
-        );
-    }
+it('maintains array keys', function () {
+    $collection = Collection::make(['zero' => 0, 'two' => 2, 'three' => 3])->insertBeforeKey('two', 'one');
+    expect(json_encode($collection->toArray()))->toEqual(json_encode(['zero' => 0, 'one', 'two' => 2, 'three' => 3]));
+});
 
-    /** @test */
-    public function it_inserts_with_a_key()
-    {
-        $collection = Collection::make(['zero' => 0, 'two' => 2, 'three' => 3])->insertBeforeKey('two', 5, 'five');
-        $this->assertEquals(
-            json_encode(['zero' => 0, 'five' => 5, 'two' => 2, 'three' => 3]),
-            json_encode($collection->toArray())
-        );
-    }
-}
+it('inserts with a key', function () {
+    $collection = Collection::make(['zero' => 0, 'two' => 2, 'three' => 3])->insertBeforeKey('two', 5, 'five');
+    expect(json_encode($collection->toArray()))->toEqual(json_encode(['zero' => 0, 'five' => 5, 'two' => 2, 'three' => 3]));
+});

@@ -1,31 +1,20 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class HeadTest extends TestCase
-{
-    /** @test */
-    public function it_provides_head_macro()
-    {
-        $this->assertTrue(Collection::hasMacro('head'));
-    }
+it('provides head macro', function () {
+    expect(Collection::hasMacro('head'))->toBeTrue();
+});
 
-    /** @test */
-    public function it_gets_the_first_item_of_the_collection()
-    {
-        $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+it('gets the first item of the collection', function () {
+    $data = new Collection([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 
-        $this->assertEquals(1, $data->head());
-    }
+    expect($data->head())->toEqual(1);
+});
 
-    /** @test */
-    public function it_returns_null_if_the_collection_is_empty()
-    {
-        $data = new Collection();
+it('returns null if the collection is empty', function () {
+    $data = new Collection();
 
-        $this->assertNull($data->head());
-    }
-}
+    expect($data->head())->toBeNull();
+});

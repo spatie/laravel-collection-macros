@@ -11,7 +11,9 @@ use function Amp\Promise\wait;
 use Illuminate\Support\Collection;
 
 /**
- * Idential to map but each item will be processed in parallel.
+ * @deprecated This function will be removed in the next major release.
+ *
+ * Identical to map but each item will be processed in parallel.
  *
  * This function requires the installation of amphp/parallel-functions
  *

@@ -4,6 +4,8 @@ namespace Spatie\CollectionMacros;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
+use Spatie\CollectionMacros\Macros\GetCaseInsensitive;
+use Spatie\CollectionMacros\Macros\HasCaseInsensitive;
 
 class CollectionMacroServiceProvider extends ServiceProvider
 {
@@ -33,9 +35,11 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'firstOrPush' => \Spatie\CollectionMacros\Macros\FirstOrPush::class,
             'fourth' => \Spatie\CollectionMacros\Macros\Fourth::class,
             'fromPairs' => \Spatie\CollectionMacros\Macros\FromPairs::class,
+            'getCaseInsensitive' => \Spatie\CollectionMacros\Macros\GetCaseInsensitive::class,
             'getNth' => \Spatie\CollectionMacros\Macros\GetNth::class,
             'glob' => \Spatie\CollectionMacros\Macros\Glob::class,
             'groupByModel' => \Spatie\CollectionMacros\Macros\GroupByModel::class,
+            'hasCaseInsensitive' => \Spatie\CollectionMacros\Macros\HasCaseInsensitive::class,
             'head' => \Spatie\CollectionMacros\Macros\Head::class,
             'if' => \Spatie\CollectionMacros\Macros\IfMacro::class,
             'ifAny' => \Spatie\CollectionMacros\Macros\IfAny::class,

@@ -1,38 +1,29 @@
 <?php
 
-namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
 use Spatie\CollectionMacros\Exceptions\CollectionItemNotFound;
-use Spatie\CollectionMacros\Test\TestCase;
 
-class FirstOrFailTest extends TestCase
-{
-    /** @test */
-    public function it_returns_first_item_when_there_is_one()
-    {
-        if (method_exists(Collection::class, 'firstOrFail')) {
-            $this->expectNotToPerformAssertions();
+it('returns first item when there is one', function () {
+    if (method_exists(Collection::class, 'firstOrFail')) {
+        $this->expectNotToPerformAssertions();
 
-            return;
-        }
-
-        $result = Collection::make([1, 2, 3, 4])->firstOrFail();
-
-        $this->assertEquals(1, $result);
+        return;
     }
 
-    /** @test */
-    public function it_throws_exception_when_there_are_no_items()
-    {
-        if (method_exists(Collection::class, 'firstOrFail')) {
-            $this->expectNotToPerformAssertions();
+    $result = Collection::make([1, 2, 3, 4])->firstOrFail();
 
-            return;
-        }
+    expect($result)->toEqual(1);
+});
 
-        $this->expectException(CollectionItemNotFound::class);
+it('throws exception when there are no items', function () {
+    if (method_exists(Collection::class, 'firstOrFail')) {
+        $this->expectNotToPerformAssertions();
 
-        Collection::make()->firstOrFail();
+        return;
     }
-}
+
+    $this->expectException(CollectionItemNotFound::class);
+
+    Collection::make()->firstOrFail();
+});
