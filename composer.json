@@ -30,9 +30,7 @@
         "amphp/parallel-functions": "^1.1.0",
         "mockery/mockery": "^1.6.2",
         "orchestra/testbench": "^8.5.9",
-        "pestphp/pest": "dev-develop as 2.99",
-        "pestphp/pest-plugin-drift": "2.x-dev",
-        "pestphp/pest-plugin-type-coverage": "2.x-dev",
+        "pestphp/pest": "^2.0",
         "phpunit/phpunit": "10.2.2",
         "spatie/laravel-ray": "^1.32.5",
         "symfony/stopwatch": "^6.3"
