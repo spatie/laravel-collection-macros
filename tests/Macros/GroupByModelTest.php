@@ -166,7 +166,7 @@ it('can group a collection by a model and preserve keys', function () {
     })->toArray())->toEqual($expected);
 });
 
-function getDummies() : array
+function getDummies(): array
 {
     $model1 = Mockery::mock(Model::class);
     $model1->shouldReceive('getKey')->andReturn(1);

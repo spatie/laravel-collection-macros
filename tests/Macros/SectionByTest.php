@@ -98,7 +98,7 @@ it('can preserve keys', function () {
     })->toArray())->toEqual($expected);
 });
 
-function getDummyCollection() : Collection
+function getDummyCollection(): Collection
 {
     return Collection::make([
         'lesson1' => ['name' => 'Lesson 1', 'module' => 'Basics'],

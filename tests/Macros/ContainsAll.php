@@ -4,7 +4,6 @@ namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
 
-
 it('returns true if the collection contains all given items', function (
     bool $expectedResult,
     array $otherItems
@@ -18,4 +17,3 @@ it('returns true if the collection contains all given items', function (
     [true, ['b', 'c']],
     [true, []],
 ]);
-
