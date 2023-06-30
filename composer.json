@@ -22,20 +22,20 @@
         }
     ],
     "require": {
-        "php": "^8.0",
-        "illuminate/support": "^8.71|^9.0|^10.0"
+        "php": "^8.2",
+        "illuminate/support": "^10.0"
     },
     "require-dev": {
-        "amphp/parallel": "^1.4.1",
+        "amphp/parallel": "^1.4.3",
         "amphp/parallel-functions": "^1.1.0",
-        "mockery/mockery": "^1.4.2",
-        "orchestra/testbench": "^6.23|^7.0|^8.0",
+        "mockery/mockery": "^1.6.2",
+        "orchestra/testbench": "^8.5.9",
         "pestphp/pest": "dev-develop as 2.99",
         "pestphp/pest-plugin-drift": "2.x-dev",
         "pestphp/pest-plugin-type-coverage": "2.x-dev",
         "phpunit/phpunit": "10.2.2",
-        "spatie/laravel-ray": "^1.29",
-        "symfony/stopwatch": "^5.2|^6.0"
+        "spatie/laravel-ray": "^1.32.5",
+        "symfony/stopwatch": "^6.3"
     },
     "suggest": {
         "amphp/parallel-functions": "Required when using the parallel*-macros."
