@@ -4,7 +4,6 @@ namespace Spatie\CollectionMacros\Test\Macros;
 
 use Illuminate\Support\Collection;
 
-
 it('returns true if the collection contains at least one of the given items', function (
     bool $expectedResult,
     array $otherItems

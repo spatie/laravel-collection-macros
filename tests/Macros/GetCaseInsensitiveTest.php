@@ -4,11 +4,12 @@ it(
     'can get the value of a case-insensitive key',
     function (string $key, string|null $expectedResult) {
         $collection = collect([
-            'foo' => 'bar'
+            'foo' => 'bar',
         ]);
 
         expect($collection->getCaseInsensitive($key))->toBe($expectedResult);
-    })->with([
+    }
+)->with([
     ['foo', 'bar'],
     ['FOO', 'bar'],
     ['Foo', 'bar'],

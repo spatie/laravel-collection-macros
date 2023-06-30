@@ -4,8 +4,6 @@ namespace Spatie\CollectionMacros;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
-use Spatie\CollectionMacros\Macros\GetCaseInsensitive;
-use Spatie\CollectionMacros\Macros\HasCaseInsensitive;
 
 class CollectionMacroServiceProvider extends ServiceProvider
 {
