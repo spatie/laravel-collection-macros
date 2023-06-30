@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.13.0 - 2023-06-30
+
+- add `hasCaseSensitive` and `getCaseSensitive`
+- drop support for older PHP and Laravel versions
+- refactor tests to Pest
+
 ## 7.12.5 - 2023-05-11
 
 ### What's Changed
