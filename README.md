@@ -53,8 +53,10 @@ The package will automatically register itself.
 - [`firstOrFail`](#firstorfail)
 - [`firstOrPush`](#firstorpush)
 - [`fromPairs`](#frompairs)
+- [`getCaseInsensitive`](#getcaseinsensitive)
 - [`glob`](#glob)
 - [`groupByModel`](#groupbymodel)
+- [`hasCaseInsensitive`](#hascaseinsensitive)
 - [`head`](#head)
 - [`if`](#if)
 - [`ifAny`](#ifany)
@@ -384,6 +386,20 @@ $collection = collect([['a', 'b'], ['c', 'd'], ['e', 'f']])->fromPairs();
 $collection->toArray(); // returns ['a' => 'b', 'c' => 'd', 'e' => 'f']
 ```
 
+### `getCaseInsensitive`
+
+Get the value of a given key. 
+
+If the key is a string, we'll search for the key using a case-insensitive comparison.
+
+```php
+$collection = collect([
+    'foo' => 'bar',
+]);
+
+$collection->getCaseInsensitive('Foo'); // returns 'bar';
+```
+
 ### `glob`
 
 Returns a collection of a `glob()` result.
@@ -406,6 +422,20 @@ $posts->groupByModel('category');
 ```
 
 Full signature: `groupByModel($callback, $preserveKeys, $modelKey, $itemsKey)`
+
+### `hasCaseInsensitive`
+
+Determine if the collection contains a key with a given name.
+
+If $key is a string, we'll search for the key using a case-insensitive comparison.
+
+```php
+$collection = collect([
+    'foo' => 'bar',
+]);
+
+$collection->hasCaseInsensitive('Foo'); // returns true;
+```
 
 ### `head`
 
