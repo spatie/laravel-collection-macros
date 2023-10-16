@@ -60,3 +60,22 @@ it('returns empty collection when missing key without default', function () {
 
     expect($ingredients)->toEqual(new Collection());
 });
+
+it('collects path from collection using dot notation', function () {
+    $collection = new Collection([
+        'baz.qux' => 'quux',
+        'foo' => [
+            'bar' => [
+                'baz' => 100,
+            ],
+        ],
+    ]);
+
+    expect($collection->collectBy('foo.bar'))->toBeInstanceOf(Collection::class);
+    expect($collection->collectBy('foo.bar')->toArray())->toEqual([
+        'baz' => 100,
+    ]);
+
+    expect($collection->collectBy('baz.qux'))->toBeInstanceOf(Collection::class);
+    expect($collection->collectBy('baz.qux')->toArray())->toEqual(['quux']);
+});

@@ -2,6 +2,7 @@
 
 namespace Spatie\CollectionMacros\Macros;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
 /**
@@ -19,7 +20,7 @@ class CollectBy
     public function __invoke()
     {
         return function ($key, $default = null): Collection {
-            return new static($this->get($key, $default));
+            return new static(Arr::get($this->items, $key, $default));
         };
     }
 }
