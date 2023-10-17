@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.13.1 - 2023-10-17
+
+### What's Changed
+
+- feat(collectBy): support dot-notation by @innocenzi in https://github.com/spatie/laravel-collection-macros/pull/247
+
+### New Contributors
+
+- @innocenzi made their first contribution in https://github.com/spatie/laravel-collection-macros/pull/247
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.13.0...7.13.1
+
 ## 7.13.0 - 2023-06-30
 
 - add `hasCaseSensitive` and `getCaseSensitive`
