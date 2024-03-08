@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.14.0 - 2024-03-08
+
+### What's Changed
+
+* Laravel 11.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-collection-macros/pull/249
+
+### New Contributors
+
+* @laravel-shift made their first contribution in https://github.com/spatie/laravel-collection-macros/pull/249
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.13.1...7.14.0
+
 ## 7.13.1 - 2023-10-17
 
 ### What's Changed
