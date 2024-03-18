@@ -2,12 +2,6 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
-## 7.xx.x - 2023-1x-xx
-
-### What's Changed
-
-- feat(pluckMany): support dot-notation by @sfinktah in https://github.com/spatie/laravel-collection-macros/pull/xxx
-
 ## 7.13.1 - 2023-10-17
 
 ### What's Changed
