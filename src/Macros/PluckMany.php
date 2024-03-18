@@ -2,7 +2,6 @@
 
 namespace Spatie\CollectionMacros\Macros;
 
-use ArrayAccess;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 
@@ -25,21 +24,28 @@ class PluckMany
 
             return $this->map(function ($item) use ($keys) {
                 if ($item instanceof Collection) {
+                    if (Arr::accessible($item->all()))
+                        return new static(pluckManyHelper($item->all(), $keys));
                     return $item->only($keys);
                 }
 
-                if (is_array($item)) {
-                    return Arr::only($item, $keys);
+                if (Arr::accessible($item)) {
+                    return pluckManyHelper($item, $keys);
                 }
 
-                if ($item instanceof ArrayAccess) {
-                    return collect($keys)->mapWithKeys(function ($key) use ($item) {
-                        return [$key => $item[$key]];
-                    })->toArray();
-                }
+                // ArrayAccess handling not required, Arr::accessible includes it.
 
-                return (object) Arr::only(get_object_vars($item), $keys);
+                return (object) pluckManyHelper(get_object_vars($item), $keys);
             });
         };
     }
+}
+
+function pluckManyHelper($item, $keys): array {
+    $result = [];
+    foreach ($keys as $key) {
+        if (Arr::has($item, $key))
+            $result[$key] = Arr::get($item, $key);
+    }
+    return $result;
 }
