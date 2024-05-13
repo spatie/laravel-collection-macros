@@ -68,7 +68,6 @@ The package will automatically register itself.
 - [`insertBeforeKey`](#insertbeforekey)
 - [`none`](#none)
 - [`paginate`](#paginate)
-- [`parallelMap`](#parallelmap)
 - [`path`](#path)
 - [`pluckMany`](#pluckmany)
 - [`pluckManyValues`](#pluckmanyvalues)
@@ -613,46 +612,6 @@ This paginates the contents of `$posts` with 5 items per page. `paginate` accept
 ```
 paginate(int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = [])
 ```
-
-### `parallelMap`
-
-Identical to `map` but each item in the collection will be processed in parallel. Before using this macro you should pull in the `amphp/parallel-functions` package.
-
-```bash
-composer require amphp/parallel-functions
-```
-
-Be aware that under the hood some overhead is introduced to make the parallel processing possible. When your `$callable` is only a simple operation it's probably better to use `map` instead. Also keep in mind that `parallelMap` can be memory intensive.
-
-```php
-$pageSources = collect($urls)->parallelMap(function($url) {
-    return file_get_contents($url);
-});
-```
-
-The page contents of the given `$urls` will be fetched at the same time. The underlying `amp` sets a maximum of `32` concurrent processes by default.
-
-There is a second (optional) parameter, through which you can define a custom parallel processing pool. It looks like this:
-
-```php
-use Amp\Parallel\Worker\DefaultPool;
-
-$pool = new DefaultPool(8);
-
-$pageSources = collect($urls)->parallelMap(function($url) {
-    return file_get_contents($url);
-}, $pool);
-```
-
-If you don't need to extend the worker pool, or can't be bothered creating the new pool yourself; you can use an integer the the number of workers you'd like to use. A new `DefaultPool` will be created for you:
-
-```php
-$pageSources = collect($urls)->parallelMap(function($url) {
-    return file_get_contents($url);
-}, 8);
-```
-
-This helps to reduce the memory overhead, as the default worker pool limit is `32` (as defined in `amphp/parallel`). Using fewer worker threads can significantly reduce memory and processing overhead, in many cases. Benchmark and customise the worker thread limit to suit your particular use-case.
 
 ### `path`
 
