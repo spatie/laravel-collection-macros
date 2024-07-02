@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.14.1 - 2024-07-02
+
+### What's Changed
+
+* pluckMany dotted key support by @sfinktah in https://github.com/spatie/laravel-collection-macros/pull/248
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.14.0...7.14.1
+
 ## 7.14.0 - 2024-03-08
 
 ### What's Changed
