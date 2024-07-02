@@ -24,8 +24,10 @@ class PluckMany
 
             return $this->map(function ($item) use ($keys) {
                 if ($item instanceof Collection) {
-                    if (Arr::accessible($item->all()))
+                    if (Arr::accessible($item->all())) {
                         return new static(pluckManyHelper($item->all(), $keys));
+                    }
+
                     return $item->only($keys);
                 }
 
@@ -41,11 +43,14 @@ class PluckMany
     }
 }
 
-function pluckManyHelper($item, $keys): array {
+function pluckManyHelper($item, $keys): array
+{
     $result = [];
     foreach ($keys as $key) {
-        if (Arr::has($item, $key))
+        if (Arr::has($item, $key)) {
             $result[$key] = Arr::get($item, $key);
+        }
     }
+
     return $result;
 }

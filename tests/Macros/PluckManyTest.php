@@ -49,7 +49,7 @@ it('can pluck dot-notated keys from a collection of collections', function () {
 
     expect($data->pluckMany(['name', 'info.hobby']))->toEqual(collect([
         collect(['name' => 'matt', 'info.hobby' => 'coding']),
-        collect(['name' => 'tomo', 'info.hobby' => 'cooking'])
+        collect(['name' => 'tomo', 'info.hobby' => 'cooking']),
     ]));
 });
 
