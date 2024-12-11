@@ -610,7 +610,7 @@ collect($posts)->paginate(5);
 This paginates the contents of `$posts` with 5 items per page. `paginate` accepts quite some options, head over to [the Laravel docs](https://laravel.com/docs/5.4/pagination) for an in-depth guide.
 
 ```
-paginate(int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = [])
+paginate(int $perPage = 15, string $pageName = 'page', ?int $page = null, ?int $total = null, array $options = [])
 ```
 
 ### `path`
@@ -806,7 +806,7 @@ collect($posts)->simplePaginate(5);
 This paginates the contents of `$posts` with 5 items per page. `simplePaginate` accepts quite some options, head over to [the Laravel docs](https://laravel.com/docs/5.4/pagination) for an in-depth guide.
 
 ```
-simplePaginate(int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = [])
+simplePaginate(int $perPage = 15, string $pageName = 'page', ?int $page = null, ?int $total = null, array $options = [])
 ```
 
 For a in-depth guide on pagination, check out [the Laravel docs](https://laravel.com/docs/5.4/pagination).
