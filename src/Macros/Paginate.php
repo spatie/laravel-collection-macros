@@ -20,7 +20,7 @@ class Paginate
 {
     public function __invoke()
     {
-        return function (int $perPage = 15, string $pageName = 'page', int $page = null, int $total = null, array $options = []): LengthAwarePaginator {
+        return function (int $perPage = 15, string $pageName = 'page', ?int $page = null, ?int $total = null, array $options = []): LengthAwarePaginator {
             $page = $page ?: LengthAwarePaginator::resolveCurrentPage($pageName);
 
             $results = $this->forPage($page, $perPage)->values();
