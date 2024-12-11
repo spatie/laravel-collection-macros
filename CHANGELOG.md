@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 7.14.2 - 2024-12-11
+
+### What's Changed
+
+* fix: php 8.4 compatibility by @calebdw in https://github.com/spatie/laravel-collection-macros/pull/251
+
+### New Contributors
+
+* @calebdw made their first contribution in https://github.com/spatie/laravel-collection-macros/pull/251
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.14.1...7.14.2
+
 ## 7.14.1 - 2024-07-02
 
 ### What's Changed
