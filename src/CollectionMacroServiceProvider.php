@@ -17,9 +17,7 @@ class CollectionMacroServiceProvider extends ServiceProvider
     private function macros(): array
     {
         return [
-            'after' => \Spatie\CollectionMacros\Macros\After::class,
             'at' => \Spatie\CollectionMacros\Macros\At::class,
-            'before' => \Spatie\CollectionMacros\Macros\Before::class,
             'chunkBy' => \Spatie\CollectionMacros\Macros\ChunkBy::class,
             'collectBy' => \Spatie\CollectionMacros\Macros\CollectBy::class,
             'containsAll' => \Spatie\CollectionMacros\Macros\ContainsAll::class,

@@ -44,9 +44,3 @@ it('returns null if there isnt a previous item', function () {
 
     expect($data->before(1))->toBeNull();
 });
-
-it('can return a fallback value if there isnt a previous item', function () {
-    $data = new Collection([1, 2, 3]);
-
-    expect($data->before(1, 'The void'))->toEqual('The void');
-});

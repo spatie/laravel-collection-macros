@@ -41,7 +41,6 @@ The package will automatically register itself.
     - [`ninth`](#ninth)
     - [`tenth`](#tenth)
     - [`getNth`](#getNth)
-- [`before`](#before)
 - [`catch`](#catch)
 - [`chunkBy`](#chunkby)
 - [`collectBy`](#collectBy)

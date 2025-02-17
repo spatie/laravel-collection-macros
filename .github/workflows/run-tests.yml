@@ -13,13 +13,9 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: [8.2]
-        laravel: ['10.*', '11.*', '12.*']
+        laravel: ['12.*']
         dependency-version: [prefer-stable, prefer-lowest]
         include:
-          - testbench: 8.*
-            laravel: 10.*
-          - testbench: 9.*
-            laravel: 11.*
           - testbench: 10.*
             laravel: 12.*
 

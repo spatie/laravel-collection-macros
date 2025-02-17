@@ -44,9 +44,3 @@ it('returns null if there isnt a next item', function () {
 
     expect($data->after(3))->toBeNull();
 });
-
-it('can return a fallback value if there isnt a next item', function () {
-    $data = new Collection([1, 2, 3]);
-
-    expect($data->after(3, 4))->toEqual(4);
-});
