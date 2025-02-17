@@ -2,6 +2,14 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 8.0.0 - 2025-02-17
+
+### What's Changed
+
+* Laravel 12.x Compatibility by @laravel-shift in https://github.com/spatie/laravel-collection-macros/pull/252
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/7.14.2...8.0.0
+
 ## 7.14.2 - 2024-12-11
 
 ### What's Changed
