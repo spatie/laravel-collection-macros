@@ -13,13 +13,15 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: [8.2]
-        laravel: ['10.*', '11.*']
+        laravel: ['10.*', '11.*', '12.*']
         dependency-version: [prefer-stable, prefer-lowest]
         include:
           - testbench: 8.*
             laravel: 10.*
           - testbench: 9.*
             laravel: 11.*
+          - testbench: 10.*
+            laravel: 12.*
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
 
@@ -36,7 +38,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "nesbot/carbon:^2.63" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
           composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
       - name: Execute tests
