@@ -1,9 +1,19 @@
-# A set of useful Laravel collection macros
+<div align="left">
+    <a href="https://spatie.be/open-source?utm_source=github&utm_medium=banner&utm_campaign=laravel-collection-macros">
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://spatie.be/packages/header/laravel-collection-macros/html/dark.webp">
+        <img alt="Logo for laravel-collection-macros" src=" https://spatie.be/packages/header/laravel-collection-macros/html/light.webp" height="190">
+      </picture>
+    </a>
+
+<h1>A set of useful Laravel collection macros</h1>
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/laravel-collection-macros.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-collection-macros)
 ![Run tests](https://github.com/spatie/laravel-collection-macros/workflows/Run%20tests/badge.svg)
 ![Check & fix styling](https://github.com/spatie/laravel-collection-macros/workflows/Check%20&%20fix%20styling/badge.svg)
 [![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-collection-macros.svg?style=flat-square)](https://packagist.org/packages/spatie/laravel-collection-macros)
+    
+</div>
 
 This repository contains some useful collection macros.
 
