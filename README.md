@@ -59,7 +59,6 @@ The package will automatically register itself.
 - [`eachCons`](#eachcons)
 - [`extract`](#extract)
 - [`filterMap`](#filtermap)
-- [`firstOrFail`](#firstorfail)
 - [`firstOrPush`](#firstorpush)
 - [`fromPairs`](#frompairs)
 - [`getCaseInsensitive`](#getcaseinsensitive)
@@ -348,18 +347,6 @@ $collection = collect([1, 2, 3, 4, 5, 6])->filterMap(function ($number) {
 });
 
 $collection->toArray(); // returns [1, 2]
-```
-
-### `firstOrFail`
-
-Get the first item. Throws `Spatie\CollectionMacros\Exceptions\CollectionItemNotFound` if the item was not found.
-
-```php
-$collection = collect([1, 2, 3, 4, 5, 6])->firstOrFail();
-
-$collection->toArray(); // returns [1]
-
-collect([])->firstOrFail(); // throws Spatie\CollectionMacros\Exceptions\CollectionItemNotFound
 ```
 
 ### `firstOrPush`

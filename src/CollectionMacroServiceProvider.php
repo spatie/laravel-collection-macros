@@ -27,7 +27,6 @@ class CollectionMacroServiceProvider extends ServiceProvider
             'extract' => \Spatie\CollectionMacros\Macros\Extract::class,
             'fifth' => \Spatie\CollectionMacros\Macros\Fifth::class,
             'filterMap' => \Spatie\CollectionMacros\Macros\FilterMap::class,
-            'firstOrFail' => \Spatie\CollectionMacros\Macros\FirstOrFail::class,
             'firstOrPush' => \Spatie\CollectionMacros\Macros\FirstOrPush::class,
             'fourth' => \Spatie\CollectionMacros\Macros\Fourth::class,
             'fromPairs' => \Spatie\CollectionMacros\Macros\FromPairs::class,
