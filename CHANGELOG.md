@@ -2,6 +2,18 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 8.0.1 - 2025-08-18
+
+### What's Changed
+
+* Delete `firstOrFail()` macro by @jivanf in https://github.com/spatie/laravel-collection-macros/pull/253
+
+### New Contributors
+
+* @jivanf made their first contribution in https://github.com/spatie/laravel-collection-macros/pull/253
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/8.0.0...8.0.1
+
 ## 8.0.0 - 2025-02-17
 
 ### What's Changed
