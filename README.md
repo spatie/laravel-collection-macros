@@ -655,7 +655,7 @@ $collection = collect([
     ['a' => 2, 'b' => 20, 'c' => 200],
 ]);
 
-$collection->pluckMany(['a', 'b']);
+$collection->pluckManyValues(['a', 'b']);
 
 // returns
 // collect([
