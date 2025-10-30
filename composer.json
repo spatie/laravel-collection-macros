@@ -33,7 +33,7 @@
         "pestphp/pest": "^3.7",
         "phpunit/phpunit": "^11.5.3",
         "spatie/laravel-ray": "^1.32.5",
-        "symfony/stopwatch": "^6.3|^7.0"
+        "symfony/stopwatch": "^6.3||^7.0 || ^8.0"
     },
     "suggest": {
         "amphp/parallel-functions": "Required when using the parallel*-macros."
