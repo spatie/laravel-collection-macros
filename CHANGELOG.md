@@ -2,6 +2,19 @@
 
 All notable changes to `laravel-collection-macros` will be documented in this file
 
+## 8.0.2 - 2025-11-28
+
+### What's Changed
+
+* Update README.md by @pikant in https://github.com/spatie/laravel-collection-macros/pull/254
+* Update issue template by @AlexVanderbist in https://github.com/spatie/laravel-collection-macros/pull/255
+
+### New Contributors
+
+* @pikant made their first contribution in https://github.com/spatie/laravel-collection-macros/pull/254
+
+**Full Changelog**: https://github.com/spatie/laravel-collection-macros/compare/8.0.1...8.0.2
+
 ## 8.0.1 - 2025-08-18
 
 ### What's Changed
