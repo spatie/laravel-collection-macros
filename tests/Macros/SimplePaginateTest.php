@@ -24,6 +24,7 @@ it('returns relevant context information', function () {
         'to' => 3,
         'data' => [2 => 'item3'],
         'path' => 'http://localhost',
+        'current_page_url' => 'http://localhost?page=2',
     ];
     expect($p->toArray())->toEqual($pageInfo);
 });
