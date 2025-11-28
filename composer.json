@@ -28,12 +28,10 @@
     "require-dev": {
         "amphp/parallel": "^2.2",
         "amphp/parallel-functions": "^2.0",
-        "mockery/mockery": "^1.6.2",
         "orchestra/testbench": "^10.0",
         "pestphp/pest": "^3.7|^4.0",
-        "phpunit/phpunit": "^11.5.3",
         "spatie/laravel-ray": "^1.32.5",
-        "symfony/stopwatch": "^6.3|^7.0"
+        "symfony/stopwatch": "^6.3|^7.0|^8.0"
     },
     "suggest": {
         "amphp/parallel-functions": "Required when using the parallel*-macros."
