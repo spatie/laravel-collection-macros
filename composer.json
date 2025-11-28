@@ -23,14 +23,14 @@
     ],
     "require": {
         "php": "^8.2",
-        "illuminate/support": "^12.0"
+        "illuminate/support": "^12.40.2"
     },
     "require-dev": {
-        "amphp/parallel": "^2.2",
+        "amphp/parallel": "^2.3.2",
         "amphp/parallel-functions": "^2.0",
         "orchestra/testbench": "^10.0",
-        "pestphp/pest": "^3.7|^4.0",
-        "spatie/laravel-ray": "^1.32.5",
+        "pestphp/pest": "^3.7|^4.1.5",
+        "spatie/laravel-ray": "^1.43.1",
         "symfony/stopwatch": "^6.3|^7.0|^8.0"
     },
     "suggest": {
